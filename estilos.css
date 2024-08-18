@@ -5,7 +5,7 @@
   }
   
   :root {
-    --color-primario: #012232;
+    --color-primario: #785d56;
     --color-secundario: #eeeeee;
     --fuente-default: "Baloo Da 2", serif;
     --ancho-default: 966px;
@@ -17,3 +17,29 @@
   html {
     font-family: var(--fuente-default);
   }
+
+  .nav-container {
+    font-size: 20px;
+    color: var(--color-secundario);
+    background-color: var(--color-primario);
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .nav {
+    width: var(--ancho-default);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .perfil {
+    font-size: 10px;
+  }
+
+  /* header {
+    background-color: var(--color-primario);
+    height: 60px;
+    font-size: 30px;
+    justify-content: ;
+  } */
