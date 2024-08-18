@@ -16,7 +16,7 @@ body{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 100px;
+    margin: 50px 100px 100px 100px;
 }
 
 .card-recomendacion{
@@ -24,8 +24,7 @@ body{
     height: 170px; 
     background-color: #fff4e4;
     border-radius: 6px;
-    /* overflow: hidden; */
-    margin: 2px;
+    margin: 10px;
     padding: 15px;
     border-style:solid;
     border-color: #e6d5c1;
