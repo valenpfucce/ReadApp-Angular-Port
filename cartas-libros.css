@@ -87,6 +87,7 @@ body {
 .imagen-libro {
     max-width: 100px; 
     max-height: 120px;
+    margin-top: 9px;
 }
 
 .contenedor-texto {
