@@ -20,21 +20,20 @@ html {
 }
 
 
-
 .main{
     background-color: var(--color-secundario);
     display: flex;
-    padding: 90px;
+    min-height: 100vh;
     flex: 0 0 200px;
-    justify-content: start;
-    gap: 50px;
-
+    justify-content: center;
+    gap: 10px;
+    margin: 50px;
+    
 }
 
 .info_usuario{
     display: flex;
-    flex-direction: column;
-   
+    flex-direction: column; 
 }
 
 .fotoPerfil{
@@ -67,9 +66,10 @@ html {
 }
 
 .info_conteiner{
-display: flex;
-flex-direction: column;
-gap: 10px;
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+ padding-right: 40px;
 
 }
 
