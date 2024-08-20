@@ -1,175 +1,346 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ReadApp</title>
-    <link href="./estilos.css" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Baloo Da 2"
-    />
-    <link href="./estiloCardR.css" rel="stylesheet" />
-  </head>
-  <body>
-    <div class="card-container" > 
-        <div class="card-recomendacion">
-          <h3> Recomendacion Loca </h3>
-          <hr>
-          <div class="card-content">
-            <div class="comentario">
-              <p>"Es un conjunto de libros re copados que se puede
-                leer en familia. Muy recomendable para niños"
-              </p>
-            </div>
-            <div class="lista-libros">
-              Cuidado con el perro
-              Cuidado con el perro 
-              Cuidado con el perro
-              Cuidado con el perro
-            </div>
-            <hr>
-            <div class="resumen">
-              <div>4.5</div>
-              <div>4 libros</div>
-              <div>8hs.</div>
-            </div>
-          </div>
-          <div class="boton"> 
-            Ver más
-          </div>
-        </div>
-        <div class="card-recomendacion">
-          <h3> Recomendacion Loca </h3>
-          <hr>
-          <div class="card-content">
-            <div class="comentario">
-              <p>"Es un conjunto de libros re copados que se puede
-                leer en familia. Muy recomendable para niños"
-              </p>
-            </div>
-            <div class="lista-libros">
-              Cuidado con el perro
-              Cuidado con el perro 
-              Cuidado con el perro
-              Cuidado con el perro
-            </div>
-            <hr>
-            <div class="resumen">
-              <div>4.5</div>
-              <div>4 libros</div>
-              <div>8hs.</div>
-            </div>
-          </div>
-          <div class="boton"> 
-            Ver más
-          </div>
-        </div>
-        <div class="card-recomendacion">
-          <h3> Recomendacion Loca </h3>
-          <hr>
-          <div class="card-content">
-            <div class="comentario">
-              <p>"Es un conjunto de libros re copados que se puede
-                leer en familia. Muy recomendable para niños"
-              </p>
-            </div>
-            <div class="lista-libros">
-              Cuidado con el perro
-              Cuidado con el perro 
-              Cuidado con el perro
-              Cuidado con el perro
-            </div>
-            <hr>
-            <div class="resumen">
-              <div>4.5</div>
-              <div>4 libros</div>
-              <div>8hs.</div>
-            </div>
-          </div>
-          <div class="boton"> 
-            Ver más
-          </div>
-        </div>
-        <div class="card-recomendacion">
-          <h3> Recomendacion Loca </h3>
-          <hr>
-          <div class="card-content">
-            <div class="comentario">
-              <p>"Es un conjunto de libros re copados que se puede
-                leer en familia. Muy recomendable para niños"
-              </p>
-            </div>
-            <div class="lista-libros">
-              Cuidado con el perro
-              Cuidado con el perro 
-              Cuidado con el perro
-              Cuidado con el perro
-            </div>
-            <hr>
-            <div class="resumen">
-              <div>4.5</div>
-              <div>4 libros</div>
-              <div>8hs.</div>
-            </div>
-          </div>
-          <div class="boton"> 
-            Ver más
-          </div>
-        </div>
-        <div class="card-recomendacion">
-          <h3> Recomendacion Loca </h3>
-          <hr>
-          <div class="card-content">
-            <div class="comentario">
-              <p>"Es un conjunto de libros re copados que se puede
-                leer en familia. Muy recomendable para niños"
-              </p>
-            </div>
-            <div class="lista-libros">
-              Cuidado con el perro
-              Cuidado con el perro 
-              Cuidado con el perro
-              Cuidado con el perro
-            </div>
-            <hr>
-            <div class="resumen">
-              <div>4.5</div>
-              <div>4 libros</div>
-              <div>8hs.</div>
-            </div>
-          </div>
-          <div class="boton"> 
-            Ver más
-          </div>
-        </div>
-        <div class="card-recomendacion">
-          <h3> Recomendacion Loca </h3>
-          <hr>
-          <div class="card-content">
-            <div class="comentario">
-              <p>"Es un conjunto de libros re copados que se puede
-                leer en familia. Muy recomendable para niños"
-              </p>
-            </div>
-            <div class="lista-libros">
-              Cuidado con el perro
-              Cuidado con el perro 
-              Cuidado con el perro
-              Cuidado con el perro
-            </div>
-            <hr>
-            <div class="resumen">
-              <div>4.5</div>
-              <div>4 libros</div>
-              <div>8hs.</div>
-            </div>
-          </div>
-          <div class="boton"> 
-            Ver más
-          </div>
-        </div>
-    </div>
 
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReadApp</title>
+  <link href="./estilos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo Da 2" />
+  <link href="./estiloCardR.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="grid-cartas">
+    <!-- RECOMENDACION 1 -->
+    <div class="card-recomendacion">
+      <div class="title-container">
+        <h3> Recomendacion Loca </h3>
+        <img src="imagenes/heart.svg" width="20px" height="12px" />
+      </div>
+      <hr>
+      <div class="card-content">
+        <div class="comentario">
+          <p>"Es un conjunto de libros re copados que se puede
+            leer en familia. Muy recomendable para niños"
+          </p>
+        </div>
+        <div class="lista-libros">
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+        </div>
+        <hr>
+        <div class="resumen">
+          <div class="icono-texto">
+            <img src="imagenes/star.svg" width="20px" height="10px" />
+            4.5
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/books.svg" width="20px" height="10px" />
+            4 libros
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/clock.svg" width="20px" height="10px" />
+            8hs.
+          </div>
+        </div>
+      </div>
+      <div class="boton">
+        <div class="icono-texto">
+          Ver más
+          <img src="imagenes/caret-double-right.svg" width="20px" height="9.5px" />
+        </div>
+      </div>
+    </div>
+    <!-- RECOMENDACIÓN 2 -->
+    <div class="card-recomendacion">
+      <div class="title-container">
+        <h3> Recomendacion Loca </h3>
+        <div class="edicion">
+          <img src="imagenes/pencil-simple.svg" width="15px" height="12px" />
+          <img src="imagenes/trash.svg" width="15px" height="12px"/>  
+        </div>
+      </div>
+      <hr>
+      <div class="card-content">
+        <div class="comentario">
+          <p>"Es un conjunto de libros re copados que se puede
+            leer en familia. Muy recomendable para niños"
+          </p>
+        </div>
+        <div class="lista-libros">
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+        </div>
+        <hr>
+        <div class="resumen">
+          <div class="icono-texto">
+            <img src="imagenes/star.svg" width="20px" height="10px" />
+            4.5
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/books.svg" width="20px" height="10px" />
+            4 libros
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/clock.svg" width="20px" height="10px" />
+            8hs.
+          </div>
+        </div>
+      </div>
+      <div class="boton">
+        <div class="icono-texto">
+          Ver más
+          <img src="imagenes/caret-double-right.svg" width="20px" height="9.5px" />
+        </div>
+      </div>
+    </div>
+    <!-- RECOMENDACIÓN 3 -->
+    <div class="card-recomendacion">
+      <div class="title-container">
+        <h3> Recomendacion Loca </h3>
+        <img src="imagenes/heart.svg" width="20px" height="12px" />
+      </div>
+      <hr>
+      <div class="card-content">
+        <div class="comentario">
+          <p>"Es un conjunto de libros re copados que se puede
+            leer en familia. Muy recomendable para niños"
+          </p>
+        </div>
+        <div class="lista-libros">
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+        </div>
+        <hr>
+        <div class="resumen">
+          <div class="icono-texto">
+            <img src="imagenes/star.svg" width="20px" height="10px" />
+            4.5
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/books.svg" width="20px" height="10px" />
+            4 libros
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/clock.svg" width="20px" height="10px" />
+            8hs.
+          </div>
+        </div>
+      </div>
+      <div class="boton">
+        <div class="icono-texto">
+          Ver más
+          <img src="imagenes/caret-double-right.svg" width="20px" height="9.5px" />
+        </div>
+      </div>
+    </div>
+    <!-- RECOMENDACIÓN 4 -->
+    <div class="card-recomendacion">
+      <div class="title-container">
+        <h3> Recomendacion Loca </h3>
+        <img src="imagenes/heart.svg" width="20px" height="12px" />
+      </div>
+      <hr>
+      <div class="card-content">
+        <div class="comentario">
+          <p>"Es un conjunto de libros re copados que se puede
+            leer en familia. Muy recomendable para niños"
+          </p>
+        </div>
+        <div class="lista-libros">
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+        </div>
+        <hr>
+        <div class="resumen">
+          <div class="icono-texto">
+            <img src="imagenes/star.svg" width="20px" height="10px" />
+            4.5
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/books.svg" width="20px" height="10px" />
+            4 libros
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/clock.svg" width="20px" height="10px" />
+            8hs.
+          </div>
+        </div>
+      </div>
+      <div class="boton">
+        <div class="icono-texto">
+          Ver más
+          <img src="imagenes/caret-double-right.svg" width="20px" height="9.5px" />
+        </div>
+      </div>
+    </div>
+    <!-- RECOMENDACIÓN 5 -->
+    <div class="card-recomendacion">
+      <div class="title-container">
+        <h3> Recomendacion Loca </h3>
+        <img src="imagenes/heart.svg" width="20px" height="12px" />
+      </div>
+      <hr>
+      <div class="card-content">
+        <div class="comentario">
+          <p>"Es un conjunto de libros re copados que se puede
+            leer en familia. Muy recomendable para niños"
+          </p>
+        </div>
+        <div class="lista-libros">
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+        </div>
+        <hr>
+        <div class="resumen">
+          <div class="icono-texto">
+            <img src="imagenes/star.svg" width="20px" height="10px" />
+            4.5
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/books.svg" width="20px" height="10px" />
+            4 libros
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/clock.svg" width="20px" height="10px" />
+            8hs.
+          </div>
+        </div>
+      </div>
+      <div class="boton">
+        <div class="icono-texto">
+          Ver más
+          <img src="imagenes/caret-double-right.svg" width="20px" height="9.5px" />
+        </div>
+      </div>
+    </div>
+    <!-- RECOMENDACIÓN 6 -->
+    <div class="card-recomendacion">
+      <div class="title-container">
+        <h3> Recomendacion Loca </h3>
+        <img src="imagenes/heart.svg" width="20px" height="12px" />
+      </div>
+      <hr>
+      <div class="card-content">
+        <div class="comentario">
+          <p>"Es un conjunto de libros re copados que se puede
+            leer en familia. Muy recomendable para niños"
+          </p>
+        </div>
+        <div class="lista-libros">
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/bookmark.svg" width="20px" height="10px" />
+            Cuidado con el perro
+          </div>
+        </div>
+        <hr>
+        <div class="resumen">
+          <div class="icono-texto">
+            <img src="imagenes/star.svg" width="20px" height="10px" />
+            4.5
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/books.svg" width="20px" height="10px" />
+            4 libros
+          </div>
+          <div class="icono-texto">
+            <img src="imagenes/clock.svg" width="20px" height="10px" />
+            8hs.
+          </div>
+        </div>
+      </div>
+      <div class="boton">
+        <div class="icono-texto">
+          Ver más
+          <img src="imagenes/caret-double-right.svg" width="20px" height="9.5px" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
 </html>
