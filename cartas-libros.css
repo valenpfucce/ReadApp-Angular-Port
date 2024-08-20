@@ -9,10 +9,6 @@
     --color-letra-carta-secundaria: rgb(235, 235, 235);
 }
 
-html {
-    font-family: var(--fuente-default);
-}
-
 body {
     background-color: var(--color-secundario);
 }

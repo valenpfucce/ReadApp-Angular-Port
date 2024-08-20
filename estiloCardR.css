@@ -8,6 +8,10 @@ html {
     font-family: var(--fuente-default);
 }
 
+body {
+    background-color: var(--color-secundario);
+}
+
 .grid-cartas{
     display: flex;
     justify-content: center;
