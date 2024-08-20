@@ -24,8 +24,10 @@ html {
 .main{
     background-color: var(--color-secundario);
     display: flex;
-    gap: 50px;
+    padding: 90px;
     flex: 0 0 200px;
+    justify-content: start;
+    gap: 50px;
 
 }
 
