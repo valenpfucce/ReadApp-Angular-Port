@@ -18,16 +18,19 @@
         <div class="title-logIn">
             <i class="fa-solid fa-book"> </i><h1> ReadApp </h1>
         </div>
-        <div>
+        <div class="container">
           <div class="title-input">Usuario<span>*</span></div>
-          <input type="text" id="user" /> <!--Agregar "required" para que sea un campo obligatorio-->
+          <div class="container-input">
+            <input type="text" id="user" /> <!--Agregar "required" para que sea un campo obligatorio-->
+          </div>
           <p class="obligatorio-input"><i class="fa-solid fa-triangle-exclamation"></i> El nombre de usuario es obligatorio</p>
-
         </div>
-
-        <div>
+        <div class="container">  
           <div class="title-input">Contraseña<span>*</span></div>
-          <input type="password" id="password" /> <!--Agregar "required" para que sea un campo obligatorio-->
+          <div class="container-input">
+            <input type="password" id="password" /> <!--Agregar "required" para que sea un campo obligatorio-->
+            <i class="fa-solid fa-eye"></i>
+          </div>
         </div>
          <button type="submit">Ingresar</button>
         </form>
