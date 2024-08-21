@@ -10,12 +10,15 @@
     min-height: 100vh;
     flex: 0 0 200px;
     justify-content: center;
-    gap: 10px;    
+    gap: 18px;    
 }
 
 .info_usuario{
     display: flex;
     flex-direction: column; 
+    min-width: 500px;
+    max-width: 991px;
+
 }
 
 .fotoPerfil{
@@ -55,16 +58,18 @@
 
 }
 
-.informacion{
-    margin-top: 70px;
-    font-size: 30px;
-    
-}
-
-.general{
+.info_conteiner h2{
     font-size: 22px;
     border-top: 1px solid #949090;
+    padding: 6px;
+
 }
+
+.info_conteiner h1{
+    margin-top: 70px;
+    font-size: 30px;
+}
+
 
 .conteiner_datos{
     height: 250px;
@@ -109,10 +114,6 @@
     justify-content: flex-start;
 }
 
-.forma_lectura{
-    border-top: 1px solid #949090;
-    font-size: 22px;
-}
 .tipos_lectura{
     height: 50px;
     width: 1000px;
@@ -183,8 +184,7 @@
 
 .icono{
     display: flex;
-    width: 20px; /* Ajusta el tamaño según sea necesario */
-    height: 20px;
+    width: 25px; /* Ajusta el tamaño según sea necesario */
     max-width: 100%;
     max-height: 100%;
 }
@@ -195,5 +195,19 @@
   justify-content: flex-start;
   padding: 1px;
   gap: 5px;
-
+  padding: 4px;
 }
+
+.boton_menu a{
+    font-style: var(--fuente-default);
+    font-size: 19px;
+    text-decoration: none;
+    color: #000000;    
+}
+
+.boton_menu a:hover {
+    font-weight: bold; 
+    color: var(--color-primario); 
+    
+}
+
