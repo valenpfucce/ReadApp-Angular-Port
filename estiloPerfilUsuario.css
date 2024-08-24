@@ -12,7 +12,7 @@
     justify-content: center;
     gap: 18px;    
 }
-
+ 
 .info_usuario{
     display: flex;
     flex-direction: column; 
@@ -25,6 +25,8 @@
     text-align: center;
     margin-top: 70px;
     width: 450px;
+    padding: 10px;
+    padding-left: 60px;
 }
 
 .imagen_perfil{
@@ -122,7 +124,7 @@
    
 }
 
-.tipos_lectura input{
+.tipos_lectura input {
     appearance: none;
     margin-right: 10px;
     width: 15px;
@@ -131,13 +133,13 @@
     background-color: white;
     transition: background-color 0.3s ease;
     border: 1px solid black;
-    box-shadow: 0 4px 8px rgba(173, 153, 153, 0.1);
+    box-shadow: 0 4px 8px rgba(173, 153, 153, 0.1); 
 
 }
 
 .tipos_lectura input[type="checkbox"]:checked{
     background-color: var(--color-primario);
-    border: 1px solid #000000;
+    border: 1px solid #000000; 
 }
 
 .tipos_lectura label{
@@ -149,20 +151,17 @@
 
 }
 
-.criterio_busqueda{
-    height: 40px;
-    width: 1000px;
-    display: flex;
-    justify-content: space-around;
-    padding: 5px;
-}
-
 .criterio_conteiner{
     height: 50px;
     width: 1000px;
     display: flex;
-    justify-content: space-around;
-    
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;    
+}
+
+.criterio_conteiner label{
+    margin: 10px 0px 30px 100px; 
 }
 
 .criterio_conteiner input{
@@ -211,3 +210,46 @@
     
 }
 
+.botton_continer{
+display: flex;
+height: 50px;
+width: 1000px;
+justify-content: center;
+gap: 10px;  
+margin-top: 90px;
+border-top: 1px solid #949090;
+
+}
+
+.info_conteiner button{
+    font-size: 12px;
+    width: 20%;
+    height: 40px;
+    border-radius: 10px;
+    margin-top: 20px;
+
+}
+
+
+.boton_guardar{
+    background-color: var(--color-primario);
+    border: var(--color-primario);
+    color: var(--color-secundario);  
+}
+
+.boton_cancelar{
+ background-color: var(--color-secundario);
+ box-sizing: 2px;
+ color: black;
+ border: 1px solid #000000;
+}
+
+.boton_cancelar:active{     /*pasa el cursor por encima*/
+  background-color: #e7dbdb;
+  transform: scale(0.98);
+}
+
+.boton_guardar:active{     /*pasa el cursor por encima*/
+    background-color:var(--color-terciario);
+    transform: scale(0.98);
+ }
