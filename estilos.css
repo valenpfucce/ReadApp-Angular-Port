@@ -79,6 +79,7 @@ body {
 .barra-busqueda {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .barra-busqueda input[type="text"] {
