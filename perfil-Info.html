@@ -6,7 +6,8 @@
     <title>Perfil de Usuario - ReadApp</title>
     <link href="./estilos.css" rel="stylesheet" />
     <link href="./header.css" rel="stylesheet" />
-    <link href="./estiloPerfilUsuario.css" rel="stylesheet" />
+    <link href="./estiloPerfil.css" rel="stylesheet" />
+    <link href="./estiloPerfilInfo.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Baloo Da 2"
@@ -66,21 +67,21 @@
             <section class="conteiner_datos"> 
                 <div class="cont_1">
                     <label>Nombre</label>
-                    <input type="text" class="campo_rellenar">
+                    <input type="text" required pattern=".*\S.*">
                     <label >Unsername</label>
-                    <input type="text" class="campo_rellenar">
+                    <input type="text" required pattern=".*\S.*">
                     <label >Mail</label>
-                    <input type="text" class="campo_rellenar">
+                    <input type="text" required pattern=".*\S.*">
                 </div>
-                <div class="cont_2">
+                <div class="cont_1">
                     <label>Apellido</label>
-                    <input type="text" class="campo_rellenar">
+                    <input type="text" required pattern=".*\S.*">
                     <label >Fecha de nacimiento</label>
-                    <input type="date" class="campo_rellenar">
+                    <input type="date" required pattern=".*\S.*">
                     <label >Tiempo de lectura promedio</label>
-                    <input type="text" class="campo_rellenar">
+                    <input type="text" required pattern=".*\S.*">
                 </div>
-             </section>
+              </section>
              
          <h2>Forma de lectura</h2>
             <div class="tipos_lectura">

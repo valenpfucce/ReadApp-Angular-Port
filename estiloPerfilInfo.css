@@ -1,0 +1,203 @@
+.info_conteiner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 40px;
+}
+
+.info_conteiner label {
+    font-size: 1.7rem;
+}
+
+.info_conteiner h2 {
+    font-size: 2.2rem;
+    border-top: 1px solid #949090;
+    padding: 6px;
+
+}
+
+.info_conteiner h1 {
+    margin-top: 70px;
+    font-size: 3.0rem;
+}
+
+
+.conteiner_datos {
+    height: 250px;
+    width: 1000px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.cont_1 {
+    height: 250px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    padding: 1px;
+}
+
+.cont_1 label {
+    margin-top: 10px;
+}
+
+
+.conteiner_datos input{
+    display: flex;
+    padding: 6px;
+    border-radius: 7px;
+    box-shadow: 0 4px 8px rgba(173, 153, 153, 0.1);
+    flex-direction: column;
+    border: 1px solid #949090;
+    justify-content: flex-start;
+}
+
+.conteiner_datos input:valid{
+ background-color: rgb(247, 239, 214);
+}
+
+.tipos_lectura {
+    height: 50px;
+    width: 1000px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.tipos_lectura input {
+    appearance: none;
+    margin-right: 5px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: white;
+    transition: background-color 0.3s ease;
+    border: 1px solid black;
+    box-shadow: 0 4px 8px rgba(173, 153, 153, 0.1);
+}
+
+.tipos_lectura input[type="checkbox"]:checked {
+    background-color: var(--color-primario);
+    border: 1px solid #000000;
+}
+
+.tipos_lectura label {
+    align-items: baseline;
+    height: 21px;
+}
+
+.criterio_conteiner {
+    height: 50px;
+    width: 1000px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.criterio_conteiner label {
+    margin: 10px 0px 30px 100px;
+}
+
+.criterio_conteiner input {
+    appearance: none;
+    margin-right: 10px;
+    width: 15px;
+    height: 15px;
+    border-radius: 20%;
+    background-color: white;
+    transition: background-color 0.3s ease;
+    border: 1px solid #000000;
+    box-shadow: 0 4px 8px rgba(173, 153, 153, 0.1);
+}
+
+.criterio_conteiner input[type="checkbox"]:checked {
+    
+    background-color: var(--color-primario);
+    border: 1px solid #000000;
+}
+
+.criterio_conteiner input[type="checkbox"]:checked::after {
+    content: '✔';
+    color: var(--color-secundario);
+    padding-left: 2px;
+    font-size: 13px;
+}
+
+
+.icono {
+    display: flex;
+    width: 25px;
+    /* Ajusta el tamaño según sea necesario */
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.boton_menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 1px;
+    gap: 5px;
+    padding: 4px;
+}
+
+.boton_menu a {
+    font-style: var(--fuente-default);
+    font-size: 1.9rem;
+    text-decoration: none;
+    color: #000000;
+}
+
+.boton_menu a:hover {
+    font-weight: bold;
+    color: var(--color-primario);
+
+}
+
+.botton_continer {
+    display: flex;
+    height: 50px;
+    width: 1000px;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 90px;
+    border-top: 1px solid #949090;
+
+}
+
+.info_conteiner button {
+    font-size: 1.2rem;
+    width: 20%;
+    height: 40px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.boton_guardar {
+    background-color: var(--color-primario);
+    border: var(--color-primario);
+    color: var(--color-secundario);
+}
+
+.boton_cancelar {
+    background-color: var(--color-secundario);
+    box-sizing: 2px;
+    color: black;
+    border: 1px solid #000000;
+}
+
+.boton_cancelar:active {
+    /*pasa el cursor por encima*/
+    background-color: #e7dbdb;
+    transform: scale(0.98);
+}
+
+.boton_guardar:active {
+    /*pasa el cursor por encima*/
+    background-color: var(--color-terciario);
+    transform: scale(0.98);
+}
