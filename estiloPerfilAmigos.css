@@ -1,0 +1,134 @@
+.amigos_conteiner {
+    height: 100vh;
+    width: var(--ancho-default);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: flex-start;
+    
+}
+
+.amigos_conteiner label {
+    font-size: 1.7rem;
+}
+
+.amigos_conteiner h1 {
+    margin-top: 70px;
+    font-size: 3.0rem;
+}
+
+.lista_amigos{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-top: 1px solid #949090;
+    padding: 8px;
+
+}
+
+.carta_amigo{
+    color: var(--color-letra-carta);
+    width: 270px;
+    height: 75px;
+    background-color: var(--color-quinto);
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 5px;
+    display: flex;
+    align-items: flex-start;
+    padding: 8px;
+    gap: 6px;
+}
+
+.carta_amigo img{
+    max-width: 65px; 
+    border-radius: 80%;
+}
+
+.carta_amigo label{
+  text-align: start;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.carta_amigo p {
+    text-align: start;
+    font-size: 1.4rem;
+    color:#8f8a8a;
+}
+
+.nombre_apellido{
+ display: flex;
+ gap: 4px;
+ 
+}
+
+.amigo_info{
+    display: flex;
+    flex-direction: column;
+    margin: 2px 0px 0px 0px;
+}
+
+
+.icono_delete:hover{
+    font-weight: bold;
+    color: var(--color-primario);
+}
+
+.carta_amigo button{
+    background: url('imagenes/trash.svg/');
+    background: contain; 
+    border: none; 
+    width: 30px; 
+    cursor: pointer; 
+    margin-left: 25px;
+    margin-top: 15px;
+}
+
+.carta_amigo button:hover{
+    transform: scale(1.2);
+}
+
+.mas{
+    color: var(--color-letra-carta);
+    display: grid;
+    place-items: center;   
+    background-color: #f1f1f1;  
+}
+
+.circulo-mas {
+    display: flex;
+    align-items: center;
+    width: 55px;
+    height: 55px;
+    background-color: white;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+}
+  
+.circulo-mas:hover {
+    background-color: var(--color-cuarto);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+  
+.icono-mas{
+    font-size: 24px;
+    font-weight: bold; 
+}
+
+.icono-mas button {
+    display: flex;
+    margin: 18px;
+    font-size: 35px;
+    color: #000; 
+}
+
+.icono-mas button:hover{
+    transform: none;
+}
+
+
