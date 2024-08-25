@@ -1,16 +1,6 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
 :root {
     --color-letra-carta: white;
     --color-letra-carta-secundaria: rgb(235, 235, 235);
-}
-
-body {
-    background-color: var(--color-secundario);
 }
 
 .contenedor-cartas{
