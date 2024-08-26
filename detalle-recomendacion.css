@@ -78,6 +78,14 @@ h4 {
         background-color: black;
         width: 90%;
     }
+
+    .titulos {
+        font-size: 3rem;
+        text-align: left;
+        margin-top: 2rem;
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
 }
 
 /*MOBILE (hasta 400px)*/
