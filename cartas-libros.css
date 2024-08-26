@@ -113,3 +113,52 @@
     align-items: center;
     margin-bottom: 0.76rem;
 }
+
+
+@media only screen and (max-width: 400px) {
+    .contenedor-cartas {
+        display: flex; 
+        justify-content: center;
+        align-items: center; 
+        max-width: 217.29rem;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        margin-top: 1.25rem;
+    }
+    
+    .carta {
+        color: var(--color-letra-carta);
+        width: 100%;
+        height: auto;
+        background-color: var(--color-terciario);
+        border-radius: 0.91rem;
+        overflow: hidden;
+        box-shadow: 0 0.3rem 0.61rem rgba(0, 0, 0, 0.2);
+        margin: 1.51rem;
+        display: flex;
+        align-items: center;
+        padding: 1.51rem;
+        position: relative;
+    }
+
+    .contenido-carta {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contenedor-imagen {
+        margin-bottom: 1.51rem; 
+    }
+
+    .contenedor-texto {
+        margin-left: 0; 
+        text-align: left; 
+    }
+
+    .detalles-libro li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.76rem;
+        line-height: 3rem;
+    }
+}
