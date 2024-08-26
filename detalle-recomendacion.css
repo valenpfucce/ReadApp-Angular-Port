@@ -1,0 +1,52 @@
+.contenido-pagina {
+    max-width: 120rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    position: relative; 
+}
+
+.icono-superior-derecha {
+    position: absolute;
+    top: 4rem;
+    right: 0;
+}
+
+.titulos {
+    font-size: 3rem;
+    text-align: left;
+    margin-top: 2rem;
+}
+
+.titulos h2 {
+    font-weight: bold;
+}
+
+.titulos.textoprincipal {
+    font-size: 2rem;
+}
+
+.titulos.valoraciones {
+    display: flex;
+    align-items: center; 
+    gap: 2rem;
+}
+
+.titulos.titulos.valoraciones img {
+    width: 4rem; 
+    height: auto;
+}
+
+hr {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    border: 0;
+    height: 0.3rem;
+    background-color: black;
+    width: 100%;
+}
+
+h4 {
+    font-weight: normal; 
+}
