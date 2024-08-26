@@ -1,0 +1,193 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.main-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    background-color: #fff;
+    width: 200px; /* Reduce the sidebar width */
+    padding: 10px; /* Reduce padding for a compact look */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile img {
+    width: 80px; /* Smaller profile image */
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile h3 {
+    font-size: 14px;
+    color: #333;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.menu li {
+    margin: 10px 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    display: block;
+    padding: 5px;
+    text-align: center;
+}
+
+.menu .active a {
+    font-weight: bold; /* Make the active link bold */
+    color: #00aaff; /* Highlight color */
+}
+
+.menu a:hover {
+    color: #00aaff;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto; /* Ensure content scrolls if needed */
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.books-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.book-card {
+    background-color: #00aaff;
+    border-radius: 8px;
+    color: white;
+    width: 220px; /* Smaller width for the book cards */
+    padding: 15px; /* Adjusted padding for a compact card look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-card img {
+    width: 80px; /* Smaller image inside the card */
+    height: 120px;
+    margin-bottom: 10px;
+}
+
+.book-info {
+    text-align: center;
+    font-size: 14px; /* Smaller text for compactness */
+}
+
+.add-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 100px;
+    background-color: white;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.add-more button {
+    background-color: #00aaff;
+    color: white;
+    font-size: 24px;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.add-more button:hover {
+    background-color: #0077cc;
+}
+
+.footer-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.cancel-button, .save-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.cancel-button {
+    background-color: #ddd;
+    color: #333;
+}
+
+.save-button {
+    background-color: #0077cc;
+    color: white;
+}
+
+.save-button:hover {
+    background-color: #005999;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column; /* Stack sidebar on top for smaller screens */
+        height: auto; /* Allow content to determine height */
+    }
+
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px 0;
+        box-shadow: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    .books-grid {
+        justify-content: center; /* Center books on smaller screens */
+    }
+
+    .book-card, .add-more {
+        width: 100%;
+        max-width: 300px;
+    }
+}
