@@ -143,16 +143,16 @@
 
     .contenido-carta {
         flex-direction: column;
-        align-items: center; /* Para centrar la imagen y el contenido de texto */
+        align-items: center;
     }
 
     .contenedor-imagen {
-        margin-bottom: 1.51rem; /* Espacio entre la imagen y el texto */
+        margin-bottom: 1.51rem; 
     }
 
     .contenedor-texto {
-        margin-left: 0; /* Quita el margen izquierdo en mobile */
-        text-align: left; /* Centra el texto */
+        margin-left: 0; 
+        text-align: left; 
     }
 
     .detalles-libro li {
