@@ -77,10 +77,6 @@ button:hover{
     padding-top: 2px;
 }
 
-@media all and (min-width: 769px) {
-    
-}
-
 @media all and (min-width: 401px) and (max-width: 768px)  {
     .grid-cartas{
         grid-template-columns: repeat(2, 1fr);
