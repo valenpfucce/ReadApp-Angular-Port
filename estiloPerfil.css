@@ -1,7 +1,7 @@
 .main{
     display: flex;
     min-height: 100%;
-    justify-content: center;
+    justify-content: space-between;
     gap: 1.8rem;  
 }
  
@@ -33,7 +33,7 @@
 
 .submenu_perfil{
     border-top: 1px solid #949090;
-    margin: 35px 50px 100px 100px;
+    margin: 35px 100px 100px 50px;
     margin-bottom: 5px;
     font-size: 1.8rem;
     padding: 8px;
@@ -53,6 +53,7 @@
     padding: 1px;
     gap: 5px;
     padding: 4px;
+    line-height: 1;
 }
 
 .boton_menu a {
