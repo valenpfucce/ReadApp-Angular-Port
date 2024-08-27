@@ -34,10 +34,10 @@
 
 .barra-busqueda label {
     color: var(--color-primario);
-    line-height: 0.8;
+    line-height: 0.9;
     display: grid;
     grid-template-columns: 1rem auto;
-    gap: 1rem;
+    gap: 0.7rem;
     margin-left: 1rem;
 }
 
