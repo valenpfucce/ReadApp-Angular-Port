@@ -6,46 +6,46 @@
     display: flex; 
     justify-content: center;
     align-items: center; 
-    max-width: 217.29rem;
+    max-width: 162.97rem;
     flex-wrap: wrap;
     margin: 0 auto;
-    margin-top: 1.25rem;
+    margin-top: 0.94rem;
 }
 
 .carta {
     color: var(--color-letra-carta);
-    width: 55rem;
-    height: 27.5rem;
+    width: 41.25rem;
+    height: 20.62rem;
     background-color: var(--color-terciario);
-    border-radius: 0.91rem;
+    border-radius: 0.68rem;
     overflow: hidden;
-    box-shadow: 0 0.3rem 0.61rem rgba(0, 0, 0, 0.2);
-    margin: 1.51rem;
+    box-shadow: 0 0.22rem 0.46rem rgba(0, 0, 0, 0.2);
+    margin: 1.13rem;
     display: flex;
     align-items: center;
-    padding: 1.51rem;
+    padding: 1.13rem;
     position: relative;
 }
 
 .iconos-superior-derecha {
-    width: 3.03rem;
-    height: 3.03rem;
+    width: 2.27rem;
+    height: 2.27rem;
     position: absolute;
-    top: 1.88rem;
-    right: 2.5rem;
+    top: 1.41rem;
+    right: 1.88rem;
 } 
 
 .iconos-inferior-derecha {
-    width: 3.03rem;
-    height: 3.03rem;
+    width: 2.27rem;
+    height: 2.27rem;
     position: absolute;
-    bottom: 1.88rem;
-    right: 2.5rem;
+    bottom: 1.41rem;
+    right: 1.88rem;
 } 
 
 .iconos {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 2.62rem;
+    height: 2.62rem;
     transition: transform 0.3s ease;
 }
 
@@ -56,9 +56,9 @@
 
 .iconoschicos {
     vertical-align: middle;
-    margin-right: 0.76rem;
-    width: 3.13rem;
-    height: 3rem;
+    margin-right: 0.57rem;
+    width: 2.35rem;
+    height: 2.25rem;
 }
 
 .contenido-carta {
@@ -75,43 +75,43 @@
 }
 
 .imagen-libro {
-    max-width: 17.5rem;
-    max-height: 23.75rem;
-    margin-top: 1.36rem;
-    margin-left: 0.63rem;
+    max-width: 13.12rem;
+    max-height: 17.81rem;
+    margin-top: 1.02rem;
+    margin-left: 0.47rem;
 }
 
 .contenedor-texto {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-left: 1.51rem;
+    margin-left: 1.13rem;
     flex-grow: 1;
 }
 
 .titulo-libro {
-    font-size: 2.43rem;
-    margin-bottom: 0.46rem;
+    font-size: 1.82rem;
+    margin-bottom: 0.35rem;
 }
 
 .autor-libro {
-    font-size: 2.13rem;
+    font-size: 1.6rem;
     color: var(--color-letra-carta-secundaria);
-    margin-bottom: 1.51rem;
+    margin-bottom: 1.13rem;
 }
 
 .detalles-libro {
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 1.88rem;
-    line-height: 1rem;
+    font-size: 1.41rem;
+    line-height: 0.75rem;
 }
 
 .detalles-libro li {
     display: flex;
     align-items: center;
-    margin-bottom: 0.76rem;
+    margin-bottom: 0.57rem;
 }
 
 
