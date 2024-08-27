@@ -1,6 +1,6 @@
 .perfil_container {
-    height: 100vh;
-    width: var(--ancho-default);
+    height: auto;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
