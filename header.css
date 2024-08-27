@@ -10,7 +10,11 @@ html {
     background-color: var(--color-primario);
     padding: 10px 20px;
     color: white;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .logo-container {
@@ -49,12 +53,8 @@ html {
 
 @media screen and (max-width: 400px) {
     .header {
-        position: fixed;
+        top: auto;
         bottom: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-        background-color: var(--color-primario);
     }
 
     
