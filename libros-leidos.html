@@ -7,6 +7,7 @@
     <link href="./estilos.css" rel="stylesheet" />
     <link href="./header.css" rel="stylesheet" />
     <link href="./estiloPerfil.css" rel="stylesheet" />
+    <link href="./estiloPerfilInfo.css" rel="stylesheet" />
     <link href="./estiloLibrosLeidos.css" rel="stylesheet" />
     <link
       rel="stylesheet"
@@ -24,7 +25,7 @@
         <h1>ReadApp</h1>
       </div>
       <div class="user-profile">
-        <img src="imagenes\roman.jpg" class="profile-pic" />
+        <img src="imagenes/roman.jpg" class="profile-pic" />
         <span> Roman Riquelme</span>
       </div>
     </header>
@@ -32,28 +33,28 @@
     <div class="main">
       <div class="info_usuario">
         <div class="fotoPerfil">
-          <img src="imagenes\roman.jpg" class="imagen_perfil" />
+          <img src="imagenes/roman.jpg" class="imagen_perfil" />
         </div>
         <div class="nombre_perfil">Roman Riquelme</div>
         <nav class="submenu_perfil">
           <li class="boton_menu">
-            <img class="icono" src="imagenes\info.svg" />
+            <img class="icono" src="imagenes/info.svg" />
             <a href="this">Informacion</a>
           </li>
           <li class="boton_menu">
-            <img class="icono" src="imagenes\amigos.svg" />
+            <img class="icono" src="imagenes/amigos.svg" />
             <a href="">Amigos</a>
           </li>
           <li class="boton_menu">
-            <img class="icono" src="imagenes\librosleidos.svg" />
+            <img class="icono" src="imagenes/librosleidos.svg" />
             <a href="">Libros leidos</a>
           </li>
           <li class="boton_menu">
-            <img class="icono" src="imagenes\librosaleer.svg" />
+            <img class="icono" src="imagenes/librosaleer.svg" />
             <a href="">Libros a leer</a>
           </li>
           <li class="boton_menu">
-            <img class="icono" src="imagenes\valorarReco.svg" />
+            <img class="icono" src="imagenes/valorarReco.svg" />
             <a href="">Recomendaciones a valorar</a>
           </li>
         </nav>
@@ -64,41 +65,50 @@
         <div class="books-grid">
           <!-- Carta 1 -->
           <div class="book-card">
-            <img src="book-cover.jpg" alt="Cuidado con el perro" />
+            <img src="book-cover.jpg" alt="Cuidado con el perro" class="book-image" />
             <div class="book-info">
               <h2>Cuidado con el perro</h2>
-              <p>Por Liliana Cinetto</p>
-              <p>60 páginas</p>
-              <p>785 palabras</p>
-              <p>Español • Inglés • Mandarin • Árabe</p>
-              <p>1457 veces terminadas</p>
+              <li>Por Liliana Cinetto</li>
+              <li>60 páginas</li>
+              <li>785 palabras</li>
+              <li>Español • Inglés • Mandarin • Árabe</li>
+              <li>1457 veces terminadas</li>
             </div>
+            <button class="delete-button">
+              <img src="trash-icon.png" alt="Eliminar" />
+            </button>
           </div>
 
           <!-- Carta 2 -->
           <div class="book-card">
-            <img src="book-cover.jpg" alt="Cuidado con el perro" />
+            <img src="book-cover.jpg" alt="Cuidado con el perro" class="book-image" />
             <div class="book-info">
               <h2>Cuidado con el perro</h2>
-              <p>Por Liliana Cinetto</p>
-              <p>60 páginas</p>
-              <p>785 palabras</p>
-              <p>Español • Inglés • Mandarin • Árabe</p>
-              <p>1457 veces terminadas</p>
+              <li>Por Liliana Cinetto</li>
+              <li>60 páginas</li>
+              <li>785 palabras</li>
+              <li>Español • Inglés • Mandarin • Árabe</li>
+              <li>1457 veces terminadas</li>
             </div>
+            <button class="delete-button">
+              <img src="trash-icon.png" alt="Eliminar" />
+            </button>
           </div>
 
           <!-- Carta 3 -->
           <div class="book-card">
-            <img src="book-cover.jpg" alt="Cuidado con el perro" />
+            <img src="book-cover.jpg" alt="Cuidado con el perro" class="book-image" />
             <div class="book-info">
               <h2>Cuidado con el perro</h2>
-              <p>Por Liliana Cinetto</p>
-              <p>60 páginas</p>
-              <p>785 palabras</p>
-              <p>Español • Inglés • Mandarin • Árabe</p>
-              <p>1457 veces terminadas</p>
+              <li>Por Liliana Cinetto</li>
+              <li>60 páginas</li>
+              <li>785 palabras</li>
+              <li>Español • Inglés • Mandarin • Árabe</li>
+              <li>1457 veces terminadas</li>
             </div>
+            <button class="delete-button">
+              <img src="trash-icon.png" alt="Eliminar" />
+            </button>
           </div>
 
           <!-- Agregar + cartas -->
@@ -106,7 +116,14 @@
             <button>+</button>
           </div>
         </div>
+
+        <!-- Botones de acción al final -->
+        <div class="footer-buttons">
+          <button class="cancel-button">Cancelar</button>
+          <button class="save-button">Guardar cambios</button>
+        </div>
       </div>
     </div>
+
   </body>
 </html>

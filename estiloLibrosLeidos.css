@@ -5,6 +5,10 @@ body {
     padding: 0;
 }
 
+.container {
+    margin-top: 80px;
+}
+
 .main-container {
     display: flex;
     height: 100vh;
@@ -73,8 +77,10 @@ body {
 }
 
 h1 {
+    font-size: 35px;
     color: #333;
     margin-bottom: 20px;
+    
 }
 
 .books-grid {
@@ -88,13 +94,13 @@ h1 {
     background-color: var(--color-sexto);
     border-radius: 8px;
     color: var(--color-secundario);
-    width: 350px; /* Rectangular width */
-    height: 180px; /* Fixed height for consistency */
+    width: 350px; 
+    height: 180px; 
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
-    align-items: center; /* Align items horizontally */
-    position: relative; /* Position for absolute elements */
+    align-items: center; 
+    position: relative; 
 }
 
 .book-image {
@@ -120,6 +126,7 @@ h1 {
 .book-info p {
     font-size: 14px;
     margin: 5px 0;
+    padding: 0px;
 }
 
 .delete-button {
@@ -149,8 +156,8 @@ h1 {
 }
 
 .add-more button {
-    background-color: #00aaff;
-    color: white;
+    background-color: var(--color-sexto);
+    color: var(--color-cuarto);
     font-size: 24px;
     border: none;
     border-radius: 50%;
@@ -160,14 +167,16 @@ h1 {
 }
 
 .add-more button:hover {
-    background-color: #0077cc;
+    background-color: var(--color-tercero);
 }
 
 .footer-buttons {
-    margin-top: 20px;
+    margin-top: 15px;
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+    padding-right: 110px;
+    
 }
 
 .cancel-button, .save-button {
@@ -178,17 +187,24 @@ h1 {
 }
 
 .cancel-button {
-    background-color: #ddd;
-    color: #333;
+    background-color: var(--color-quinto);
+    color: var(--color-sexto);
+    border-radius: 8px;
 }
 
 .save-button {
-    background-color: #0077cc;
-    color: white;
+    background-color: var(--color-sexto);
+    color: var(--color-quinto);
+    border-radius: 8px;
 }
 
 .save-button:hover {
-    background-color: #005999;
+    background-color: var(--color-primario);
+}
+
+.cancel-button:hover {
+    background-color: var(--color-sexto);
+    color: var(--color-quinto);
 }
 
 /* Responsive Design */
