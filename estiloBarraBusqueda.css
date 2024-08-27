@@ -1,6 +1,10 @@
 .barra-busqueda-container {
     background-color: #e6d5c1;
     padding: 10px 20px;
+    position: fixed;
+    top: 8rem;
+    left: 0;
+    width: 100%;
 }
 
 .barra-busqueda {
@@ -70,4 +74,15 @@
 
 .soloRec input[type="text"]{
     width: 50%;
+}
+
+@media (max-width: 400px){
+    .barra-busqueda-container {
+        background-color: #e6d5c1;
+        padding: 10px 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
 }
