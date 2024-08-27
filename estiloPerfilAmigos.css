@@ -1,29 +1,27 @@
-.amigos_conteiner {
+.perfil_container {
     height: 100vh;
     width: var(--ancho-default);
     display: flex;
     flex-direction: column;
     gap: 10px;
     justify-content: flex-start;
-    
 }
 
-.amigos_conteiner label {
+.perfil_container label {
     font-size: 1.7rem;
 }
 
-.amigos_conteiner h1 {
+.perfil_container h1 {
     margin-top: 70px;
     font-size: 3.0rem;
 }
 
-.lista_amigos{
+.lista_perfil{
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
     border-top: 1px solid #949090;
     padding: 8px;
-
 }
 
 .carta_amigo{

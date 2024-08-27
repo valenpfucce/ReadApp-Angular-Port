@@ -1,14 +1,7 @@
-/* .grid-cartas{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 50px 100px 100px 100px;
-} */
-
 .grid-cartas{
     margin: 30px 170px 100px 170px; 
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(27rem, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     justify-content: center;
 }
 
@@ -27,17 +20,13 @@
     font-size: 1.8rem;
 }
 
-.card-recomendacion hr {
-    border-top: 1px solid black;
-}
-
 .title-container{
     margin-bottom: 0.5rem;
     display: flex;
     justify-content: space-between;
-    line-height: 1.5;
+    border-bottom: 1px solid black;
+    padding-bottom: 2px;
 }
-
 
 button{
     appearance: none;
@@ -67,7 +56,7 @@ button:hover{
 
 .lista-libros{
     font-size: 0.8em;
-    margin-bottom: 4.5rem;
+    margin-bottom: 4rem;
     display:flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -77,11 +66,39 @@ button:hover{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    line-height: 2;
+    line-height: 2.1;
 }
 
 .resumen{
     font-size: 1rem;
     display: flex;
     justify-content: space-between;
+    border-top: 1px solid black;
+    padding-top: 2px;
+}
+
+@media all and (min-width: 401px) and (max-width: 768px)  {
+    .grid-cartas{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media all and (max-width: 400px) {
+    .grid-cartas{
+        grid-template-columns: 1fr;
+    }
+    
+    .card-recomendacion{
+        width: 25rem;
+        height: auto;
+    }
+
+    .lista-libros{
+        flex-direction: column;
+        margin-bottom: 2rem;
+    }
+
+    .card-content{
+        font-size: 1.4rem;
+    }
 }
