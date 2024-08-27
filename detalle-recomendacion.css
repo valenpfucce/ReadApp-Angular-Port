@@ -148,19 +148,19 @@ h4 {
 .carta-valoracion{
     color: var(--color-letra-carta);
     width: 55rem;
-    height: 27.5rem;
+    height: auto;
     background-color: var(--color-secundario);
     border-radius: 0.91rem;
     box-shadow: 0 0.3rem 0.61rem rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;   
+    margin-bottom: 2rem;
 }
 
-.text-opinion{
+.text-opinion {
     color: black;
     padding: 2rem;
     width: 100%;
-    height: 100%;
     text-align: justify;
 }
 
