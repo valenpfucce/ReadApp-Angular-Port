@@ -8,8 +8,10 @@
     align-items: center; 
     max-width: 162.97rem;
     flex-wrap: wrap;
-    margin: 0 auto;
-    margin-top: 0.94rem;
+    background: red;
+    /* margin: 0 auto; */
+    /* margin-top: 0.94rem; */
+    gap:1.5em;
 }
 
 .carta {
