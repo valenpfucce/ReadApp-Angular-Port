@@ -7,17 +7,16 @@
   <title>ReadApp</title>
   <link href="./estilos.css" rel="stylesheet" />
   <link href="./header.css" rel="stylesheet" />
-  <link href="./estiloBarraBusqueda.css" rel="stylesheet" />
-  <link href="./estiloCardR.css" rel="stylesheet" />
+  <link href="./estilo_barra_busqueda.css" rel="stylesheet" />
+  <link href="./estilo_card_recomendacion.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Baloo Da 2" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/007d112e2a.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
   <!-- header -->
   <header class="header">
     <div class="logo-container">
-      <i class="fa-solid fa-book"></i>
+      <img src="imagenes\book-bold.svg"/>
       <h1>ReadApp</h1>
     </div>
     <div class="user-profile">
@@ -36,13 +35,13 @@
 
   <section class="grid-cartas">
     <!-- RECOMENDACION 1 -->
-    <div class="card-recomendacion">
-      <div class="title-container">
+    <article class="card-recomendacion">
+      <header>
         <h3> Recomendacion Loca </h3>
         <button>
           <img src="imagenes/heart.svg" width="20px" height="18px" />
         </button>
-      </div>
+      </header>
       <section class="card-content">
         <div class="comentario">
           <p>"Es un conjunto de libros re copados que se puede
@@ -51,33 +50,33 @@
         </div>
         <section class="lista-libros">
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg" />
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
         </section>
         <section class="resumen">
           <div class="icono-texto">
-            <img src="imagenes/star.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/star.svg"/>
             4.5
           </div>
           <div class="icono-texto">
-            <img src="imagenes/books.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/libros.svg"/>
             4 libros
           </div>
           <div class="icono-texto">
-            <img src="imagenes/clock.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/clock.svg" />
             8hs.
           </div>
         </section>
@@ -85,13 +84,13 @@
       <button>
         <div class="icono-texto">
           Ver más
-          <img src="imagenes/caret-double-right.svg" width="30px" height="13px" />
+          <img class = "caret" src="imagenes/caret-double-right.svg"/>
         </div>
       </button>
-    </div>
+    </article>
     <!-- RECOMENDACIÓN 2 -->
-    <div class="card-recomendacion">
-      <div class="title-container">
+    <article class="card-recomendacion">
+      <header>
         <h3> Recomendacion Loca </h3>
         <div class="edicion">
           <button>
@@ -101,61 +100,61 @@
             <img src="imagenes/trash.svg" width="20px" height="18px" />
           </button>
         </div>
-      </div>
-      <div class="card-content">
+      </header>
+      <section class="card-content">
         <div class="comentario">
           <p>"Es un conjunto de libros re copados que se puede
             leer en familia. Muy recomendable para niños"
           </p>
         </div>
-        <div class="lista-libros">
+        <section class="lista-libros">
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg" />
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
-        </div>
-        <div class="resumen">
+        </section>
+        <section class="resumen">
           <div class="icono-texto">
-            <img src="imagenes/star.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/star.svg"/>
             4.5
           </div>
           <div class="icono-texto">
-            <img src="imagenes/books.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/libros.svg"/>
             4 libros
           </div>
           <div class="icono-texto">
-            <img src="imagenes/clock.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/clock.svg" />
             8hs.
           </div>
-        </div>
-      </div>
+        </section>
+      </section>
       <button>
         <div class="icono-texto">
           Ver más
-          <img src="imagenes/caret-double-right.svg" width="30px" height="13px" />
+          <img class = "caret" src="imagenes/caret-double-right.svg"/>
         </div>
       </button>
-    </div>
+    </article>
     <!-- RECOMENDACIÓN 3 -->
-    <div class="card-recomendacion">
-      <div class="title-container">
+    <article class="card-recomendacion">
+      <header>
         <h3> Recomendacion Loca </h3>
         <button>
           <img src="imagenes/heart.svg" width="20px" height="18px" />
         </button>
-      </div>
+      </header>
       <section class="card-content">
         <div class="comentario">
           <p>"Es un conjunto de libros re copados que se puede
@@ -164,33 +163,33 @@
         </div>
         <section class="lista-libros">
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg" />
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
         </section>
         <section class="resumen">
           <div class="icono-texto">
-            <img src="imagenes/star.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/star.svg"/>
             4.5
           </div>
           <div class="icono-texto">
-            <img src="imagenes/books.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/libros.svg"/>
             4 libros
           </div>
           <div class="icono-texto">
-            <img src="imagenes/clock.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/clock.svg" />
             8hs.
           </div>
         </section>
@@ -198,18 +197,18 @@
       <button>
         <div class="icono-texto">
           Ver más
-          <img src="imagenes/caret-double-right.svg" width="30px" height="13px" />
+          <img class = "caret" src="imagenes/caret-double-right.svg"/>
         </div>
       </button>
-    </div>
+    </article>
     <!-- RECOMENDACIÓN 4 -->
-    <div class="card-recomendacion">
-      <div class="title-container">
+    <article class="card-recomendacion">
+      <header>
         <h3> Recomendacion Loca </h3>
         <button>
           <img src="imagenes/heart.svg" width="20px" height="18px" />
         </button>
-      </div>
+      </header>
       <section class="card-content">
         <div class="comentario">
           <p>"Es un conjunto de libros re copados que se puede
@@ -218,33 +217,33 @@
         </div>
         <section class="lista-libros">
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg" />
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
         </section>
         <section class="resumen">
           <div class="icono-texto">
-            <img src="imagenes/star.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/star.svg"/>
             4.5
           </div>
           <div class="icono-texto">
-            <img src="imagenes/books.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/libros.svg"/>
             4 libros
           </div>
           <div class="icono-texto">
-            <img src="imagenes/clock.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/clock.svg" />
             8hs.
           </div>
         </section>
@@ -252,18 +251,18 @@
       <button>
         <div class="icono-texto">
           Ver más
-          <img src="imagenes/caret-double-right.svg" width="30px" height="13px" />
+          <img class = "caret" src="imagenes/caret-double-right.svg"/>
         </div>
       </button>
-    </div>
+    </article>
     <!-- RECOMENDACIÓN 5 -->
-    <div class="card-recomendacion">
-      <div class="title-container">
+    <article class="card-recomendacion">
+      <header>
         <h3> Recomendacion Loca </h3>
         <button>
           <img src="imagenes/heart.svg" width="20px" height="18px" />
         </button>
-      </div>
+      </header>
       <section class="card-content">
         <div class="comentario">
           <p>"Es un conjunto de libros re copados que se puede
@@ -272,33 +271,33 @@
         </div>
         <section class="lista-libros">
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg" />
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
         </section>
         <section class="resumen">
           <div class="icono-texto">
-            <img src="imagenes/star.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/star.svg"/>
             4.5
           </div>
           <div class="icono-texto">
-            <img src="imagenes/books.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/libros.svg"/>
             4 libros
           </div>
           <div class="icono-texto">
-            <img src="imagenes/clock.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/clock.svg" />
             8hs.
           </div>
         </section>
@@ -306,18 +305,18 @@
       <button>
         <div class="icono-texto">
           Ver más
-          <img src="imagenes/caret-double-right.svg" width="30px" height="13px" />
+          <img class = "caret" src="imagenes/caret-double-right.svg"/>
         </div>
       </button>
-    </div>
+    </article>
     <!-- RECOMENDACIÓN 6 -->
-    <div class="card-recomendacion">
-      <div class="title-container">
+        <article class="card-recomendacion">
+      <header>
         <h3> Recomendacion Loca </h3>
         <button>
           <img src="imagenes/heart.svg" width="20px" height="18px" />
         </button>
-      </div>
+      </header>
       <section class="card-content">
         <div class="comentario">
           <p>"Es un conjunto de libros re copados que se puede
@@ -326,33 +325,33 @@
         </div>
         <section class="lista-libros">
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg" />
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
           <div class="icono-texto">
-            <img src="imagenes/bookmark.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/bookmark.svg"/>
             Cuidado con el perro
           </div>
         </section>
         <section class="resumen">
           <div class="icono-texto">
-            <img src="imagenes/star.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/star.svg"/>
             4.5
           </div>
           <div class="icono-texto">
-            <img src="imagenes/books.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/libros.svg"/>
             4 libros
           </div>
           <div class="icono-texto">
-            <img src="imagenes/clock.svg" width="20px" height="15px" />
+            <img class= "icono" src="imagenes/clock.svg" />
             8hs.
           </div>
         </section>
@@ -360,10 +359,10 @@
       <button>
         <div class="icono-texto">
           Ver más
-          <img src="imagenes/caret-double-right.svg" width="30px" height="13px" />
+          <img class = "caret" src="imagenes/caret-double-right.svg"/>
         </div>
       </button>
-    </div>
+    </article>
   </section>
 
 </body>

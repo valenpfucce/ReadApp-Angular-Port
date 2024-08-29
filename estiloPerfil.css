@@ -10,11 +10,11 @@
     display: flex;
     flex-direction: column; 
     max-width: 100%;
+    margin-top: 3rem;
 }
 
 .fotoPerfil{
     text-align: center;
-    margin-top: 70px;
     padding: 10px;
     width: 100%;
 }
@@ -22,7 +22,7 @@
 .imagen_perfil{
     max-width: 150px; 
     max-height: 150px;
-    border-radius: 80%;
+    border-radius: 100%;
 }
 
 .nombre_perfil{
@@ -51,6 +51,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
     padding: 1px;
     gap: 5px;
     padding: 4px;
@@ -69,7 +70,7 @@
     color: var(--color-primario);
 }
 
-.boton_continer {
+.boton_container {
     display: flex;
     height: 50px;
     width: 100%;
@@ -78,7 +79,7 @@
     border-top: 1px solid #949090;
 }
 
-.boton_continer button{
+.boton_container button{
     width: 20%;
     height: 40px;
     border-radius: 10px;
@@ -109,7 +110,7 @@
     transform: scale(0.98);
 }
 
-@media all and (max-width: 480px) {
+@media all and (max-width: 400px) {
     .main {
         flex-direction: column;
         max-width: 100%;
@@ -120,6 +121,7 @@
     
     .info_usuario{
         max-width: 100%;
+        margin-top: 0;
     }
     
     .submenu_perfil{
@@ -145,12 +147,10 @@
         border-radius: 10px;
         margin-top: 1.5rem;
     }
-
-
 }
 
 
-@media all and (max-width: 850px) and (min-width: 480px) {
+@media all and (max-width: 768px) and (min-width: 401px) {
 
     .main {
         flex-direction: column;
