@@ -5,6 +5,7 @@
     flex-direction: column;
     gap: 10px;
     justify-content: flex-start;
+    margin: 5rem;
 }
 
 .perfil_container label {
@@ -74,7 +75,7 @@
 }
 
 .carta_amigo button{
-    background: url('imagenes/trash.svg/');
+    background: url('');
     background: contain; 
     border: none; 
     width: 30px; 
@@ -128,5 +129,106 @@
 .icono-mas button:hover{
     transform: none;
 }
+
+
+@media all and (max-width: 768px) and (min-width: 401px) {
+
+   
+    .perfil_container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: flex-start;
+        padding: 0px 40px 40px 40px;
+        margin: 0rem;
+        
+    }
+    
+    .perfil_container label {
+        font-size: 1.7rem;
+    }
+    
+    .perfil_container h1 {
+        margin-top: 0.5rem;
+        box-sizing: border-box;
+        font-size: 4rem;
+    }
+    
+    .lista_perfil{
+        display: flex;
+        justify-content: space-evenly;
+        max-height: 100%;
+        max-width: 100%;
+        gap: 10px;
+        flex-wrap: wrap;
+        border-top: 1px solid #949090;
+        padding: 8px;
+    }
+    
+    .carta_amigo{
+       
+        max-width: 100%;
+        max-height: 100%;
+        margin: 1px;
+        display: flex;
+        align-items: flex-start;
+        padding: 8px;
+        gap: 6px;
+        justify-content: center;
+    }
+}
+
+
+@media all and (max-width: 400px) {
+   
+    .perfil_container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: flex-start;
+        padding: 0px 5px 40px 5px;
+        margin: 0rem;
+        
+    }
+    
+    .perfil_container label {
+        font-size: 1.5rem;
+    }
+    
+    .perfil_container h1 {
+        margin-top: 0.5rem;
+        box-sizing: border-box;
+        font-size: 4rem;
+        padding: 0rem 1rem 0rem 1rem;
+    }
+    
+    .lista_perfil{
+        display: flex;
+        justify-content: space-evenly;
+        max-height: 100%;
+        max-width: 100%;
+        gap: 10px;
+        flex-wrap: wrap;
+        border-top: 1px solid #949090;
+        padding: 8px;
+    }
+    
+    .carta_amigo{
+       
+        max-width: 100%;
+        max-height: 100%;
+        margin: 1px;
+        display: flex;
+        align-items: flex-start;
+        padding: 8px;
+        gap: 6px;
+        justify-content: center;
+    }
+
+    
+}
+
+
+
 
 

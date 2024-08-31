@@ -3,6 +3,8 @@
     flex-direction: column;
     gap: 1rem;
     width: 90%; 
+    margin: 5rem;
+    position: relative;
 }
 
 .info_conteiner label {
@@ -80,22 +82,23 @@
 }
 
 .tipos_lectura label {
-    align-items: baseline;
-    height: 21px;
+    display: flex;
+    align-items: center;
+    height: 20px;
 }
 
 .criterio_conteiner {
-    
     width: 100%;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    
+  
 }
 
 .criterio_conteiner label {
     display: flex;
     margin: 10px 0px 30px 100px;
+    align-items: center;
     
 }
 
@@ -126,6 +129,93 @@
 }
 
 
+@media all and (max-width: 768px) and (min-width: 401px) {
+
+    .info_conteiner{
+        align-items: flex-start;
+        max-width: 100%;
+        height: auto;
+        padding-right: 0px;
+        padding: 0.5px;
+        position: relative;
+        box-sizing: border-box;
+        gap: 0.5rem;
+        margin: 0rem 3rem 3rem 3rem;
+        padding: 8px;
+    }
+    
+    .info_conteiner h1{
+        margin-top: 0.5rem;
+        box-sizing: border-box;
+        font-size: 4rem;
+    }
+
+    .info_conteiner h2{
+        
+        margin-top: 1rem;
+    }
+    
+    .conteiner_datos{
+        display: flex;
+        justify-content: space-evenly;
+        padding: 0.2rem;
+        box-sizing: border-box;
+        gap: 10px;
+        height: 100%;
+        width: 100%;
+    }
+
+    .cont_1 {
+        display: flex;
+        max-width: 100%;
+        max-height: 100%;
+        justify-content: center; 
+    }
+
+    .cont_1 label{
+        margin-top: 0rem;
+    }
+    
+    .conteiner_datos input{
+        justify-content: center;
+        max-width: 100%;
+        max-height: 100%;
+        padding: 1rem; 
+    }
+
+    .tipos_lectura{
+        height: auto;
+        box-sizing: border-box;
+        margin: 0rem 3rem 1rem 3rem;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .tipos_lectura label{
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    
+    .criterio_conteiner {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 0rem;
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+
+    .criterio_conteiner label {
+        display: flex;
+        margin: 1rem;
+        align-content: flex-start; 
+        padding: 1rem;
+    }
+
+}
+
+
 @media all and (max-width: 400px) {
    
     .info_conteiner{
@@ -137,6 +227,8 @@
         position: relative;
         box-sizing: border-box;
         gap: 0.5rem;
+        margin: 0rem;
+        margin-bottom: 40px;
     }
     
     .info_conteiner h1{
@@ -204,87 +296,3 @@
 }
 
 
-@media all and (max-width: 768px) and (min-width: 401px) {
-
-    .info_conteiner{
-        align-items: center;
-        width: 100%;
-        height: auto;
-        padding-right: 0px;
-        padding: 0.5px;
-        position: relative;
-        box-sizing: border-box;
-        gap: 0.5rem;
-    }
-    
-    .info_conteiner h1{
-        margin-top: 0.5rem;
-        box-sizing: border-box;
-    }
-
-    .info_conteiner h2{
-        margin-top: 1rem;
-    }
-    
-    .conteiner_datos{
-        flex-direction: column;
-        box-sizing: border-box;
-        padding: 0.2rem;
-        align-items: center;
-        position: relative;
-        box-sizing: border-box;
-        gap: 0px;
-    }
-
-    .cont_1 {
-        height: auto;
-        width: 80%;
-        justify-content: center; 
-    }
-
-    .cont_1 label{
-        margin-top: 0rem;
-
-    }
-    
-    .conteiner_datos input{
-        justify-content: center;
-        width: 100%;
-        padding: 1rem; 
-    }
-
-    .tipos_lectura{
-        width: auto;
-        height: auto;
-        
-        box-sizing: border-box;
-        margin: 0rem 3rem 2rem 3rem;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-
-    .tipos_lectura label{
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-    
-    .criterio_conteiner {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        width: auto;
-        height: auto;
-        gap: 0rem;
-        padding-left: 4rem;
-        padding-right: 4rem;
-    }
-
-    .criterio_conteiner label {
-        display: flex;
-        margin: 1rem;
-        align-content: flex-start; 
-        padding: 1rem;
-    }
-
-}
