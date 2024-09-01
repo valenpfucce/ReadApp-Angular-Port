@@ -1,7 +1,149 @@
 
 /***** VALORACIONES ******/
 
+.titulo_valoraciones {
+  width: 100%;
+  font-size: 3rem;
+  text-align: left;
+  margin-top: 2rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.titulo_valoraciones img {
+  width: 4rem;
+  height: auto;
+}
+
 .contenedor-valoraciones {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: space-between;
+  max-width: 217.29rem;
+  flex-wrap: wrap;
+}
+
+.carta-valoracion {
+  color: var(--color-letra-carta);
+  width: 55rem;
+  height: auto;
+  background-color: var(--color-secundario);
+  border-radius: 0.91rem;
+  box-shadow: 0 0.3rem 0.61rem rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  margin: 3rem;
+}
+
+.text-opinion {
+  color: black;
+  padding: 2rem;
+  width: 100%;
+  text-align: justify;
+  font-size: 13px;
+}
+
+.header-valoracion {
+  color: black;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  position: relative;
+}
+
+.foto-autor {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-cuarto);
+  margin: 10px;
+}
+
+.autor-valoracion {
+  display: flex;
+  font-size: 1rem;
+  justify-content: center;
+  height: 100%;
+}
+
+.nombre-autor {
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.puntuacion-valoracion {
+  color: black;
+  margin: 1rem;
+  display: flex;
+  align-self: flex-start;
+  font-size: 1.5rem;
+  position:absolute;
+  top: 0.6em;
+  right: 0.5em;
+}
+
+ .puntuacion-valoracion img {
+    width: 2rem;
+    height: auto;
+    margin-left: auto;
+    align-items: start;
+}
+
+.boton-volver {
+  font-size: 2rem;
+  display: flex;
+  padding: 1.5rem;
+  background-color: var(--color-primario);
+  border: var(--color-primario);
+  border-radius: 1rem;
+  color: var(--color-secundario);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  align-self: flex-end;
+  margin-right: 2rem;
+}
+
+.mas {
+  margin: 20rem;
+  color: var(--color-letra-carta);
+  background-color: var(--color-secundario);
+}
+
+.circulo-mas {
+  background-color: var(--color-primario);
+}
+
+.icono-mas {
+  color: white;
+}
+
+.icono-mas:hover {
+  color: var(--color-primario);
+}
+  
+/*TABLETS (401px a 768px)*/
+@media screen and (min-width: 401px) and (max-width: 768px) {
+  .titulo_valoraciones {
+    width: 90%;
+    font-size: 2.5rem;
+    align-items: center;
+    justify-content: start;
+  }
+  
+  .titulo_valoraciones img {
+    width: 2.5rem;
+    height: auto;
+  }
+  
+  .contenedor-valoraciones {
     height: 100%;
     display: flex;
     justify-content: center;
@@ -12,128 +154,55 @@
   }
   
   .carta-valoracion {
-    color: var(--color-letra-carta);
-    width: 55rem;
+    width: 40rem;
     height: auto;
-    background-color: var(--color-secundario);
-    border-radius: 0.91rem;
-    box-shadow: 0 0.3rem 0.61rem rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    margin: 3rem;
+    justify-content: flex-start;
   }
-  
-  .text-opinion {
-    color: black;
-    padding: 2rem;
-    font-size: 2rem;
-    line-height: 3rem;
-    width: 100%;
-    text-align: justify;
-  }
-  
-  .header-valoracion {
-    color: black;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-  }
-  
+
   .foto-autor {
-    width: 10rem;
-    height: 10rem;
-    border-radius: 50%;
-    border: 2px solid var(--color-cuarto);
-    margin: 10px;
-  }
-  
-  .autor-valoracion {
-    display: flex;
-    font-size: 1rem;
-    justify-content: center;
-    height: 100%;
+    width: 6rem;
+    height: 6rem;
   }
   
   .nombre-autor {
-    font-size: 15px;
+    font-size: 12px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
   }
-  
-  .puntuacion-valoracion {
-    color: black;
-    margin: 1rem;
-    display: flex;
-    align-self: flex-start;
-    font-size: 1.5rem;
-  }
-  
-  .puntuacion-valoracion img {
-    width: 2rem;
-    height: auto;
-    margin-left: auto;
-    align-items: start;
-  }
-  .boton-volver {
-    font-size: 2rem;
-    display: flex;
+
+  .text-opinion {
     padding: 1.5rem;
-    background-color: var(--color-primario);
-    border: var(--color-primario);
-    border-radius: 1rem;
-    color: var(--color-secundario);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    align-self: flex-end;
-    margin-right: 5rem;
   }
-  
+
   .mas {
-    color: var(--color-letra-carta);
-    background-color: var(--color-secundario);
-  }
-  .circulo-mas {
-    background-color: var(--color-primario);
+    margin: 2rem;
   }
   
-  .icono-mas {
-    color: white;
-  }
-  
-  .icono-mas:hover {
-    color: var(--color-primario);
-  }
-  
-  /***** VALORACIONES RESPONSIVE ******/
-  /***** MOBILE ******/
+}
+
+/***** VALORACIONES RESPONSIVE ******/
+/*MOBILE (hasta 400px)*/
   @media screen and (max-width: 400px) {
+    .titulo_valoraciones{
+      font-size: 2rem;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+
     .carta-valoracion {
-      color: var(--color-letra-carta);
       width: 100%;
-      height: auto;
-      background-color: var(--color-secundario);
-      border-radius: 0.91rem;
       overflow: hidden;
-      box-shadow: 0 0.3rem 0.61rem rgba(0, 0, 0, 0.2);
       margin: 1.51rem;
-      display: flex;
       align-items: center;
       padding: 1.51rem;
       position: relative;
     }
   
     .nombre-autor {
+      gap: 2rem;
       font-size: 10px;
-    }
-  
-    .volver {
-      display: flex;
-      font-size: 2rem;
-      padding: 1rem;
-      margin: 2rem;
     }
   
     .circulo-mas {
@@ -141,87 +210,21 @@
       height: 5.5rem;
     }
   
-  }
+    .puntuacion-valoracion {
+      top: 2.8em;
+      right: 9.5em;
+    }
   
-  /***** TABLET ******/
-  @media screen and (min-width: 401px) and (max-width: 768px) {
-    .contenedor-valoraciones {
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      align-content: space-between;
-      max-width: 142.08rem;
-      flex-wrap: wrap;
-    }
-    
-    .carta-valoracion {
-      color: var(--color-letra-carta);
-      width: 35.98rem;
-      height: auto;
-      background-color: var(--color-secundario);
-      border-radius: 0.59rem;
-      box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
-      display: flex;
-      flex-direction: column;
-      margin: 1.96rem;
-    }
-    
     .text-opinion {
       color: black;
-      padding: 1.31rem;
+      padding: 2rem;
       width: 100%;
-      font-size: 1.7rem;
-      line-height: 2.2rem;
       text-align: justify;
+      font-size: 13px;
+      line-height: 20px;
     }
     
-    .header-valoracion {
-      color: black;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: space-between;
-      flex-direction: row;
+    .mas{
+      margin:2rem;
     }
-    
-    .foto-autor {
-      width: 6.54rem;
-      height: 6.54rem;
-      border-radius: 50%;
-      border: 2px solid var(--color-cuarto);
-      margin: 0.66rem;
-    }
-    
-    .autor-valoracion {
-      display: flex;
-      font-size: 0.65rem;
-      justify-content: center;
-      height: 100%;
-    }
-    
-    .nombre-autor {
-      font-size: 9.81px;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    
-    .puntuacion-valoracion {
-      color: black;
-      margin: 0.65rem;
-      display: flex;
-      align-self: flex-start;
-      font-size: 0.98rem;
-    }
-    
-    .puntuacion-valoracion img {
-      width: 1.31rem;
-      height: auto;
-      margin-left: auto;
-      align-items: start;
-    }
-    
   }
-  
