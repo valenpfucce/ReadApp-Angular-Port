@@ -28,7 +28,7 @@
         </div>
     </header>
 
-    <div class="main">
+    <main class="main">
         <div class="info_usuario">
             <div class="fotoPerfil">
                 <img src="imagenes\roman.jpg" class="imagen_perfil" />
@@ -62,46 +62,64 @@
         </div>
         <div class="perfil_container">
             <h1> Libros leídos </h1>
-            <div class="contenedor-cartas">
-              <div class="carta">
+            <section class="contenedor-cartas">
+              <article class="carta">
                   <div class="contenido-carta">
                       <div class="iconos-superior-derecha">
                           <img src="imagenes/fire.svg" class="iconos" alt="Hot trendy">
                           <img src="imagenes/certificate.svg" class="iconos" alt="Certificado">
                       </div>
                       <div class="iconos-inferior-derecha">
-                          <div>
+                          <figure>
                               <img src="imagenes/trash.svg" class="iconos" />
-                          </div>
+                          </figure>
                       </div>
                       <div class="contenedor-imagen">
-                          <img src="./imagenes/prueba.jpg" alt="Imagen del Libro" class="imagen-libro">
+                        <figure>
+                            <img src="./imagenes/prueba.jpg" alt="Imagen del Libro" class="imagen-libro">
+                        </figure>
                       </div>
                       <div class="contenedor-texto">
                           <h3 class="titulo-libro">The Book of Bill</h3>
-                          <p class="autor-libro">Por Alex Hirsch</p>
+                          <h5 class="autor-libro">Por Alex Hirsch</p>
                           <ul class="detalles-libro">
                               <li>
+                                <figure>
                                   <img src="imagenes/blank-file.svg" class="iconoschicos" alt="Paginas">
+                                </figure>  
+                                <p>
                                   60 páginas
+                                </p> 
                               </li>
                               <li>
+                                <figure>
                                   <img src="imagenes/text-aa.svg" class="iconoschicos" alt="Texto">
-                                  786 palabras
+                                </figure>
+                                <p>
+                                  786 palabras  
+                                </p>  
                               </li>
                               <li>
+                                <figure>
                                   <img src="imagenes/globe.svg" class="iconoschicos" alt="Idiomas">
+                                </figure>
+                                <p>
                                   Español - Inglés - Mandarín - Árabe
+                                </p>  
                               </li>                        
                               <li>
+                                <figure>
                                   <img src="imagenes/basket.svg" class="iconoschicos" alt="Ventas">
-                                  1435 ventas semanales
+                                </figure>
+                                <p>
+                                   1435 ventas semanales  
+                                </p>  
                               </li>                        
                           </ul>
                       </div>
                   </div>
-              </div>
-              <div class="carta">
+                </article>
+              <article class="carta">
                   <div class="contenido-carta">
                       <div class="iconos-superior-derecha">
                           <img src="imagenes/fire.svg" class="iconos" alt="Hot trendy">
@@ -112,7 +130,7 @@
                       </div>
                       <div class="contenedor-texto">
                           <h3 class="titulo-libro">The Book of Bill</h3>
-                          <p class="autor-libro">Por Alex Hirsch</p>
+                          <h5 class="autor-libro">Por Alex Hirsch</p>
                           <ul class="detalles-libro">
                               <li>
                                   <img src="imagenes/blank-file.svg" class="iconoschicos" alt="Paginas">
@@ -133,8 +151,8 @@
                           </ul>
                       </div>
                   </div>
-              </div>
-              <div class="carta">
+                </article>
+              <article class="carta">
                   <div class="contenido-carta">
                       <div class="iconos-superior-derecha">
                           <img src="imagenes/fire.svg" class="iconos" alt="Hot trendy">
@@ -145,7 +163,7 @@
                       </div>
                       <div class="contenedor-texto">
                           <h3 class="titulo-libro">The Book of Bill</h3>
-                          <p class="autor-libro">Por Alex Hirsch</p>
+                          <h5 class="autor-libro">Por Alex Hirsch</p>
                           <ul class="detalles-libro">
                               <li>
                                   <img src="imagenes/blank-file.svg" class="iconoschicos" alt="Paginas">
@@ -166,13 +184,13 @@
                           </ul>
                       </div>
                   </div>
-              </div>
-              <div class="carta mas">
+                </article>
+              <article class="carta mas">
                   <div class="circulo-mas">
                       <div class="icono-mas">+</div>
                   </div> 
-              </div>          
-          </div>
+                </article>          
+            </section>
  
             <div class="boton_container">
                 <button class="boton_cancelar" type="submit">Cancelar</button>
