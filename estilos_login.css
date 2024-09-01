@@ -27,9 +27,6 @@ form {
 }
 
 .title-logIn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 1.5rem;
   color: var(--color-primario);
 }
@@ -68,11 +65,10 @@ button:hover {
   background-color: var(--color-cuarto);
   color: var(--color-primario);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-}
+} 
 
 .container {
-  display: flex;
-  justify-content: center;
+  align-items: flex-start;
   flex-direction: column;
   position: relative;
 }

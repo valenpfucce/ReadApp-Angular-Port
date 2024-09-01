@@ -29,6 +29,8 @@ body {
   background-color: var(--color-secundario);
 }
 
+/****** START BOTONES ******/
+
 .boton_container {
   display: flex;
   height: 50px;
@@ -67,3 +69,17 @@ body {
   background-color: var(--color-terciario);
   transform: scale(0.98);
 }
+
+/****** END BOTONES ******/
+
+/****** START DISPLAYs ******/
+.flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex .wrap{
+  flex-wrap: wrap;
+}
+/****** END DISPLAY ******/
