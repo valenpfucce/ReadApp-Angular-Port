@@ -8,7 +8,7 @@ html {
     justify-content: space-between;
     align-items: center;
     background-color: var(--color-primario);
-    padding: 10px 20px;
+    padding: 1rem 2rem;
     color: white;
     position: fixed;
     top: 0;
@@ -22,9 +22,9 @@ html {
     align-items: center;
 }
 
-.logo-container i {
+.logo-container img {
     font-size: 2.4rem;
-    margin-right: 10px;
+    margin-right: 1rem;
 }
 
 .logo-container h1 {
@@ -38,27 +38,44 @@ html {
 }
 
 .user-profile span {
-    margin-right: 10px;
+    margin-right: 1rem;
     font-size: 1.4rem;
 }
 
 .profile-pic {
-    width: 40px;
-    height: 40px;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
-    border: 2px solid var(--color-cuarto);
-    margin: 10px;
+    border: 0.2rem solid var(--color-cuarto);
+    margin: 1rem;
+}
+
+.menu-hamburguesa {
+    display: none;
+    cursor: pointer;
+    font-size: 3rem; 
 }
 
 
-@media screen and (max-width: 400px) {
+.menu-hamburguesa:hover {
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 40rem) {
     .header {
         top: auto;
         bottom: 0;
     }
 
-    
     body {
-        margin-bottom: 60px; 
+        margin-bottom: 6rem;
+    }
+
+    .user-profile {
+        display: none;
+    }
+
+    .menu-hamburguesa {
+        display: flex;
     }
 }
