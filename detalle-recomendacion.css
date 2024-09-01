@@ -1,11 +1,17 @@
 .contenido-pagina {
-  max-width: 125rem;
+  max-width: 130rem;
   margin: 0 auto;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   position: relative;
+}
+
+.contenido-centrado-cartas {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }
 
 .titulos {
@@ -39,7 +45,7 @@
 .icono-superior-derecha {
   position: absolute;
   top: 7rem;
-  right: 0;
+  right: 40px ;
   transition: transform 0.3s ease;
 }
 
@@ -172,16 +178,16 @@ h4 {
 /*TABLETS (401px a 768px)*/
 @media screen and (min-width: 401px) and (max-width: 768px) {
   .contenido-pagina {
-    max-width: auto;
+    max-width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     position: relative;
   }
   .icono-superior-derecha {
     position: absolute;
-    top: 4rem;
+    top: 6.8rem;
     right: 5rem;
   }
 
@@ -202,12 +208,21 @@ h4 {
     margin-left: 3rem;
     margin-right: 3rem;
   }
+
+  .titulos.textoprincipal {
+    width: 90%;
+
+  }
+
+  .contenedor-valoraciones {
+    height: 100%;
+  }
 }
 
 /*MOBILE (hasta 400px)*/
 @media screen and (max-width: 400px) {
   .contenido-pagina {
-    max-width: 100vw;
+    max-width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -225,6 +240,7 @@ h4 {
     text-align: left;
     margin-left: 2rem;
     margin-right: 2rem;
+    margin-top: 0;
     line-height: 4rem;
   }
 
@@ -234,6 +250,7 @@ h4 {
   }
 
   .titulos.textoprincipal {
+    width: 90%;
     font-size: 2rem;
     text-align: justify;
     line-height: 3rem;

@@ -4,25 +4,22 @@
 
 .contenedor-cartas {
     display: flex; 
-    justify-content: center;
-    align-items: center; 
-    max-width: 162.97rem;
+    justify-content: left;
+    align-content: center; 
+    width: auto;
     flex-wrap: wrap;
-    background: red;
-    /* margin: 0 auto; */
-    /* margin-top: 0.94rem; */
-    gap:1.5em;
+    gap: 1.8em;
 }
 
 .carta {
     color: var(--color-letra-carta);
     width: 41.25rem;
-    height: 20.62rem;
+    height: 20rem;
     background-color: var(--color-terciario);
     border-radius: 0.68rem;
     overflow: hidden;
     box-shadow: 0 0.22rem 0.46rem rgba(0, 0, 0, 0.2);
-    margin: 1.13rem;
+    gap: 1.5em;
     display: flex;
     align-items: center;
     padding: 1.13rem;
@@ -120,26 +117,24 @@
 @media screen and (min-width: 401px) and (max-width: 768px) {
     .contenedor-cartas {
         display: flex; 
-        justify-content: center;
-        align-items: center; 
-        max-width: 142.08rem;
         flex-wrap: wrap;
         margin: 0 auto;
+        max-width: 72rem;
         margin-top: 0.82rem;
+        background-color: red;
     }
     
     .carta {
         color: var(--color-letra-carta);
-        width: 35.98rem;
-        height: 17.99rem;
+        width: 35rem;
+        height: 19rem;
         background-color: var(--color-terciario);
-        border-radius: 0.59rem;
         overflow: hidden;
         box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
-        margin: 0.8rem;
         display: flex;
         align-items: center;
         padding: 0.99rem;
+        gap: 1rem;
         position: relative;
     }
     
@@ -221,7 +216,7 @@
         padding: 0;
         margin: 0;
         font-size: 1.23rem;
-        line-height: 0.65rem;
+        line-height: 2rem;
     }
     
     .detalles-libro li {
