@@ -76,7 +76,7 @@
     color: var(--color-primario);
 }
 
-.boton_container {
+/* .boton_container {
     display: flex;
     height: 50px;
     width: 100%;
@@ -113,7 +113,7 @@
 .boton_guardar:active {
     background-color: var(--color-terciario);
     transform: scale(0.98);
-}
+} */
 
 @media all and (max-width: 768px) and (min-width: 401px) {
 

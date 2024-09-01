@@ -57,6 +57,21 @@
  background-color: rgb(247, 239, 214);
 }
 
+.calculador{
+ display: flex;
+ flex-direction: column;
+ width: auto;
+ height: auto;
+}
+
+.calculador label{
+    gap:5px ;
+}
+
+.calculador input{
+    width: 100px;
+}
+
 .tipos_lectura {
     height: 50px;
     width: 100%;
@@ -92,17 +107,15 @@
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-  
 }
 
 .criterio_conteiner label {
     display: flex;
     margin: 10px 0px 30px 100px;
     align-items: center;
-    
 }
 
-.criterio_conteiner input {
+.criterio_conteiner input[type="checkbox"]{
     display: flex;
     appearance: none;
     margin-right: 10px;
@@ -210,9 +223,19 @@
         display: flex;
         margin: 1rem;
         align-content: flex-start; 
-        padding: 1rem;
+        padding: 5px;
     }
 
+    .calculador{
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        height: auto;
+    }
+       
+    .calculador label{
+     gap:5px ;
+    }
 }
 
 

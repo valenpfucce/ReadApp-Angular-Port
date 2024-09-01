@@ -53,7 +53,6 @@
           <a href="">Recomendaciones a valorar</a>
         </li>
       </nav>
-
     </div>
 
     <div class="info_conteiner">
@@ -96,10 +95,14 @@
         <label><input type="checkbox">Poliglota</label>
         <label><input type="checkbox">Experimentado</label>
         <label><input type="checkbox">Calculador</label>
-      </div>
+        <div class="conteiner_datos calculador">
+          <label>Maximo*<input  type="text" required pattern=".*\S.*"></label>
+          <label>Minimo*<input  type="text" required pattern=".*\S.*"></label>
+        </div>
 
+      </div>
+     
       <div class="boton_container">
- 
         <button class="boton_cancelar" type="submit">Cancelar</button>
         <button class="boton_guardar" type="submit">Guardar cambios</button>
         
