@@ -5,17 +5,11 @@
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
   background-color: var(--color-quinto);
 }
 
 form {
-  display: grid;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   width: 38rem;
   height: 28rem;
@@ -86,7 +80,5 @@ button:hover {
 
   form {
     box-shadow: none;
-    flex-direction: column;
-    justify-content: center;
   }
 }

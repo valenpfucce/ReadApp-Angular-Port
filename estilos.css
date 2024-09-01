@@ -82,4 +82,10 @@ body {
 .flex .wrap{
   flex-wrap: wrap;
 }
+
+.grid{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
 /****** END DISPLAY ******/

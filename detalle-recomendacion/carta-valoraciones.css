@@ -19,9 +19,6 @@
 
 .contenedor-valoraciones {
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   align-content: space-between;
   max-width: 217.29rem;
   flex-wrap: wrap;
@@ -74,10 +71,9 @@
 
 .nombre-autor {
   font-size: 15px;
-  display: flex;
+  align-items: self-start;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .puntuacion-valoracion {
@@ -91,11 +87,11 @@
   right: 0.5em;
 }
 
- .puntuacion-valoracion img {
-    width: 2rem;
-    height: auto;
-    margin-left: auto;
-    align-items: start;
+.puntuacion-valoracion img {
+  width: 2rem;
+  height: auto;
+  margin-left: auto;
+  align-items: start;
 }
 
 .boton-volver {
@@ -145,9 +141,6 @@
   
   .contenedor-valoraciones {
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     align-content: space-between;
     max-width: 217.29rem;
     flex-wrap: wrap;
@@ -166,10 +159,8 @@
   
   .nombre-autor {
     font-size: 12px;
-    display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: center;
   }
 
   .text-opinion {
