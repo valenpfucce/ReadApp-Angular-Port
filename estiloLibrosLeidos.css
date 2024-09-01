@@ -154,11 +154,11 @@
 
  .boton_cancelar:hover{
     box-shadow: rgba(0, 0, 0, 0.1);
-    transform: translateX(0.3em);
+    
 } 
 .boton_guardar:hover {
     box-shadow: rgba(0, 0, 0, 0.1);
-    transform: translateX(-0.3em);
+    
 }
 
 .boton_menu {

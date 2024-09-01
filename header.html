@@ -3,11 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
     <title>ReadApp</title>
     <link href="./estilos.css" rel="stylesheet" />
-    <link href="./header.css" rel="stylesheet"  />
-    <link href="./estiloBarraBusqueda.css" rel="stylesheet" />
+    <link href="./header.css" rel="stylesheet" />
+    <link href="./estilo_barra_busqueda.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo Da 2" />
     <script
       src="https://kit.fontawesome.com/007d112e2a.js"
@@ -15,19 +14,26 @@
     ></script>
   </head>
   <body>
+    
     <!--Header-->
     <header class="header">
       <div class="logo-container">
-        <i class="fa-solid fa-book"></i>
+        <img src="imagenes/book-bold.svg" alt="Logo de ReadApp"/>
         <h1>ReadApp</h1>
       </div>
+           
       <div class="user-profile">
-        <img src="imagenes\roman.jpg" class="profile-pic" />
+        <img src="imagenes/roman.jpg" class="profile-pic" alt="Foto de perfil de Roman Riquelme"/>
         <span>Roman Riquelme</span>
+      </div>
+      
+      <!-- Menu de Hamburguesa -->
+      <div class="menu-hamburguesa">
+        <i class="fa-solid fa-bars"></i>
       </div>
     </header>
 
-    <!--Barra de busqueda-->
+    <!--Barra de búsqueda-->
     <div class="barra-busqueda-container">
       <div class="barra-busqueda">
         <input type="text" placeholder="Buscar..." />
