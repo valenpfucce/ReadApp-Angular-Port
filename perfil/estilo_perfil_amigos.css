@@ -17,7 +17,7 @@
     font-size: 3rem;
 }
 
-.lista_perfil{
+.lista_perfil {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
@@ -25,7 +25,7 @@
     padding: 8px;
 }
 
-.carta_amigo{
+.carta_amigo {
     color: var(--color-letra-carta);
     width: 270px;
     height: 75px;
@@ -39,60 +39,59 @@
     gap: 6px;
 }
 
-.carta_amigo img{
-    max-width: 65px; 
+.carta_amigo img {
+    max-width: 65px;
     border-radius: 80%;
 }
 
-.carta_amigo label{
-  text-align: start;
-  font-size: 1.5rem;
-  cursor: pointer;
+.carta_amigo label {
+    text-align: start;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 .carta_amigo p {
     text-align: start;
     font-size: 1.4rem;
-    color:#8f8a8a;
+    color: #8f8a8a;
 }
 
-.nombre_apellido{
- display: flex;
- gap: 4px;
- 
+.nombre_apellido {
+    display: flex;
+    gap: 4px;
 }
 
-.amigo_info{
+.amigo_info {
     display: flex;
     flex-direction: column;
     margin: 2px 0px 0px 0px;
 }
 
 
-.icono_delete:hover{
+.icono_delete:hover {
     font-weight: bold;
     color: var(--color-primario);
 }
 
-.carta_amigo button{
+.carta_amigo button {
     background: url('');
-    background: contain; 
-    border: none; 
-    width: 30px; 
-    cursor: pointer; 
+    background: contain;
+    border: none;
+    width: 30px;
+    cursor: pointer;
     margin-left: 25px;
     margin-top: 15px;
 }
 
-.carta_amigo button:hover{
+.carta_amigo button:hover {
     transform: scale(1.2);
 }
 
-.mas{
+.mas {
     color: var(--color-letra-carta);
     display: grid;
-    place-items: center;   
-    background-color: #f1f1f1;  
+    place-items: center;
+    background-color: #f1f1f1;
 }
 
 .circulo-mas {
@@ -107,33 +106,32 @@
     transition: all 0.3s ease 0s;
     cursor: pointer;
 }
-  
+
 .circulo-mas:hover {
     background-color: var(--color-cuarto);
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
     transform: translateY(-3px);
 }
-  
-.icono-mas{
+
+.icono-mas {
     font-size: 24px;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 .icono-mas button {
     display: flex;
     margin: 18px;
     font-size: 35px;
-    color: #000; 
+    color: #000;
 }
 
-.icono-mas button:hover{
+.icono-mas button:hover {
     transform: none;
 }
 
 
 @media all and (max-width: 768px) and (min-width: 401px) {
 
-   
     .perfil_container {
         display: flex;
         flex-direction: column;
@@ -141,20 +139,19 @@
         justify-content: flex-start;
         padding: 0px 40px 40px 40px;
         margin: 0rem;
-        
     }
-    
+
     .perfil_container label {
         font-size: 1.7rem;
     }
-    
+
     .perfil_container h1 {
         margin-top: 0.5rem;
         box-sizing: border-box;
         font-size: 4rem;
     }
-    
-    .lista_perfil{
+
+    .lista_perfil {
         display: flex;
         justify-content: space-evenly;
         max-height: 100%;
@@ -164,9 +161,8 @@
         border-top: 1px solid #949090;
         padding: 8px;
     }
-    
-    .carta_amigo{
-       
+
+    .carta_amigo {
         max-width: 100%;
         max-height: 100%;
         margin: 1px;
@@ -180,7 +176,7 @@
 
 
 @media all and (max-width: 400px) {
-   
+
     .perfil_container {
         display: flex;
         flex-direction: column;
@@ -188,21 +184,20 @@
         justify-content: flex-start;
         padding: 0px 5px 40px 5px;
         margin: 0rem;
-        
     }
-    
+
     .perfil_container label {
         font-size: 1.5rem;
     }
-    
+
     .perfil_container h1 {
         margin-top: 0.5rem;
         box-sizing: border-box;
         font-size: 4rem;
         padding: 0rem 1rem 0rem 1rem;
     }
-    
-    .lista_perfil{
+
+    .lista_perfil {
         display: flex;
         justify-content: space-evenly;
         max-height: 100%;
@@ -212,9 +207,8 @@
         border-top: 1px solid #949090;
         padding: 8px;
     }
-    
-    .carta_amigo{
-       
+
+    .carta_amigo {
         max-width: 100%;
         max-height: 100%;
         margin: 1px;
@@ -224,11 +218,4 @@
         gap: 6px;
         justify-content: center;
     }
-
-    
 }
-
-
-
-
-
