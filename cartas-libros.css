@@ -2,12 +2,14 @@
     --color-letra-carta: white;
 }
 
+
 .contenedor-cartas {
-    display: flex; 
-    justify-content: left;
-    align-content: center; 
-    width: auto;
+    display: inline-flex; 
     flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: auto; 
+    max-width: none;
     gap: 1.8em;
 }
 
