@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Informacion de Perfil - ReadApp</title>
-  <link href="./estilos.css" rel="stylesheet" />
-  <link href="./header.css" rel="stylesheet" />
-  <link href="./estiloPerfil.css" rel="stylesheet" />
+  <title>ReadApp</title>
+  <link href="/estilos.css" rel="stylesheet" />
+  <link href="/header.css" rel="stylesheet" />
+  <link href="./estilo_perfil.css" rel="stylesheet" />
   <link href="./estilo_perfil_info.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo Da 2" />
 </head>
@@ -15,11 +15,11 @@
 <body>
   <header class="header">
     <div class="logo-container">
-      <img src="imagenes\book-bold.svg"/>
+      <img src="/imagenes/book-bold.svg" />
       <h1>ReadApp</h1>
     </div>
     <div class="user-profile">
-      <img src="imagenes\roman.jpg" class="profile-pic" />
+      <img src="/imagenes/roman.jpg" class="profile-pic" />
       <span> Roman Riquelme</span>
     </div>
   </header>
@@ -27,33 +27,34 @@
   <div class="main">
     <div class="info_usuario">
       <div class="fotoPerfil">
-        <img src="imagenes\roman.jpg" class="imagen_perfil" />
+        <img src="/imagenes/roman.jpg" class="imagen_perfil" />
         <label class="nombre_perfil">Roman Riquelme</label>
       </div>
-      
-      <nav class="submenu_perfil">
+
+      <ul class="submenu_perfil">
         <li class="boton_menu">
-          <img class="icono" src="imagenes\info.svg" />
-          <a href="this"> <b>Informacion</b></a>
+          <img class="icono" src="/imagenes/info.svg" />
+          <a href="this"><strong>Informacion</strong></a>
         </li>
         <li class="boton_menu">
-          <img class="icono" src="imagenes\amigos.svg" />
+          <img class="icono" src="/imagenes/amigos.svg" />
           <a href="">Amigos</a>
         </li>
         <li class="boton_menu">
-          <img class="icono" src="imagenes\libros.svg" />
+          <img class="icono" src="/imagenes/libros.svg" />
           <a href="">Libros leidos</a>
         </li>
         <li class="boton_menu">
-          <img class="icono" src="imagenes\librosaleer.svg" />
+          <img class="icono" src="/imagenes/librosaleer.svg" />
           <a href="">Libros a leer</a>
         </li>
         <li class="boton_menu">
-          <img class="icono" src="imagenes\valorarReco.svg" />
+          <img class="icono" src="/imagenes/valorarReco.svg" />
           <a href="">Recomendaciones a valorar</a>
         </li>
-      </nav>
+      </ul>
     </div>
+
 
     <div class="info_conteiner">
       <h1> Informacion</h1>
@@ -96,16 +97,16 @@
         <label><input type="checkbox">Experimentado</label>
         <label><input type="checkbox">Calculador</label>
         <div class="conteiner_datos calculador">
-          <label>Maximo*<input  type="text" required pattern=".*\S.*"></label>
-          <label>Minimo*<input  type="text" required pattern=".*\S.*"></label>
+          <label>Maximo*<input type="text" required pattern=".*\S.*"></label>
+          <label>Minimo*<input type="text" required pattern=".*\S.*"></label>
         </div>
 
       </div>
-     
+
       <div class="boton_container">
         <button class="boton_cancelar" type="submit">Cancelar</button>
         <button class="boton_guardar" type="submit">Guardar cambios</button>
-        
+
       </div>
 
     </div>
