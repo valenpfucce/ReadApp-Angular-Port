@@ -47,35 +47,20 @@ h4 {
     font-weight: normal;
 }
 
-.barra-busqueda-container.edicion {
-  background-color: transparent;
-  width: 100%; 
-  box-sizing: border-box;
-  margin: 0; 
-  padding: 0; 
-  display: flex; 
-  justify-content: center; 
-  height: 4rem;
+.boton_container.btn_cont_edicion{
+  border-top: 0px solid transparent;
+  justify-content: right;
+  gap: 8px;
 }
 
-.barra-busqueda.edicion {
-  width: 100%; 
-  height: 4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-}
-
-.barra-busqueda.edicion input[type="text"] {
-  padding: 1rem;
+.boton_container.btn_cont_edicion button{
+  width: 20%;
+  height: 50px;
+  border-radius: 10px;
+  margin: 0rem;
+  box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.1);
   font-size: 2rem;
-  border: none;
-  border-radius: 4px;
-  width: 80%;
 }
-
-
 
   /*TABLETS (401px a 768px)*/
   @media screen and (min-width: 401px) and (max-width: 768px) {
