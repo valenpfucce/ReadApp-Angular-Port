@@ -61,7 +61,17 @@ html {
     box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.3);
 }
 
-@media screen and (max-width: 40rem) {
+@media (min-width: 401px) and (max-width: 768px) {
+    .user-profile {
+        display: none;
+    }
+
+    .menu-hamburguesa {
+        display: flex;
+    }
+}
+
+@media (max-width: 400px) {
     .header {
         top: auto;
         bottom: 0;

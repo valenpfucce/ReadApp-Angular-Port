@@ -83,13 +83,13 @@
     border-radius: 0.4em;
 }
 
-@media all and (min-width: 401px) and (max-width: 768px)  {
+@media (min-width: 401px) and (max-width: 768px)  {
     .grid-cartas{
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media all and (max-width: 400px) {
+@media (max-width: 400px) {
     .grid-cartas{
         margin-top: 7rem;
         grid-template-columns: 1fr;

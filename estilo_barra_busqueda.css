@@ -1,37 +1,31 @@
 .barra-busqueda-container {
-    background-color: #e6d5c1;
-    padding: 10px 20px;
+    background-color: var(--color-quinto);
+    padding: 1rem 2rem;
     position: fixed;
     top: 8rem;
     width: 100%;
-}
-
-.barra-busqueda {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    z-index: 1000;
 }
 
 .barra-busqueda input[type="text"] {
-    padding: 7px;
+    padding: 0.7rem;
     font-size: 1.2em;
     border: none;
-    border-radius: 4px;
+    border-radius: 0.4rem;
     width: 80%;
 }
 
 .barra-busqueda button {
-    background-color: #fff4e3;
+    background-color: var(--color-cuarto);
     border: none;
-    padding: 5px 10px;
-    margin-left: 5px;
-    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    border-radius: 0.4rem;
     cursor: pointer;
 }
 
 .barra-busqueda button:hover {
-    background-color: #c6b299;
+    background-color: var(--color-terciariox);
 }
 
 .barra-busqueda label {
@@ -72,6 +66,12 @@
 
 .soloRec input[type="text"]{
     width: 50%;
+}
+
+@media (min-width: 401px) and (max-width: 768px) {
+    .barra-busqueda-container {
+        top: 6rem;
+    }
 }
 
 @media (max-width: 400px){
