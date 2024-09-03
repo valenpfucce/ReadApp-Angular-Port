@@ -4,15 +4,10 @@
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   position: relative;
 }
 
-.contenido-centrado-cartas {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-}
 
 .titulos {
   width: 100%;

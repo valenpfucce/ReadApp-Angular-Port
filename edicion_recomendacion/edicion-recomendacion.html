@@ -4,12 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ReadApp</title>
-    <link href="/estilos.css" rel="stylesheet" />
-    <link href="/header.css" rel="stylesheet" />
-    <link href="/cartas-libros.css" rel="stylesheet" />
-    <link href="/cartas-libros-btn-mas.css" rel="stylesheet" />
-    <link href="/detalle_recomendacion/carta-valoraciones.css" rel="stylesheet" />
-    <link href="/estiloBarraBusqueda.css" rel="stylesheet" />
+    <link href="../estilos.css" rel="stylesheet" />
+    <link href="../header.css" rel="stylesheet" />
+    <link href="../cartas-libros.css" rel="stylesheet" />
+    <link href="../cartas-libros-btn-mas.css" rel="stylesheet" />
+    <link href="../detalle_recomendacion/carta-valoraciones.css" rel="stylesheet" />
     <link href="./edicion-recomendacion.css" rel="stylesheet" />
     <link
       rel="stylesheet"
@@ -21,198 +20,135 @@
     <!-- header -->
     <header class="header">
       <div class="logo-container">
-        <img src="/imagenes\book-bold.svg" />
+        <img src="/imagenes/book-bold.svg" />
         <h1>ReadApp</h1>
       </div>
       <div class="user-profile">
-        <img src="/imagenes\roman.jpg" class="profile-pic" />
+        <img src="/imagenes/roman.jpg" class="profile-pic" />
         <span> Roman Riquelme</span>
       </div>
     </header>
 
     <div class="contenido-pagina">
-      <br>
-      <section class="barra-busqueda-container edicion">
-          <div class="barra-busqueda edicion">
-            <input type="text" placeholder="Buscar..." />
-          </div>
-      </section>
       <div class="titulos">
+        <br />
+        <h2>Recomendación loca</h2>
         <h3>Libros</h3>
       </div>
-      <!-- Cartas de Libros con Contenedor -->
-      <div class="contenedor-cartas">
-        <div class="carta">
-          <div class="contenido-carta">
-            <div class="iconos-superior-derecha">
-              <img src="/imagenes/fire.svg" class="iconos" alt="Hot trendy" />
-              <img
-                src="/imagenes/certificate.svg"
-                class="iconos"
-                alt="Certificado"
-              />
-            </div>
-            <div class="contenedor-imagen">
-              <img
-                src="/imagenes/prueba.jpg"
-                alt="Imagen del Libro"
-                class="imagen-libro"
-              />
-            </div>
-            <div class="contenedor-texto">
-              <h3 class="titulo-libro">The Book of Bill</h3>
-              <p class="autor-libro">Por Alex Hirsch</p>
-              <ul class="detalles-libro">
-                <li>
-                  <img
-                    src="/imagenes/blank-file.svg"
-                    class="iconoschicos"
-                    alt="Paginas"
-                  />
-                  60 páginas
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/text-aa.svg"
-                    class="iconoschicos"
-                    alt="Texto"
-                  />
-                  786 palabras
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/globe.svg"
-                    class="iconoschicos"
-                    alt="Idiomas"
-                  />
-                  Español - Inglés - Mandarín - Árabe
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/basket.svg"
-                    class="iconoschicos"
-                    alt="Ventas"
-                  />
-                  1435 ventas semanales
-                </li>
-              </ul>
+        <div class="contenedor-cartas">
+          <div class="carta">
+            <div class="contenido-carta">
+              <div class="iconos-superior-derecha">
+                <img src="/imagenes/fire.svg" class="iconos" alt="Hot trendy" />
+                <img src="/imagenes/certificate.svg" class="iconos" alt="Certificado"/>
+              </div>
+              <div class="iconos-inferior-derecha">
+                    <img src="../imagenes/trash.svg" class="iconos" alt="borrar"/>
+              </div>
+              <div class="contenedor-imagen">
+                <img src="/imagenes/prueba.jpg" alt="Imagen del Libro" class="imagen-libro"/>
+              </div>
+              <div class="contenedor-texto">
+                <h3 class="titulo-libro">The Book of Bill</h3>
+                <p class="autor-libro">Por Alex Hirsch</p>
+                <ul class="detalles-libro">
+                  <li>
+                    <img src="/imagenes/blank-file.svg" class="iconoschicos" alt="Paginas"/>
+                    60 páginas
+                  </li>
+                  <li>
+                    <img src="/imagenes/text-aa.svg" class="iconoschicos" alt="Texto"/>
+                    786 palabras
+                  </li>
+                  <li>
+                    <img src="/imagenes/globe.svg" class="iconoschicos" alt="Idiomas"/>
+                    Español - Inglés - Mandarín - Árabe
+                  </li>
+                  <li>
+                    <img src="/imagenes/basket.svg" class="iconoschicos" alt="Ventas"/>
+                    1435 ventas semanales
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="carta">
-          <div class="contenido-carta">
-            <div class="iconos-superior-derecha">
-              <img src="/imagenes/fire.svg" class="iconos" alt="Hot trendy" />
-              <img
-                src="/imagenes/certificate.svg"
-                class="iconos"
-                alt="Certificado"
-              />
-            </div>
-            <div class="contenedor-imagen">
-              <img
-                src="/imagenes/prueba.jpg"
-                alt="Imagen del Libro"
-                class="imagen-libro"
-              />
-            </div>
-            <div class="contenedor-texto">
-              <h3 class="titulo-libro">The Book of Bill</h3>
-              <p class="autor-libro">Por Alex Hirsch</p>
-              <ul class="detalles-libro">
-                <li>
-                  <img
-                    src="/imagenes/blank-file.svg"
-                    class="iconoschicos"
-                    alt="Paginas"
-                  />
-                  60 páginas
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/text-aa.svg"
-                    class="iconoschicos"
-                    alt="Texto"
-                  />
-                  786 palabras
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/globe.svg"
-                    class="iconoschicos"
-                    alt="Idiomas"
-                  />
-                  Español - Inglés - Mandarín - Árabe
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/basket.svg"
-                    class="iconoschicos"
-                    alt="Ventas"
-                  />
-                  1435 ventas semanales
-                </li>
-              </ul>
+          <div class="carta">
+            <div class="contenido-carta">
+              <div class="iconos-superior-derecha">
+                <img src="/imagenes/fire.svg" class="iconos" alt="Hot trendy" />
+                <img src="/imagenes/certificate.svg" class="iconos" alt="Certificado"/>
+              </div>
+              <div class="iconos-inferior-derecha">
+                    <img src="../imagenes/trash.svg" class="iconos" alt="borrar"/>
+              </div>
+              <div class="contenedor-imagen">
+                <img src="/imagenes/prueba.jpg" alt="Imagen del Libro" class="imagen-libro"/>
+              </div>
+              <div class="contenedor-texto">
+                <h3 class="titulo-libro">The Book of Bill</h3>
+                <p class="autor-libro">Por Alex Hirsch</p>
+                <ul class="detalles-libro">
+                  <li>
+                    <img src="/imagenes/blank-file.svg" class="iconoschicos" alt="Paginas"/>
+                    60 páginas
+                  </li>
+                  <li>
+                    <img src="/imagenes/text-aa.svg" class="iconoschicos" alt="Texto"/>
+                    786 palabras
+                  </li>
+                  <li>
+                    <img src="/imagenes/globe.svg" class="iconoschicos" alt="Idiomas"/>
+                    Español - Inglés - Mandarín - Árabe
+                  </li>
+                  <li>
+                    <img src="/imagenes/basket.svg" class="iconoschicos" alt="Ventas"/>
+                    1435 ventas semanales
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="carta">
-          <div class="contenido-carta">
-            <div class="iconos-superior-derecha">
-              <img src="/imagenes/fire.svg" class="iconos" alt="Hot trendy" />
-              <img
-                src="/imagenes/certificate.svg"
-                class="iconos"
-                alt="Certificado"
-              />
-            </div>
-            <div class="contenedor-imagen">
-              <img
-                src="/imagenes/prueba.jpg"
-                alt="Imagen del Libro"
-                class="imagen-libro"
-              />
-            </div>
-            <div class="contenedor-texto">
-              <h3 class="titulo-libro">The Book of Bill</h3>
-              <p class="autor-libro">Por Alex Hirsch</p>
-              <ul class="detalles-libro">
-                <li>
-                  <img
-                    src="/imagenes/blank-file.svg"
-                    class="iconoschicos"
-                    alt="Paginas"
-                  />
-                  60 páginas
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/text-aa.svg"
-                    class="iconoschicos"
-                    alt="Texto"
-                  />
-                  786 palabras
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/globe.svg"
-                    class="iconoschicos"
-                    alt="Idiomas"
-                  />
-                  Español - Inglés - Mandarín - Árabe
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/basket.svg"
-                    class="iconoschicos"
-                    alt="Ventas"
-                  />
-                  1435 ventas semanales
-                </li>
-              </ul>
+          <div class="carta">
+            <div class="contenido-carta">
+              <div class="iconos-superior-derecha">
+                <img src="/imagenes/fire.svg" class="iconos" alt="Hot trendy" />
+                <img src="/imagenes/certificate.svg" class="iconos" alt="Certificado"/>
+              </div>
+              <div class="iconos-inferior-derecha">
+                    <img src="../imagenes/trash.svg" class="iconos" alt="borrar"/>
+              </div>
+              <div class="contenedor-imagen">
+                <img src="/imagenes/prueba.jpg" alt="Imagen del Libro" class="imagen-libro"/>
+              </div>
+              <div class="contenedor-texto">
+                <h3 class="titulo-libro">The Book of Bill</h3>
+                <p class="autor-libro">Por Alex Hirsch</p>
+                <ul class="detalles-libro">
+                  <li>
+                    <img src="/imagenes/blank-file.svg" class="iconoschicos" alt="Paginas"/>
+                    60 páginas
+                  </li>
+                  <li>
+                    <img src="/imagenes/text-aa.svg" class="iconoschicos" alt="Texto"/>
+                    786 palabras
+                  </li>
+                  <li>
+                    <img src="/imagenes/globe.svg" class="iconoschicos" alt="Idiomas"/>
+                    Español - Inglés - Mandarín - Árabe
+                  </li>
+                  <li>
+                    <img src="/imagenes/basket.svg" class="iconoschicos" alt="Ventas"/>
+                    1435 ventas semanales
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
+          <div class="carta mas">
+            <div class="circulo-mas">
+                <div class="icono-mas">+</div>
+            </div> 
+          </div> 
       </div>
 
       <div class="titulos">
@@ -280,45 +216,7 @@
             </p>
           </div>
         </div>
-        <div class="carta-valoracion">
-          <header class="header-valoracion">
-            <div class="autor-valoracion">
-              <img
-                src="/imagenes/bilardo.jpg"
-                class="foto-autor"
-                alt="Idiomas"
-              />
-              <div class="flex nombre-autor">
-                <h1>Blas Armando Giunta</h1>
-                <h4>Junio 2022</h4>
-              </div>
-              <div class="puntuacion-valoracion">
-                <img src="/imagenes/star-fill.svg" alt="Estrella valoracion" />
-                <p>4,5</p>
-              </div>
-            </div>
-          </header>
-          <div class="text-opinion">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita
-              error ut optio minus deleniti. Eligendi tenetur accusamus
-              reprehenderit nemo, molestiae odio minima aspernatur non quaerat
-              obcaecati fugiat doloribus, aperiam repellendus? Lorem ipsum dolor
-              sit amet consectetur adipisicing elit. Molestiae possimus adipisci
-              iusto atque soluta officia corrupti optio repudiandae sed dolores
-              temporibus facilis at obcaecati odit rerum praesentium, placeat
-              minima esse! Lorem ipsum dolor sit, amet consectetur adipisicing
-              elit. Repellat repellendus sint animi adipisci voluptatibus
-              blanditiis est ad exercitationem. Incidunt quod mollitia nulla in
-              itaque ratione voluptate numquam. Labore, ipsam neque? Lorem ipsum
-              dolor sit amet quasi repudiandae provident deserunt delectus
-              similique asperiores nam, eaque nemo officia esse omnis quo!
-              
-              Aperiam.
-            </p>
-          </div>
-        </div>
-        <div class="mas">
+        <div class="mas mas-valoracion">
           <div class="circulo-mas">
             <div class="icono-mas">+</div>
           </div>
