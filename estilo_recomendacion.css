@@ -1,24 +1,21 @@
+body{
+  display: flex;
+  justify-content: center;
+}
+
 .contenido-pagina {
+  top: 8rem;
   max-width: 130rem;
-  margin: 0 auto;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
   position: relative;
-}
-
-.contenido-centrado-cartas {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
 }
 
 .titulos {
   width: 100%;
   font-size: 3rem;
   text-align: left;
-  margin-top: 2rem;
   position: relative;
 }
 
@@ -54,7 +51,7 @@
   cursor: pointer;
 }
 
-hr {
+.hr_estilo {
   margin-top: 5rem;
   border: 0;
   height: 0.3rem;
@@ -62,27 +59,25 @@ hr {
   width: 100%;
 }
 
-h4 {
-  font-weight: normal;
-}
-
 /*TABLETS (401px a 768px)*/
 @media screen and (min-width: 401px) and (max-width: 768px) {
   .contenido-pagina {
-    max-width: 100%;
-    margin: 0 auto;
+    width: 93%;
+    top: 7;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     position: relative;
   }
+
   .icono-superior-derecha {
     position: absolute;
     top: 6.8rem;
     right: 5rem;
   }
 
-  hr {
+  .hr_estilo {
     margin-top: 5rem;
     margin-right: auto;
     margin-left: auto;
@@ -95,7 +90,7 @@ h4 {
   .titulos {
     font-size: 3rem;
     text-align: left;
-    margin-top: 2rem;
+    margin-top: 0rem;
     margin-left: 3rem;
     margin-right: 3rem;
   }
@@ -112,11 +107,12 @@ h4 {
 /*MOBILE (hasta 400px)*/
 @media screen and (max-width: 400px) {
   .contenido-pagina {
+    top: 0;
     max-width: 100%;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     position: relative;
   }
   .icono-superior-derecha {
@@ -152,7 +148,7 @@ h4 {
     right: 3rem;
   }
 
-  hr {
+  .hr_estilo {
     margin-top: 5rem;
     margin-right: auto;
     margin-left: auto;
@@ -161,6 +157,4 @@ h4 {
     background-color: black;
     width: 90%;
   }
-
-
 }

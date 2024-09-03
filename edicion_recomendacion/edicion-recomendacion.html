@@ -9,8 +9,8 @@
     <link href="/cartas-libros.css" rel="stylesheet" />
     <link href="/cartas-libros-btn-mas.css" rel="stylesheet" />
     <link href="/detalle_recomendacion/carta-valoraciones.css" rel="stylesheet" />
-    <link href="/estiloBarraBusqueda.css" rel="stylesheet" />
-    <link href="./edicion-recomendacion.css" rel="stylesheet" />
+    <link href="/estilo_recomendacion.css" rel="stylesheet" />
+    <link href="/edicion_recomendacion/edicion-recomendacion.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Baloo Da 2"
@@ -21,220 +21,147 @@
     <!-- header -->
     <header class="header">
       <div class="logo-container">
-        <img src="/imagenes\book-bold.svg" />
+        <img src="/imagenes/book-bold.svg" />
         <h1>ReadApp</h1>
       </div>
       <div class="user-profile">
-        <img src="/imagenes\roman.jpg" class="profile-pic" />
+        <img src="/imagenes/roman.jpg" class="profile-pic" />
         <span> Roman Riquelme</span>
       </div>
     </header>
 
     <div class="contenido-pagina">
-      <br>
-      <section class="barra-busqueda-container edicion">
-          <div class="barra-busqueda edicion">
-            <input type="text" placeholder="Buscar..." />
-          </div>
-      </section>
+      <div class="input-recomendacion">
+        <label class="asterisco" for="titulo">Título</label>
+        <input type="text" id="titulo" value="Recomendación loca">
+      </div>
       <div class="titulos">
         <h3>Libros</h3>
       </div>
-      <!-- Cartas de Libros con Contenedor -->
-      <div class="contenedor-cartas">
-        <div class="carta">
-          <div class="contenido-carta">
-            <div class="iconos-superior-derecha">
-              <img src="/imagenes/fire.svg" class="iconos" alt="Hot trendy" />
-              <img
-                src="/imagenes/certificate.svg"
-                class="iconos"
-                alt="Certificado"
-              />
-            </div>
-            <div class="contenedor-imagen">
-              <img
-                src="/imagenes/prueba.jpg"
-                alt="Imagen del Libro"
-                class="imagen-libro"
-              />
-            </div>
-            <div class="contenedor-texto">
-              <h3 class="titulo-libro">The Book of Bill</h3>
-              <p class="autor-libro">Por Alex Hirsch</p>
-              <ul class="detalles-libro">
-                <li>
-                  <img
-                    src="/imagenes/blank-file.svg"
-                    class="iconoschicos"
-                    alt="Paginas"
-                  />
-                  60 páginas
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/text-aa.svg"
-                    class="iconoschicos"
-                    alt="Texto"
-                  />
-                  786 palabras
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/globe.svg"
-                    class="iconoschicos"
-                    alt="Idiomas"
-                  />
-                  Español - Inglés - Mandarín - Árabe
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/basket.svg"
-                    class="iconoschicos"
-                    alt="Ventas"
-                  />
-                  1435 ventas semanales
-                </li>
-              </ul>
+        <div class="contenedor-cartas">
+          <div class="carta">
+            <div class="contenido-carta">
+              <div class="iconos-superior-derecha">
+                <img src="/imagenes/fire.svg" class="iconos" alt="Hot trendy" />
+                <img src="/imagenes/certificate.svg" class="iconos" alt="Certificado"/>
+              </div>
+              <div class="iconos-inferior-derecha">
+                    <img src="../imagenes/trash.svg" class="iconos" alt="borrar"/>
+              </div>
+              <div class="contenedor-imagen">
+                <img src="/imagenes/prueba.jpg" alt="Imagen del Libro" class="imagen-libro"/>
+              </div>
+              <div class="contenedor-texto">
+                <h3 class="titulo-libro">The Book of Bill</h3>
+                <p class="autor-libro">Por Alex Hirsch</p>
+                <ul class="detalles-libro">
+                  <li>
+                    <img src="/imagenes/blank-file.svg" class="iconoschicos" alt="Paginas"/>
+                    60 páginas
+                  </li>
+                  <li>
+                    <img src="/imagenes/text-aa.svg" class="iconoschicos" alt="Texto"/>
+                    786 palabras
+                  </li>
+                  <li>
+                    <img src="/imagenes/globe.svg" class="iconoschicos" alt="Idiomas"/>
+                    Español - Inglés - Mandarín - Árabe
+                  </li>
+                  <li>
+                    <img src="/imagenes/basket.svg" class="iconoschicos" alt="Ventas"/>
+                    1435 ventas semanales
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="carta">
-          <div class="contenido-carta">
-            <div class="iconos-superior-derecha">
-              <img src="/imagenes/fire.svg" class="iconos" alt="Hot trendy" />
-              <img
-                src="/imagenes/certificate.svg"
-                class="iconos"
-                alt="Certificado"
-              />
-            </div>
-            <div class="contenedor-imagen">
-              <img
-                src="/imagenes/prueba.jpg"
-                alt="Imagen del Libro"
-                class="imagen-libro"
-              />
-            </div>
-            <div class="contenedor-texto">
-              <h3 class="titulo-libro">The Book of Bill</h3>
-              <p class="autor-libro">Por Alex Hirsch</p>
-              <ul class="detalles-libro">
-                <li>
-                  <img
-                    src="/imagenes/blank-file.svg"
-                    class="iconoschicos"
-                    alt="Paginas"
-                  />
-                  60 páginas
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/text-aa.svg"
-                    class="iconoschicos"
-                    alt="Texto"
-                  />
-                  786 palabras
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/globe.svg"
-                    class="iconoschicos"
-                    alt="Idiomas"
-                  />
-                  Español - Inglés - Mandarín - Árabe
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/basket.svg"
-                    class="iconoschicos"
-                    alt="Ventas"
-                  />
-                  1435 ventas semanales
-                </li>
-              </ul>
+          <div class="carta">
+            <div class="contenido-carta">
+              <div class="iconos-superior-derecha">
+                <img src="/imagenes/fire.svg" class="iconos" alt="Hot trendy" />
+                <img src="/imagenes/certificate.svg" class="iconos" alt="Certificado"/>
+              </div>
+              <div class="iconos-inferior-derecha">
+                    <img src="../imagenes/trash.svg" class="iconos" alt="borrar"/>
+              </div>
+              <div class="contenedor-imagen">
+                <img src="/imagenes/prueba.jpg" alt="Imagen del Libro" class="imagen-libro"/>
+              </div>
+              <div class="contenedor-texto">
+                <h3 class="titulo-libro">The Book of Bill</h3>
+                <p class="autor-libro">Por Alex Hirsch</p>
+                <ul class="detalles-libro">
+                  <li>
+                    <img src="/imagenes/blank-file.svg" class="iconoschicos" alt="Paginas"/>
+                    60 páginas
+                  </li>
+                  <li>
+                    <img src="/imagenes/text-aa.svg" class="iconoschicos" alt="Texto"/>
+                    786 palabras
+                  </li>
+                  <li>
+                    <img src="/imagenes/globe.svg" class="iconoschicos" alt="Idiomas"/>
+                    Español - Inglés - Mandarín - Árabe
+                  </li>
+                  <li>
+                    <img src="/imagenes/basket.svg" class="iconoschicos" alt="Ventas"/>
+                    1435 ventas semanales
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="carta">
-          <div class="contenido-carta">
-            <div class="iconos-superior-derecha">
-              <img src="/imagenes/fire.svg" class="iconos" alt="Hot trendy" />
-              <img
-                src="/imagenes/certificate.svg"
-                class="iconos"
-                alt="Certificado"
-              />
-            </div>
-            <div class="contenedor-imagen">
-              <img
-                src="/imagenes/prueba.jpg"
-                alt="Imagen del Libro"
-                class="imagen-libro"
-              />
-            </div>
-            <div class="contenedor-texto">
-              <h3 class="titulo-libro">The Book of Bill</h3>
-              <p class="autor-libro">Por Alex Hirsch</p>
-              <ul class="detalles-libro">
-                <li>
-                  <img
-                    src="/imagenes/blank-file.svg"
-                    class="iconoschicos"
-                    alt="Paginas"
-                  />
-                  60 páginas
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/text-aa.svg"
-                    class="iconoschicos"
-                    alt="Texto"
-                  />
-                  786 palabras
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/globe.svg"
-                    class="iconoschicos"
-                    alt="Idiomas"
-                  />
-                  Español - Inglés - Mandarín - Árabe
-                </li>
-                <li>
-                  <img
-                    src="/imagenes/basket.svg"
-                    class="iconoschicos"
-                    alt="Ventas"
-                  />
-                  1435 ventas semanales
-                </li>
-              </ul>
+          <div class="carta">
+            <div class="contenido-carta">
+              <div class="iconos-superior-derecha">
+                <img src="/imagenes/fire.svg" class="iconos" alt="Hot trendy" />
+                <img src="/imagenes/certificate.svg" class="iconos" alt="Certificado"/>
+              </div>
+              <div class="iconos-inferior-derecha">
+                    <img src="../imagenes/trash.svg" class="iconos" alt="borrar"/>
+              </div>
+              <div class="contenedor-imagen">
+                <img src="/imagenes/prueba.jpg" alt="Imagen del Libro" class="imagen-libro"/>
+              </div>
+              <div class="contenedor-texto">
+                <h3 class="titulo-libro">The Book of Bill</h3>
+                <p class="autor-libro">Por Alex Hirsch</p>
+                <ul class="detalles-libro">
+                  <li>
+                    <img src="/imagenes/blank-file.svg" class="iconoschicos" alt="Paginas"/>
+                    60 páginas
+                  </li>
+                  <li>
+                    <img src="/imagenes/text-aa.svg" class="iconoschicos" alt="Texto"/>
+                    786 palabras
+                  </li>
+                  <li>
+                    <img src="/imagenes/globe.svg" class="iconoschicos" alt="Idiomas"/>
+                    Español - Inglés - Mandarín - Árabe
+                  </li>
+                  <li>
+                    <img src="/imagenes/basket.svg" class="iconoschicos" alt="Ventas"/>
+                    1435 ventas semanales
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
+          <div class="carta mas">
+            <div class="circulo-mas">
+                <div class="icono-mas">+</div>
+            </div> 
+          </div> 
       </div>
 
-      <div class="titulos">
-        <h3>Reseña</h3>
-      </div>
-      <div class="titulos textoprincipal">
-        <p>
-          Tremendo libro, creativo, divertido y sorprendente de inicio a fin.
-          Llega a responder todo tipo de preguntas sobre el show que no llegaron
-          a ser respondidas mientras enriqueze y complementa la historia
-          original, dándonos vistazos a distintos momentos que no se nos fueron
-          mostrados pero que igual encajan bien en la cronología. Todo esto
-          visto desde la perspectiva de quizá el mejor personaje y antagonista
-          de la serie, dando un satisfactorio y adecuado "final" a su arco y
-          personaje, algo que muchos fans han estado esperando durante años.
-          Alex no nos deja de sorprender con estas obras y estoy agradecido de
-          haberlo leído todo en un solo día, apreciando el trabajo e historia
-          presentes en el libro.
-        </p>
+      <div class="titulos textoprincipal input-recomendacion">
+          <label class="asterisco" for="resenia">Reseña</label>
+          <textarea id="resenia" class="textarea-auto-ajustable">
+Tremendo libro, creativo, divertido y sorprendente de inicio a fin. Llega a responder todo tipo de preguntas sobre el show que no llegaron a ser respondidas mientras enriquece y complementa la historia original, dándonos vistazos a distintos momentos que no se nos fueron mostrados pero que igual encajan bien en la cronología. Todo esto visto desde la perspectiva de quizá el mejor personaje y antagonista de la serie, dando un satisfactorio y adecuado 'final' a su arco y personaje, algo que muchos fans han estado esperando durante años. Alex no nos deja de sorprender con estas obras y estoy agradecido de haberlo leído todo en un solo día, apreciando el trabajo e historia presentes en el libro.
+          </textarea>
       </div>
 
-      <hr />
+      <hr class="hr_estilo" />
 
       <div class="titulo_valoraciones">
         <h3>Valoraciones</h3>
@@ -318,14 +245,13 @@
             </p>
           </div>
         </div>
-        <div class="mas">
-          <div class="circulo-mas">
-            <div class="icono-mas">+</div>
-          </div>
-        </div>
       </div>
 
-      <button class="boton-volver" type="submit">Volver</button>
+      <div class="boton_container btn_cont_derecha boton_al_final">
+        <button class="boton_cancelar" type="submit">Cancelar</button>
+        <button class="boton_guardar" type="submit">Guardar cambios</button>
+      </div>
+
     </div>
   </body>
 </html>

@@ -22,6 +22,7 @@
   align-content: space-between;
   max-width: 217.29rem;
   flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 
 .carta-valoracion {
@@ -107,7 +108,7 @@
   margin-right: 2rem;
 }
 
-.mas {
+.mas.mas-valoracion {
   margin: 10rem;
 } 
 
@@ -154,7 +155,7 @@
     padding: 1.5rem;
   }
 
-  .mas {
+  .mas.mas-valoracion {
     margin: 2rem;
   }
   
@@ -202,7 +203,7 @@
       line-height: 20px;
     }
     
-    .mas{
+    .mas.mas-valoracion{
       margin:2rem;
     }
   }
