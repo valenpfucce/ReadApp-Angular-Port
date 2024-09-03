@@ -81,54 +81,27 @@
     cursor: pointer;
     margin-left: 2.5rem; 
     margin-top: 1.5rem; 
+    transition: transform 0.3s ease;
 }
 
 .carta_amigo button:hover {
     transform: scale(1.2);
 }
 
-.mas {
-    color: var(--color-letra-carta);
-    display: grid;
-    place-items: center;
-    background-color: #f1f1f1;
-}
-
-.circulo-mas {
-    display: flex;
-    align-items: center;
-    width: 5.5rem; 
-    height: 5.5rem; 
-    background-color: white;
+.carta_amigo_mas button {
+    background: url('');
+    background: contain;
     border: none;
-    border-radius: 4.5rem; 
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); 
-    transition: all 0.3s ease 0s;
+    width: 3rem; 
     cursor: pointer;
+    margin-left: 0rem; 
+    margin-top: 0rem; 
+   
 }
 
-.circulo-mas:hover {
-    background-color: var(--color-cuarto);
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
-    transform: translateY(-0.3rem); 
+.carta_amigo_mas button:hover {
+    transform: scale(1);
 }
-
-.icono-mas {
-    font-size: 2.4em; 
-    font-weight: bold;
-}
-
-.icono-mas button {
-    display: flex;
-    margin: 1.8rem; 
-    font-size: 3.5rem; 
-    color: #000;
-}
-
-.icono-mas button:hover {
-    transform: none;
-}
-
 
 
 @media all and (max-width: 76.8rem) and (min-width: 40.1rem) {

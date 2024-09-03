@@ -109,22 +109,9 @@
 
 .mas {
   margin: 20rem;
-  color: var(--color-letra-carta);
-  background-color: var(--color-secundario);
-}
+} 
 
-.circulo-mas {
-  background-color: var(--color-primario);
-}
 
-.icono-mas {
-  color: white;
-}
-
-.icono-mas:hover {
-  color: var(--color-primario);
-}
-  
 /*TABLETS (401px a 768px)*/
 @media screen and (min-width: 401px) and (max-width: 768px) {
   .titulo_valoraciones {
