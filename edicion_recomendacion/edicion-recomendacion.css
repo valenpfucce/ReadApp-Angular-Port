@@ -1,59 +1,9 @@
-.contenido-pagina {
-  max-width: 130rem;
-  margin: 0 auto;
-  top: 110px;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  position: relative;
-}
-  
-  
-.titulos {
-    font-size: 3rem;
-    text-align: left;
-    margin-top: 2rem;
-}
-  
-.titulos h2 {
-    font-weight: bold;
-}
-  
-.titulos.textoprincipal {
-    font-size: 2rem;
-    text-align: justify;
-}
-  
-.titulos.valoraciones {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-  
-.titulos.titulos.valoraciones img {
-    width: 4rem;
-    height: auto;
-}
-  
-hr {
-    margin-top: 5rem;
-    border: 0;
-    height: 0.3rem;
-    background-color: black;
-    width: 100%;
-}
-  
-h4 {
-    font-weight: normal;
-}
-
-
 label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
+
 
 .input-recomendacion label{
   width: 100%;
@@ -95,76 +45,23 @@ label {
   color: var(--color-sexto); 
 }
 
-  /*TABLETS (401px a 768px)*/
-  @media screen and (min-width: 401px) and (max-width: 768px) {
-    .contenido-pagina {
-      max-width: auto;
-      margin: 0 auto;
-      display: flex;
-      padding: 0.5rem;
-      flex-direction: column;
-      align-items: flex-start;
-      position: relative;
-    }
-  
-    hr {
-      margin-top: 5rem;
-      margin-right: auto;
-      margin-left: auto;
-      border: 0;
-      height: 0.3rem;
-      background-color: black;
-      width: 90%;
-    }
-  
-    .titulos {
-      font-size: 3rem;
-      text-align: left;
-      margin-top: 2rem;
-      margin-left: 3rem;
-      margin-right: 3rem;
-    }
+@media screen and (min-width: 401px) and (max-width: 768px){
+  .input-recomendacion{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    margin-bottom: 1.5rem;
+    margin-left: 2.65rem;
   }
-  
-  /*MOBILE (hasta 400px)*/
-  @media screen and (max-width: 400px) {
-    .contenido-pagina {
-      max-width: 100vw;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      position: relative;
-    }
-  
-    .titulos {
-      font-size: 2rem;
-      text-align: left;
-      margin-top: 4rem;
-      margin-left: 2rem;
-      margin-right: 2rem;
-      line-height: 4rem;
-    }
-  
-    .titulos h2 {
-      font-weight: bold;
-      font-size: 3rem;
-    }
-  
-    .titulos.textoprincipal {
-      font-size: 2rem;
-      text-align: justify;
-      line-height: 3rem;
-    }
-  
-    hr {
-      margin-top: 5rem;
-      margin-right: auto;
-      margin-left: auto;
-      border: 0;
-      height: 0.3rem;
-      background-color: black;
-      width: 90%;
-    }
+}
+
+
+@media screen and (max-width: 400){
+  .input-recomendacion{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    margin-bottom: 1.5rem;
+    margin-left: 0rem;
   }
-  
+}

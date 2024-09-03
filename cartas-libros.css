@@ -6,12 +6,13 @@
 .contenedor-cartas {
     display: inline-flex; 
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     width: auto; 
-    max-width: none;
     gap: 4em;
     margin: 2.35em;
+    margin-left: 4em;
+    margin-right: 4em;
 }
 
 .carta {
@@ -120,25 +121,29 @@
 
 
 @media screen and (min-width: 401px) and (max-width: 768px) {
+    body{
+        align-items: center;
+    }
+    
     .contenedor-cartas {
-        display: flex; 
-        flex-wrap: wrap;
-        margin: 0 auto;
-        max-width: 72rem;
+        justify-content: left;
+        align-items: center;
+        width: 100%;
+        gap: 1em;
+        margin: 0;
         margin-top: 0.82rem;
+        margin-bottom: 2rem;
     }
     
     .carta {
         color: var(--color-letra-carta);
-        width: 35rem;
+        width: 34rem;
         height: 19rem;
         background-color: var(--color-terciario);
         overflow: hidden;
         box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
         display: flex;
         align-items: center;
-        padding: 0.99rem;
-        gap: 1rem;
         position: relative;
     }
     
@@ -240,6 +245,7 @@
         flex-wrap: wrap;
         margin: 0 auto;
         margin-top: 1.25rem;
+        gap: 0.5rem;
     }
     
     .carta {
