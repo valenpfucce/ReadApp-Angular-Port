@@ -41,6 +41,7 @@ body {
 }
 
 .boton_container button{
+  cursor: pointer;
   width: 20%;
   height: 40px;
   border-radius: 10px;
