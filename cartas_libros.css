@@ -72,14 +72,14 @@
 }
 
 .contenedor-imagen {
-    flex-shrink: 0;
+    display: flex;
+    width: 50%;
 }
 
 .imagen-libro {
-    max-width: 18.04rem;
-    max-height: 24.49rem;
-    margin-top: 1.41rem;
-    margin-left: 0.65rem;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .contenedor-texto {
@@ -93,7 +93,7 @@
 .primer-division{
     display: flex;
     justify-content: space-between;
-    margin-top: 0.5rem;:
+    /* margin-top: 0.5rem; */
 }
 
 .titulo-libro {
