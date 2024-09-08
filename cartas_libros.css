@@ -67,8 +67,6 @@
 .contenido-carta {
     color: var(--color-letra);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
     height: 100%;
 }
@@ -89,7 +87,13 @@
     flex-direction: column;
     justify-content: space-between;
     margin-left: 1.55rem;
-    flex-grow: 1;
+    width: 100%;
+}
+
+.primer-division{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;:
 }
 
 .titulo-libro {
