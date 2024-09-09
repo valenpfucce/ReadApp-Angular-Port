@@ -30,14 +30,6 @@
     position: relative;
 }
 
-.iconos-superior-derecha {
-    width: 3.12rem;
-    height: 3.12rem;
-    position: absolute;
-    top: 1.93rem;
-    right: 2.58rem;
-} 
-
 .iconos-inferior-derecha {
     width: 3.12rem;
     height: 3.12rem;
@@ -93,7 +85,6 @@
 .primer-division{
     display: flex;
     justify-content: space-between;
-    /* margin-top: 0.5rem; */
 }
 
 .titulo-libro {
@@ -140,24 +131,12 @@
     }
     
     .carta {
-        color: var(--color-letra-carta);
         width: 34rem;
         height: 19rem;
         background-color: var(--color-terciario);
-        overflow: hidden;
         box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
-        display: flex;
-        align-items: center;
-        position: relative;
+        padding: 0.5rem;
     }
-    
-    .iconos-superior-derecha {
-        width: 1.98rem;
-        height: 1.98rem;
-        position: absolute;
-        top: 1.23rem;
-        right: 1.63rem;
-    } 
     
     .iconos-inferior-derecha {
         width: 1.98rem;
@@ -184,33 +163,17 @@
         width: 2.05rem;
         height: 1.96rem;
     }
-    
-    .contenido-carta {
-        color: var(--color-letra);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-    }
-    
+
     .contenedor-imagen {
-        flex-shrink: 0;
+        width: 45%;
     }
-    
+
     .imagen-libro {
-        max-width: 11.45rem;
-        max-height: 15.54rem;
-        margin-top: 0.89rem;
-        margin-left: 0.41rem;
+        margin-left: 0.5rem;
     }
     
     .contenedor-texto {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
         margin-left: 0.99rem;
-        flex-grow: 1;
     }
     
     .titulo-libro {
@@ -220,21 +183,15 @@
     
     .autor-libro {
         font-size: 1.39rem;
-        color: var(--color-letra-carta-secundaria);
         margin-bottom: 0.99rem;
     }
     
     .detalles-libro {
-        list-style: none;
-        padding: 0;
-        margin: 0;
         font-size: 1.23rem;
         line-height: 2rem;
     }
     
     .detalles-libro li {
-        display: flex;
-        align-items: center;
         margin-bottom: 0.5rem;
     }    
 }
@@ -246,20 +203,15 @@
         justify-content: center;
         align-items: center; 
         max-width: 217.29rem;
-        flex-wrap: wrap;
         margin: 0 auto;
         margin-top: 1.25rem;
         gap: 0.5rem;
     }
     
     .carta {
-        color: var(--color-letra-carta);
         width: 100%;
         height: auto;
-        background-color: var(--color-terciario);
         border-radius: 0.91rem;
-        overflow: hidden;
-        box-shadow: 0 0.3rem 0.61rem rgba(0, 0, 0, 0.2);
         margin: 1.51rem;
         display: flex;
         align-items: center;
@@ -282,8 +234,6 @@
     }
 
     .detalles-libro li {
-        display: flex;
-        align-items: center;
         margin-bottom: 0.76rem;
         line-height: 3rem;
     }
