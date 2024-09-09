@@ -110,3 +110,19 @@ body {
   align-items: center;
 }
 /****** END DISPLAY ******/
+
+
+
+@media screen and (min-width: 401px) and (max-width: 768px){
+  .boton_container.btn_cont_derecha button{
+    width: 30%;
+    font-size: 2.3rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .boton_container.btn_cont_derecha button{
+    width: 40%;
+    font-size: 2rem;
+  }
+}

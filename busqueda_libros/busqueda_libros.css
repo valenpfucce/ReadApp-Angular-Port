@@ -1,16 +1,3 @@
-.contenido-pagina {
-    display: flex;
-    max-width: 130rem;
-    margin: 0 auto;
-    margin-top: 150px;
-    padding: 1rem;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-  }
-
-  .contenido-centrado-cartas {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-  }
+.contenido-pagina.contenido-pagina-busq-libr {
+  top: 130px;
+}

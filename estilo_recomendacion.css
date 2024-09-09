@@ -4,7 +4,7 @@ body{
 }
 
 .contenido-pagina {
-  top: 8rem;
+  top: 7rem;
   max-width: 130rem;
   padding: 1rem;
   display: flex;
@@ -39,14 +39,16 @@ body{
   height: auto;
 }
 
-.icono-superior-derecha {
-  position: absolute;
-  top: 7rem;
-  right: 40px;
+.contenido-pagina-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.icono-superior-derecha-recomendacion {
   transition: transform 0.3s ease;
 }
 
-.icono-superior-derecha:hover {
+.icono-superior-derecha-recomendacion:hover {
   transform: scale(1.3);
   cursor: pointer;
 }
@@ -62,11 +64,11 @@ body{
 /*TABLETS (401px a 768px)*/
 @media screen and (min-width: 401px) and (max-width: 768px) {
   .contenido-pagina {
-    width: 93%;
-    top: 7;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+    width: 100%;
+    top: 2rem;
+    margin: 0 auto;
+    margin-left: 2rem;
+    margin-right: 2rem;
     align-items: left;
     position: relative;
   }
@@ -88,15 +90,11 @@ body{
   }
 
   .titulos {
-    font-size: 3rem;
-    text-align: left;
-    margin-top: 0rem;
-    margin-left: 3rem;
-    margin-right: 3rem;
+    width: 100%;
   }
 
   .titulos.textoprincipal {
-    width: 90%;
+    width: 100%;
   }
 
   .contenedor-valoraciones {

@@ -1,9 +1,29 @@
-label {
+.label-titulos {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
+
+.division-edicion-titulo-rec{
+  display: grid;
+  place-content: left;
+  width: 100%;
+  grid-template-columns: 75% auto;
+  gap: 10px;
+}
+
+.barra-busqueda.edicion-rec input[type="checkbox"]{
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 1.5rem;
+  line-height: none;
+}
+
+.barra-busqueda.edicion-rec label{
+  color: black;
+  line-height: initial;
+}
 
 .input-recomendacion label{
   width: 100%;
@@ -11,12 +31,13 @@ label {
 }
 
 .input-recomendacion input[type="text"] {
-  width: 100%;
+  width: auto;
   padding: 10px;
   font-size: 1.8rem;
   border: 1px solid var(--color-secundario);
   border-radius: 4px;
   box-sizing: border-box;
+  max-height: 3.5rem;
 }
 
 .input-recomendacion input[type="text"]:focus {
@@ -46,22 +67,35 @@ label {
 }
 
 @media screen and (min-width: 401px) and (max-width: 768px){
-  .input-recomendacion{
-    display: flex;
-    flex-direction: column;
-    align-self: flex-start;
-    margin-bottom: 1.5rem;
-    margin-left: 2.65rem;
+  .division-edicion-titulo-rec {
+    grid-template-columns: 1fr;
+    margin-top: 0;
+    gap: 0;
   }
+
+  .barra-busqueda.edicion-rec label{
+    font-size: 2rem;
+    margin-top: 0;
+  }
+
+  .barra-busqueda.edicion-rec input[type="checkbox"]{
+    margin-top: 0;
+  }
+  
 }
 
 
-@media screen and (max-width: 400){
-  .input-recomendacion{
-    display: flex;
-    flex-direction: column;
-    align-self: flex-start;
-    margin-bottom: 1.5rem;
-    margin-left: 0rem;
+@media screen and (max-width: 400px) {
+  .division-edicion-titulo-rec {
+    grid-template-columns: 1fr;
+    width: 95vw;
+  }
+
+  .barra-busqueda.edicion-rec label{
+    font-size: 2rem;
+  }
+
+  .barra-busqueda.edicion-rec input[type="checkbox"]{
+    margin-top: 1rem;
   }
 }
