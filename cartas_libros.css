@@ -87,15 +87,18 @@
     justify-content: space-between;
 }
 
+.iconos-superior-derecha{
+    max-height: 2rem;
+}
+
 .titulo-libro {
     font-size: 2.51rem;
-    margin-bottom: 0.48rem;
+    line-height: 2.5rem;
 }
 
 .autor-libro {
     font-size: 2.2rem;
     color: var(--color-letra-carta-secundaria);
-    margin-bottom: 1.55rem;
 }
 
 .detalles-libro {
