@@ -2,16 +2,16 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ReadApp</title>
-    <link href="/estilos.css" rel="stylesheet" />
-    <link href="/header.css" rel="stylesheet" />
-    <link href="./estilo_perfil.css" rel="stylesheet" />
-    <link href="/cartas_libros_btn_mas.css" rel="stylesheet" />
-    <link href="./estilo_perfil_amigos.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo Da 2" />
-    <script src="https://kit.fontawesome.com/007d112e2a.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReadApp</title>
+  <link href="/estilos.css" rel="stylesheet" />
+  <link href="/header.css" rel="stylesheet" />
+  <link href="./estilo_perfil.css" rel="stylesheet" />
+  <link href="/cartas_libros_btn_mas.css" rel="stylesheet" />
+  <link href="./estilo_perfil_amigos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo Da 2" />
+  <script src="https://kit.fontawesome.com/007d112e2a.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -31,105 +31,92 @@
     </div>
   </header>
 
-    <div class="main">
-        <div class="info_usuario">
-            <div class="fotoPerfil">
-              <img src="/imagenes/roman.jpg" class="imagen_perfil" />
-              <label class="nombre_perfil">Roman Riquelme</label>
-            </div>
-      
-            <ul class="submenu_perfil">
-              <li class="boton_menu">
-                <img class="icono" src="/imagenes/info.svg" />
-                <a href="this">Informacion</a>
-              </li>
-              <li class="boton_menu">
-                <img class="icono" src="/imagenes/amigos.svg" />
-                <a href=""><strong>Amigos</strong></a>
-              </li>
-              <li class="boton_menu">
-                <img class="icono" src="/imagenes/libros.svg" />
-                <a href="">Libros leidos</a>
-              </li>
-              <li class="boton_menu">
-                <img class="icono" src="/imagenes/librosaleer.svg" />
-                <a href="">Libros a leer</a>
-              </li>
-              <li class="boton_menu">
-                <img class="icono" src="/imagenes/valorarReco.svg" />
-                <a href="">Recomendaciones a valorar</a>
-              </li>
-            </ul>
+  <div class="main">
+    <div class="info_usuario">
+      <div class="fotoPerfil">
+        <img src="/imagenes/roman.jpg" class="imagen_perfil" />
+        <label class="nombre_perfil">Roman Riquelme</label>
+      </div>
+
+      <ul class="submenu_perfil">
+        <li class="boton_menu">
+          <img class="icono" src="/imagenes/info.svg" />
+          <a href="this">Informacion</a>
+        </li>
+        <li class="boton_menu">
+          <img class="icono" src="/imagenes/amigos.svg" />
+          <a href=""><strong>Amigos</strong></a>
+        </li>
+        <li class="boton_menu">
+          <img class="icono" src="/imagenes/libros.svg" />
+          <a href="">Libros leidos</a>
+        </li>
+        <li class="boton_menu">
+          <img class="icono" src="/imagenes/librosaleer.svg" />
+          <a href="">Libros a leer</a>
+        </li>
+        <li class="boton_menu">
+          <img class="icono" src="/imagenes/valorarReco.svg" />
+          <a href="">Recomendaciones a valorar</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="flex perfil_container">
+      <h1> Amigos</h1>
+      <section class="flex lista_perfil">
+        <article class="flex carta_amigo">
+          <img src="/imagenes/bilardo.jpg">
+          <div class="flex amigo_info">
+            <header> Nombre Apellido </header>
+            <h3>Username</h3>
           </div>
-      
+          <button><img src="/imagenes/trash.svg"></button>
+        </article>
 
-        <div class="perfil_container">
-            <h1> Amigos</h1>
-            <section class="lista_perfil">
-                <div class="carta_amigo">
-                    <img src="/imagenes/bilardo.jpg">
-                    <div class="amigo_info">
-                        <div class="nombre_apellido">
-                            <label><b>Nombre</b></label>
-                            <label><b>Apellido</b></label>
-                        </div>
-                        <p>Username</p>
-                    </div>
-                    <button><img src="/imagenes/trash.svg"></button>
-                </div>
+        <article class="flex carta_amigo">
+          <img src="/imagenes/bilardo.jpg">
+          <div class="flex amigo_info">
+            <header> Nombre Apellido </header>
+            <h3>Username</h3>
+          </div>
+          <button><img src="/imagenes/trash.svg"></button>
+        </article>
 
-                <div class="carta_amigo">
-                    <img src="/imagenes/bilardo.jpg">
-                    <div class="amigo_info">
-                        <div class="nombre_apellido">
-                            <label><b>Nombre</b></label>
-                            <label><b>Apellido</b></label>
-                        </div>
-                        <p>Username</p>
-                    </div>
-                    <button><img src="/imagenes/trash.svg"></button>
-                </div>
+        <article class="flex carta_amigo">
+          <img src="/imagenes/bilardo.jpg">
+          <div class="flex amigo_info">
+            <header> Nombre Apellido </header>
+            <h3>Username</h3>
+          </div>
+          <button><img src="/imagenes/trash.svg"></button>
+        </article>
 
-                <div class="carta_amigo">
-                    <img src="/imagenes/bilardo.jpg">
-                    <div class="amigo_info">
-                        <div class="nombre_apellido">
-                            <label><b>Nombre</b></label>
-                            <label><b>Apellido</b></label>
-                        </div>
-                        <p>Username</p>
-                    </div>
-                    <button><img src="/imagenes/trash.svg"></button>
-                </div>
+        <article class="flex carta_amigo">
+          <img src="/imagenes/bilardo.jpg">
+          <div class="flex amigo_info">
+            <header> Nombre Apellido </header>
+            <h3>Username</h3>
+          </div>
+          <button><img src="/imagenes/trash.svg"></button>
+        </article>
 
-                <div class="carta_amigo">
-                    <img src="/imagenes/bilardo.jpg">
-                    <div class="amigo_info">
-                        <div class="nombre_apellido">
-                            <label><b>Nombre</b></label>
-                            <label><b>Apellido</b></label>
-                        </div>
-                        <p>Username</p>
-                    </div>
-                    <button><img src="/imagenes/trash.svg"></button>
-                </div>
-
-                <div class="carta carta_amigo carta_amigo_mas mas">
-                    <div class="circulo-mas">
-                        <button class="icono-mas">+</button>
-                    </div>
-                </div>
-
-            </section>
-
-            <div class="boton_container">
-                <button class="boton_cancelar" type="submit">Cancelar</button>
-                <button class="boton_guardar" type="submit">Guardar cambios</button>
-            </div>
-
+        <div class="carta carta_amigo carta_amigo_mas mas">
+          <div class="circulo-mas">
+            <button class="icono-mas">+</button>
+          </div>
         </div>
 
+      </section>
+
+      <div class="boton_container">
+        <button class="boton_cancelar" type="submit">Cancelar</button>
+        <button class="boton_guardar" type="submit">Guardar cambios</button>
+      </div>
+
     </div>
+
+  </div>
 </body>
 
 </html>
