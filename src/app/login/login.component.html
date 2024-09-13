@@ -1,1 +1,35 @@
-<p>login works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Inicio Sesión</title>
+    <link href="login.component.css" rel="stylesheet" />
+  </head>
+  <body class="flex">
+    <form class="grid">
+      <div class="flex title-logIn">
+        <img src="../imagenes/book-bold-brown.svg" />
+        <h1>ReadApp</h1>
+      </div>
+
+      <div class="flex container">
+        <label for="user">Usuario<span>*</span></label>
+        <input type="text" id="user" />
+
+        <p class="obligatorio-input">
+          <i class="fa-solid fa-triangle-exclamation"></i> El nombre de usuario
+          es obligatorio
+        </p>
+      </div>
+
+      <div class="flex container">
+        <label for="password">Contraseña<span>*</span></label>
+        <input type="password" id="password" />
+        <i class="fa-solid fa-eye ver_contrasenia"></i>
+      </div>
+      <div class="boton_container">
+        <button class="boton_guardar" type="submit">Ingresar</button>
+      </div>
+    </form>
+  </body>
+</html>
+
