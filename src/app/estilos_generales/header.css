@@ -1,0 +1,93 @@
+html {
+    font-family: var(--fuente-default);
+    font-size: var(--tamanio-default);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-primario);
+    padding: 1rem 2rem;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container img {
+    font-size: 2.4rem;
+    margin-right: 1rem;
+}
+
+.logo-container h1 {
+    margin: 0;
+    font-size: 2.4rem;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.user-profile span {
+    margin-right: 1rem;
+    font-size: 1.4rem;
+}
+
+.profile-pic {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: 0.2rem solid var(--color-cuarto);
+    margin: 1rem;
+}
+
+.menu-hamburguesa {
+    display: none;
+    cursor: pointer;
+    font-size: 3rem; 
+}
+
+
+.menu-hamburguesa:hover {
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 401px) and (max-width: 768px) {
+    .user-profile {
+        display: none;
+    }
+
+    .menu-hamburguesa {
+        display: flex;
+    }
+}
+
+@media (max-width: 400px) {
+    .header {
+        top: auto;
+        bottom: 0;
+    }
+
+    body {
+        margin-bottom: 6rem;
+    }
+
+    .user-profile {
+        display: none;
+    }
+
+    .menu-hamburguesa {
+        display: flex;
+    }
+}
+
+
