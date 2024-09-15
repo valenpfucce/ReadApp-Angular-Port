@@ -1,0 +1,158 @@
+body{
+  display: flex;
+  justify-content: center;
+}
+
+.contenido-pagina {
+  top: 7rem;
+  max-width: 130rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.titulos {
+  width: 100%;
+  font-size: 3rem;
+  text-align: left;
+  position: relative;
+}
+
+.titulos h2 {
+  font-weight: bold;
+}
+
+.titulos.textoprincipal {
+  font-size: 2rem;
+  text-align: justify;
+}
+
+.titulos.valoraciones {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.titulos.titulos.valoraciones img {
+  width: 4rem;
+  height: auto;
+}
+
+.contenido-pagina-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.icono-superior-derecha-recomendacion {
+  transition: transform 0.3s ease;
+}
+
+.icono-superior-derecha-recomendacion:hover {
+  transform: scale(1.3);
+  cursor: pointer;
+}
+
+.hr_estilo {
+  margin-top: 5rem;
+  border: 0;
+  height: 0.3rem;
+  background-color: black;
+  width: 100%;
+}
+
+/*TABLETS (401px a 768px)*/
+@media screen and (min-width: 401px) and (max-width: 768px) {
+  .contenido-pagina {
+    width: 100%;
+    top: 2rem;
+    margin: 0 auto;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    align-items: left;
+    position: relative;
+  }
+
+  .icono-superior-derecha {
+    position: absolute;
+    top: 6.8rem;
+    right: 5rem;
+  }
+
+  .hr_estilo {
+    margin-top: 5rem;
+    margin-right: auto;
+    margin-left: auto;
+    border: 0;
+    height: 0.3rem;
+    background-color: black;
+    width: 90%;
+  }
+
+  .titulos {
+    width: 100%;
+  }
+
+  .titulos.textoprincipal {
+    width: 100%;
+  }
+
+  .contenedor-valoraciones {
+    height: 100%;
+  }
+}
+
+/*MOBILE (hasta 400px)*/
+@media screen and (max-width: 400px) {
+  .contenido-pagina {
+    top: 0;
+    max-width: 100%;
+    /* margin: 0 auto; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .icono-superior-derecha {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+  }
+
+  .titulos {
+    font-size: 2rem;
+    text-align: left;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 0;
+    line-height: 4rem;
+  }
+
+  .titulos h2 {
+    font-weight: bold;
+    font-size: 3rem;
+  }
+
+  .titulos.textoprincipal {
+    width: 90%;
+    font-size: 2rem;
+    text-align: justify;
+    line-height: 3rem;
+  }
+
+  .icono-superior-derecha {
+    position: absolute;
+    top: 4.5rem;
+    right: 3rem;
+  }
+
+  .hr_estilo {
+    margin-top: 5rem;
+    margin-right: auto;
+    margin-left: auto;
+    border: 0;
+    height: 0.3rem;
+    background-color: black;
+    width: 90%;
+  }
+}
