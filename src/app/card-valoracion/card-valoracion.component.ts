@@ -11,3 +11,9 @@ import { HeaderComponent } from '../header/header.component';
 export class CardValoracionComponent {
 
 }
+
+export class CardValoracion {
+  constructor(
+
+  ){}
+}

@@ -1,0 +1,31 @@
+<readapp-header></readapp-header>
+
+<div class="contenido-pagina">
+  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
+  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
+  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
+  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
+  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
+  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
+  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
+  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
+  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
+  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
+  <hr class="hr_estilo" />
+  <div class="titulo_valoraciones">
+    <h3>Valoraciones</h3>
+    <img src="/imagenes/star-fill.svg" alt="Estrella valoracion" />
+    <h4>4,5 / 5</h4>
+  </div>
+  <section class="flex contenedor-valoraciones">
+    @for (
+      cardValoracion of cardValoraciones;
+      track cardValoracion;
+      let i = $index
+    ) {
+      <readapp-card-valoracion></readapp-card-valoracion>
+    }
+  </section>
+
+  <!--FALTA AGREGAR BOTÓN + TIENE QUE SER UN COMPONENTE APARTE?-->
+</div>
