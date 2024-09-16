@@ -6,6 +6,7 @@ import { SidebarPerfilComponent } from './sidebar-perfil/sidebar-perfil.componen
 import { PerfilInfoComponent } from './perfil-info/perfil-info.component';
 import { BusquedaRecomendacionesComponent } from './busqueda-recomendaciones/busqueda-recomendaciones.component';
 import { PagDetalleRecomendacionComponent } from './pag-detalle-recomendacion/pag-detalle-recomendacion.component';
+import { PerfilAmigosComponent } from './perfil-amigos/perfil-amigos.component';
 
 
 export const routes: Routes = [
@@ -16,6 +17,8 @@ export const routes: Routes = [
     { path: 'info', component:PerfilInfoComponent},
     { path: 'home', component:BusquedaRecomendacionesComponent},
     { path: 'detalle_recomendacion', component:PagDetalleRecomendacionComponent},
+    { path: 'amigos', component:PerfilAmigosComponent},
     { path: '**', component:NotfoundComponent}
+
     
 ];

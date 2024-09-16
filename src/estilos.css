@@ -119,11 +119,20 @@
       width: 30%;
       font-size: 2.3rem;
     }
+    
+    .boton_container button{
+      width: 25%;
+    }
+  
   }
   
   @media screen and (max-width: 400px) {
     .boton_container.btn_cont_derecha button{
       width: 40%;
       font-size: 2rem;
+    }
+
+    .boton_container button{
+      width: 25%;
     }
   }
