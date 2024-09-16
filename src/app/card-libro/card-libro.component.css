@@ -1,9 +1,6 @@
-:root {
-    --color-letra-carta: white;
-}
 
 .carta {
-    color: var(--color-letra-carta);
+    color: var(--color-blanco);
     width: 56.72rem;
     height: 27.5rem;
     background-color: var(--color-terciario);
@@ -84,7 +81,7 @@
 
 .autor-libro {
     font-size: 2.2rem;
-    color: var(--color-letra-carta-secundaria);
+    color: var(--color-secundario);
 }
 
 .detalles-libro {

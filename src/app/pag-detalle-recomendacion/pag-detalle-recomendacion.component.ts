@@ -8,8 +8,9 @@ import { CardLibro, CardLibroComponent } from '../card-libro/card-libro.componen
   standalone: true,
   imports: [HeaderComponent, CardValoracionComponent,CardLibroComponent],
   templateUrl: './pag-detalle-recomendacion.component.html',
-  styleUrl: './pag-detalle-recomendacion.component.css'
+  styleUrls: ['../estilos_generales/estilo_recomendacion.css', './pag-detalle-recomendacion.component.css']
 })
+
 export class PagDetalleRecomendacionComponent {
   cardValoraciones = [
     new CardValoracion(),
