@@ -5,7 +5,6 @@ import { PaginaEjemploComponent } from './pagina-ejemplo/pagina-ejemplo.componen
 import { SidebarPerfilComponent } from './sidebar-perfil/sidebar-perfil.component';
 import { PerfilInfoComponent } from './perfil-info/perfil-info.component';
 import { BusquedaRecomendacionesComponent } from './busqueda-recomendaciones/busqueda-recomendaciones.component';
-import { CardValoracionComponent } from './card-valoracion/card-valoracion.component';
 import { PagDetalleRecomendacionComponent } from './pag-detalle-recomendacion/pag-detalle-recomendacion.component';
 
 
