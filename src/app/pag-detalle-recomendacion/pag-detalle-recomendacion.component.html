@@ -1,16 +1,11 @@
 <readapp-header></readapp-header>
 
 <div class="contenido-pagina">
-  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
-  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
-  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
-  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
-  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
-  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
-  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
-  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
-  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
-  <h1>ACÁ IRÍAN LAS CARTAS DE EMI</h1>
+  <div class="contenedor-cartas">
+    @for (cardLibro of cardLibros; track cardLibros; let i = $index) {
+      <readapp-card-libro></readapp-card-libro>
+    }
+  </div>
   <hr class="hr_estilo" />
   <div class="titulo_valoraciones">
     <h3>Valoraciones</h3>

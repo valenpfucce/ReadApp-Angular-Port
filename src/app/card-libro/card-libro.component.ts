@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-card-libro',
+  selector: 'readapp-card-libro',
   standalone: true,
   imports: [],
   templateUrl: './card-libro.component.html',
-  styleUrl: './card-libro.component.css'
+  styleUrls: ['../estilos_generales/cartas_libros.css', './card-libro.component.css']
 })
-
 export class CardLibroComponent {
 
 }
 
+export class CardLibro {
+  constructor(
+
+  ){}
+}
