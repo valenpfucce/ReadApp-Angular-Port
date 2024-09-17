@@ -11,7 +11,7 @@
     </div>
     <div class="contenedor-cartas">
       @for (cardLibro of cardLibros; track cardLibros; let i = $index) {
-        <readapp-card-libro></readapp-card-libro>
+        <readapp-card-libro [cardLibro]="cardLibro"></readapp-card-libro>
       }
     </div>
     <hr class="hr_estilo" />

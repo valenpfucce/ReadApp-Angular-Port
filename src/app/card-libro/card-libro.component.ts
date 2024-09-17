@@ -18,6 +18,7 @@ export class CardLibro {
     public imagen_libro_url: string,
     public cant_pags_libro: number,
     public cant_palabras_libro: number,
-    public idiomas_libro: 
+    public idiomas_libro: string[],
+    public ventas_semanales: number
   ){}
 }
