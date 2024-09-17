@@ -46,6 +46,7 @@
     font-size: 0.9em;
     margin-bottom: 3em;
     flex-direction: row;
+    justify-content: flex-start;
 }
 
 .icono-texto{

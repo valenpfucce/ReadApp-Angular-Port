@@ -1,46 +1,44 @@
 <article class="card-recomendacion">
     <header class="flex">
-      <h3> Recomendacion Loca </h3>
+      <h3> {{cardRecomendacion.titulo}} </h3>
       <button class="boton-rec">
         <img src="/imagenes/heart.svg" width="20px" height="18px" />
       </button>
     </header>
     <section class="card-content">
       <div class="comentario">
-        <p>"Es un conjunto de libros re copados que se puede
-          leer en familia. Muy recomendable para niños"
-        </p>
+        <p>{{cardRecomendacion.descripcion}}</p>
       </div>
       <section class="flex wrap lista-libros">
         <div class="flex wrap icono-texto">
           <img class="icono-rec" src="/imagenes/bookmark.svg" />
-          Cuidado con el perro
+          {{cardRecomendacion.libro1}}
         </div>
         <div class="flex wrap icono-texto">
           <img class="icono-rec" src="/imagenes/bookmark.svg" />
-          Cuidado con el perro
+          {{cardRecomendacion.libro2}}
         </div>
         <div class="flex wrap icono-texto">
           <img class="flex wrap icono-rec" src="/imagenes/bookmark.svg" />
-          Cuidado con el perro
+          {{cardRecomendacion.libro3}}
         </div>
         <div class="flex wrap icono-texto">
           <img class="icono-rec" src="/imagenes/bookmark.svg" />
-          Cuidado con el perro
+          {{cardRecomendacion.libro4}}
         </div>
       </section>
       <section class="flex resumen">
         <div class="flex wrap icono-texto">
           <img class="icono-rec" src="/imagenes/star.svg" />
-          4.5
+          {{cardRecomendacion.valoracion}}
         </div>
         <div class="flex wrap icono-texto">
           <img class="icono-rec" src="/imagenes/libros.svg" />
-          4 libros
+          {{cardRecomendacion.cantLibros}}
         </div>
         <div class="flex wrap icono-texto">
           <img class="icono-rec" src="/imagenes/clock.svg" />
-          8hs.
+          {{cardRecomendacion.tiempoLectura}}
         </div>
       </section>
     </section>
