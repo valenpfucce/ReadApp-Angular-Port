@@ -7,6 +7,7 @@ import { PerfilInfoComponent } from './perfil-info/perfil-info.component';
 import { BusquedaRecomendacionesComponent } from './busqueda-recomendaciones/busqueda-recomendaciones.component';
 import { PagDetalleRecomendacionComponent } from './pag-detalle-recomendacion/pag-detalle-recomendacion.component';
 import { PerfilAmigosComponent } from './perfil-amigos/perfil-amigos.component';
+import { PerfilLibrosLeidosComponent } from './perfil-libros-leidos/perfil-libros-leidos.component';
 
 
 export const routes: Routes = [
@@ -18,6 +19,7 @@ export const routes: Routes = [
     { path: 'home', component:BusquedaRecomendacionesComponent},
     { path: 'detalle_recomendacion', component:PagDetalleRecomendacionComponent},
     { path: 'amigos', component:PerfilAmigosComponent},
+    { path: 'libros_leidos', component:PerfilLibrosLeidosComponent},
     { path: '**', component:NotfoundComponent}
 
     
