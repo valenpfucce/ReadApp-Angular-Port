@@ -1,4 +1,4 @@
-
+<form>
 <div class="main">
 
     <readapp-sidebar-perfil></readapp-sidebar-perfil>
@@ -6,15 +6,21 @@
     <div class="info_conteiner">
     <h1> Informacion</h1>
     <h2> General </h2>
-
+  
     <section class="conteiner_datos">
 
-      <label>Nombre * <input type="text" required pattern=".*\S.*"></label>
-      <label>Apellido <input type="text" required pattern=".*\S.*"></label>
-      <label>Username <input type="text" required pattern=".*\S.*"></label>
-      <label>Fecha de nacimiento <input type="date" required pattern=".*\S.*"> </label>
-      <label>Mail <input type="text" required pattern=".*\S.*"></label>
-      <label>Tiempo de lectura promedio <input type="text" required pattern=".*\S.*"></label>
+      <label for="nombre">Nombre * 
+        <input type="text" name="nombre" required pattern=".*\S.*" required="true" [(ngModel)]="usuario.nombre"></label>
+      <label>Apellido 
+        <input type="text" name="apellido" required pattern=".*\S.*" required="true" [(ngModel)]="usuario.apellido"></label>
+      <label>Username 
+        <input type="text" name="username" required pattern=".*\S.*" [(ngModel)]="usuario.username"></label>
+      <label>Fecha de nacimiento 
+        <input type="date" name="fecjaNacimiento" required pattern=".*\S.*" [(ngModel)]="usuario.fechaNacimiento"> </label>
+      <label>Mail 
+        <input type="text" name="mail" required pattern=".*\S.*" [(ngModel)]="usuario.mail"></label>
+      <label>Tiempo de lectura promedio 
+        <input type="text" name="tiempoLectura" required pattern=".*\S.*" [(ngModel)]="usuario.tiempoLectura"></label>
 
     </section>
 
@@ -44,11 +50,13 @@
     </div>
 
     <div class="boton_container">
-      <button class="boton_cancelar" type="submit">Cancelar</button>
-      <button class="boton_guardar" type="submit">Guardar cambios</button>
+      <button class="boton_cancelar" type="submit" (click)="cancelar()">Cancelar</button>
+      <button class="boton_guardar" type="submit" (click)="guardar()">Guardar cambios</button>
 
     </div>
+  
 
  </div>
 
 </div>
+</form>
