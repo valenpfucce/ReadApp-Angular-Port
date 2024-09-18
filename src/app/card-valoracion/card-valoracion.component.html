@@ -1,7 +1,7 @@
 <div class="carta-valoracion">
   <header class="header-valoracion">
     <div class="autor-valoracion">
-      <img src="/imagenes/bilardo.jpg" class="foto-autor" alt="Idiomas" />
+      <img [src]="'/imagenes/' + cardValoracion.img_perfil" class="foto-autor" alt="{{cardValoracion.nombre}}" />
       <div class="flex nombre-autor">
         <h1>{{cardValoracion.nombre}}</h1>
         <h4>{{cardValoracion.fecha}}</h4>

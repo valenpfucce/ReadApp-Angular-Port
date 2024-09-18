@@ -13,6 +13,7 @@ export class CardValoracionComponent {
 
 export class CardValoracion {
   constructor(
+    public img_perfil: string,
     public nombre: string,
     public fecha: string,
     public detalle: string,
