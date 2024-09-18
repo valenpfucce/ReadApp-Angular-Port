@@ -43,7 +43,8 @@
   max-width: 217.29rem;
   flex-wrap: wrap;
   margin-bottom: 40px;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  align-items: baseline;
 }
 
 /*TABLETS (401px a 768px)*/
