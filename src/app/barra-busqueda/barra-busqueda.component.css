@@ -1,0 +1,85 @@
+.barra-busqueda-container {
+    background-color: var(--color-quinto);
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 8rem;
+    width: 100%;
+    z-index: 1000;
+}
+
+.barra-busqueda input[type="text"] {
+    padding: 0.7rem;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 0.4rem;
+    width: 80%;
+}
+
+.barra-busqueda button {
+    background-color: var(--color-cuarto);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+.barra-busqueda button:hover {
+    background-color: var(--color-terciariox);
+}
+
+.barra-busqueda label {
+    color: var(--color-primario);
+    line-height: 0.9;
+    display: grid;
+    grid-template-columns: 1rem auto;
+    gap: 0.7rem;
+    margin-left: 1rem;
+}
+
+.barra-busqueda input[type="checkbox"] {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    color: var(--color-primario);
+    border: 1.5px solid var(--color-primario);
+    background-color: transparent;
+    display: grid;
+    place-content: center;
+    transform: translateY(-0.075em);
+}
+
+.barra-busqueda input[type="checkbox"]::before {
+    content: "";
+    width: 0.5em;
+    height: 0.5em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--color-primario);
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.barra-busqueda input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+.con-condicion input[type="text"]{
+    width: 50%;
+}
+
+@media (min-width: 401px) and (max-width: 768px) {
+    .barra-busqueda-container {
+        top: 6rem;
+    }
+}
+
+@media (max-width: 400px){
+    .barra-busqueda-container {
+        top: 0;
+    }
+    
+    .barra-busqueda label{
+        margin-top: 1rem;
+    }
+}

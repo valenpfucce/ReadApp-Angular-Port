@@ -8,6 +8,11 @@ import { BusquedaRecomendacionesComponent } from './busqueda-recomendaciones/bus
 import { PagDetalleRecomendacionComponent } from './pag-detalle-recomendacion/pag-detalle-recomendacion.component';
 import { PerfilAmigosComponent } from './perfil-amigos/perfil-amigos.component';
 
+import { BarraBusquedaComponent } from './barra-busqueda/barra-busqueda.component';
+
+import { PerfilLibrosLeidosComponent } from './perfil-libros-leidos/perfil-libros-leidos.component';
+
+
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -18,6 +23,11 @@ export const routes: Routes = [
     { path: 'home', component:BusquedaRecomendacionesComponent},
     { path: 'detalle_recomendacion', component:PagDetalleRecomendacionComponent},
     { path: 'amigos', component:PerfilAmigosComponent},
+
+    { path: 'barra_busqueda', component:BarraBusquedaComponent},
+
+    { path: 'libros_leidos', component:PerfilLibrosLeidosComponent},
+
     { path: '**', component:NotfoundComponent}
 
     
