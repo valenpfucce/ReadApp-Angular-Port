@@ -5,7 +5,7 @@
     <link href="login.component.css" rel="stylesheet" />
   </head>
   <body class="flex">
-    <form class="grid">
+    <form [formGroup]="loginForm" class="grid">
       <div class="flex title-logIn">
         <img src="/imagenes/book-bold-brown.svg" />
         <h1>ReadApp</h1>
@@ -13,7 +13,7 @@
 
       <div class="flex container">
         <label for="user">Usuario<span>*</span></label>
-        <input type="text" id="user" />
+        <input type="text" id="user"  formControlName="email"/>
 
         <p class="obligatorio-input">
           <i class="fa-solid fa-triangle-exclamation"></i> El nombre de usuario
@@ -23,11 +23,11 @@
 
       <div class="flex container">
         <label for="password">Contraseña<span>*</span></label>
-        <input type="password" id="password" />
+        <input type="password" id="password"  formControlName="password" />
         <i class="fa-solid fa-eye ver_contrasenia"></i>
       </div>
       <div class="boton_container">
-        <button class="boton_guardar" type="submit">Ingresar</button>
+        <button (click)="login()" class="boton_guardar" type="button">Ingresar</button>
       </div>
     </form>
   </body>
