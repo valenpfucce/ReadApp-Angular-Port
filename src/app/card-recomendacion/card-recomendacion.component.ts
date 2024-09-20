@@ -1,9 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { CortarPalabraPipe } from '../cortar-palabra-pipe/cortar-palabra.pipe';
 
 @Component({
   selector: 'readapp-card-recomendacion',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, CortarPalabraPipe],
   templateUrl: './card-recomendacion.component.html',
   styleUrl: './card-recomendacion.component.css'
 })
@@ -15,10 +17,7 @@ export class CardRecomendacion {
   constructor(
     public titulo: string,
     public descripcion: string,
-    public libro1: string,
-    public libro2: string,
-    public libro3: string,
-    public libro4: string,
+    public lista_libros: string[],
     public valoracion: number,
     public cantLibros: number,
     public tiempoLectura: string

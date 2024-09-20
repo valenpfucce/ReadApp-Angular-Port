@@ -1,6 +1,6 @@
 .card-recomendacion{
     width: 27rem;
-    height: auto;
+    height: 25rem;
     background-color: var(--color-cuarto);
     border-radius: 1.2rem;
     margin: 1.5rem;
@@ -8,6 +8,7 @@
     padding-bottom: 0;
     border-style:solid;
     border-color: var(--color-quinto);
+    position: relative;
 }
 
 .card-recomendacion header{
@@ -44,7 +45,6 @@
 
 .lista-libros{
     font-size: 0.9em;
-    margin-bottom: 3em;
     flex-direction: row;
     justify-content: flex-start;
 }
@@ -58,6 +58,9 @@
     justify-content: space-between;
     border-top: 1px solid black;
     padding-top: 0.2em;
+    position: absolute;
+    top: 18.5em;
+    width:89%;
 }
 
 .icono-rec{
@@ -66,6 +69,10 @@
 }
 
 .boton_container{
+    position:absolute;
+    width: 89%;
+    border-top: 1px solid black;
+    top: 20.5em;
     height: 3.5em;
 }
 
@@ -81,6 +88,7 @@
     
     .card-recomendacion{
         width: 25rem;
+        height: 34rem;
     }
 
     .lista-libros{
@@ -91,5 +99,13 @@
 
     .card-content{
         font-size: 1.4em;
+    }
+
+    .resumen{
+        top: 24em;
+    }
+    
+    .boton_container {
+        top: 29.5em;
     }
 }

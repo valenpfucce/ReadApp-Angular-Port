@@ -10,22 +10,12 @@
         <p>{{cardRecomendacion.descripcion}}</p>
       </div>
       <section class="flex wrap lista-libros">
-        <div class="flex wrap icono-texto">
-          <img class="icono-rec" src="/imagenes/bookmark.svg" />
-          {{cardRecomendacion.libro1}}
-        </div>
-        <div class="flex wrap icono-texto">
-          <img class="icono-rec" src="/imagenes/bookmark.svg" />
-          {{cardRecomendacion.libro2}}
-        </div>
-        <div class="flex wrap icono-texto">
-          <img class="flex wrap icono-rec" src="/imagenes/bookmark.svg" />
-          {{cardRecomendacion.libro3}}
-        </div>
-        <div class="flex wrap icono-texto">
-          <img class="icono-rec" src="/imagenes/bookmark.svg" />
-          {{cardRecomendacion.libro4}}
-        </div>
+        @for (libro of cardRecomendacion.lista_libros; track libro; let i = $index){
+          <div class="flex wrap icono-texto">
+            <img class="icono-rec" src="/imagenes/bookmark.svg" />
+              {{cardRecomendacion.lista_libros[i] | cortarPalabra: 20}}
+          </div>
+        }
       </section>
       <section class="flex resumen">
         <div class="flex wrap icono-texto">

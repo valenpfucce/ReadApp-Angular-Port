@@ -1,9 +1,8 @@
 <readapp-header></readapp-header>
 <main class = "flex">
     <section class="grid-cartas">
-        @for (cardRecomendacion of cardsRecomendaciones; track cardRecomendacion; let i = $index) {
+        @for (cardRecomendacion of cardsRecomendaciones; track cardRecomendacion) {
             <readapp-card-recomendacion [cardRecomendacion]="cardRecomendacion"></readapp-card-recomendacion>
         }
     </section>
-
 </main>
