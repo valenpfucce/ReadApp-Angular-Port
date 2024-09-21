@@ -5,7 +5,7 @@
 .notfound h1 {
     font-size: 100px;
     font-weight: bold;
-    background: linear-gradient(135deg, purple, blue);
+    background: linear-gradient(135deg, var( --color-sexto), var(--color-secundario));
     background-clip: text;
     color: transparent;
     
@@ -24,7 +24,7 @@
 
 .notfound a {
     text-decoration: none;
-    background-color: #0046d5;
+    background-color: var(--color-primario);
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
