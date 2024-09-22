@@ -1,0 +1,38 @@
+<article class="card-recomendacion">
+    <header class="flex">
+      <h3> {{cardRecomendacion.titulo}} </h3>
+      <button class="boton-rec">
+        <img src="/imagenes/heart.svg" width="20px" height="18px" />
+      </button>
+    </header>
+    <section class="card-content">
+      <div class="comentario">
+        <p>{{cardRecomendacion.descripcion}}</p>
+      </div>
+      <section class="flex wrap lista-libros">
+        @for (libro of cardRecomendacion.lista_libros; track libro; let i = $index){
+          <div class="flex wrap icono-texto">
+            <img class="icono-rec" src="/imagenes/bookmark.svg" />
+              {{cardRecomendacion.lista_libros[i] | cortarPalabra: 20}}
+          </div>
+        }
+      </section>
+      <section class="flex resumen">
+        <div class="flex wrap icono-texto">
+          <img class="icono-rec" src="/imagenes/star.svg" />
+          {{cardRecomendacion.valoracion}}
+        </div>
+        <div class="flex wrap icono-texto">
+          <img class="icono-rec" src="/imagenes/libros.svg" />
+          {{cardRecomendacion.cantLibros}}
+        </div>
+        <div class="flex wrap icono-texto">
+          <img class="icono-rec" src="/imagenes/clock.svg" />
+          {{cardRecomendacion.tiempoLectura}}
+        </div>
+      </section>
+    </section>
+    <div class="boton_container">
+      <button class="boton_guardar"> Ver más </button>
+    </div>
+  </article>

@@ -1,0 +1,35 @@
+<article class="carta">
+    <div class="contenido-carta">
+      <div class="contenedor-imagen">
+        <img src={{cardLibro.imagen_libro_url}} alt="Imagen del Libro" class="imagen-libro" />
+      </div>
+      <div class="contenedor-texto">
+        <header class="primer-division">
+          <h3 class="titulo-libro">{{cardLibro.titulo_libro}}</h3>
+          <div>
+            <img src="/imagenes/fire.svg" class="iconos" alt="Hot trendy" />
+            <img src="/imagenes/certificate.svg" class="iconos" alt="Certificado" />
+          </div>
+        </header>
+        <p class="autor-libro">Por {{cardLibro.autor_libro}}</p>
+        <ul class="detalles-libro">
+          <li>
+            <img src="/imagenes/blank-file.svg" class="iconoschicos" alt="Paginas" />
+            {{cardLibro.cant_pags_libro}} páginas
+          </li>
+          <li>
+            <img src="/imagenes/text-aa.svg" class="iconoschicos" alt="Texto" />
+            {{cardLibro.cant_palabras_libro}} palabras
+          </li>
+          <li>
+            <img src="/imagenes/globe.svg" class="iconoschicos" alt="Idiomas" />
+            {{cardLibro.idiomas_libro[0]}} - {{cardLibro.idiomas_libro[1]}} - {{cardLibro.idiomas_libro[2]}} - {{cardLibro.idiomas_libro[3]}}
+          </li>
+          <li>
+            <img src="/imagenes/basket.svg" class="iconoschicos" alt="Ventas" />
+            {{cardLibro.ventas_semanales}} ventas semanales
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>

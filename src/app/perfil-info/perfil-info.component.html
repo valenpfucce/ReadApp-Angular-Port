@@ -1,0 +1,67 @@
+<form>
+    
+    <div class="info_conteiner">
+    <h1> Informacion</h1>
+    <h2> General </h2>
+  
+    <section class="conteiner_datos">
+
+      <label for="nombre">Nombre* 
+        <input type="text" name="nombre" required pattern=".*\S.*" required="true" [(ngModel)]="usuario.nombre">
+        <readapp-validacion-field [domainElement]="usuario" [field]="'nombre'"></readapp-validacion-field></label>
+        
+      <label>Apellido 
+        <input type="text" name="apellido" required pattern=".*\S.*" required="true" [(ngModel)]="usuario.apellido">
+        <readapp-validacion-field [domainElement]="usuario" [field]="'apellido'"></readapp-validacion-field></label>
+        
+      <label>Username 
+        <input type="text" name="username" required pattern=".*\S.*" [(ngModel)]="usuario.username">
+        <readapp-validacion-field [domainElement]="usuario" [field]="'username'"></readapp-validacion-field></label>
+        
+      <label>Fecha de nacimiento 
+        <input type="date" name="fecjaNacimiento" required pattern=".*\S.*" [(ngModel)]="fechaNacimiento"> </label>
+      
+      <label>Mail 
+        <input type="text" name="mail" required pattern=".*\S.*" [(ngModel)]="usuario.mail">
+        <readapp-validacion-field [domainElement]="usuario" [field]="'mail'"></readapp-validacion-field></label>
+        
+      <label>Tiempo de lectura promedio 
+        <input type="text" name="tiempoLectura" required pattern=".*\S.*" [(ngModel)]="usuario.tiempoLectura">
+        <readapp-validacion-field [domainElement]="usuario" [field]="'tiempoLectura'"></readapp-validacion-field></label>
+        
+    </section>
+
+    <h2>Forma de lectura</h2>
+    <div class="tipos_lectura">
+      <label><input type="checkbox">Lector promedio</label>
+      <label><input type="checkbox">Ansioso</label>
+      <label><input type="checkbox">Fanatico</label>
+      <label><input type="checkbox">Recurrente</label>
+
+    </div>
+    <h2>Criterio de busqueda</h2>
+    <div class="criterio_conteiner">
+      <label><input type="checkbox">Precavido</label>
+      <label><input type="checkbox">Demandante</label>
+      <label><input type="checkbox">Cambiante</label>
+      <label><input type="checkbox">Leedor</label>
+      <label><input type="checkbox">Nativista</label>
+      <label><input type="checkbox">Poliglota</label>
+      <label><input type="checkbox">Experimentado</label>
+      <label><input type="checkbox">Calculador</label>
+      <div class="calculador">
+        <label>Maximo*<input type="text" required pattern=".*\S.*"></label>
+        <label>Minimo*<input type="text" required pattern=".*\S.*"></label>
+      </div>
+
+    </div>
+
+    <div class="boton_container">
+      <button class="boton_cancelar" type="submit" (click)="cancelar()">Cancelar</button>
+      <button class="boton_guardar" type="submit" (click)="guardar()">Guardar cambios</button>
+
+    </div>
+  
+  </div>
+
+</form>

@@ -1,0 +1,24 @@
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'readapp-card-libro',
+  standalone: true,
+  imports: [],
+  templateUrl: './card-libro.component.html',
+  styleUrls: ['../estilos_generales/cartas_libros.css', './card-libro.component.css']
+})
+export class CardLibroComponent {
+  @Input() cardLibro!: CardLibro
+}
+
+export class CardLibro {
+  constructor(
+    public titulo_libro: string,
+    public autor_libro: string,
+    public imagen_libro_url: string,
+    public cant_pags_libro: number,
+    public cant_palabras_libro: number,
+    public idiomas_libro: string[],
+    public ventas_semanales: number
+  ){}
+}

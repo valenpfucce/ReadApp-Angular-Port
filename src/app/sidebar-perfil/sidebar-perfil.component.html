@@ -1,0 +1,39 @@
+<readapp-header></readapp-header> 
+<div class="main">
+  <nav class="info_usuario">
+      <div class="fotoPerfil">
+        <img src="/imagenes/roman.jpg" class="imagen_perfil" />
+        <label class="nombre_perfil">Roman Riquelme</label>
+      </div>
+
+      <ul class="submenu_perfil">
+        <li class="boton_menu">
+          <img class="icono" src="/imagenes/info.svg" />
+          <a routerLink="info"><strong>Informacion</strong></a>
+        </li>
+        <li class="boton_menu">
+          <img class="icono" src="/imagenes/amigos.svg" />
+          <a routerLink="amigos">Amigos</a>
+        </li>
+        <li class="boton_menu">
+          <img class="icono" src="/imagenes/libros.svg" />
+          <a>Libros leidos</a>
+        </li>
+        <li class="boton_menu">
+          <img class="icono" src="/imagenes/librosaleer.svg" />
+          <a>Libros a leer</a>
+        </li>
+        <li class="boton_menu">
+          <img class="icono" src="/imagenes/valorarReco.svg" />
+          <a>Recomendaciones a valorar</a>
+        </li>
+      </ul>
+  </nav>
+  
+<router-outlet name="sidebar"><router-outlet />
+
+
+
+
+
+
