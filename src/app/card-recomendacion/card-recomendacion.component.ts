@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CortarPalabraPipe } from '../cortar-palabra-pipe/cortar-palabra.pipe';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'readapp-card-recomendacion',
@@ -11,15 +12,22 @@ import { CortarPalabraPipe } from '../cortar-palabra-pipe/cortar-palabra.pipe';
 })
 export class CardRecomendacionComponent {
   @Input() cardRecomendacion!: CardRecomendacion
+  constructor(
+    private router: Router
+  ){}
+
+  verMas(){
+    this.router.navigateByUrl('/detalle_recomendacion')
+  }
 }
 
 export class CardRecomendacion {
   constructor(
     public titulo: string,
+    public propia: boolean,
     public descripcion: string,
     public lista_libros: string[],
     public valoracion: number,
-    public cantLibros: number,
     public tiempoLectura: string
   ){}
 }

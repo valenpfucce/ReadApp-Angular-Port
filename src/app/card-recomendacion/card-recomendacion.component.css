@@ -45,12 +45,16 @@
 
 .lista-libros{
     font-size: 0.9em;
-    flex-direction: row;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    justify-content: left;
 }
 
 .icono-texto{
     line-height: 2.1;
+    overflow: hidden;
+    justify-content: left;
 }
 
 .resumen{
@@ -92,9 +96,8 @@
     }
 
     .lista-libros{
-        flex-direction: column;
-        align-items: flex-start;
-        margin-bottom: 2em;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(4, 1fr);
     }
 
     .card-content{

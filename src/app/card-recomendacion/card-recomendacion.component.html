@@ -1,17 +1,29 @@
 <article class="card-recomendacion">
     <header class="flex">
-      <h3> {{cardRecomendacion.titulo}} </h3>
-      <button class="boton-rec">
-        <img src="/imagenes/heart.svg" width="20px" height="18px" />
-      </button>
+      <h3> {{cardRecomendacion.titulo | cortarPalabra: 23}} </h3>
+      @if(cardRecomendacion.propia){
+        <div class="flex">
+          <button class="boton-rec">
+            <img src="/imagenes/pencil-simple.svg" width="20px" height="18px" />
+          </button>
+          <button class="boton-rec">
+            <img src="/imagenes/trash.svg" width="20px" height="18px" />
+          </button>
+        </div>
+      }
+      @else {
+        <button class="boton-rec">
+          <img src="/imagenes/heart.svg" width="20px" height="18px" />
+        </button>
+      }
     </header>
     <section class="card-content">
       <div class="comentario">
         <p>{{cardRecomendacion.descripcion}}</p>
       </div>
-      <section class="flex wrap lista-libros">
-        @for (libro of cardRecomendacion.lista_libros; track libro; let i = $index){
-          <div class="flex wrap icono-texto">
+      <section class="lista-libros">
+        @for (libro of cardRecomendacion.lista_libros.slice(0,4); track libro; let i = $index){
+          <div class="flex icono-texto">
             <img class="icono-rec" src="/imagenes/bookmark.svg" />
               {{cardRecomendacion.lista_libros[i] | cortarPalabra: 20}}
           </div>
@@ -24,7 +36,7 @@
         </div>
         <div class="flex wrap icono-texto">
           <img class="icono-rec" src="/imagenes/libros.svg" />
-          {{cardRecomendacion.cantLibros}}
+          {{cardRecomendacion.lista_libros.length}}
         </div>
         <div class="flex wrap icono-texto">
           <img class="icono-rec" src="/imagenes/clock.svg" />
@@ -33,6 +45,6 @@
       </section>
     </section>
     <div class="boton_container">
-      <button class="boton_guardar"> Ver más </button>
+      <button (click)="verMas()" class="boton_guardar"> Ver más </button>
     </div>
   </article>

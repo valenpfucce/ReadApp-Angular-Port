@@ -10,7 +10,7 @@ export class CortarPalabraPipe implements PipeTransform {
     if(!libro) return '';
 
     if(libro.length > limite) {
-      return libro.substring(0,limite) + '...';
+      return libro.substring(0,limite-3) + '...';
     }
 
     return libro;
