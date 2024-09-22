@@ -6,6 +6,7 @@ import { SidebarPerfilComponent } from '../sidebar-perfil/sidebar-perfil.compone
 import { Usuario } from '../usuario/usuario';
 import { ValidacionFieldComponent } from "./validacion-field/validacion-field.component";
 
+
 @Component({
   selector: 'readapp-perfil-info',
   standalone: true,

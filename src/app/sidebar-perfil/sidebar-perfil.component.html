@@ -1,5 +1,5 @@
 <readapp-header></readapp-header> 
-
+<div class="main">
   <nav class="info_usuario">
       <div class="fotoPerfil">
         <img src="/imagenes/roman.jpg" class="imagen_perfil" />
@@ -9,23 +9,31 @@
       <ul class="submenu_perfil">
         <li class="boton_menu">
           <img class="icono" src="/imagenes/info.svg" />
-          <a href="this"><strong>Informacion</strong></a>
+          <a routerLink="info"><strong>Informacion</strong></a>
         </li>
         <li class="boton_menu">
           <img class="icono" src="/imagenes/amigos.svg" />
-          <a href="">Amigos</a>
+          <a routerLink="amigos">Amigos</a>
         </li>
         <li class="boton_menu">
           <img class="icono" src="/imagenes/libros.svg" />
-          <a href="">Libros leidos</a>
+          <a>Libros leidos</a>
         </li>
         <li class="boton_menu">
           <img class="icono" src="/imagenes/librosaleer.svg" />
-          <a href="">Libros a leer</a>
+          <a>Libros a leer</a>
         </li>
         <li class="boton_menu">
           <img class="icono" src="/imagenes/valorarReco.svg" />
-          <a href="">Recomendaciones a valorar</a>
+          <a>Recomendaciones a valorar</a>
         </li>
       </ul>
   </nav>
+  
+<router-outlet name="sidebar"><router-outlet />
+
+
+
+
+
+

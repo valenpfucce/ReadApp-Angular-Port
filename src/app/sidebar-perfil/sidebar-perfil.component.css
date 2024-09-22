@@ -4,6 +4,7 @@
     justify-content: space-between;
     gap: 1.5rem; 
     margin-top: 10rem; 
+    
 }
  
 .info_usuario{
@@ -40,6 +41,7 @@
     margin-bottom: 5px;
     font-size: 1.8em;
     padding: 1.5rem;
+    
 }
 
 .submenu_perfil li{
@@ -55,7 +57,6 @@
 
 .boton_menu {
     display: flex;
-    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     padding: 0.1rem;
@@ -65,15 +66,18 @@
 }
 
 .boton_menu a {
+
     font-style: var(--fuente-default);
     font-size: 1.9rem;
     text-decoration: none;
     color: #000000;
+    
 }
 
 .boton_menu a:hover {
     font-weight: bold;
     color: var(--color-primario);
+    
 }
 
 
