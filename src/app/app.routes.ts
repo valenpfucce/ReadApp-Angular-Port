@@ -12,6 +12,7 @@ import { BarraBusquedaComponent } from './barra-busqueda/barra-busqueda.componen
 
 import { PerfilLibrosLeidosComponent } from './perfil-libros-leidos/perfil-libros-leidos.component';
 import { NgModule } from '@angular/core';
+import { PerfilRecomendacionesAValorarComponent } from './perfil-recomendaciones-a-valorar/perfil-recomendaciones-a-valorar.component';
 
 
 
@@ -27,8 +28,8 @@ export const routes: Routes = [
 
     { path: 'perfil', component:SidebarPerfilComponent, children:[
         { path: 'amigos', title:'Amigos', component:PerfilAmigosComponent},
-        { path: 'info', title:'Informacion del Usuario' , component:PerfilInfoComponent}
-
+        { path: 'info', title:'Informacion del Usuario' , component:PerfilInfoComponent},
+        { path: 'recomendacionesAValorar', title: 'Recomendaciones A Valorar', component: PerfilRecomendacionesAValorarComponent}
         ] 
     },
     
