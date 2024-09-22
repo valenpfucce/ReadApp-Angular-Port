@@ -1,7 +1,4 @@
 <form>
-<div class="main">
-
-    <readapp-sidebar-perfil></readapp-sidebar-perfil>
     
     <div class="info_conteiner">
     <h1> Informacion</h1>
@@ -9,7 +6,7 @@
   
     <section class="conteiner_datos">
 
-      <label for="nombre">Nombre * 
+      <label for="nombre">Nombre* 
         <input type="text" name="nombre" required pattern=".*\S.*" required="true" [(ngModel)]="usuario.nombre">
         <readapp-validacion-field [domainElement]="usuario" [field]="'nombre'"></readapp-validacion-field></label>
         
@@ -65,8 +62,6 @@
 
     </div>
   
+  </div>
 
- </div>
-
-</div>
 </form>
