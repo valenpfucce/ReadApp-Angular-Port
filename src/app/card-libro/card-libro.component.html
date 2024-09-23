@@ -23,7 +23,7 @@
           </li>
           <li>
             <img src="/imagenes/globe.svg" class="iconoschicos" alt="Idiomas" />
-            {{cardLibro.idiomas_libro[0]}} - {{cardLibro.idiomas_libro[1]}} - {{cardLibro.idiomas_libro[2]}} - {{cardLibro.idiomas_libro[3]}}
+            <span>{{ cardLibro.idiomas_libro | joinListaGuion }}</span>
           </li>
           <li>
             <img src="/imagenes/basket.svg" class="iconoschicos" alt="Ventas" />

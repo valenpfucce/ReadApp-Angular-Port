@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { JoinListaGuionPipe } from "../join_lista_guion_pipe/join-lista-guion.pipe";
 
 @Component({
   selector: 'readapp-card-libro',
   standalone: true,
-  imports: [],
+  imports: [JoinListaGuionPipe],
   templateUrl: './card-libro.component.html',
   styleUrls: ['../estilos_generales/cartas_libros.css', './card-libro.component.css']
 })
