@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { CardRecomendacion, CardRecomendacionComponent } from '../card-recomendacion/card-recomendacion.component';
+import { BarraBusquedaComponent } from "../barra-busqueda/barra-busqueda.component";
 
 @Component({
   selector: 'readapp-busqueda-recomendaciones',
   standalone: true,
-  imports: [HeaderComponent, CardRecomendacionComponent],
+  imports: [HeaderComponent, CardRecomendacionComponent, BarraBusquedaComponent],
   templateUrl: './busqueda-recomendaciones.component.html',
   styleUrl: './busqueda-recomendaciones.component.css'
 })
