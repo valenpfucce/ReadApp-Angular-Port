@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 import dayjs from 'dayjs'
+
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarPerfilComponent } from '../sidebar-perfil/sidebar-perfil.component';
@@ -11,14 +12,21 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'readapp-perfil-info',
   standalone: true,
-  imports: [HeaderComponent, SidebarPerfilComponent, FormsModule, ValidacionFieldComponent,CommonModule],
+  imports: [
+    HeaderComponent,
+    SidebarPerfilComponent,
+    FormsModule,
+    ValidacionFieldComponent,
+  CommonModule
+  ],
+
   templateUrl: './perfil-info.component.html',
   styleUrl: './perfil-info.component.css'
 })
-
 export class PerfilInfoComponent {
 
   usuario = new Usuario()
+
   fechaNacimiento= ''
   saveOK = false
 

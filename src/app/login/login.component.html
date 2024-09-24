@@ -5,25 +5,27 @@
     <link href="login.component.css" rel="stylesheet" />
   </head>
   <body class="flex">
-    <form [formGroup]="loginForm" class="grid">
+    <form clrForm #apuestaForm="ngForm" class="grid">
       <div class="flex title-logIn">
         <img src="/imagenes/book-bold-brown.svg" />
         <h1>ReadApp</h1>
       </div>
 
       <div class="flex container">
-        <label for="user">Usuario<span>*</span></label>
-        <input type="text" id="user"  formControlName="email"/>
-
-        <p class="obligatorio-input">
+        <label for="mail">Usuario<span>*</span></label>
+        <input type="text" id="mail" [(ngModel)]="usuario.mail" name="mail" required="true"/>
+        <!-- <p class="obligatorio-input">
           <i class="fa-solid fa-triangle-exclamation"></i> El nombre de usuario
           es obligatorio
-        </p>
+        </p> -->
+        <readapp-validacion-field class="validacionMail" field="mail" [domainElement]="usuario"/>
+
       </div>
 
+
       <div class="flex container">
-        <label for="password">Contraseña<span>*</span></label>
-        <input type="password" id="password"  formControlName="password" />
+        <label for="contrasenia">Contraseña<span>*</span></label>
+        <input type="contrasenia" id="contrasenia" />
         <i class="fa-solid fa-eye ver_contrasenia"></i>
       </div>
       <div class="boton_container">

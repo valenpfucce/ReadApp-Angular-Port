@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core'
 
 @Component({
   selector: 'readapp-validacion-field',
@@ -7,14 +7,13 @@ import { Component, Input } from '@angular/core';
   templateUrl: './validacion-field.component.html',
   styleUrl: './validacion-field.component.css'
 })
-
 export class ValidacionFieldComponent {
   @Input() domainElement!: DomainElement
-  @Input() field!:string
+  @Input() field!: string
 }
 
 export type DomainElement = {
   errorsFrom(field: string): string
   hasErrors(field: string): boolean
-
 }
+

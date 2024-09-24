@@ -68,6 +68,11 @@
     margin:0;
     width: 100%;
   }
+
+  .validacionMail{
+    height: 100%;
+    font-size: 1.5rem;
+}
   
   @media screen and (max-width: 400px) {
     body {
