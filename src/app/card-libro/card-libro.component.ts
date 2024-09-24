@@ -10,6 +10,11 @@ import { JoinListaGuionPipe } from "../join_lista_guion_pipe/join-lista-guion.pi
 })
 export class CardLibroComponent {
   @Input() cardLibro!: CardLibro
+  @Input() estaEnModoEdicion!: boolean;
+
+  mostrarBotonBorrar() {
+    return this.estaEnModoEdicion;
+  }
 }
 
 export class CardLibro {

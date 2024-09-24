@@ -20,6 +20,8 @@ import {
   ]
 })
 export class PagDetalleRecomendacionComponent {
+  modoEdicion = new ModoEdicion()
+
   cardValoraciones = [
     new CardValoracion(
       'bilardo.jpg',
@@ -80,4 +82,8 @@ export class PagDetalleRecomendacionComponent {
       1250000
     )
   ]
+}
+
+class ModoEdicion {
+  estaEnModoEdicion = false; 
 }
