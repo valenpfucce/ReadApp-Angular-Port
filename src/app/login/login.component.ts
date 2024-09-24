@@ -20,7 +20,7 @@ export class LoginComponent {
 
   login() {
     const contraseniaVacia = this.contrasenia.trim() === ''
-    this.usuario.validarDatos()
+    this.usuario.validador.validarDatos(this.usuario)
     if (
       (!this.usuario.errors[4] ||
         this.usuario.errors[4].message.trim() === '') &&
@@ -28,6 +28,8 @@ export class LoginComponent {
     ) {
       this.router.navigateByUrl('/home')
       this.loginForm.reset()
+    }else{
+      this.usuario.errors[4]
     }
     //ESTO ESTÁ MAL YA SÉ PERO NO SABÍA COMO HACER PARA QUE SÓLO ME MUESTRE EL ERROR DEL MAIL :B
     //CORREGIR QUE SOLO NAVEGUE CUANDO TENGA MAIL Y CONTRASENIA
