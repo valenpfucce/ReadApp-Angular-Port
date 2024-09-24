@@ -16,3 +16,4 @@ export type DomainElement = {
   errorsFrom(field: string): string
   hasErrors(field: string): boolean
 }
+
