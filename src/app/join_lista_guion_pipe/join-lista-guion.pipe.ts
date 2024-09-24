@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true
 })
 export class JoinListaGuionPipe implements PipeTransform {
-  transform(value: string[], separator: string = ' - '): string {
-    return value.slice(0, 4).join(separator);
+  transform(value: string[], separador: string, cuantoACortar: number): string {
+    return value.slice(0, cuantoACortar).join(separador);
   }
 }

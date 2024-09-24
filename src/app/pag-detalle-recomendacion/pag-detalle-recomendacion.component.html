@@ -4,7 +4,7 @@
     <div class="titulos">
       <br />
       <header class="contenido-pagina-header">
-        <h2>Recomendación loca</h2>
+        <h2>{{recomendacion.titulo}}</h2>
         <img src="/imagenes/globe-x.svg" alt="Globe X" class="icono-superior-derecha-recomendacion" />
       </header>
       <h3>Libros</h3>
@@ -18,7 +18,7 @@
     <div class="titulo_valoraciones">
       <h3>Valoraciones</h3>
       <img src="/imagenes/star-fill.svg" alt="Estrella valoracion" />
-      <h4>4,5 / 5</h4>
+      <h4>{{recomendacion.valoracion}} / 5</h4>
     </div>
     <section class="flex contenedor-valoraciones">
       @for (

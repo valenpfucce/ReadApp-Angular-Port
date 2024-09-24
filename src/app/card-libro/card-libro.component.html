@@ -10,7 +10,7 @@
       </div>
       <div class="contenedor-texto">
         <header class="primer-division">
-          <h3 class="titulo-libro">{{cardLibro.titulo_libro}}</h3>
+          <h3 class="titulo-libro">{{cardLibro.titulo_libro | cortarPalabra : 23}}</h3>
           <div>
             <img src="/imagenes/fire.svg" class="iconos" alt="Hot trendy" />
             <img src="/imagenes/certificate.svg" class="iconos" alt="Certificado" />
@@ -28,7 +28,7 @@
           </li>
           <li>
             <img src="/imagenes/globe.svg" class="iconoschicos" alt="Idiomas" />
-            <span>{{ cardLibro.idiomas_libro | joinListaGuion }}</span>
+            <span>{{ cardLibro.idiomas_libro | joinListaGuion : ' - ' : 4 }}</span>
           </li>
           <li>
             <img src="/imagenes/basket.svg" class="iconoschicos" alt="Ventas" />

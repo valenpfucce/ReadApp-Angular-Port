@@ -8,6 +8,7 @@ import {
   CardLibro,
   CardLibroComponent
 } from '../card-libro/card-libro.component'
+import { CardRecomendacion, CardRecomendacionComponent } from '../card-recomendacion/card-recomendacion.component'
 
 @Component({
   selector: 'app-pag-detalle-recomendacion',
@@ -20,7 +21,37 @@ import {
   ]
 })
 export class PagDetalleRecomendacionComponent {
+
   modoEdicion = new ModoEdicion()
+  cardLibros = [
+    new CardLibro(
+      'The Book of Bill',
+      'Alex Hirsch',
+      '/imagenes/prueba.jpg',
+      45,
+      1805,
+      ['Español', 'Inglés', 'Mandarín', 'Árabe'],
+      1055584
+    ),
+    new CardLibro(
+      'Don Quijote de la mancha',
+      'Miguel de Cervantes',
+      'https://www.planetalector.com/usuaris/thumbnails/libros/fotos/374/360/portada_don-quijote-de-la-mancha-comic_miguel-de-cervantes_202310231106.jpg',
+      102,
+      60504,
+      ['Español', 'Inglés'],
+      9802
+    ),
+    new CardLibro(
+      "I'm Glad My Mom Died",
+      'Janette McCurdy',
+      'https://upload.wikimedia.org/wikipedia/en/2/2a/I%27m_Glad_My_Mom_Died_Cover.png',
+      160,
+      25005,
+      ['Ingles', 'Español', 'Portugues', 'Francés'],
+      1250000
+    )
+  ]
 
   cardValoraciones = [
     new CardValoracion(
@@ -53,37 +84,17 @@ export class PagDetalleRecomendacionComponent {
     )
   ]
 
-  cardLibros = [
-    new CardLibro(
-      'The Book of Bill',
-      'Alex Hirsch',
-      '/imagenes/prueba.jpg',
-      45,
-      1805,
-      ['Español', 'Inglés', 'Mandarín', 'Árabe'],
-      1055584
-    ),
-    new CardLibro(
-      'Don Quijote de la man...',
-      'Miguel de Cervantes',
-      'https://www.planetalector.com/usuaris/thumbnails/libros/fotos/374/360/portada_don-quijote-de-la-mancha-comic_miguel-de-cervantes_202310231106.jpg',
-      102,
-      60504,
-      ['Español', 'Inglés'],
-      9802
-    ),
-    new CardLibro(
-      "I'm Glad My Mom Died",
-      'Janette McCurdy',
-      'https://upload.wikimedia.org/wikipedia/en/2/2a/I%27m_Glad_My_Mom_Died_Cover.png',
-      160,
-      25005,
-      ['Ingles', 'Español', 'Portugues', 'Francés'],
-      1250000
-    )
-  ]
+  recomendacion = new CardRecomendacion(
+    'Recomendación Desquiciada', 
+    false,
+    '"La verdad es que no hay una verdad"',
+    ["this.cardLibros[0].titulo", 'this.cardLibros[1].titulo', 'this.cardLibros[2].titulo', 'this.cardLibros[3].titulo'], //HABLAR CON TATI PARA CAMBIAR ESTO
+    4.5, 
+    '8hs'
+  )
 }
 
 class ModoEdicion {
   estaEnModoEdicion = false; 
 }
+
