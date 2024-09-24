@@ -19,7 +19,8 @@
         <readapp-validacion-field [domainElement]="usuario" [field]="'username'"></readapp-validacion-field></label>
         
       <label>Fecha de nacimiento 
-        <input type="date" name="fecjaNacimiento" required pattern=".*\S.*" [(ngModel)]="fechaNacimiento"> </label>
+        <input type="date" name="fecjaNacimiento" required pattern=".*\S.*" [(ngModel)]="fechaNacimiento"> 
+        <readapp-validacion-field [domainElement]="usuario" [field]="'fecha'"></readapp-validacion-field></label>
       
       <label>Mail 
         <input type="text" name="mail" required pattern=".*\S.*" [(ngModel)]="usuario.mail">
@@ -56,11 +57,17 @@
 
     </div>
 
+    <div *ngIf="saveOK" class="datos_guardados">
+      <p>¡Los datos se guardaron correctamente!</p> 
+    </div> 
+    
+  
     <div class="boton_container">
       <button class="boton_cancelar" type="submit" (click)="cancelar()">Cancelar</button>
       <button class="boton_guardar" type="submit" (click)="guardar()">Guardar cambios</button>
-
     </div>
+
+    
   
   </div>
 
