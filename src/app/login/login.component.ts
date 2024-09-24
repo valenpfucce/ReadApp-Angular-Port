@@ -1,35 +1,35 @@
 import { Component } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { ReactiveFormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms'
 import { Router } from '@angular/router'
+import { Usuario, ValidationMessage } from '../usuario/usuario'
+import { ValidacionFieldComponent } from '../perfil-info/validacion-field/validacion-field.component'
 
 @Component({
   selector: 'readapp-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [FormsModule, ValidacionFieldComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  loginForm: FormGroup
+  usuario = new Usuario()
+  contrasenia = ''
+  loginForm: any
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router
-  ) {
-    this.loginForm = this.formBuilder.group({
-      email: ['a.rey@gmail.com', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
-    })
-  }
+  constructor(private router: Router) {}
 
   login() {
-    if (this.loginForm.valid) {
-      console.log('Llamar al servicio de login')
+    const contraseniaVacia = this.contrasenia.trim() === ''
+    this.usuario.validarDatos()
+    if (
+      (!this.usuario.errors[4] ||
+        this.usuario.errors[4].message.trim() === '') &&
+      contraseniaVacia
+    ) {
       this.router.navigateByUrl('/home')
       this.loginForm.reset()
-    } else {
-      alert('Error al iniciar sesión')
     }
+    //ESTO ESTÁ MAL YA SÉ PERO NO SABÍA COMO HACER PARA QUE SÓLO ME MUESTRE EL ERROR DEL MAIL :B
+    //CORREGIR QUE SOLO NAVEGUE CUANDO TENGA MAIL Y CONTRASENIA
   }
 }
