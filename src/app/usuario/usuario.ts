@@ -7,7 +7,7 @@ export class ValidationMessage {
 }
 
 export class Usuario {
-  nombre: string | undefined
+  nombre?: string 
   apellido: string | undefined
   username: string | undefined
 
@@ -82,7 +82,7 @@ class sistemaValidacion{
     if (this.stringVacio(usuario.mail!)){
       this.addError(usuario, 'mail', 'El campo no puede estar vacio')
     } else if (this.sinDireccion(usuario.mail!)){
-      this.addError(usuario, 'mail', 'Direccion invalida')
+      this.addError(usuario, 'mail', 'Dirección inválida')
     }
   }
 
