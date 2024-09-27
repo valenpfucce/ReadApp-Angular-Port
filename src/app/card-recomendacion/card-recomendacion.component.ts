@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { CortarPalabraPipe } from '../cortar-palabra-pipe/cortar-palabra.pipe';
+import { CortarPalabraPipe } from '../pipes/cortar-palabra-pipe/cortar-palabra.pipe';
 import { Router } from '@angular/router'
 
 @Component({
