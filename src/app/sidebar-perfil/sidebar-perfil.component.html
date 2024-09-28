@@ -7,26 +7,15 @@
       </div>
 
       <ul class="submenu_perfil">
-        <li class="boton_menu">
-          <img class="icono" src="/imagenes/info.svg" />
-          <a routerLink="info"><strong>Informacion</strong></a>
-        </li>
-        <li class="boton_menu">
-          <img class="icono" src="/imagenes/amigos.svg" />
-          <a routerLink="amigos">Amigos</a>
-        </li>
-        <li class="boton_menu">
-          <img class="icono" src="/imagenes/libros.svg" />
-          <a>Libros leidos</a>
-        </li>
-        <li class="boton_menu">
-          <img class="icono" src="/imagenes/librosaleer.svg" />
-          <a>Libros a leer</a>
-        </li>
-        <li class="boton_menu">
-          <img class="icono" src="/imagenes/valorarReco.svg" />
-          <a routerLink="recomendacionesAValorar">Recomendaciones a valorar</a>
-        </li>
+        
+        @for (infoSidebar of infoSidebar; track infoSidebar; let i = $index ){
+             
+          <li class="boton_menu">
+            <img class="icono" src= {{infoSidebar.icono_url}}  />
+            <a routerLink={{infoSidebar.router}} routerLinkActive="link_activo">{{infoSidebar.nombre}}</a>
+          </li>
+        }
+      
       </ul>
   </nav>
   
