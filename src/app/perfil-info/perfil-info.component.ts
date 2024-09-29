@@ -17,7 +17,7 @@ import { CommonModule } from '@angular/common';
     SidebarPerfilComponent,
     FormsModule,
     ValidacionFieldComponent,
-  CommonModule
+    CommonModule
   ],
 
   templateUrl: './perfil-info.component.html',
@@ -26,7 +26,6 @@ import { CommonModule } from '@angular/common';
 export class PerfilInfoComponent {
 
   usuario = new Usuario()
-
   fechaNacimiento= ''
   saveOK = false
 

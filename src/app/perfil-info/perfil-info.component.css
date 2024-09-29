@@ -92,12 +92,14 @@
     box-shadow: 0 4px 8px rgba(173, 153, 153, 0.1);
 }
 
-.tipos_lectura input[type="checkbox"]:checked {
+.tipos_lectura input[type="radio"]:checked {
+    content: '✔';
     background-color: var(--color-primario);
     border: 1px solid #000000;
 }
 
 .tipos_lectura label {
+    cursor: pointer;
     display: flex;
     align-items: center;
     height: 2em;
@@ -110,6 +112,7 @@
 }
 
 .criterio_conteiner label {
+    cursor: pointer;
     display: flex;
     margin: 1rem 0rem 3rem 10rem;
     align-items: center;
@@ -130,6 +133,7 @@
 }
 
 .criterio_conteiner input[type="checkbox"]:checked {
+    content: '✔';
     background-color: var(--color-primario);
     border: 1px solid #000000;
 }

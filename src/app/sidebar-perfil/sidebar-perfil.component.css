@@ -1,10 +1,8 @@
 .main{
     display: flex;
     min-height: 100%;
-    justify-content: space-between;
     gap: 1.5rem; 
-    margin-top: 10rem; 
-    
+    margin-top: 10rem;  
 }
  
 .info_usuario{
@@ -78,6 +76,10 @@
     font-weight: bold;
     color: var(--color-primario);
     
+}
+
+.link_activo{
+    font-weight: bold;
 }
 
 
