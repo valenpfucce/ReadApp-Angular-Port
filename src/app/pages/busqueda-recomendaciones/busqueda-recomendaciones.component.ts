@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
-import { CardRecomendacion, CardRecomendacionComponent } from '../../components/card-recomendacion/card-recomendacion.component';
+import { CardRecomendacionComponent } from '../../components/card-recomendacion/card-recomendacion.component';
 import { BarraBusquedaComponent } from "../../components/barra-busqueda/barra-busqueda.component";
 import { ActivatedRoute } from '@angular/router';
-import { RecomendacionesService } from '../../services/recomendaciones.service';
+import { RecomendacionesService } from '../../services/service_recomendaciones/recomendaciones.service';
+import { Recomendacion } from '../../domains/recomendacion';
 
 @Component({
   selector: 'readapp-busqueda-recomendaciones',
@@ -14,19 +15,14 @@ import { RecomendacionesService } from '../../services/recomendaciones.service';
 })
 export class BusquedaRecomendacionesComponent {
   visible!: boolean
-  recomendaciones!: CardRecomendacion[]
+  recomendaciones!: Recomendacion[]
   constructor(
     public route: ActivatedRoute,
     public serviceRecomendaciones: RecomendacionesService
   ){}
 
   ngOnInit(){
-    this.recomendaciones = this.serviceRecomendaciones.ddd()
+    this.recomendaciones = this.serviceRecomendaciones.listar_recomendaciones()
     // this.visible = this.route.paramMap.esCheckbox as boolean
-  }
-
-  xxx(){
-    this.serviceRecomendaciones.ddd()
-  }
-  
+  }  
 }

@@ -4,11 +4,10 @@ import {
   CardValoracion,
   CardValoracionComponent
 } from '../../components/card-valoracion/card-valoracion.component'
-import {
-  CardLibro,
-  CardLibroComponent
-} from '../../components/card-libro/card-libro.component'
-import { CardRecomendacion, CardRecomendacionComponent } from '../../components/card-recomendacion/card-recomendacion.component'
+import { CardLibroComponent } from '../../components/card-libro/card-libro.component'
+import { Recomendacion } from '../../domains/recomendacion'
+import { Libro } from '../../domains/libro'
+import { LibrosService } from '../../services/service_libros/libros.service'
 
 @Component({
   selector: 'app-pag-detalle-recomendacion',
@@ -21,38 +20,15 @@ import { CardRecomendacion, CardRecomendacionComponent } from '../../components/
   ]
 })
 export class PagDetalleRecomendacionComponent {
-
+  libros!: Libro[]
   modoEdicion = new ModoEdicion()
-  cardLibros = [
-    new CardLibro(
-      'The Book of Bill',
-      'Alex Hirsch',
-      '/imagenes/prueba.jpg',
-      45,
-      1805,
-      ['Español', 'Inglés', 'Mandarín', 'Árabe'],
-      1055584
-    ),
-    new CardLibro(
-      'Don Quijote de la mancha',
-      'Miguel de Cervantes',
-      'https://www.planetalector.com/usuaris/thumbnails/libros/fotos/374/360/portada_don-quijote-de-la-mancha-comic_miguel-de-cervantes_202310231106.jpg',
-      102,
-      60504,
-      ['Español', 'Inglés'],
-      9802
-    ),
-    new CardLibro(
-      "I'm Glad My Mom Died",
-      'Janette McCurdy',
-      'https://upload.wikimedia.org/wikipedia/en/2/2a/I%27m_Glad_My_Mom_Died_Cover.png',
-      160,
-      25005,
-      ['Ingles', 'Español', 'Portugues', 'Francés'],
-      1250000
-    )
-  ]
+  constructor(
+    public serviceLibros: LibrosService
+  ){}
 
+  ngOnInit(){
+    this.libros = this.serviceLibros.listar_libros()
+  }
   cardValoraciones = [
     new CardValoracion(
       'bilardo.jpg',
@@ -84,11 +60,12 @@ export class PagDetalleRecomendacionComponent {
     )
   ]
 
-  recomendacion = new CardRecomendacion(
+  recomendacion = new Recomendacion(
+    7,
     'Recomendación Desquiciada', 
     false,
     '"La verdad es que no hay una verdad"',
-    ["this.cardLibros[0].titulo", 'this.cardLibros[1].titulo', 'this.cardLibros[2].titulo', 'this.cardLibros[3].titulo'], //HABLAR CON TATI PARA CAMBIAR ESTO
+    ["libros[0].titulo", 'this.cardLibros[1].titulo', 'this.cardLibros[2].titulo', 'this.cardLibros[3].titulo'], //HABLAR CON TATI PARA CAMBIAR ESTO
     4.5, 
     '8hs'
   )

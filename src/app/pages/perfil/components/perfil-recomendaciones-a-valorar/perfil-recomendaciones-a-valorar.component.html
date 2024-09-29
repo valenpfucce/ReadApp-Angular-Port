@@ -4,8 +4,8 @@
         <h1> Recomendaciones a Valorar</h1>
         <section class="flex lista_perfil recomendaciones">
             <section class="grid-cartas">
-                @for (cardRecomendacion of cardsRecomendaciones; track cardRecomendacion) {
-                    <readapp-card-recomendacion [cardRecomendacion]="cardRecomendacion"></readapp-card-recomendacion>
+                @for (recomendacion of recomendaciones; track recomendacion) {
+                    <readapp-card-recomendacion [recomendacion]="recomendacion"></readapp-card-recomendacion>
                 }
             </section>
         </section>

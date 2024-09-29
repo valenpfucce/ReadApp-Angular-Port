@@ -1,33 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CortarPalabraPipe } from '../../pipes/cortar-palabra-pipe/cortar-palabra.pipe';
-import { Router } from '@angular/router'
+import { Router, RouterModule } from '@angular/router'
+import { Recomendacion } from '../../domains/recomendacion';
 
 @Component({
   selector: 'readapp-card-recomendacion',
   standalone: true,
-  imports: [CommonModule, CortarPalabraPipe],
+  imports: [CommonModule, CortarPalabraPipe, RouterModule],
   templateUrl: './card-recomendacion.component.html',
   styleUrl: './card-recomendacion.component.css'
 })
 export class CardRecomendacionComponent {
-  @Input() cardRecomendacion!: CardRecomendacion
+  @Input() recomendacion!: Recomendacion
   constructor(
     private router: Router
-  ){}
-
-  verMas(){
-    this.router.navigateByUrl('/detalle_recomendacion')
-  }
-}
-
-export class CardRecomendacion {
-  constructor(
-    public titulo: string,
-    public propia: boolean,
-    public descripcion: string,
-    public lista_libros: string[],
-    public valoracion: number,
-    public tiempoLectura: string
   ){}
 }

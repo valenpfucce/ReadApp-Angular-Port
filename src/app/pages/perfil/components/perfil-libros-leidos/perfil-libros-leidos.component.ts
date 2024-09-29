@@ -1,10 +1,7 @@
 import { Component } from '@angular/core'
 import { HeaderComponent } from '../../../../components/header/header.component'
 import { SidebarPerfilComponent } from '../../sidebar-perfil.component'
-import {
-  CardLibro,
-  CardLibroComponent
-} from '../../../../components/card-libro/card-libro.component'
+import { CardLibroComponent } from '../../../../components/card-libro/card-libro.component'
 
 @Component({
   selector: 'readapp-perfil-libros-leidos',

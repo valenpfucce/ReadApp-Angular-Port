@@ -2,8 +2,8 @@
 <readapp-barra-busqueda></readapp-barra-busqueda>
 <main class = "flex">
     <section class="grid-cartas">
-        @for (cardRecomendacion of recomendaciones; track cardRecomendacion) {
-            <readapp-card-recomendacion [cardRecomendacion]="cardRecomendacion"></readapp-card-recomendacion>
+        @for (recomendacion of recomendaciones; track recomendacion) {
+            <readapp-card-recomendacion [recomendacion]="recomendacion"></readapp-card-recomendacion>
         }
     </section>
 </main>

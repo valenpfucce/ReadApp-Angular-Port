@@ -10,8 +10,8 @@
       <h3>Libros</h3>
     </div>
     <div class="contenedor-cartas">
-      @for (cardLibro of cardLibros; track cardLibros; let i = $index) {
-        <readapp-card-libro [cardLibro]="cardLibro" [estaEnModoEdicion]=modoEdicion.estaEnModoEdicion></readapp-card-libro>
+      @for (libro of libros; track libro; let i = $index) {
+        <readapp-card-libro [libro]="libro" [estaEnModoEdicion]=modoEdicion.estaEnModoEdicion></readapp-card-libro>
       }
     </div>
     <hr class="hr_estilo" />

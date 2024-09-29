@@ -16,7 +16,7 @@ export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component:LoginComponent },
     { path: 'home', component:BusquedaRecomendacionesComponent, data: {esCheckbox: true}},
-    { path: 'detalle_recomendacion', component:PagDetalleRecomendacionComponent},
+    { path: 'detalle_recomendacion/:id', component:PagDetalleRecomendacionComponent},
     { path: 'barra_busqueda', component:BarraBusquedaComponent},
     { path: 'libros_leidos', component:PerfilLibrosLeidosComponent},
     { path: 'mis', component:BusquedaRecomendacionesComponent, data: {esCheckbox: false}},
