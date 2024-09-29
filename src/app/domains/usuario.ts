@@ -1,3 +1,5 @@
+import { Entidad } from "./entidad"
+import { Recomendacion } from "./recomendacion"
 
 export class ValidationMessage {
   constructor(
@@ -6,44 +8,52 @@ export class ValidationMessage {
   ) {}
 }
 
-export class Usuario {
-  nombre?: string 
-  apellido: string | undefined
-  username: string | undefined
-  fechaNacimiento: Date | undefined
-  mail: string | undefined
-  tiempoLectura: number | undefined
+export class Usuario implements Entidad{ 
+  tiempoLectura?: number
   tipoLectura = []
   criterioBusqueda = []
   errors: ValidationMessage[] = []
+  recomendacionesAValorar ?: Recomendacion[]
 
   validador: sistemaValidacion;
-  constructor() {
+  
+  constructor(
+    public id: number,
+    public nombre?: string, 
+    public apellido?: string, 
+    public username?: string,
+    public fechaNacimiento?: Date,
+    public mail?: string 
+  ) {
     this.validador = new sistemaValidacion();
   }
 
   /*Agregar formas de lectura y criterios de busqueda, como listas?*/
 
 
- guardarDatos(): boolean{
+  guardarDatos(): boolean{
 
-  this.validador.validarDatos(this)
-  if (this.errors.length > 0) {
-    return false;
+    this.validador.validarDatos(this)
+    if (this.errors.length > 0) {
+      return false;
+    }
+    return true;
+    
+  /*pegarle al service / back con nuevos datos*/
+
   }
-  return true;
-  
- /*pegarle al service / back con nuevos datos*/
-
- }
  
- hasErrors(field: string): boolean {
- return this.errors.some((_) => _.field == field)
- }
+  hasErrors(field: string): boolean {
+  return this.errors.some((_) => _.field == field)
+  }
 
- errorsFrom(field: string) {
-   return this.errors.filter((_) => _.field == field).map((_) => _.message).join(". ")
- }
+  errorsFrom(field: string) {
+    return this.errors.filter((_) => _.field == field).map((_) => _.message).join(". ")
+  }
+
+  agregarRecomendacionAValorar(recomendacion: Recomendacion){
+    this.recomendacionesAValorar?.push(recomendacion)
+  }
 
 };
 
@@ -109,9 +119,9 @@ class sistemaValidacion{
     return !regex.test(mail) }
   
 
- addError(usuario:Usuario,field: string, message: string) {
-  usuario.errors.push(new ValidationMessage(field, message))
- }
+  addError(usuario:Usuario,field: string, message: string) {
+    usuario.errors.push(new ValidationMessage(field, message))
+  }
 
 };
 

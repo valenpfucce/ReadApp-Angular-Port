@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import { FormsModule } from '@angular/forms';
 
 import { SidebarPerfilComponent } from '../../sidebar-perfil.component';
-import { Usuario } from '../../../../domains/usuario/usuario';
+import { Usuario } from '../../../../domains/usuario';
 import { ValidacionFieldComponent } from "./validacion-field/validacion-field.component";
 import { CommonModule } from '@angular/common';
 

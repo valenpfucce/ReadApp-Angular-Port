@@ -31,4 +31,10 @@ export const libros = [
       ['Ingles', 'Español', 'Portugues', 'Francés'],
       1250000
     )
+    // new Libro(
+    //   4,
+    //   'Cuidado con el perro',
+    //   'Liliana Cinetto'
+    //   'https://www.loqueleo.com/ar/uploads/2015/11/9789504633440.jpg',
+    // )
   ]

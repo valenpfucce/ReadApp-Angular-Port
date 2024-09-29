@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { Router } from '@angular/router'
-import { Usuario, ValidationMessage } from '../../domains/usuario/usuario'
+import { Usuario, ValidationMessage } from '../../domains/usuario'
 import { ValidacionFieldComponent } from '../../pages/perfil/components/perfil-info/validacion-field/validacion-field.component'
 
 @Component({

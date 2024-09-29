@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CardRecomendacionComponent } from '../../../../components/card-recomendacion/card-recomendacion.component';
+import { Usuario } from '../../../../domains/usuario';
 
 @Component({
   selector: 'readapp-perfil-recomendaciones-a-valorar',
@@ -9,5 +10,5 @@ import { CardRecomendacionComponent } from '../../../../components/card-recomend
   styleUrls: ['../perfil-amigos/perfil-amigos.component.css','./perfil-recomendaciones-a-valorar.component.css']
 })
 export class PerfilRecomendacionesAValorarComponent {
-  recomendaciones = []
+  usuario = new Usuario
 }
