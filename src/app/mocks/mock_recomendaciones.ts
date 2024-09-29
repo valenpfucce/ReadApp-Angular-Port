@@ -1,4 +1,4 @@
-import { CardRecomendacion } from "../card-recomendacion/card-recomendacion.component";
+import { CardRecomendacion } from "../components/card-recomendacion/card-recomendacion.component";
 
 export const cardsRecomendaciones = [
     new CardRecomendacion(

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuDesplegableComponent } from "../menu-desplegable/menu-desplegable.component";
+import { MenuDesplegableComponent } from "../../menu-desplegable/menu-desplegable.component";
 
 @Component({
   selector: 'readapp-header',

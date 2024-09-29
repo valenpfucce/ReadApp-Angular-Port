@@ -1,14 +1,14 @@
 import { Component } from '@angular/core'
-import { HeaderComponent } from '../header/header.component'
+import { HeaderComponent } from '../../components/header/header.component'
 import {
   CardValoracion,
   CardValoracionComponent
-} from '../card-valoracion/card-valoracion.component'
+} from '../../components/card-valoracion/card-valoracion.component'
 import {
   CardLibro,
   CardLibroComponent
-} from '../card-libro/card-libro.component'
-import { CardRecomendacion, CardRecomendacionComponent } from '../card-recomendacion/card-recomendacion.component'
+} from '../../components/card-libro/card-libro.component'
+import { CardRecomendacion, CardRecomendacionComponent } from '../../components/card-recomendacion/card-recomendacion.component'
 
 @Component({
   selector: 'app-pag-detalle-recomendacion',
@@ -16,7 +16,7 @@ import { CardRecomendacion, CardRecomendacionComponent } from '../card-recomenda
   imports: [HeaderComponent, CardValoracionComponent, CardLibroComponent],
   templateUrl: './pag-detalle-recomendacion.component.html',
   styleUrls: [
-    '../estilos_generales/estilo_recomendacion.css',
+    '../../estilos_generales/estilo_recomendacion.css',
     './pag-detalle-recomendacion.component.css'
   ]
 })

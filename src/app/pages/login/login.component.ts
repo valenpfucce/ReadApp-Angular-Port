@@ -1,8 +1,8 @@
 import { Component } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { Router } from '@angular/router'
-import { Usuario, ValidationMessage } from '../usuario/usuario'
-import { ValidacionFieldComponent } from '../perfil-info/validacion-field/validacion-field.component'
+import { Usuario, ValidationMessage } from '../../usuario/usuario'
+import { ValidacionFieldComponent } from '../../perfil/components/perfil-info/validacion-field/validacion-field.component'
 
 @Component({
   selector: 'readapp-login',

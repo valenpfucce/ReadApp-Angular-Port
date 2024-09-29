@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
-import { CardRecomendacion, CardRecomendacionComponent } from '../card-recomendacion/card-recomendacion.component';
-import { BarraBusquedaComponent } from "../barra-busqueda/barra-busqueda.component";
+import { HeaderComponent } from '../../components/header/header.component';
+import { CardRecomendacion, CardRecomendacionComponent } from '../../components/card-recomendacion/card-recomendacion.component';
+import { BarraBusquedaComponent } from "../../components/barra-busqueda/barra-busqueda.component";
 import { ActivatedRoute } from '@angular/router';
-import { RecomendacionesService } from '../services/recomendaciones.service';
+import { RecomendacionesService } from '../../services/recomendaciones.service';
 
 @Component({
   selector: 'readapp-busqueda-recomendaciones',

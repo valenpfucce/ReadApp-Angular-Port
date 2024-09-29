@@ -1,10 +1,10 @@
 import { Component } from '@angular/core'
-import { HeaderComponent } from '../header/header.component'
-import { SidebarPerfilComponent } from '../sidebar-perfil/sidebar-perfil.component'
+import { HeaderComponent } from '../../../components/header/header.component'
+import { SidebarPerfilComponent } from '../../sidebar-perfil.component'
 import {
   CardLibro,
   CardLibroComponent
-} from '../card-libro/card-libro.component'
+} from '../../../components/card-libro/card-libro.component'
 
 @Component({
   selector: 'readapp-perfil-libros-leidos',
@@ -12,9 +12,9 @@ import {
   imports: [HeaderComponent, SidebarPerfilComponent, CardLibroComponent],
   templateUrl: './perfil-libros-leidos.component.html',
   styleUrls: [
-    '../estilos_generales/estilo_recomendacion.css',
-    '../pag-detalle-recomendacion/pag-detalle-recomendacion.component.css',
-    '../card-libro/card-libro.component.css',
+    '../../../estilos_generales/estilo_recomendacion.css',
+    '../../../pages/pag-detalle-recomendacion/pag-detalle-recomendacion.component.css',
+    '../../../components/card-libro/card-libro.component.css',
     '../perfil-amigos/perfil-amigos.component.css',
     './perfil-libros-leidos.component.css'
   ]

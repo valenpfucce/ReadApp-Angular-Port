@@ -2,9 +2,9 @@ import { Component } from '@angular/core'
 import dayjs from 'dayjs'
 
 import { FormsModule } from '@angular/forms';
-import { HeaderComponent } from '../header/header.component';
-import { SidebarPerfilComponent } from '../sidebar-perfil/sidebar-perfil.component';
-import { Usuario } from '../usuario/usuario';
+import { HeaderComponent } from '../../../components/header/header.component';
+import { SidebarPerfilComponent } from '../../sidebar-perfil.component';
+import { Usuario } from '../../../usuario/usuario';
 import { ValidacionFieldComponent } from "./validacion-field/validacion-field.component";
 import { CommonModule } from '@angular/common';
 

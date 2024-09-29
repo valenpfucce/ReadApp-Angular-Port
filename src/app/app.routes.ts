@@ -1,24 +1,22 @@
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component'
-import { NotfoundComponent } from './notfound/notfound.component';
-import { PaginaEjemploComponent } from './pagina-ejemplo/pagina-ejemplo.component';
-import { SidebarPerfilComponent } from './sidebar-perfil/sidebar-perfil.component';
-import { PerfilInfoComponent } from './perfil-info/perfil-info.component';
-import { BusquedaRecomendacionesComponent } from './busqueda-recomendaciones/busqueda-recomendaciones.component';
-import { PagDetalleRecomendacionComponent } from './pag-detalle-recomendacion/pag-detalle-recomendacion.component';
-import { PerfilAmigosComponent } from './perfil-amigos/perfil-amigos.component';
+import { LoginComponent } from './pages/login/login.component'
+import { NotfoundComponent } from './pages/notfound/notfound.component';
+import { SidebarPerfilComponent } from './perfil/sidebar-perfil.component';
+import { PerfilInfoComponent } from './perfil/components/perfil-info/perfil-info.component';
+import { BusquedaRecomendacionesComponent } from './pages/busqueda-recomendaciones/busqueda-recomendaciones.component';
+import { PagDetalleRecomendacionComponent } from './pages/pag-detalle-recomendacion/pag-detalle-recomendacion.component';
+import { PerfilAmigosComponent } from './perfil/components/perfil-amigos/perfil-amigos.component';
 
-import { BarraBusquedaComponent } from './barra-busqueda/barra-busqueda.component';
+import { BarraBusquedaComponent } from './components/barra-busqueda/barra-busqueda.component';
 
-import { PerfilLibrosLeidosComponent } from './perfil-libros-leidos/perfil-libros-leidos.component';
+import { PerfilLibrosLeidosComponent } from './perfil/components/perfil-libros-leidos/perfil-libros-leidos.component';
 import { NgModule } from '@angular/core';
-import { PerfilRecomendacionesAValorarComponent } from './perfil-recomendaciones-a-valorar/perfil-recomendaciones-a-valorar.component';
+import { PerfilRecomendacionesAValorarComponent } from './perfil/components/perfil-recomendaciones-a-valorar/perfil-recomendaciones-a-valorar.component';
 
 
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
-    { path: 'ejemplo', component:PaginaEjemploComponent },
     { path: 'login', component:LoginComponent },
     { path: 'home', component:BusquedaRecomendacionesComponent, data: {esCheckbox: true}},
     { path: 'detalle_recomendacion', component:PagDetalleRecomendacionComponent},

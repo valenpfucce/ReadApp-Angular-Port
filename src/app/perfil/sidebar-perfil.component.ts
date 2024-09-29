@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
+import { HeaderComponent } from '../components/header/header.component';
 import { RouterModule} from '@angular/router';
 import { CommonModule } from '@angular/common';
 
