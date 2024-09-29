@@ -10,11 +10,11 @@ export class Usuario {
   nombre?: string 
   apellido: string | undefined
   username: string | undefined
-
   fechaNacimiento: Date | undefined
   mail: string | undefined
   tiempoLectura: number | undefined
-
+  tipoLectura = []
+  criterioBusqueda = []
   errors: ValidationMessage[] = []
 
   validador: sistemaValidacion;
@@ -36,7 +36,6 @@ export class Usuario {
  /*pegarle al service / back con nuevos datos*/
 
  }
- 
  
  hasErrors(field: string): boolean {
  return this.errors.some((_) => _.field == field)
