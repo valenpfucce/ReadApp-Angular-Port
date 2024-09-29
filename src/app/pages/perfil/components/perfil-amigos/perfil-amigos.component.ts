@@ -6,7 +6,7 @@ import { SidebarPerfilComponent } from '../../sidebar-perfil.component';
   standalone: true,
   imports: [SidebarPerfilComponent],
   templateUrl: './perfil-amigos.component.html',
-  styleUrls: ['./perfil-amigos.component.css', '../../../estilos_generales/cartas_libros_btn_mas.css']
+  styleUrls: ['./perfil-amigos.component.css', '../../../../estilos_generales/cartas_libros_btn_mas.css']
 })
 export class PerfilAmigosComponent {
 

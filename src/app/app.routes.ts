@@ -1,17 +1,14 @@
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component'
 import { NotfoundComponent } from './pages/notfound/notfound.component';
-import { SidebarPerfilComponent } from './perfil/sidebar-perfil.component';
-import { PerfilInfoComponent } from './perfil/components/perfil-info/perfil-info.component';
+import { SidebarPerfilComponent } from './pages/perfil/sidebar-perfil.component';
+import { PerfilInfoComponent } from './pages/perfil/components/perfil-info/perfil-info.component';
 import { BusquedaRecomendacionesComponent } from './pages/busqueda-recomendaciones/busqueda-recomendaciones.component';
 import { PagDetalleRecomendacionComponent } from './pages/pag-detalle-recomendacion/pag-detalle-recomendacion.component';
-import { PerfilAmigosComponent } from './perfil/components/perfil-amigos/perfil-amigos.component';
-
+import { PerfilAmigosComponent } from './pages/perfil/components/perfil-amigos/perfil-amigos.component';
 import { BarraBusquedaComponent } from './components/barra-busqueda/barra-busqueda.component';
-
-import { PerfilLibrosLeidosComponent } from './perfil/components/perfil-libros-leidos/perfil-libros-leidos.component';
-import { NgModule } from '@angular/core';
-import { PerfilRecomendacionesAValorarComponent } from './perfil/components/perfil-recomendaciones-a-valorar/perfil-recomendaciones-a-valorar.component';
+import { PerfilLibrosLeidosComponent } from './pages/perfil/components/perfil-libros-leidos/perfil-libros-leidos.component';
+import { PerfilRecomendacionesAValorarComponent } from './pages/perfil/components/perfil-recomendaciones-a-valorar/perfil-recomendaciones-a-valorar.component';
 
 
 

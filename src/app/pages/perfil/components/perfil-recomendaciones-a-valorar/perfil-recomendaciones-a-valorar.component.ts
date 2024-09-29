@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CardRecomendacion, CardRecomendacionComponent } from '../../../components/card-recomendacion/card-recomendacion.component';
+import { CardRecomendacion, CardRecomendacionComponent } from '../../../../components/card-recomendacion/card-recomendacion.component';
 
 @Component({
   selector: 'readapp-perfil-recomendaciones-a-valorar',
