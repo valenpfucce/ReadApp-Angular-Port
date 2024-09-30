@@ -1,5 +1,8 @@
 <readapp-header></readapp-header>
-<readapp-barra-busqueda></readapp-barra-busqueda>
+<readapp-barra-busqueda
+    [showCheckBox] = "this.data.showCheckBox"
+    (buscarPalabra)="buscar($event)"
+></readapp-barra-busqueda>
 <main class = "flex">
     <section class="grid-cartas">
         @for (recomendacion of recomendaciones; track recomendacion) {
