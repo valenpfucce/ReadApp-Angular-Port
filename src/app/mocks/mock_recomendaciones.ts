@@ -35,7 +35,7 @@ export const recomendaciones = [
       false,
       '"Te dejo una lista de libros clásicos que TENES que leer"',
       [libros[0], libros[0]],
-      //['Jane Ayre', 'El Principito', 'Don Quijote de la Mancha'],
+      //['Jane Eyre', 'El Principito', 'Don Quijote de la Mancha'],
       4.8,
       '18hs'),
     new Recomendacion(
@@ -44,7 +44,7 @@ export const recomendaciones = [
       false,
       '"Mejores libros de esta hermosa escritora. Romance"',
       [libros[0], libros[0]],
-      //['Orgullo y Prejuicio', 'Emma', 'Persuación', 'Lady Susan'], 
+      //['Orgullo y Prejuicio', 'Emma', 'Persuación', 'Sentido y sensiblidad'], 
       4.2,
       '25hs'),
     new Recomendacion(
