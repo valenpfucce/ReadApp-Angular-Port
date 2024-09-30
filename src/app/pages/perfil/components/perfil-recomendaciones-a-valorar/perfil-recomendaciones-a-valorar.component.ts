@@ -10,5 +10,5 @@ import { Usuario } from '../../../../domains/usuario';
   styleUrls: ['../perfil-amigos/perfil-amigos.component.css','./perfil-recomendaciones-a-valorar.component.css']
 })
 export class PerfilRecomendacionesAValorarComponent {
-  usuario = new Usuario
+  usuario! : Usuario
 }

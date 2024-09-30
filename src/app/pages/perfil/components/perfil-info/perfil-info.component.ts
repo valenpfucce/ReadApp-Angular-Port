@@ -24,7 +24,7 @@ import { CommonModule } from '@angular/common';
 })
 export class PerfilInfoComponent {
 
-  usuario = new Usuario()
+  usuario = new Usuario(1)
   fechaNacimiento= ''
   saveOK = false
 
@@ -49,3 +49,5 @@ export class PerfilInfoComponent {
   /* logica para poner los campos en blanco y quiza antes otra confirmacion*/}
 
 }
+
+

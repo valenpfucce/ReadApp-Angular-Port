@@ -14,7 +14,7 @@ export class Usuario implements Entidad{
   criterioBusqueda = []
   errors: ValidationMessage[] = []
   recomendacionesAValorar ?: Recomendacion[]
-
+  
   validador: sistemaValidacion;
   
   constructor(
@@ -59,7 +59,7 @@ export class Usuario implements Entidad{
 
 
 
-class sistemaValidacion{
+export class sistemaValidacion{
   
   validarDatos(usuario:Usuario):void{
     usuario.errors.length = 0
