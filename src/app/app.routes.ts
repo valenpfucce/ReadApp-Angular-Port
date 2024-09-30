@@ -9,17 +9,40 @@ import { PerfilAmigosComponent } from './pages/perfil/components/perfil-amigos/p
 import { BarraBusquedaComponent } from './components/barra-busqueda/barra-busqueda.component';
 import { PerfilLibrosLeidosComponent } from './pages/perfil/components/perfil-libros-leidos/perfil-libros-leidos.component';
 import { PerfilRecomendacionesAValorarComponent } from './pages/perfil/components/perfil-recomendaciones-a-valorar/perfil-recomendaciones-a-valorar.component';
+import { RecomendacionesService } from './services/service_recomendaciones/recomendaciones.service';
+import { Recomendacion } from './domains/recomendacion';
 
+export type DataBusqueda = {
+    showCheckBox: boolean
+    realizarBusqueda: (
+        serviceRecomendaciones: RecomendacionesService,
+        palabraABuscar?: string
+    ) => Recomendacion[]
+}
+
+const dataBusquedaHome: DataBusqueda = {
+    showCheckBox: false,
+    realizarBusqueda:(serviceRecomendaciones, palabraABuscar) => {
+        return serviceRecomendaciones.busquedaGeneral(palabraABuscar)
+    }
+}
+
+const dataBusquedaMisRecomendaciones: DataBusqueda = {
+    showCheckBox: true,
+    realizarBusqueda:(serviceRecomendaciones, palabraABuscar) => {
+        return serviceRecomendaciones.busquedaMisRecomendaciones(palabraABuscar)
+    }
+}
 
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component:LoginComponent },
-    { path: 'home', component:BusquedaRecomendacionesComponent, data: {esCheckbox: true}},
+    { path: 'home', component:BusquedaRecomendacionesComponent, data: dataBusquedaHome},
     { path: 'detalle_recomendacion/:id', component:PagDetalleRecomendacionComponent},
     { path: 'barra_busqueda', component:BarraBusquedaComponent},
     { path: 'libros_leidos', component:PerfilLibrosLeidosComponent},
-    { path: 'mis', component:BusquedaRecomendacionesComponent, data: {esCheckbox: false}},
+    { path: 'mis_recomendaciones', component:BusquedaRecomendacionesComponent, data: dataBusquedaMisRecomendaciones},
 
 
     { path: 'perfil', component:SidebarPerfilComponent, children:[
@@ -30,8 +53,6 @@ export const routes: Routes = [
     },
     
    { path: '**', component:NotfoundComponent}
-
-    
 ];
 
 

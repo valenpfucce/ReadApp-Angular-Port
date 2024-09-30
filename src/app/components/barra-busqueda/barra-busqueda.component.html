@@ -1,9 +1,16 @@
 <div class="main">
-    <readapp-header></readapp-header>
-<section class="barra-busqueda-container">
-    <div class="flex wrap barra-busqueda">
-      <input type="text" placeholder="Buscar..." />
-      <button type="submit">🔍</button>
-    </div>
-</section>
+  <readapp-header></readapp-header>
+  <section class="barra-busqueda-container">
+      <div class="flex wrap barra-busqueda">
+        <input type="text" placeholder="Buscar..." [(ngModel)]="palabraABuscar"/>
+        <button type="button" (click)="buscar()">
+          <img src="/imagenes/magnifying-glass-bold.svg" width="20px" height="15px" />
+        </button>
+        @if(showCheckBox){
+          <label><input type="checkbox">
+            Sólo ver recomendaciones privadas
+          </label>
+        }
+      </div>
+  </section>
 </div>

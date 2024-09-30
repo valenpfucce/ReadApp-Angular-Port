@@ -5,6 +5,7 @@ import { BarraBusquedaComponent } from "../../components/barra-busqueda/barra-bu
 import { ActivatedRoute } from '@angular/router';
 import { RecomendacionesService } from '../../services/service_recomendaciones/recomendaciones.service';
 import { Recomendacion } from '../../domains/recomendacion';
+import { DataBusqueda } from '../../app.routes';
 
 @Component({
   selector: 'readapp-busqueda-recomendaciones',
@@ -14,7 +15,7 @@ import { Recomendacion } from '../../domains/recomendacion';
   styleUrl: './busqueda-recomendaciones.component.css'
 })
 export class BusquedaRecomendacionesComponent {
-  visible!: boolean
+  data!: DataBusqueda
   recomendaciones!: Recomendacion[]
   constructor(
     public route: ActivatedRoute,
@@ -22,7 +23,17 @@ export class BusquedaRecomendacionesComponent {
   ){}
 
   ngOnInit(){
-    this.recomendaciones = this.serviceRecomendaciones.listar_recomendaciones()
-    // this.visible = this.route.paramMap.esCheckbox as boolean
-  }  
+    this.data = this.route.snapshot.data as DataBusqueda
+    this.recomendaciones = this.data.realizarBusqueda(
+      this.serviceRecomendaciones,
+      undefined
+    )
+  }
+  
+  buscar(palabraABuscar?: string){
+    this.recomendaciones = this.data.realizarBusqueda(
+      this.serviceRecomendaciones,
+      palabraABuscar
+    )
+  }
 }
