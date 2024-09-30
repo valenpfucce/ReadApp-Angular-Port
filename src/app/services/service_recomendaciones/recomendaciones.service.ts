@@ -5,10 +5,14 @@ import { recomendaciones } from '../../mocks/mock_recomendaciones';
   providedIn: 'root'
 })
 export class RecomendacionesService {
-
+  listaRecomendaciones = recomendaciones
   constructor() { }
 
   listar_recomendaciones(){
-    return recomendaciones
+    return this.listaRecomendaciones
+  }
+
+  getRecomendacion(id: number) {
+    return this.listaRecomendaciones.find(recomendacion => recomendacion.id === id)
   }
 }
