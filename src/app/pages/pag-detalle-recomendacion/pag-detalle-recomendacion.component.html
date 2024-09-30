@@ -10,9 +10,17 @@
       <h3>Libros</h3>
     </div>
     <div class="contenedor-cartas">
-      @for (libro of libros; track libro; let i = $index) {
+      @for (libro of recomendacion.lista_libros; track libro; let i = $index) {
         <readapp-card-libro [libro]="libro" [estaEnModoEdicion]=modoEdicion.estaEnModoEdicion></readapp-card-libro>
       }
+    </div>
+    <div class="titulos">
+      <h3>Reseña</h3>
+    </div>
+    <div class="titulos textoprincipal">
+      <p>
+        {{recomendacion.descripcion}}
+      </p>
     </div>
     <hr class="hr_estilo" />
     <div class="titulo_valoraciones">

@@ -16,7 +16,7 @@ export const recomendaciones = [
       'Recomendación Loca', 
       false,
       '"Es un conjunto de libros re copados que se puede leer en familia. Muy recomendable para niños"',
-      ['Cuidado con el perro', 'Cuidado con el perro', 'Cuidado con el perro', 'Cuidado con el perro'],
+      [libros[0], libros[1], libros[0]],
       4.5, 
       '8hs'
     ),
@@ -25,7 +25,8 @@ export const recomendaciones = [
       'Recomendación Misteriosa',
       true,
       '"Espero que te guste este conjunto de libros de misterios de Agatha Christie"',
-      ['Los cuatro grandes', 'Asesinato en el Orient Express', 'Muerte en el Nilo'],
+      [libros[0], libros[0]],
+      //['Los cuatro grandes', 'Asesinato en el Orient Express', 'Muerte en el Nilo'],
       4.3,
       '12hs'),
     new Recomendacion(
@@ -33,7 +34,8 @@ export const recomendaciones = [
       'Clásicos!', 
       false,
       '"Te dejo una lista de libros clásicos que TENES que leer"',
-      ['Jane Ayre', 'El Principito', 'Don Quijote de la Mancha'],
+      [libros[0], libros[0]],
+      //['Jane Ayre', 'El Principito', 'Don Quijote de la Mancha'],
       4.8,
       '18hs'),
     new Recomendacion(
@@ -41,7 +43,8 @@ export const recomendaciones = [
       'Jane Austen <3', 
       false,
       '"Mejores libros de esta hermosa escritora. Romance"',
-      ['Orgullo y Prejuicio', 'Emma', 'Persuación', 'Lady Susan'], 
+      [libros[0], libros[0]],
+      //['Orgullo y Prejuicio', 'Emma', 'Persuación', 'Lady Susan'], 
       4.2,
       '25hs'),
     new Recomendacion(
@@ -49,7 +52,8 @@ export const recomendaciones = [
       'Mitología Griega', 
       true,
       'Estos libros son reversiones de historias clásicas de la mitología griega. Muy entretenidos',
-      ['La canción de Aquiles', 'Circe', 'Medusa', 'Mientras no tengamos rostro'], 
+      [libros[0], libros[0]],
+      //['La canción de Aquiles', 'Circe', 'Medusa', 'Mientras no tengamos rostro'], 
       4.9,  
       '19hs'),
     new Recomendacion(
@@ -57,7 +61,8 @@ export const recomendaciones = [
       'Fantasía', 
       false,
       'Estos libros son el comienzo de sagas que te van a dejar maravillado y con ganas de estar dentro de ese mundo',
-      ['Percy Jackson y el ladrón del rayo', 'Harry Potter y la piedra filosofal', 'Eragon'], 
+      [libros[0], libros[0]],
+      //['Percy Jackson y el ladrón del rayo', 'Harry Potter y la piedra filosofal', 'Eragon'], 
       5,
       '8hs'),
   ]
