@@ -26,7 +26,7 @@
         @for (libro of recomendacion.lista_libros.slice(0,4); track libro; let i = $index){
           <div class="flex icono-texto">
             <img class="icono-rec" src="/imagenes/bookmark.svg" />
-              {{recomendacion.lista_libros[i] | cortarPalabra: 20}}
+              {{recomendacion.lista_libros[i].titulo_libro| cortarPalabra: 20}}
           </div>
         }
       </section>

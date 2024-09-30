@@ -1,13 +1,13 @@
 import { Component } from '@angular/core'
 import { HeaderComponent } from '../../components/header/header.component'
-import {
-  CardValoracion,
-  CardValoracionComponent
-} from '../../components/card-valoracion/card-valoracion.component'
+import { CardValoracion, CardValoracionComponent } from '../../components/card-valoracion/card-valoracion.component'
 import { CardLibroComponent } from '../../components/card-libro/card-libro.component'
 import { Recomendacion } from '../../domains/recomendacion'
 import { Libro } from '../../domains/libro'
 import { LibrosService } from '../../services/service_libros/libros.service'
+import { ActivatedRoute, Router } from '@angular/router'
+import { RecomendacionesService } from '../../services/service_recomendaciones/recomendaciones.service'
+
 
 @Component({
   selector: 'app-pag-detalle-recomendacion',
@@ -22,13 +22,35 @@ import { LibrosService } from '../../services/service_libros/libros.service'
 export class PagDetalleRecomendacionComponent {
   libros!: Libro[]
   modoEdicion = new ModoEdicion()
+  idRecomendacion! : number
+  recomendacion! : Recomendacion
+  
   constructor(
-    public serviceLibros: LibrosService
+    private router : Router,
+    private route : ActivatedRoute,
+    private serviceLibros : LibrosService,
+    private serviceRecomendacion : RecomendacionesService
   ){}
 
-  ngOnInit(){
-    this.libros = this.serviceLibros.listar_libros()
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.idRecomendacion = +params['id'];  // '+' convierte a número
+      console.log('ID Recomendacion:', this.idRecomendacion);
+      const recomendacionEncontrada = this.serviceRecomendacion.getRecomendacion(this.idRecomendacion);
+      if (recomendacionEncontrada) {
+        this.recomendacion = recomendacionEncontrada;
+        console.log('Recomendación encontrada:', recomendacionEncontrada);
+      } else {
+        console.log('Recomendación no encontrada, redirigiendo a Home...');
+        this.navegarAHome();  // Redirigir si no se encuentra la recomendación
+      }
+    });
   }
+
+  navegarAHome() {
+    //this.router.navigate(['/home'])
+  }
+
   cardValoraciones = [
     new CardValoracion(
       'bilardo.jpg',
@@ -60,18 +82,18 @@ export class PagDetalleRecomendacionComponent {
     )
   ]
 
-  recomendacion = new Recomendacion(
-    7,
-    'Recomendación Desquiciada', 
-    false,
-    '"La verdad es que no hay una verdad"',
-    ["libros[0].titulo", 'this.cardLibros[1].titulo', 'this.cardLibros[2].titulo', 'this.cardLibros[3].titulo'], //HABLAR CON TATI PARA CAMBIAR ESTO
-    4.5, 
-    '8hs'
-  )
+  // recomendacion = new Recomendacion(
+  //   7,
+  //   'Recomendación Desquiciada',
+  //   false,
+  //   '"La verdad es que no hay una verdad"',
+  //   ["libros[0].titulo", 'this.cardLibros[1].titulo', 'this.cardLibros[2].titulo', 'this.cardLibros[3].titulo'], //HABLAR CON TATI PARA CAMBIAR ESTO
+  //   4.5,
+  //   '8hs'
+  // )
 }
 
 class ModoEdicion {
-  estaEnModoEdicion = false; 
+  estaEnModoEdicion = false;
 }
 
