@@ -49,10 +49,11 @@
       <label><input type="checkbox">Nativista</label>
       <label><input type="checkbox">Poliglota</label>
       <label><input type="checkbox">Experimentado</label>
-      <label><input type="checkbox">Calculador</label>
+      <label><input (change)="cambioCalculador()" type="checkbox">Calculador</label>
+      
       <div class="calculador">
-        <label>Maximo*<input type="text" required pattern=".*\S.*"></label>
-        <label>Minimo*<input type="text" required pattern=".*\S.*"></label>
+        <label>Maximo*<input [disabled]="!esCalculador" type="text" required pattern=".*\S.*"></label>
+        <label>Minimo*<input [disabled]="!esCalculador" type="text" required pattern=".*\S.*"></label>
       </div>
 
     </div>
@@ -61,7 +62,6 @@
       <p>¡Los datos se guardaron correctamente!</p> 
     </div> 
     
-  
     <div class="boton_container">
       <button class="boton_cancelar" type="submit" (click)="cancelar()">Cancelar</button>
       <button class="boton_guardar" type="submit" (click)="guardar()">Guardar cambios</button>

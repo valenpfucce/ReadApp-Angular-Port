@@ -27,18 +27,23 @@ export class PerfilInfoComponent {
   usuario = new Usuario(1)
   fechaNacimiento= ''
   saveOK = false
+  esCalculador = false
+  
+  cambioCalculador(){
+    this.esCalculador = !this.esCalculador
 
+  }
 
- guardar() {
+  guardar() {
   this.usuario.fechaNacimiento = this.fechaNacimiento === '' ? undefined : dayjs(this.fechaNacimiento).toDate()
   const guardadoExitoso = this.usuario.guardarDatos()
    if (guardadoExitoso){
-    this.indicarGuardado()
+    this.indicarGuardadoExitoso()
    }
 
   } 
   
-  indicarGuardado(){
+  indicarGuardadoExitoso(){
     this.saveOK = true
     setTimeout(() => {
     this.saveOK = false;
