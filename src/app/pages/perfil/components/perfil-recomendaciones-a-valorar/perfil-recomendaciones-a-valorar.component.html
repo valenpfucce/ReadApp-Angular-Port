@@ -1,0 +1,18 @@
+
+
+    <div class="flex perfil_container">
+        <h1> Recomendaciones a Valorar</h1>
+        <section class="flex lista_perfil recomendaciones">
+            <section class="grid-cartas">
+                @for (recomendacion of usuario.recomendacionesAValorar; track recomendacion) {
+                    <readapp-card-recomendacion [recomendacion]="recomendacion"></readapp-card-recomendacion>
+                }
+            </section>
+        </section>
+        <div class="boton_container">
+            <button class="boton_cancelar" type="submit">Cancelar</button>
+            <button class="boton_guardar" type="submit">Guardar cambios</button>
+        </div>
+    </div>
+
+

@@ -1,0 +1,34 @@
+<main class="flex">
+  <readapp-header></readapp-header>
+  <div class="contenido-pagina">
+    <div class="titulos">
+      <br />
+      <header class="contenido-pagina-header">
+        <h2>{{recomendacion.titulo}}</h2>
+        <img src="/imagenes/globe-x.svg" alt="Globe X" class="icono-superior-derecha-recomendacion" />
+      </header>
+      <h3>Libros</h3>
+    </div>
+    <div class="contenedor-cartas">
+      @for (libro of libros; track libro; let i = $index) {
+        <readapp-card-libro [libro]="libro" [estaEnModoEdicion]=modoEdicion.estaEnModoEdicion></readapp-card-libro>
+      }
+    </div>
+    <hr class="hr_estilo" />
+    <div class="titulo_valoraciones">
+      <h3>Valoraciones</h3>
+      <img src="/imagenes/star-fill.svg" alt="Estrella valoracion" />
+      <h4>{{recomendacion.valoracion}} / 5</h4>
+    </div>
+    <section class="flex contenedor-valoraciones">
+      @for (
+        cardValoracion of cardValoraciones;
+        track cardValoracion;
+        let i = $index
+      ) {
+        <readapp-card-valoracion [cardValoracion]="cardValoracion"></readapp-card-valoracion>
+      }
+    </section>
+    <!--FALTA AGREGAR BOTÓN + TIENE QUE SER UN COMPONENTE APARTE?-->
+  </div>
+</main>

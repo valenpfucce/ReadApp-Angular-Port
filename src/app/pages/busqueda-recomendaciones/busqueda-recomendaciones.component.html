@@ -1,0 +1,9 @@
+<readapp-header></readapp-header>
+<readapp-barra-busqueda></readapp-barra-busqueda>
+<main class = "flex">
+    <section class="grid-cartas">
+        @for (recomendacion of recomendaciones; track recomendacion) {
+            <readapp-card-recomendacion [recomendacion]="recomendacion"></readapp-card-recomendacion>
+        }
+    </section>
+</main>
