@@ -41,7 +41,7 @@
   
   .obligatorio-input {
     color: var(--color-sexto);
-    font-size: 10px;
+    font-size: 15px;
   }
   
   .container {
@@ -53,11 +53,18 @@
   
   .flex.container input{
     height: 2.5rem;
+    padding-right: 2.5rem;
   }
+
+  .input-container {
+    position: relative; /* Contenedor relativo para el icono */
+  }  
+
   .ver_contrasenia{
     position: absolute;
     bottom: 0.4em;
     right: 0.4em;
+    pointer-events: none;
   }
   
   .boton_container{
