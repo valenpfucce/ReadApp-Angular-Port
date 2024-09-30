@@ -13,13 +13,13 @@ export const libros = [
     ),
     new Libro(
       2,
-      'Don Quijote de la mancha',
+      'Don Quijote de la Mancha',
       'Miguel de Cervantes',
       'https://www.planetalector.com/usuaris/thumbnails/libros/fotos/374/360/portada_don-quijote-de-la-mancha-comic_miguel-de-cervantes_202310231106.jpg',
-      102,
-      60504,
+      920,
+      120298,
       ['Español', 'Inglés'],
-      9802
+      13029
     ),
     new Libro(
       3,
@@ -122,6 +122,16 @@ export const libros = [
       12480
     ),
     new Libro(
+      13,
+      'Eragon',
+      'Christopher Paolini',
+      'https://images.cdn1.buscalibre.com/fit-in/360x360/33/6e/336ee8f85de8a52fb119ac103f13fe03.jpg',
+      656,
+      50281,
+      ['Español', 'Inglés', 'Portugués','Francés'],
+      13029
+    ),
+    new Libro(
       14,
       'Sentido y sensibilidad',
       'Jane Austen',
@@ -175,7 +185,7 @@ export const libros = [
       19,
       'Percy Jackson y el ladrón del rayo',
       'Rick Riordan',
-      'https://http2.mlstatic.com/D_NQ_NP_884346-MLA53624916554_022023-O.webp',
+      'https://d22fxaf9t8d39k.cloudfront.net/e76e5a7e8259c2ee382859dcb1b31b4c503aee32146f1eedb7fd952b28495b44167807.png',
       288,
       29182,
       ['Español', 'Inglés', 'Portugués','Francés'],
@@ -190,16 +200,5 @@ export const libros = [
       23281,
       ['Español', 'Inglés', 'Portugués','Francés'],
       43000
-    ),
-    new Libro(
-      21,
-      'Eragon',
-      'Christopher Paolini',
-      'https://images.cdn1.buscalibre.com/fit-in/360x360/33/6e/336ee8f85de8a52fb119ac103f13fe03.jpg',
-      656,
-      50281,
-      ['Español', 'Inglés', 'Portugués','Francés'],
-      13029
     )
-
   ]
