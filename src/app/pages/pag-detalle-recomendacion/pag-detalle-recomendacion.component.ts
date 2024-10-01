@@ -28,27 +28,34 @@ export class PagDetalleRecomendacionComponent {
   constructor(
     private router : Router,
     private route : ActivatedRoute,
-    private serviceLibros : LibrosService,
     private serviceRecomendacion : RecomendacionesService
   ){}
 
   ngOnInit() {
+    //Si no esta loggeado --> Al login
+    const usuarioSession = sessionStorage.getItem('userSession');
+    if (!usuarioSession) this.navegarA('/login')
+
+    //Si esta loggeado, traer el usuario
+    
+    
+    //Traer los parametros del routing
     this.route.params.subscribe(params => {
-      this.idRecomendacion = +params['id'];  // '+' convierte a número
+      this.idRecomendacion = +params['id']; 
       console.log('ID Recomendacion:', this.idRecomendacion);
       const recomendacionEncontrada = this.serviceRecomendacion.getRecomendacion(this.idRecomendacion);
       if (recomendacionEncontrada) {
         this.recomendacion = recomendacionEncontrada;
         console.log('Recomendación encontrada:', recomendacionEncontrada);
       } else {
-        console.log('Recomendación no encontrada, redirigiendo a Home...');
-        this.navegarAHome();  // Redirigir si no se encuentra la recomendación
+        console.log('Recomendación no encontrada --> /home');
+        this.navegarA('/home'); 
       }
     });
   }
 
-  navegarAHome() {
-    //this.router.navigate(['/home'])
+  navegarA(ruta : string) {
+    this.router.navigate([ruta])
   }
 
   cardValoraciones = [
