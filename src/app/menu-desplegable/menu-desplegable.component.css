@@ -3,12 +3,12 @@
     position: absolute;
     right: 0;
     top: 100%; 
-    background-color: white;
-    border: 1px solid #ccc;
+    background-color: var(--color-cuarto);
+    border: 0.1rem solid black;
     border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 9999;
-    width: 200px; 
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
+    z-index: 99999;
+    width: 20rem; 
   }
   
   .menu.show {
@@ -22,9 +22,10 @@
   }
   
   .menu ul li {
-    padding: 10px 15px;
+    padding: 1rem 1.5rem;
     cursor: pointer;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 0.1rem solid #ddd;
+    color: var(--color-primario);
   }
   
   .menu ul li:hover {

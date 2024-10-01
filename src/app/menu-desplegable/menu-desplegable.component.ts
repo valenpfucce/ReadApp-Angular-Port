@@ -15,7 +15,7 @@ export class MenuDesplegableComponent {
 
   constructor(private router: Router) {}
 
-  menuDesplegable() {
+  toggleMenu() {
     this.menuVisible = !this.menuVisible;
   }
 
