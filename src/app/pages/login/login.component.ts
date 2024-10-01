@@ -30,6 +30,7 @@ export class LoginComponent {
   mail = ''
   contrasenia = 'password'
   loginForm: FormGroup
+  showPasswordError = false
 
   private readonly sessionKey = 'userSession'
 
@@ -45,23 +46,20 @@ export class LoginComponent {
   }
 
   login() {
-    console.log('Mail:', this.mail)
-    console.log('Contraseña:', this.contrasenia)
-
     const { mail, contrasenia } = this.loginForm.value
-
+    console.log(this.loginForm)
     if (this.loginForm.invalid) {
-      alert('Campos inválidos')
+      this.loginForm.markAllAsTouched()
+      this.showPasswordError = false
       return
     }
 
     const loginSuccess = this.userService.login(mail, contrasenia)
 
     if (loginSuccess) {
-      console.log('ODIO ANGULAR')
       this.router.navigateByUrl('/home')
     } else {
-      alert('Usuario o contraseña incorrectos')
+      this.showPasswordError = true
     }
   }
 }
