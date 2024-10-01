@@ -22,7 +22,8 @@
     margin-bottom: 20px;
 }
 
-.notfound a {
+.notfound button {
+    all: unset;
     text-decoration: none;
     background-color: var(--color-primario);
     color: white;

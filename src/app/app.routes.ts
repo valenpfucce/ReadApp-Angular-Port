@@ -4,7 +4,7 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { SidebarPerfilComponent } from './pages/perfil/sidebar-perfil.component';
 import { PerfilInfoComponent } from './pages/perfil/components/perfil-info/perfil-info.component';
 import { BusquedaRecomendacionesComponent } from './pages/busqueda-recomendaciones/busqueda-recomendaciones.component';
-import { PagDetalleRecomendacionComponent } from './pages/pag-detalle-recomendacion/pag-detalle-recomendacion.component';
+import { PagRecomendacionComponent } from './pages/pag-recomendacion/pag-recomendacion.component';
 import { PerfilAmigosComponent } from './pages/perfil/components/perfil-amigos/perfil-amigos.component';
 import { BarraBusquedaComponent } from './components/barra-busqueda/barra-busqueda.component';
 import { PerfilLibrosLeidosComponent } from './pages/perfil/components/perfil-libros-leidos/perfil-libros-leidos.component';
@@ -39,11 +39,11 @@ export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component:LoginComponent },
     { path: 'home', component:BusquedaRecomendacionesComponent, data: dataBusquedaHome},
-    { path: 'detalle_recomendacion/:id', component:PagDetalleRecomendacionComponent},
+    { path: 'recomendacion/:id/detalle', component:PagRecomendacionComponent, data: { modo: 'detalle' } },
+    { path: 'recomendacion/:id/edicion', component:PagRecomendacionComponent, data: { modo: 'edicion' } },
     { path: 'barra_busqueda', component:BarraBusquedaComponent},
     { path: 'libros_leidos', component:PerfilLibrosLeidosComponent},
     { path: 'mis_recomendaciones', component:BusquedaRecomendacionesComponent, data: dataBusquedaMisRecomendaciones},
-
 
     { path: 'perfil', component:SidebarPerfilComponent, children:[
         { path: 'amigos', title:'Amigos', component:PerfilAmigosComponent},

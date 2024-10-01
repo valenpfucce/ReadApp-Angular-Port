@@ -15,6 +15,6 @@ export class AppComponent {
   guardarUsuarioSession(usuario: Usuario ){
     sessionStorage.setItem('user', JSON.stringify(usuario) );
   }
-
+  
 
 }

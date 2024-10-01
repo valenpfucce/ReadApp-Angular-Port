@@ -6,7 +6,20 @@
   
   body {
     min-height: 100vh;
-    background-color: var(--color-quinto);
+    background: linear-gradient(85deg,var(--color-terciario),var(--color-primario));
+    background-size: 300% 300%;
+    animation: color 12s ease-in-out infinite;
+  }
+  @keyframes color{
+    0%{
+      background-position: 0 50%;
+    }
+    50%{
+      background-position: 100% 50%;
+    }
+    100%{
+      background-position: 0 50%;
+    }
   }
   
   form {
@@ -87,7 +100,8 @@
   
   @media screen and (max-width: 400px) {
     body {
-      background-color: white;
+      background: white;
+      background-size: none;
     }
   
     form {

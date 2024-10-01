@@ -3,7 +3,7 @@
   color: var(--color-letra-carta);
   width: 55rem;
   height: auto;
-  background-color: var(--color-secundario);
+  background-color: var(--color-blanco);
   border-radius: 0.91rem;
   box-shadow: 0 0.3rem 0.61rem rgba(0, 0, 0, 0.2);
   display: flex;
@@ -118,7 +118,8 @@
 /*MOBILE (hasta 400px)*/
 @media screen and (max-width: 400px) {
   .carta-valoracion {
-    width: 100%;
+    width: 92%;
+    min-width: 92%;
     overflow: hidden;
     margin: 1.51rem;
     align-items: center;

@@ -12,9 +12,9 @@ import { Libro } from '../../domains/libro';
 })
 export class CardLibroComponent {
   @Input() libro!: Libro
-  @Input() estaEnModoEdicion!: boolean;
+  @Input() modo!: 'detalle' | 'edicion';
 
   mostrarBotonBorrar() {
-    return this.estaEnModoEdicion;
+    return (this.modo === 'edicion') ? true : false
   }
 }
