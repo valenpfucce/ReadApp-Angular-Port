@@ -27,12 +27,10 @@ import { CommonModule } from '@angular/common'
 })
 export class LoginComponent {
   usuario = new UsuarioSession('', '')
-  mail = ''
-  contrasenia = 'password'
+  // mail = ''
+  // contrasenia = 'password'
   loginForm: FormGroup
   showPasswordError = false
-
-  private readonly sessionKey = 'userSession'
 
   constructor(
     private fb: FormBuilder,
