@@ -7,10 +7,9 @@ import {
   Validators
 } from '@angular/forms'
 import { Router } from '@angular/router'
-import { Usuario, ValidationMessage } from '../../domains/usuario'
+import { UsuarioSession } from '../../domains/usuario'
 import { ValidacionFieldComponent } from '../../pages/perfil/components/perfil-info/validacion-field/validacion-field.component'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
-import { UsuarioSession } from '../../mocks/mock_usuariossesiones'
 import { CommonModule } from '@angular/common'
 
 @Component({

@@ -25,7 +25,8 @@
 }
 
 .barra-busqueda button:hover {
-    background-color: var(--color-terciariox);
+    background-color: var(--color-quinto);
+    box-shadow: 1px 1px 5px var(--color-primario);
 }
 
 .barra-busqueda label {
