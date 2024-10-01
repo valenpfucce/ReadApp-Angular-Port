@@ -21,7 +21,7 @@ export class MenuDesplegableComponent {
 
   navegar(opcion: string) {
     console.log(`Navegando a: ${opcion}`);
-    this.router.navigateByUrl(opcion);
+    this.router.navigate([opcion]);
     this.menuVisible = false; 
   }
 
