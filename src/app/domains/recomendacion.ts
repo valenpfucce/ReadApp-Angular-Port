@@ -18,4 +18,8 @@ export class Recomendacion implements Entidad{
             ? 0 
             : (this.valoraciones.map(valoracion => valoracion.valoracion).reduce((a, b) => a + b, 0) / this.valoraciones.length).toFixed(1);
     }
+
+    cuantasValoraciones(){
+      return this.valoraciones.length
+    }
 }

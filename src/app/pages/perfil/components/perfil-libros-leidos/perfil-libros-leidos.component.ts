@@ -10,7 +10,7 @@ import { CardLibroComponent } from '../../../../components/card-libro/card-libro
   templateUrl: './perfil-libros-leidos.component.html',
   styleUrls: [
     '../../../../estilos_generales/estilo_recomendacion.css',
-    '../../../../pages/pag-detalle-recomendacion/pag-detalle-recomendacion.component.css',
+    '../../../../pages/pag-recomendacion/pag-recomendacion.component.css',
     '../../../../components/card-libro/card-libro.component.css',
     '../perfil-amigos/perfil-amigos.component.css',
     './perfil-libros-leidos.component.css'

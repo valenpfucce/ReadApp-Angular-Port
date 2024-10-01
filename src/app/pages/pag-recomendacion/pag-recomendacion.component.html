@@ -11,7 +11,10 @@
     </div>
     <div class="contenedor-cartas">
       @for (libro of recomendacion.lista_libros; track libro; let i = $index) {
-        <readapp-card-libro [libro]="libro" [estaEnModoEdicion]=modoEdicion.estaEnModoEdicion></readapp-card-libro>
+        <readapp-card-libro [libro]="libro" [modo]=this.modo></readapp-card-libro>
+      }
+      @if (modoEdicion()){
+        <readapp-card-libro-mas></readapp-card-libro-mas>
       }
     </div>
     <div class="titulos">

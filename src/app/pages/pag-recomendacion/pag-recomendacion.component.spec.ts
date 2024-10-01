@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PagDetalleRecomendacionComponent } from './pag-detalle-recomendacion.component';
+import { PagRecomendacionComponent } from './pag-recomendacion.component';
 
 describe('PagDetalleRecomendacionComponent', () => {
-  let component: PagDetalleRecomendacionComponent;
-  let fixture: ComponentFixture<PagDetalleRecomendacionComponent>;
+  let component: PagRecomendacionComponent;
+  let fixture: ComponentFixture<PagRecomendacionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PagDetalleRecomendacionComponent]
+      imports: [PagRecomendacionComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PagDetalleRecomendacionComponent);
+    fixture = TestBed.createComponent(PagRecomendacionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
