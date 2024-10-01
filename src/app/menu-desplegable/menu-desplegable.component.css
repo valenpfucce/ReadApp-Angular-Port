@@ -2,12 +2,12 @@
     display: none;
     position: absolute;
     right: 0;
-    top: 100%; 
+    top: 150%; 
     background-color: var(--color-cuarto);
     border: 0.1rem solid black;
     border-radius: 4px;
     box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
-    z-index: 99999;
+    z-index: 2000;
     width: 20rem; 
   }
   
