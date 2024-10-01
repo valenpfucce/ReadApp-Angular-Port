@@ -1,4 +1,4 @@
-s<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <title>Inicio Sesión</title>
@@ -16,7 +16,7 @@ s<!doctype html>
         <div class="input-container">
           <input type="text" id="mail" formControlName="mail" required="true" />
         </div>
-        <div class="obligatorio-input">
+        <div class="obligatorio-input" *ngIf="!showPasswordError">
           <small
             *ngIf="
               loginForm.get('mail')?.errors?.['required'] &&
@@ -47,17 +47,17 @@ s<!doctype html>
         <div
           class="obligatorio-input"
           *ngIf="
-            loginForm.get('contrasenia')?.invalid &&
-            loginForm.get('contrasenia')?.touched &&
-            loginForm.get('contrasenia')?.touched
+            !showPasswordError 
           "
         >
-          <small *ngIf="loginForm.get('contrasenia')?.errors?.['required']"
+          <small *ngIf="loginForm.get('contrasenia')?.errors?.['required'] && loginForm.get('contrasenia')?.touched"
             >La contraseña es requerida.</small
           >
         </div>
+        <div *ngIf="showPasswordError" class="error-message">
+          Usuario o contraseña incorrectos.
+        </div>
       </div>
-
       <div class="boton_container">
         <button (click)="login()" class="boton_guardar" type="submit">
           Ingresar

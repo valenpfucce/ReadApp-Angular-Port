@@ -3,6 +3,7 @@ import { sistemaValidacion, ValidationMessage } from '../domains/usuario'
 export class UsuarioSession {
   validador: sistemaValidacion
   errors: ValidationMessage[] = []
+  intentosFallidos: string[] = []
   constructor(
     public mail: String,
     public pass: String
@@ -18,6 +19,12 @@ export class UsuarioSession {
       .filter((_) => _.field == field)
       .map((_) => _.message)
       .join('. ')
+  }
+
+  addError(mensajeError: string) {
+    this.intentosFallidos.push(
+      `${new Date().toLocaleString()}: ${mensajeError}`
+    )
   }
 }
 
