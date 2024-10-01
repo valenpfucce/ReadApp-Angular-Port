@@ -2,23 +2,25 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-  }
+}
   
   body {
     min-height: 100vh;
-    background: linear-gradient(85deg,var(--color-terciario),var(--color-primario));
-    background-size: 300% 300%;
-    animation: color 12s ease-in-out infinite;
+    background: radial-gradient(ellipse, var(--color-terciario) 30%, var(--color-primario) 80%);
+
+    background-position: center; 
+    background-size: 100% 100%;
+    animation: color 8s ease-in-out infinite;
   }
-  @keyframes color{
-    0%{
-      background-position: 0 50%;
+  @keyframes color {
+    0% {
+      background-size: 100% 100%;
     }
-    50%{
-      background-position: 100% 50%;
+    50% {
+      background-size: 200% 200%;
     }
-    100%{
-      background-position: 0 50%;
+    100% {
+      background-size: 100% 100%;
     }
   }
   
