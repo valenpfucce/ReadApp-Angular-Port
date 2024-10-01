@@ -11,4 +11,9 @@ import { RouterModule } from '@angular/router';
 })
 export class HeaderComponent {
 
+  menuVisible: boolean = false; 
+
+  toggleMenu() {  //alternar vista menu
+    this.menuVisible = !this.menuVisible;
+  }
 }

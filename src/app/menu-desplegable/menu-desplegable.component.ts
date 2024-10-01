@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HeaderComponent } from "../components/header/header.component";
 import { Router } from '@angular/router'
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router'
 })
 export class MenuDesplegableComponent {
 
-  menuVisible: boolean = false;
+ @Input() menuVisible: boolean = false;
 
   constructor(private router: Router) {}
 
@@ -20,6 +20,7 @@ export class MenuDesplegableComponent {
   }
 
   navegar(opcion: string) {
+    console.log(`Navegando a: ${opcion}`);
     this.router.navigateByUrl(opcion);
     this.menuVisible = false; 
   }
