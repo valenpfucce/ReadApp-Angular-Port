@@ -7,13 +7,13 @@
       <h1>ReadApp</h1>
     </div>
     <div class="user-profile">
-      <img src="/imagenes/roman.jpg" class="profile-pic" alt="Foto de perfil de Roman Riquelme" />
-      <span>Roman Riquelme</span>
+      <img src="/imagenes/roman.jpg" class="profile-pic" alt="Foto de perfil de Roman Riquelme" (click)="toggleMenu()"/>
+      <span (click)="toggleMenu()">Roman Riquelme</span>
       <!--inserto componente menu desplegable-->
-      <readapp-menu-desplegable></readapp-menu-desplegable>
+      <readapp-menu-desplegable [menuVisible] = "menuVisible"></readapp-menu-desplegable>
     </div>
     <!-- Menu de Hamburguesa -->
-    <div class="menu-hamburguesa">
+    <div class="menu-hamburguesa" (click)="toggleMenu()">
       <i class="fa-solid fa-bars"></i>
     </div>
 </header>

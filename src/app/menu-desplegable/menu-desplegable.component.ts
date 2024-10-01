@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HeaderComponent } from "../components/header/header.component";
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'readapp-menu-desplegable',
@@ -10,14 +11,17 @@ import { HeaderComponent } from "../components/header/header.component";
 })
 export class MenuDesplegableComponent {
 
-  menuVisible: boolean = false;
+ @Input() menuVisible: boolean = false;
 
-  menuDesplegable() {
+  constructor(private router: Router) {}
+
+  toggleMenu() {
     this.menuVisible = !this.menuVisible;
   }
 
   navegar(opcion: string) {
-    console.log(`${opcion}`);
+    console.log(`Navegando a: ${opcion}`);
+    this.router.navigateByUrl(opcion);
     this.menuVisible = false; 
   }
 
