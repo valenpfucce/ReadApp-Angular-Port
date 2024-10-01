@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core'
-import { usuarios } from '../../mocks/mock_usuarios'
 import { sesionesUsuarios } from '../../mocks/mock_usuariossesiones'
 
 @Injectable({

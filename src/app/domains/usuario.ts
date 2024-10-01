@@ -14,9 +14,9 @@ export class Usuario implements Entidad{
   criterioBusqueda = []
   errors: ValidationMessage[] = []
   recomendacionesAValorar ?: Recomendacion[]
-  
   validador: sistemaValidacion;
-  
+
+
   constructor(
     public id: number,
     public nombre?: string, 
@@ -55,7 +55,32 @@ export class Usuario implements Entidad{
     this.recomendacionesAValorar?.push(recomendacion)
   }
 
-};
+}
+
+export class UsuarioSession {
+  validador: sistemaValidacion
+  errors: String[] = []
+  constructor(
+    public mail: String,
+    public pass: String
+  ) {
+    this.validador = new sistemaValidacion()
+  }
+  // hasErrors(field: string): boolean {
+  //   return this.errors.some((_) => _.field == field)
+  // }
+
+  // errorsFrom(field: string) {
+  //   return this.errors
+  //     .filter((_) => _.field == field)
+  //     .map((_) => _.message)
+  //     .join('. ')
+  // }
+
+  addError(mensajeError: string) {
+    this.errors.push(mensajeError)
+  }
+}
 
 
 
@@ -123,5 +148,5 @@ export class sistemaValidacion{
     usuario.errors.push(new ValidationMessage(field, message))
   }
 
-};
+}
 
