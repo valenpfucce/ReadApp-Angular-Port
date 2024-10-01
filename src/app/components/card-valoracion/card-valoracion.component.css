@@ -118,7 +118,8 @@
 /*MOBILE (hasta 400px)*/
 @media screen and (max-width: 400px) {
   .carta-valoracion {
-    width: 100%;
+    width: 92%;
+    min-width: 92%;
     overflow: hidden;
     margin: 1.51rem;
     align-items: center;
