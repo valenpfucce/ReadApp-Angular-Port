@@ -2,12 +2,12 @@
     display: none;
     position: absolute;
     right: 0;
-    top: 150%; 
+    top: 99%; 
     background-color: var(--color-cuarto);
-    border: 0.1rem solid black;
-    border-radius: 4px;
+    border: 0.1rem solid var(--color-primario);
+    border-radius: 0.4rem;
     box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
-    z-index: 2000;
+    z-index: 9999;
     width: 20rem; 
   }
   
@@ -22,6 +22,7 @@
   }
   
   .menu ul li {
+    font-size: 1.3rem;
     padding: 1rem 1.5rem;
     cursor: pointer;
     border-bottom: 0.1rem solid #ddd;
@@ -29,10 +30,23 @@
   }
   
   .menu ul li:hover {
-    background-color: #f0f0f0;
+    background-color: var(--color-quinto);
   }
   
   .menu ul li:last-child {
     border-bottom: none;
   }
   
+
+  @media (max-width: 400px) {
+    
+
+    .menu {
+      position: fixed;
+      bottom: 10;
+      top:54.5%;
+;
+    }
+    
+
+}

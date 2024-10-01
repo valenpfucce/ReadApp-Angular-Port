@@ -15,10 +15,6 @@ export class MenuDesplegableComponent {
 
   constructor(private router: Router) {}
 
-  toggleMenu() {
-    this.menuVisible = !this.menuVisible;
-  }
-
   navegar(opcion: string) {
     console.log(`Navegando a: ${opcion}`);
     this.router.navigate([opcion]);
