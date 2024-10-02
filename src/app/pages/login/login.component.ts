@@ -7,7 +7,6 @@ import {
   Validators
 } from '@angular/forms'
 import { Router } from '@angular/router'
-import { UsuarioSession } from '../../domains/usuario'
 import { ValidacionFieldComponent } from '../../pages/perfil/components/perfil-info/validacion-field/validacion-field.component'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
 import { CommonModule } from '@angular/common'
@@ -25,7 +24,6 @@ import { CommonModule } from '@angular/common'
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  usuario = new UsuarioSession('', '')
   // mail = ''
   // contrasenia = 'password'
   loginForm: FormGroup
@@ -51,12 +49,11 @@ export class LoginComponent {
       return
     }
 
-    const loginSuccess = this.userService.login(mail, contrasenia)
-
-    if (loginSuccess) {
-      this.router.navigateByUrl('/home')
-    } else {
+    const loginSuccess = this.userService.loginGetUsuarioIdToSS(mail, contrasenia)
+    if (loginSuccess === null) {
       this.showPasswordError = true
+    } else {
+      this.router.navigateByUrl('/home')
     }
   }
 }
