@@ -22,9 +22,9 @@ export class Usuario implements Entidad{
     public nombre : string, 
     public apellido : string, 
     public username : string,
-    public fechaNacimiento : Date,
     public mail : string,
     public password : string,
+    public fechaNacimiento? : Date,
   ) {
     this.validador = new sistemaValidacion();
   }

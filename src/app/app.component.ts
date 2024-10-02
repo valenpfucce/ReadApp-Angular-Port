@@ -10,11 +10,5 @@ import { Usuario } from './domains/usuario';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'readapp-grupo-6';
-
-  guardarUsuarioSession(usuario: Usuario ){
-    sessionStorage.setItem('user', JSON.stringify(usuario) );
-  }
-  
-
+  title = 'readapp-grupo-6';  
 }

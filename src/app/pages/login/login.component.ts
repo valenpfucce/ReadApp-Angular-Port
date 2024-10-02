@@ -24,16 +24,19 @@ import { CommonModule } from '@angular/common'
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  // mail = ''
-  // contrasenia = 'password'
-  loginForm: FormGroup
+  mail! : string;
+  contrasenia! : string;
+  loginForm!: FormGroup
   showPasswordError = false
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private userService: UsuariosService
-  ) {
+  ) {}
+
+  ngOnInit(){
+    console.log('Entro al login')
     this.loginForm = this.fb.group({
       mail: ['', [Validators.required, Validators.email]],
       contrasenia: ['', [Validators.required]]
@@ -41,6 +44,7 @@ export class LoginComponent {
   }
 
   login() {
+    console.log('Entro al login()')
     const { mail, contrasenia } = this.loginForm.value
     console.log(this.loginForm)
     if (this.loginForm.invalid) {

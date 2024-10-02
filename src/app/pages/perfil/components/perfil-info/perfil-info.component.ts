@@ -23,19 +23,37 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './perfil-info.component.css'
 })
 export class PerfilInfoComponent {
+  usuario!: Usuario; 
+
   constructor(
-    private router : Router,
-    private route : ActivatedRoute,
+    private router: Router,
+    private route: ActivatedRoute,
     private userService: UsuariosService
-  ){}
-  usuario! : Usuario
-  const usuarioSessionId = sessionStorage.getItem('userSession')
-  
-  if (this.usuarioSessionId != null) { 
-    this.usuario = this.userService.getUser(this.usuarioSessionId) 
-  } else {
-    this.navegarA('/login')
+  ) {}
+
+  ngOnInit() {
+    const usuarioSessionIdString = sessionStorage.getItem('userSession');
+    const usuarioSessionId: number | null = usuarioSessionIdString !== null ? +usuarioSessionIdString : null;
+
+    if (usuarioSessionId !== null) {
+      // Usar usuarioSessionId para obtener el usuario
+      const usuarioEncontrado = this.userService.getUser(usuarioSessionId);
+      
+      if (usuarioEncontrado) {
+        this.usuario = usuarioEncontrado;
+      } else {
+        console.error('Usuario no encontrado.');
+        this.router.navigate(['/login']);
+      }
+    } else {
+      // Navegar a la página de login si no se encuentra el ID de sesión
+      this.router.navigate(['/login']);
+    }
   }
+
+  
+
+  
   fechaNacimiento= ''
   saveOK = false
   esCalculador = false

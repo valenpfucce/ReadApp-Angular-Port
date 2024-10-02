@@ -9,16 +9,12 @@ export class UsuariosService {
   listaUsuarios = usuarios 
   validador: sistemaValidacion
   errors: String[] = []
+  loginVerification! : LoginVer
   private readonly sessionKey = 'userSession'
-  //private readonly sessionKey = 'userSession'
-  constructor(
-    public mail: String,
-    public pass: String,  
-    private loginVerification : LoginVer
-  ) {
-    this.validador = new sistemaValidacion()
-  }
-
+  constructor() {
+      this.validador = new sistemaValidacion();
+      this.loginVerification = new LoginVer();
+    }
 
   loginGetUsuarioIdToSS(mail: string, contrasenia: string) {
     const idUsuarioEncontrado = this.loginVerification.login(mail, contrasenia) 

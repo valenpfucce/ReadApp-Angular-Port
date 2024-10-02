@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { SidebarPerfilComponent } from '../../sidebar-perfil.component';
-import { Usuario, UsuarioSession } from '../../../../domains/usuario';
+import { Usuario } from '../../../../domains/usuario';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service';
 
 @Component({
   selector: 'readapp-perfil-amigos',
@@ -11,21 +12,33 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./perfil-amigos.component.css', '../../../../estilos_generales/cartas_libros_btn_mas.css']
 })
 export class PerfilAmigosComponent {
-  usuarioSession! : UsuarioSession
-  usuarioPosta! : Usuario
+  usuario! : Usuario
   constructor(
-    private router : Router,
-    private route : ActivatedRoute,
-  ){}
+    private router: Router,
+    private route: ActivatedRoute,
+    private userService: UsuariosService
+  ) {}
 
   ngOnInit() {
-    //Si no esta loggeado --> Al login
-    const usuarioSessionJSON = sessionStorage.getItem('userSession');
-    if (!usuarioSessionJSON) this.navegarA('/login')
-    
-    this.usuarioSession = JSON.parse(usuarioSessionJSON as string);
-    console.log('Usuario es:', this.usuarioSession.mail)
+    const usuarioSessionIdString = sessionStorage.getItem('userSession');
+    const usuarioSessionId: number | null = usuarioSessionIdString !== null ? +usuarioSessionIdString : null;
+
+    if (usuarioSessionId !== null) {
+      // Usar usuarioSessionId para obtener el usuario
+      const usuarioEncontrado = this.userService.getUser(usuarioSessionId);
+      
+      if (usuarioEncontrado) {
+        this.usuario = usuarioEncontrado;
+      } else {
+        console.error('Usuario no encontrado.');
+        this.router.navigate(['/login']);
+      }
+    } else {
+      // Navegar a la página de login si no se encuentra el ID de sesión
+      this.router.navigate(['/login']);
+    }
   }
+
 
 
   
