@@ -28,7 +28,7 @@ export class SidebarPerfilComponent {
     ),
     
     new menuSidebar(
-      "Libos Leidos",
+      "Libros leidos",
       "/imagenes/libros.svg",
       'info'
     ),
