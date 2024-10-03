@@ -136,3 +136,14 @@
       width: 25%;
     }
   }
+
+  
+  /* ANIMACIONES */
+.iconos-animacion {
+  transition: transform 0.3s ease;
+}
+
+.iconos-animacion:hover {
+    transform: scale(1.3);
+    cursor: pointer;
+}

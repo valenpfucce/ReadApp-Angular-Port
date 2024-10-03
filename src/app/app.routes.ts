@@ -11,6 +11,7 @@ import { PerfilLibrosLeidosComponent } from './pages/perfil/components/perfil-li
 import { PerfilRecomendacionesAValorarComponent } from './pages/perfil/components/perfil-recomendaciones-a-valorar/perfil-recomendaciones-a-valorar.component';
 import { RecomendacionesService } from './services/service_recomendaciones/recomendaciones.service';
 import { Recomendacion } from './domains/recomendacion';
+import { Usuario } from './domains/usuario';
 
 export type DataBusqueda = {
     showCheckBox: boolean
@@ -20,7 +21,7 @@ export type DataBusqueda = {
     ) => Recomendacion[]
 }
 
-const dataBusquedaHome: DataBusqueda = {
+const dataBusquedaHome: DataBusqueda = { 
     showCheckBox: false,
     realizarBusqueda:(serviceRecomendaciones, palabraABuscar) => {
         return serviceRecomendaciones.busquedaGeneral(palabraABuscar)
@@ -34,6 +35,23 @@ const dataBusquedaMisRecomendaciones: DataBusqueda = {
     }
 }
 
+class BusquedaUsuario{
+    usuario!: Usuario;
+    const usuarioSessionIdString = sessionStorage.getItem('userSession');
+    const usuarioSessionId: number | null = this.usuarioSessionIdString !== null ? +this.usuarioSessionIdString : null;
+
+    if (usuarioSessionId !== null) {
+      // Usar usuarioSessionId para obtener el usuario
+      const usuarioEncontrado = this.userService.getUser(usuarioSessionId);
+      
+      if (usuarioEncontrado) {
+        this.usuario = usuarioEncontrado;
+      } else {
+        console.error('Usuario no encontrado.');
+        this.router.navigate(['/login']);
+      }
+    }
+}
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },

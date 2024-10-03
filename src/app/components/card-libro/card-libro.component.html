@@ -1,7 +1,7 @@
 <article class="carta">
     <div class="contenido-carta">
       @if (mostrarBotonBorrar()) {
-        <div class="iconos-inferior-derecha">
+        <div class="iconos-inferior-derecha iconos-animacion">
           <img src="../imagenes/trash.svg" class="iconos" alt="borrar"/>
         </div>
       }
@@ -12,8 +12,12 @@
         <header class="primer-division">
           <h3 class="titulo-libro">{{libro.titulo_libro | cortarPalabra : 23}}</h3>
           <div>
+            @if (esTrending()){
             <img src="/imagenes/fire.svg" class="iconos" alt="Hot trendy" />
+            }
+            @if (esBestSeller()){
             <img src="/imagenes/certificate.svg" class="iconos" alt="Certificado" />
+            }
           </div>
         </header>
         <p class="autor-libro">Por {{libro.autor_libro}}</p>

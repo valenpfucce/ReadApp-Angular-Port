@@ -8,7 +8,7 @@ import { Libro } from '../../domains/libro';
   standalone: true,
   imports: [JoinListaGuionPipe, CortarPalabraPipe],
   templateUrl: './card-libro.component.html',
-  styleUrls: ['../../estilos_generales/cartas_libros.css', './card-libro.component.css']
+  styleUrl: './card-libro.component.css'
 })
 export class CardLibroComponent {
   @Input() libro!: Libro
@@ -16,5 +16,15 @@ export class CardLibroComponent {
 
   mostrarBotonBorrar() {
     return (this.modo === 'edicion') ? true : false
+  }
+
+  esTrending(){
+    //Aca tendria que hacer el calculo con las ventas semanales, hacerlo en el front o back???
+    return true
+  }
+
+  esBestSeller(){
+    //Aca tendria que hacer el calculo de si es best seller, hacerlo en el front o back???
+    return true
   }
 }
