@@ -1,7 +1,7 @@
 <article class="card-recomendacion">
     <header class="flex">
       <h3> {{recomendacion.titulo | cortarPalabra: 23}} </h3>
-      @if(recomendacion.propia){
+      @if(puedeEditar){
         <div class="flex">
           <button [routerLink]="['/recomendacion', recomendacion.id,'edicion']" class="boton-rec">
             <img src="/imagenes/pencil-simple.svg" width="20px" height="18px" />

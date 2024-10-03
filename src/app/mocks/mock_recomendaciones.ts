@@ -48,7 +48,7 @@ export const recomendaciones = [
     ),
     new Recomendacion(
       2,
-      usuarios[4].id,
+      usuarios[3].id,
       'Recomendación Misteriosa',
       true,
       '"Espero que te guste este conjunto de libros de misterios de Agatha Christie"',
@@ -66,7 +66,7 @@ export const recomendaciones = [
       '12hs'),
     new Recomendacion(
       3,
-      usuarios[4].id,
+      usuarios[3].id,
       'Clásicos!', 
       false,
       '"Te dejo una lista de libros clásicos que TENES que leer"',

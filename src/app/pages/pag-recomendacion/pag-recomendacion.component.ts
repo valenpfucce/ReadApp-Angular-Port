@@ -70,13 +70,13 @@ export class PagRecomendacionComponent {
       
 
       //VERIFICACION USUARIO DETALLE RECOMENDACION SI ES PRIVADA Y NO ES EL CREADOR
-      if((this.modoDetalle() && (this.recomendacion.creadorId === this.usuario.id) && this.recomendacion.propia === true)){ //NO ME ACUERDO COMO ERA EN EL BACK ESTO, no se si otro usuario que no era el creador podia editar
-        console.log('El usuario no tiene permisos de edicion')
-        this.navegarA('/home');
-      }
+      // if((this.modoDetalle() && (this.recomendacion.creadorId === this.usuario.id) && this.recomendacion.propia === true)){ //NO ME ACUERDO COMO ERA EN EL BACK ESTO, no se si otro usuario que no era el creador podia editar
+      //   console.log('El usuario no tiene permisos de edicion')
+      //   this.navegarA('/home');
+      // }
 
       //VERIFICACION USUARIO EDITAR RECOMENDACION
-      if((this.modoEdicion() && this.recomendacion.creadorId == this.usuario.id)){ //NO ME ACUERDO COMO ERA EN EL BACK ESTO, no se si otro usuario que no era el creador podia editar
+      if(this.modoEdicion() && (this.recomendacion.creadorId != this.usuario.id)){ //NO ME ACUERDO COMO ERA EN EL BACK ESTO, no se si otro usuario que no era el creador podia editar
         console.log('El usuario no tiene permisos de edicion')
         this.navegarA('/home');
       }
