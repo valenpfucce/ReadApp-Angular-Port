@@ -5,6 +5,7 @@ import { Valoracion } from "./valoracion";
 export class Recomendacion implements Entidad{
     constructor(
       public id: number,
+      public creadorId : number,
       public titulo: string,
       public propia: boolean,
       public descripcion: string,

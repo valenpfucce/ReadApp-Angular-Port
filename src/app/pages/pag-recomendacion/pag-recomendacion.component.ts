@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { RecomendacionesService } from '../../services/service_recomendaciones/recomendaciones.service'
 import { CardValoracionComponent } from '../../components/card-valoracion/card-valoracion.component'
 import { CardLibroMasComponent } from '../../components/card-libro-mas/card-libro-mas.component'
+import { Usuario } from '../../domains/usuario'
+import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
 
 
 @Component({
@@ -20,19 +22,38 @@ import { CardLibroMasComponent } from '../../components/card-libro-mas/card-libr
 })
 export class PagRecomendacionComponent {
   modo!: 'detalle' | 'edicion';
+  usuario!: Usuario
   idRecomendacion! : number
   recomendacion! : Recomendacion
   
   constructor(
     private router : Router,
     private route : ActivatedRoute,
-    private serviceRecomendacion : RecomendacionesService
+    private serviceRecomendacion : RecomendacionesService,
+    private userService: UsuariosService
   ){}
 
   ngOnInit() {
-    //Si no esta loggeado --> Al login
-    const usuarioSession = sessionStorage.getItem('userSession');
-    if (!usuarioSession) this.navegarA('/login')
+    // ===== USER =====
+    const usuarioSessionIdString = sessionStorage.getItem('userSession');
+    const usuarioSessionId: number | null = usuarioSessionIdString !== null ? +usuarioSessionIdString : null;
+
+    if (usuarioSessionId !== null) {
+      // Usar usuarioSessionId para obtener el usuario
+      const usuarioEncontrado = this.userService.getUser(usuarioSessionId);
+      
+      if (usuarioEncontrado) {
+        this.usuario = usuarioEncontrado;
+      } else {
+        console.error('Usuario no encontrado.');
+        this.router.navigate(['/login']);
+      }
+    } else {
+      // Navegar a la página de login si no se encuentra el ID de sesión
+      this.router.navigate(['/login']);
+    }
+
+    // ===== ROUTE PARAMETRO =====
     //Traer los parametros del routing
     this.route.params.subscribe(params => {
       this.idRecomendacion = +params['id']; 
@@ -46,7 +67,20 @@ export class PagRecomendacionComponent {
         this.navegarA('/home'); 
       }
       this.modo = this.route.snapshot.data['modo'];
-      //Acá hay que validar si el usuario tiene permisos de edicion sea cual fuere el modo
+      
+
+      //VERIFICACION USUARIO DETALLE RECOMENDACION SI ES PRIVADA Y NO ES EL CREADOR
+      if((this.modoDetalle() && (this.recomendacion.creadorId === this.usuario.id) && this.recomendacion.propia === true)){ //NO ME ACUERDO COMO ERA EN EL BACK ESTO, no se si otro usuario que no era el creador podia editar
+        console.log('El usuario no tiene permisos de edicion')
+        this.navegarA('/home');
+      }
+
+      //VERIFICACION USUARIO EDITAR RECOMENDACION
+      if((this.modoEdicion() && this.recomendacion.creadorId == this.usuario.id)){ //NO ME ACUERDO COMO ERA EN EL BACK ESTO, no se si otro usuario que no era el creador podia editar
+        console.log('El usuario no tiene permisos de edicion')
+        this.navegarA('/home');
+      }
+
     });
   }
 

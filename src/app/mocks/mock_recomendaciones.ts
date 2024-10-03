@@ -1,10 +1,12 @@
 import { Recomendacion } from "../domains/recomendacion";
 import { Valoracion } from "../domains/valoracion";
 import { libros } from '../mocks/mock_libros';
+import { usuarios } from "./mock_usuarios";
 
 export const recomendaciones = [
     new Recomendacion(
       1,
+      usuarios[4].id,
       'Recomendación Loca', 
       false,
       '"Es un conjunto de libros re copados que se puede leer en familia. Muy recomendable para niños"',
@@ -46,6 +48,7 @@ export const recomendaciones = [
     ),
     new Recomendacion(
       2,
+      usuarios[4].id,
       'Recomendación Misteriosa',
       true,
       '"Espero que te guste este conjunto de libros de misterios de Agatha Christie"',
@@ -63,6 +66,7 @@ export const recomendaciones = [
       '12hs'),
     new Recomendacion(
       3,
+      usuarios[4].id,
       'Clásicos!', 
       false,
       '"Te dejo una lista de libros clásicos que TENES que leer"',
@@ -80,6 +84,7 @@ export const recomendaciones = [
       '18hs'),
     new Recomendacion(
       4,
+      usuarios[4].id,
       'Jane Austen <3', 
       false,
       '"Mejores libros de esta hermosa escritora. Romance"',
@@ -97,6 +102,7 @@ export const recomendaciones = [
       '25hs'),
     new Recomendacion(
       5,
+      usuarios[4].id,
       'Mitología Griega', 
       true,
       'Estos libros son reversiones de historias clásicas de la mitología griega. Muy entretenidos',
@@ -114,6 +120,7 @@ export const recomendaciones = [
       '19hs'),
     new Recomendacion(
       6,
+      usuarios[3].id,
       'Fantasía', 
       false,
       'Estos libros son el comienzo de sagas que te van a dejar maravillado y con ganas de estar dentro de ese mundo',
