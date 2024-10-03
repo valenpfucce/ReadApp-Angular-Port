@@ -19,11 +19,12 @@ export class Usuario implements Entidad{
 
   constructor(
     public id: number,
-    public nombre?: string, 
-    public apellido?: string, 
-    public username?: string,
-    public fechaNacimiento?: Date,
-    public mail?: string 
+    public nombre : string, 
+    public apellido : string, 
+    public username : string,
+    public mail : string,
+    public password : string,
+    public fechaNacimiento? : Date,
   ) {
     this.validador = new sistemaValidacion();
   }
@@ -56,32 +57,6 @@ export class Usuario implements Entidad{
   }
 
 }
-
-export class UsuarioSession {
-  validador: sistemaValidacion
-  errors: String[] = []
-  constructor(
-    public mail: String,
-    public pass: String
-  ) {
-    this.validador = new sistemaValidacion()
-  }
-  // hasErrors(field: string): boolean {
-  //   return this.errors.some((_) => _.field == field)
-  // }
-
-  // errorsFrom(field: string) {
-  //   return this.errors
-  //     .filter((_) => _.field == field)
-  //     .map((_) => _.message)
-  //     .join('. ')
-  // }
-
-  addError(mensajeError: string) {
-    this.errors.push(mensajeError)
-  }
-}
-
 
 
 export class sistemaValidacion{

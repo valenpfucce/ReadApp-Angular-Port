@@ -1,26 +1,38 @@
 import { Injectable } from '@angular/core'
-import { sesionesUsuarios } from '../../mocks/mock_usuariossesiones'
+import { usuarios, LoginVer } from '../../mocks/mock_usuarios'
+import { sistemaValidacion, Usuario } from '../../domains/usuario'
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
+  listaUsuarios = usuarios 
+  validador: sistemaValidacion
+  errors: String[] = []
+  loginVerification! : LoginVer
   private readonly sessionKey = 'userSession'
-  constructor() {}
-
-  login(mail: string, contrasenia: string): boolean {
-    const usuarioEncontrado = sesionesUsuarios.find(
-      (usuario) =>
-        usuario.mail.trim().toLowerCase() === mail.trim().toLowerCase()
-    )
-
-    if (usuarioEncontrado?.pass.trim() === contrasenia.trim()) {
-      sessionStorage.setItem(this.sessionKey, JSON.stringify(usuarioEncontrado))
-      console.log('Login exitoso: ', usuarioEncontrado)
-      return true
-    } else {
-      usuarioEncontrado?.addError('Contraseña incorrecta.')
-      return false
+  constructor() {
+      this.validador = new sistemaValidacion();
+      this.loginVerification = new LoginVer();
     }
+
+  loginGetUsuarioIdToSS(mail: string, contrasenia: string) {
+    const idUsuarioEncontrado = this.loginVerification.login(mail, contrasenia) 
+    if(idUsuarioEncontrado === null){
+      this.addError('Contraseña incorrecta.')
+      return null
+    } else {
+      sessionStorage.setItem(this.sessionKey, idUsuarioEncontrado.toString() )
+      console.log('Login exitoso, ID de Usuario: ', idUsuarioEncontrado)
+      return idUsuarioEncontrado
+    }
+  }
+
+  getUser(id: number){
+    return this.listaUsuarios.find(usuario => usuario.id === id)
+  }
+
+  addError(mensajeError: string) {
+    this.errors.push(mensajeError)
   }
 }

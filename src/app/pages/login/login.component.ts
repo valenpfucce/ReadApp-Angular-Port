@@ -7,7 +7,6 @@ import {
   Validators
 } from '@angular/forms'
 import { Router } from '@angular/router'
-import { UsuarioSession } from '../../domains/usuario'
 import { ValidacionFieldComponent } from '../../pages/perfil/components/perfil-info/validacion-field/validacion-field.component'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
 import { CommonModule } from '@angular/common'
@@ -25,17 +24,19 @@ import { CommonModule } from '@angular/common'
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  usuario = new UsuarioSession('', '')
-  // mail = ''
-  // contrasenia = 'password'
-  loginForm: FormGroup
+  mail! : string;
+  contrasenia! : string;
+  loginForm!: FormGroup
   showPasswordError = false
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private userService: UsuariosService
-  ) {
+  ) {}
+
+  ngOnInit(){
+    console.log('Entro al login')
     this.loginForm = this.fb.group({
       mail: ['', [Validators.required, Validators.email]],
       contrasenia: ['', [Validators.required]]
@@ -43,6 +44,7 @@ export class LoginComponent {
   }
 
   login() {
+    console.log('Entro al login()')
     const { mail, contrasenia } = this.loginForm.value
     console.log(this.loginForm)
     if (this.loginForm.invalid) {
@@ -51,12 +53,11 @@ export class LoginComponent {
       return
     }
 
-    const loginSuccess = this.userService.login(mail, contrasenia)
-
-    if (loginSuccess) {
-      this.router.navigateByUrl('/home')
-    } else {
+    const loginSuccess = this.userService.loginGetUsuarioIdToSS(mail, contrasenia)
+    if (loginSuccess === null) {
       this.showPasswordError = true
+    } else {
+      this.router.navigateByUrl('/home')
     }
   }
 }

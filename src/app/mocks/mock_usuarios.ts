@@ -1,4 +1,6 @@
+import { Injectable } from "@angular/core";
 import { Usuario } from "../domains/usuario";
+
 
 export const usuarios = [
     new Usuario(
@@ -6,15 +8,58 @@ export const usuarios = [
         'Juan', 
         'Perez',
         'juancito',
-        new Date(12-9-24),
-        'juanperez@gmail.com'
+        'juanperez@gmail.com',
+        'password',
+        new Date(12-9-24)
     ),
     new Usuario(
         2,
         'Maria', 
         'Gomez',
         'mariagomez',
-        new Date(2-5-29),
-        'mariagomez@gmail.com'
-    )
+        'mariagomez@gmail.com',
+        'password',
+        new Date(2-5-29)
+    ),
+    new Usuario(
+        3,
+        'Mariano', 
+        'Apellido Falso',
+        'marianox34',
+        'mariano999@gmail.com',
+        'mamatequiero123',
+        new Date(2-5-29)
+    ),
+    new Usuario(
+        4,
+        'User', 
+        'Admin',
+        'admin',
+        'admin@gmail.com',
+        'password',
+        new Date(2-5-29)
+    ),
+    new Usuario(
+        5,
+        'MC', 
+        'A',
+        'mc@gmail.com',
+        'mca.lo@gmail.com',
+        '12345678',
+        new Date(2-5-29)
+    ),
 ]
+
+
+export class LoginVer{
+    login(mail: string, contrasenia: string) {
+        const usuarioEncontrado = usuarios.find(
+          usuario => usuario.mail.trim().toLowerCase() === mail.trim().toLowerCase()
+        );
+        if (usuarioEncontrado?.password.trim() === contrasenia.trim()) {
+          return usuarioEncontrado.id
+        } else {
+          return null 
+        }
+    }
+}
