@@ -35,7 +35,7 @@ export class BusquedaRecomendacionesComponent {
     this.recomendaciones = this.data.realizarBusqueda(
       this.serviceRecomendaciones,
       undefined,
-      undefined
+      this.usuario.id
     )
   }
 
@@ -46,7 +46,8 @@ export class BusquedaRecomendacionesComponent {
   buscar(palabraABuscar?: string){
     this.recomendaciones = this.data.realizarBusqueda(
       this.serviceRecomendaciones,
-      palabraABuscar
+      palabraABuscar,
+      undefined
     )
   }
 
