@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, NgModule, Output } from '@angular/core';
-import { HeaderComponent } from "../header/header.component";
+import { HeaderComponent } from "../../header.component";
 import { FormsModule } from '@angular/forms';
 
 @Component({

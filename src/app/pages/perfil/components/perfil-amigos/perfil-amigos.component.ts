@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SidebarPerfilComponent } from '../../sidebar-perfil.component';
-import { Usuario } from '../../../../domains/usuario';
+import { Usuario } from '../../../../domain/usuario';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserSessionStorageService } from '../../../../services/service_user_session_storage/user-session-storage.service';
 

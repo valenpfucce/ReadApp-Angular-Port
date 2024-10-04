@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { JoinListaGuionPipe } from '../../pipes/join_lista_guion_pipe/join-lista-guion.pipe';
 import { CortarPalabraPipe } from '../../pipes/cortar-palabra-pipe/cortar-palabra.pipe';
-import { Libro } from '../../domains/libro';
+import { Libro } from '../../domain/libro';
 
 @Component({
   selector: 'readapp-card-libro',

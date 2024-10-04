@@ -2,11 +2,11 @@ import { Component } from '@angular/core'
 import dayjs from 'dayjs'
 import { FormsModule } from '@angular/forms';
 import { SidebarPerfilComponent } from '../../sidebar-perfil.component';
-import { Usuario } from '../../../../domains/usuario';
 import { ValidacionFieldComponent } from "./validacion-field/validacion-field.component";
 import { CommonModule } from '@angular/common';
 import { UserSessionStorageService } from '../../../../services/service_user_session_storage/user-session-storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Usuario } from '../../../../domain/usuario';
 
 
 @Component({

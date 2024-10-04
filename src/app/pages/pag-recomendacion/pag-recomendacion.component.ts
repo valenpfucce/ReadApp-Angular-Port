@@ -1,12 +1,12 @@
 import { Component } from '@angular/core'
 import { HeaderComponent } from '../../components/header/header.component'
 import { CardLibroComponent } from '../../components/card-libro/card-libro.component'
-import { Recomendacion } from '../../domains/recomendacion'
+import { Recomendacion } from '../../domain/recomendacion'
 import { ActivatedRoute, Router } from '@angular/router'
 import { RecomendacionesService } from '../../services/service_recomendaciones/recomendaciones.service'
 import { CardValoracionComponent } from '../../components/card-valoracion/card-valoracion.component'
 import { CardLibroMasComponent } from '../../components/card-libro-mas/card-libro-mas.component'
-import { Usuario } from '../../domains/usuario'
+import { Usuario } from '../../domain/usuario'
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
 
 

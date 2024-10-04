@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CortarPalabraPipe } from '../../pipes/cortar-palabra-pipe/cortar-palabra.pipe';
 import { Router, RouterModule } from '@angular/router'
-import { Recomendacion } from '../../domains/recomendacion';
+import { Recomendacion } from '../../domain/recomendacion';
 
 @Component({
   selector: 'readapp-card-recomendacion',

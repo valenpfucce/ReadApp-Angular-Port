@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Usuario } from "../domains/usuario";
+import { Usuario } from "../domain/usuario";
 
 
 export const usuarios = [

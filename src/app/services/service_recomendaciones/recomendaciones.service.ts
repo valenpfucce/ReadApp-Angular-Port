@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { recomendaciones } from '../../mocks/mock_recomendaciones';
-import { Usuario } from '../../domains/usuario';
+import { Usuario } from '../../domain/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,6 @@ export class RecomendacionesService {
   }
 
   busquedaMisRecomendaciones(palabraABuscar?: string, idUsuario?: Number){
-    return this.listaRecomendaciones.filter(recomendacion => recomendacion.creadorId)
+    return this.listaRecomendaciones.filter(recomendacion => recomendacion.creadorId == idUsuario)
   }
 }
