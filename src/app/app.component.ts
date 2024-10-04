@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Usuario } from './domains/usuario';
+
 
 @Component({
   selector: 'app-root',
@@ -10,5 +10,4 @@ import { Usuario } from './domains/usuario';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'readapp-grupo-6';  
 }

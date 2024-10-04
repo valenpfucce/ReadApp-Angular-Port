@@ -14,7 +14,7 @@ export class UsuariosService {
   constructor() {
       this.validador = new sistemaValidacion();
       this.loginVerification = new LoginVer();
-    }
+  }
 
   loginGetUsuarioIdToSS(mail: string, contrasenia: string) {
     const idUsuarioEncontrado = this.loginVerification.login(mail, contrasenia) 
@@ -27,6 +27,7 @@ export class UsuariosService {
       return idUsuarioEncontrado
     }
   }
+
 
   getUser(id: number){
     return this.listaUsuarios.find(usuario => usuario.id === id)

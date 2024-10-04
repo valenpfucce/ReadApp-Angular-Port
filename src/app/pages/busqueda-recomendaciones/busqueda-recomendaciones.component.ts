@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RecomendacionesService } from '../../services/service_recomendaciones/recomendaciones.service';
 import { Recomendacion } from '../../domains/recomendacion';
 import { DataBusqueda } from '../../app.routes';
+import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service';
+import { Usuario } from '../../domains/usuario';
 
 @Component({
   selector: 'readapp-busqueda-recomendaciones',
@@ -15,24 +17,29 @@ import { DataBusqueda } from '../../app.routes';
   styleUrl: './busqueda-recomendaciones.component.css'
 })
 export class BusquedaRecomendacionesComponent {
+  usuario!: Usuario
   data!: DataBusqueda
   recomendaciones!: Recomendacion[]
   constructor(
     private router : Router,
     private route : ActivatedRoute,
-    public serviceRecomendaciones: RecomendacionesService
+    private serviceRecomendaciones: RecomendacionesService,
+    private userServiceSS: UserSessionStorageService
   ){}
 
   ngOnInit(){
-    //Si no esta loggeado --> Al login
-    const usuarioSession = sessionStorage.getItem('userSession');
-    if (!usuarioSession) this.navegarA('/login')
+    this.usuario = this.userServiceSS.obtenerUsuarioDelSS();
 
     this.data = this.route.snapshot.data as DataBusqueda
     this.recomendaciones = this.data.realizarBusqueda(
       this.serviceRecomendaciones,
+      undefined,
       undefined
     )
+  }
+
+  puedeEditarRecomendacion(recomendacion : Recomendacion) : Boolean{
+    return recomendacion.creadorId === this.usuario.id
   }
   
   buscar(palabraABuscar?: string){

@@ -11,16 +11,18 @@ import { PerfilLibrosLeidosComponent } from './pages/perfil/components/perfil-li
 import { PerfilRecomendacionesAValorarComponent } from './pages/perfil/components/perfil-recomendaciones-a-valorar/perfil-recomendaciones-a-valorar.component';
 import { RecomendacionesService } from './services/service_recomendaciones/recomendaciones.service';
 import { Recomendacion } from './domains/recomendacion';
+import { Usuario } from './domains/usuario';
 
 export type DataBusqueda = {
     showCheckBox: boolean
     realizarBusqueda: (
         serviceRecomendaciones: RecomendacionesService,
-        palabraABuscar?: string
+        palabraABuscar?: string,
+        idUsuario?: number
     ) => Recomendacion[]
 }
 
-const dataBusquedaHome: DataBusqueda = {
+const dataBusquedaHome: DataBusqueda = { 
     showCheckBox: false,
     realizarBusqueda:(serviceRecomendaciones, palabraABuscar) => {
         return serviceRecomendaciones.busquedaGeneral(palabraABuscar)
@@ -29,8 +31,8 @@ const dataBusquedaHome: DataBusqueda = {
 
 const dataBusquedaMisRecomendaciones: DataBusqueda = {
     showCheckBox: true,
-    realizarBusqueda:(serviceRecomendaciones, palabraABuscar) => {
-        return serviceRecomendaciones.busquedaMisRecomendaciones(palabraABuscar)
+    realizarBusqueda:(serviceRecomendaciones, palabraABuscar, idUsuario) => {
+        return serviceRecomendaciones.busquedaMisRecomendaciones(palabraABuscar, idUsuario)
     }
 }
 
