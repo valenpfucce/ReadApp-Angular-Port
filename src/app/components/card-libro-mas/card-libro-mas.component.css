@@ -1,5 +1,5 @@
 .carta.mas {
-    background-color: var(--color-secundario); 
+    background-color: var(--color-beige); 
 }
 
 .circulo-mas {
@@ -21,7 +21,7 @@
 }
   
 .circulo-mas:hover {
-    background-color: var(--color-cuarto);
+    background-color: var(--color-clarito);
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
     transform: translateY(-0.3rem); 
 }

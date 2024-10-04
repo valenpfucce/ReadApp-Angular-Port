@@ -28,7 +28,7 @@
     color: var(--color-letra-carta);
     width: 27rem; 
     height: 7.5rem; 
-    background-color: var(--color-quinto);
+    background-color: var(--color-beige-mas-claro);
     border-radius: 1rem; 
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     margin: 0.5rem; 
@@ -57,13 +57,12 @@
 .amigo_info h3 {
     text-align: start;
     font-size: 1.4em;
-    color: #8f8a8a;
+    color: var(--color-marron);
 }
 
 
 .icono_delete:hover {
     font-weight: bold;
-    color: var(--color-primario);
 }
 
 .carta_amigo button {

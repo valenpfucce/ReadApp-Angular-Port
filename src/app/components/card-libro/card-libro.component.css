@@ -1,9 +1,9 @@
 
 .carta {
-    color: var(--color-blanco);
+    color: white;
     width: 56.72rem;
     height: 27.5rem;
-    background-color: var(--color-terciario);
+    background-color: var(--color-beige);
     border-radius: 0.94rem;
     overflow: hidden;
     box-shadow: 0 0.31rem 0.64rem rgba(0, 0, 0, 0.2);
@@ -77,7 +77,7 @@
 
 .autor-libro {
     font-size: 2.2rem;
-    color: var(--color-secundario);
+    color: var(--color-fondo);
 }
 
 .detalles-libro {
@@ -94,15 +94,11 @@
     margin-bottom: 0.78rem;
 }
 
-
-
-
 @media screen and (min-width: 401px) and (max-width: 768px) {
 
     .carta {
         width: 34rem;
         height: 19rem;
-        background-color: var(--color-terciario);
         box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
         padding: 0.5rem;
     }

@@ -6,7 +6,7 @@
   
   body {
     min-height: 100vh;
-    background: radial-gradient(ellipse, var(--color-terciario) 30%, var(--color-primario) 80%);
+    background: radial-gradient(ellipse, var(--color-beige) 30%, var(--color-marron) 80%);
 
     background-position: center; 
     background-size: 100% 100%;
@@ -37,7 +37,7 @@
   
   .title-logIn {
     font-size: 1.5rem;
-    color: var(--color-primario);
+    color: var(--color-marron);
   }
   
   .title-logIn img {
@@ -51,11 +51,11 @@
   }
   
   .label, span {
-    color: var(--color-sexto);
+    color: var(--color-bordo);
   }
   
   .obligatorio-input {
-    color: var(--color-sexto);
+    color: var(--color-bordo);
     font-size: 15px;
   }
   
@@ -82,7 +82,7 @@
     pointer-events: none;
   }
   .error-message {
-    color: var(--color-sexto);
+    color: var(--color-bordo);
     font-size: 12px;
   }
 

@@ -1,13 +1,13 @@
 .card-recomendacion{
     width: 27rem;
     height: 25rem;
-    background-color: var(--color-cuarto);
+    background-color: var(--color-clarito);
     border-radius: 1.2rem;
     margin: 1.5rem;
     padding: 1.5rem;
     padding-bottom: 0;
     border-style:solid;
-    border-color: var(--color-quinto);
+    border-color: var(--color-beige-mas-claro);
     position: relative;
 }
 

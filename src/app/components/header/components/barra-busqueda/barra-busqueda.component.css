@@ -1,5 +1,5 @@
 .barra-busqueda-container {
-    background-color: var(--color-quinto);
+    background-color: var(--color-beige-mas-claro);
     padding: 1rem 2rem;
     position: fixed;
     top: 8rem;
@@ -16,7 +16,7 @@
 }
 
 .barra-busqueda button {
-    background-color: var(--color-cuarto);
+    background-color: var(--color-clarito);
     border: none;
     padding: 0.5rem 1rem;
     margin-left: 0.5rem;
@@ -25,12 +25,12 @@
 }
 
 .barra-busqueda button:hover {
-    background-color: var(--color-quinto);
-    box-shadow: 1px 1px 5px var(--color-primario);
+    background-color: var(--color-beige-mas-claro);
+    box-shadow: 1px 1px 5px var(--color-marron);
 }
 
 .barra-busqueda label {
-    color: var(--color-primario);
+    color: var(--color-marron);
     line-height: 0.9;
     display: grid;
     grid-template-columns: 1rem auto;
@@ -42,8 +42,8 @@
     appearance: none;
     width: 1rem;
     height: 1rem;
-    color: var(--color-primario);
-    border: 1.5px solid var(--color-primario);
+    color: var(--color-marron);
+    border: 1.5px solid var(--color-marron);
     background-color: transparent;
     display: grid;
     place-content: center;
@@ -56,7 +56,7 @@
     height: 0.5em;
     transform: scale(0);
     transition: 120ms transform ease-in-out;
-    box-shadow: inset 1em 1em var(--color-primario);
+    box-shadow: inset 1em 1em var(--color-marron);
     transform-origin: bottom left;
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
