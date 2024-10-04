@@ -21,7 +21,7 @@ export class RecomendacionesService {
     return this.listaRecomendaciones
   }
 
-  busquedaMisRecomendaciones(palabraABuscar?: string, usuarioId : number){
-    return this.listaRecomendaciones.filter(recomendacion => recomendacion.)
+  busquedaMisRecomendaciones(palabraABuscar?: string, idUsuario?: Number){
+    return this.listaRecomendaciones.filter(recomendacion => recomendacion.creadorId)
   }
 }

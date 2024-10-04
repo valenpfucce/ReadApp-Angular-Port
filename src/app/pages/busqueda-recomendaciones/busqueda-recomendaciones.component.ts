@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RecomendacionesService } from '../../services/service_recomendaciones/recomendaciones.service';
 import { Recomendacion } from '../../domains/recomendacion';
 import { DataBusqueda } from '../../app.routes';
-import { UsuariosService } from '../../services/service_usuarios/usuarios.service';
+import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service';
 import { Usuario } from '../../domains/usuario';
 
 @Component({
@@ -23,33 +23,17 @@ export class BusquedaRecomendacionesComponent {
   constructor(
     private router : Router,
     private route : ActivatedRoute,
-    public serviceRecomendaciones: RecomendacionesService,
-    private userService: UsuariosService
+    private serviceRecomendaciones: RecomendacionesService,
+    private userServiceSS: UserSessionStorageService
   ){}
 
   ngOnInit(){
-    // ===== USER =====
-    const usuarioSessionIdString = sessionStorage.getItem('userSession');
-    const usuarioSessionId: number | null = usuarioSessionIdString !== null ? +usuarioSessionIdString : null;
-
-    if (usuarioSessionId !== null) {
-      // Usar usuarioSessionId para obtener el usuario
-      const usuarioEncontrado = this.userService.getUser(usuarioSessionId);
-      
-      if (usuarioEncontrado) {
-        this.usuario = usuarioEncontrado;
-      } else {
-        console.error('Usuario no encontrado.');
-        this.router.navigate(['/login']);
-      }
-    } else {
-      // Navegar a la página de login si no se encuentra el ID de sesión
-      this.router.navigate(['/login']);
-    }
+    this.usuario = this.userServiceSS.obtenerUsuarioDelSS();
 
     this.data = this.route.snapshot.data as DataBusqueda
     this.recomendaciones = this.data.realizarBusqueda(
       this.serviceRecomendaciones,
+      undefined,
       undefined
     )
   }

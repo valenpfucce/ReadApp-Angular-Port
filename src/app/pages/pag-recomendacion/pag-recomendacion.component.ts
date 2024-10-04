@@ -7,7 +7,7 @@ import { RecomendacionesService } from '../../services/service_recomendaciones/r
 import { CardValoracionComponent } from '../../components/card-valoracion/card-valoracion.component'
 import { CardLibroMasComponent } from '../../components/card-libro-mas/card-libro-mas.component'
 import { Usuario } from '../../domains/usuario'
-import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
+import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
 
 
 @Component({
@@ -30,28 +30,11 @@ export class PagRecomendacionComponent {
     private router : Router,
     private route : ActivatedRoute,
     private serviceRecomendacion : RecomendacionesService,
-    private userService: UsuariosService
+    private userServiceSS: UserSessionStorageService
   ){}
 
   ngOnInit() {
-    // ===== USER =====
-    const usuarioSessionIdString = sessionStorage.getItem('userSession');
-    const usuarioSessionId: number | null = usuarioSessionIdString !== null ? +usuarioSessionIdString : null;
-
-    if (usuarioSessionId !== null) {
-      // Usar usuarioSessionId para obtener el usuario
-      const usuarioEncontrado = this.userService.getUser(usuarioSessionId);
-      
-      if (usuarioEncontrado) {
-        this.usuario = usuarioEncontrado;
-      } else {
-        console.error('Usuario no encontrado.');
-        this.router.navigate(['/login']);
-      }
-    } else {
-      // Navegar a la página de login si no se encuentra el ID de sesión
-      this.router.navigate(['/login']);
-    }
+    this.usuario = this.userServiceSS.obtenerUsuarioDelSS();
 
     // ===== ROUTE PARAMETRO =====
     //Traer los parametros del routing

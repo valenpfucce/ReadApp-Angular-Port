@@ -17,7 +17,8 @@ export type DataBusqueda = {
     showCheckBox: boolean
     realizarBusqueda: (
         serviceRecomendaciones: RecomendacionesService,
-        palabraABuscar?: string
+        palabraABuscar?: string,
+        idUsuario?: number
     ) => Recomendacion[]
 }
 
@@ -30,28 +31,11 @@ const dataBusquedaHome: DataBusqueda = {
 
 const dataBusquedaMisRecomendaciones: DataBusqueda = {
     showCheckBox: true,
-    realizarBusqueda:(serviceRecomendaciones, palabraABuscar) => {
-        return serviceRecomendaciones.busquedaMisRecomendaciones(palabraABuscar)
+    realizarBusqueda:(serviceRecomendaciones, palabraABuscar, idUsuario) => {
+        return serviceRecomendaciones.busquedaMisRecomendaciones(palabraABuscar, idUsuario)
     }
 }
 
-class BusquedaUsuario{
-    usuario!: Usuario;
-    const usuarioSessionIdString = sessionStorage.getItem('userSession');
-    const usuarioSessionId: number | null = this.usuarioSessionIdString !== null ? +this.usuarioSessionIdString : null;
-
-    if (usuarioSessionId !== null) {
-      // Usar usuarioSessionId para obtener el usuario
-      const usuarioEncontrado = this.userService.getUser(usuarioSessionId);
-      
-      if (usuarioEncontrado) {
-        this.usuario = usuarioEncontrado;
-      } else {
-        console.error('Usuario no encontrado.');
-        this.router.navigate(['/login']);
-      }
-    }
-}
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
