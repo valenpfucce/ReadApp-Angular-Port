@@ -3,7 +3,7 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { ActivatedRoute, Router, RouterModule} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service';
-import { Usuario } from '../../domains/usuario';
+import { Usuario } from '../../domain/usuario';
 
 
 @Component({

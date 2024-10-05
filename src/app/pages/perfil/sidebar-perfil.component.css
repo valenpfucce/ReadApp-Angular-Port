@@ -68,13 +68,13 @@
     font-style: var(--fuente-default);
     font-size: 1.9rem;
     text-decoration: none;
-    color: #000000;
+    color: black;
     
 }
 
 .boton_menu a:hover {
     font-weight: bold;
-    color: var(--color-primario);
+    color: var(--color-marron);
     
 }
 

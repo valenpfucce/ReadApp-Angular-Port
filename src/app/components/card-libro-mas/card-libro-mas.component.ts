@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'readapp-card-libro-mas',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['../../estilos_generales/cartas_libros.css', './card-libro-mas.component.css']
 })
 export class CardLibroMasComponent {
-
+  @Input() showCard = false
 }

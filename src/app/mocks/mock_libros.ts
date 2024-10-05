@@ -1,4 +1,4 @@
-import { Libro } from "../domains/libro";
+import { Libro } from "../domain/libro";
 
 export const libros = [
     new Libro(

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { libros } from '../../mocks/mock_libros';
-import { Libro } from '../../domains/libro';
+import { Libro } from '../../domain/libro';
 
 @Injectable({
   providedIn: 'root'

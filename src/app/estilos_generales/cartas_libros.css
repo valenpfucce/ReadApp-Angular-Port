@@ -19,7 +19,7 @@
     color: var(--color-letra-carta);
     width: 56.72rem;
     height: 27.5rem;
-    background-color: var(--color-terciario);
+    background-color: var(--color-beige);
     border-radius: 0.94rem;
     overflow: hidden;
     box-shadow: 0 0.31rem 0.64rem rgba(0, 0, 0, 0.2);
@@ -135,7 +135,6 @@
     .carta {
         width: 34rem;
         height: 19rem;
-        background-color: var(--color-terciario);
         box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
         padding: 0.5rem;
     }

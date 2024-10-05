@@ -1,12 +1,12 @@
-import { Recomendacion } from "../domains/recomendacion";
-import { Valoracion } from "../domains/valoracion";
+import { Recomendacion } from "../domain/recomendacion";
+import { Valoracion } from "../domain/valoracion";
 import { libros } from '../mocks/mock_libros';
 import { usuarios } from "./mock_usuarios";
 
 export const recomendaciones = [
     new Recomendacion(
       1,
-      usuarios[4].id,
+      usuarios[2].id,
       'Recomendación Loca', 
       false,
       '"Es un conjunto de libros re copados que se puede leer en familia. Muy recomendable para niños"',
@@ -102,7 +102,7 @@ export const recomendaciones = [
       '25hs'),
     new Recomendacion(
       5,
-      usuarios[4].id,
+      usuarios[2].id,
       'Mitología Griega', 
       true,
       'Estos libros son reversiones de historias clásicas de la mitología griega. Muy entretenidos',

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { Valoracion } from '../../domains/valoracion'
+import { Valoracion } from '../../domain/valoracion'
 
 @Component({
   selector: 'readapp-card-valoracion',

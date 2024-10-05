@@ -5,10 +5,9 @@
 .notfound h1 {
     font-size: 100px;
     font-weight: bold;
-    background: linear-gradient(135deg, var( --color-sexto), var(--color-secundario));
+    background: linear-gradient(135deg, var( --color-bordo), var(--color-fondo));
     background-clip: text;
     color: transparent;
-    
 }
 
 .notfound h2 {
@@ -25,7 +24,7 @@
 .notfound button {
     all: unset;
     text-decoration: none;
-    background-color: var(--color-primario);
+    background-color: var(--color-marron);
     color: white;
     padding: 10px 20px;
     border-radius: 5px;

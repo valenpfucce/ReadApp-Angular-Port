@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { usuarios, LoginVer } from '../../mocks/mock_usuarios'
-import { sistemaValidacion, Usuario } from '../../domains/usuario'
+import { sistemaValidacion, Usuario } from '../../domain/usuario'
 
 @Injectable({
   providedIn: 'root'
