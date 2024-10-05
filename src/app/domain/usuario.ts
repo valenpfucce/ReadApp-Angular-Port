@@ -39,8 +39,6 @@ export class Usuario implements Entidad{
       return false;
     }
     return true;
-    
-  /*pegarle al service / back con nuevos datos*/
 
   }
  

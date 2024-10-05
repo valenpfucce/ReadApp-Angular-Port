@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { UserSessionStorageService } from '../../../../services/service_user_session_storage/user-session-storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from '../../../../domain/usuario';
+import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service';
 
 
 @Component({
@@ -23,28 +24,24 @@ import { Usuario } from '../../../../domain/usuario';
   styleUrl: './perfil-info.component.css'
 })
 export class PerfilInfoComponent {
-  usuario!: Usuario; 
+  usuario!: Usuario;
+  fechaNacimiento= ''
+  saveOK = false
+  esCalculador = false 
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private userServiceSS: UserSessionStorageService
+    private userServiceUS: UsuariosService
+    
   ) {}
 
   ngOnInit() {
-    this.usuario = this.userServiceSS.obtenerUsuarioDelSS();
+    this.usuario = this.userServiceUS.getUserActivate();
   }
-
-  
-
-  
-  fechaNacimiento= ''
-  saveOK = false
-  esCalculador = false
   
   cambioCalculador(){
     this.esCalculador = !this.esCalculador
-
   }
 
   guardar() {
@@ -64,7 +61,7 @@ export class PerfilInfoComponent {
   }
 
  cancelar() {
-  /* logica para poner los campos en blanco y quiza antes otra confirmacion*/}
+}
 
   navegarA(ruta : string) {
     this.router.navigate([ruta])
