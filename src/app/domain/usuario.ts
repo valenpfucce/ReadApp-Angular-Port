@@ -1,5 +1,21 @@
 import { Entidad } from "./entidad"
 import { Recomendacion } from "./recomendacion"
+import { FORMATO_FECHA } from "../services/configuration"
+// import { DateTime } from 'luxon'
+
+export type UsuarioJSON = {
+  id: number,
+  nombre : string, 
+  apellido : string, 
+  username : string,
+  mail : string,
+  password : string,
+  fechaNacimiento? : Date,
+  tiempoLectura: number,
+  tipoLectura: string[]
+}
+
+
 
 export class ValidationMessage {
   constructor(
@@ -9,13 +25,13 @@ export class ValidationMessage {
 }
 
 export class Usuario implements Entidad{ 
-  tiempoLectura?: number
-  tipoLectura = []
-  criterioBusqueda = []
-  errors: ValidationMessage[] = []
-  recomendacionesAValorar ?: Recomendacion[]
+  
+  // tipoLectura = [];
+  criterioBusqueda = [];
+  recomendacionesAValorar ?: Recomendacion[];
+  amigos ?: Usuario[];
   validador: sistemaValidacion;
-
+  errors: ValidationMessage[] = [];
 
   constructor(
     public id: number,
@@ -25,6 +41,8 @@ export class Usuario implements Entidad{
     public mail : string,
     public password : string,
     public fechaNacimiento? : Date,
+    public tiempoLectura: number = 0,
+    public tipoLectura: string[] = []
   ) {
     this.validador = new sistemaValidacion();
   }
@@ -38,7 +56,7 @@ export class Usuario implements Entidad{
     if (this.errors.length > 0) {
       return false;
     }
-    return true;
+      return true;
 
   }
  
@@ -53,9 +71,27 @@ export class Usuario implements Entidad{
   agregarRecomendacionAValorar(recomendacion: Recomendacion){
     this.recomendacionesAValorar?.push(recomendacion)
   }
+  
+  // fechaString(): string | undefined {
+  //   return !this.fechaNacimiento ? '' : DateTime.fromJSDate(this.fechaNacimiento).toUTC().toFormat(FORMATO_FECHA)
+  // }
+  
+  toJSON(): UsuarioJSON {
+    return {
+      id: this.id,
+      nombre : this.nombre, 
+      apellido : this.apellido, 
+      username : this.username,
+      mail : this.mail,
+      password : this.password,
+      fechaNacimiento : this.fechaNacimiento,
+      tiempoLectura: this.tiempoLectura,
+      tipoLectura: this.tipoLectura
+    }
+  }
+  
 
 }
-
 
 export class sistemaValidacion{
   

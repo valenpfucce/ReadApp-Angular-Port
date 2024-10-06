@@ -10,7 +10,9 @@ export const usuarios = [
         'juancito',
         'juanperez@gmail.com',
         'password',
-        new Date(12-9-24)
+        new Date(12-9-24),
+        45,
+        ["ansioso"]
     ),
     new Usuario(
         2,
@@ -19,7 +21,9 @@ export const usuarios = [
         'mariagomez',
         'mariagomez@gmail.com',
         'password',
-        new Date(2-5-29)
+        new Date(2-5-29),
+        45,
+        ["ansioso"]
     ),
     new Usuario(
         3,
@@ -28,7 +32,9 @@ export const usuarios = [
         'marianox34',
         'mariano999@gmail.com',
         'mamatequiero123',
-        new Date(2-5-29)
+        new Date(2-5-29),
+        45,
+        ["ansioso"]
     ),
     new Usuario(
         4,
@@ -37,7 +43,9 @@ export const usuarios = [
         'admin',
         'admin@gmail.com',
         'password',
-        new Date(2-5-29)
+        new Date(2-5-29),
+        45,
+        ["ansioso"]
     ),
     new Usuario(
         5,
@@ -46,7 +54,9 @@ export const usuarios = [
         'mc@gmail.com',
         'mca.lo@gmail.com',
         '12345678',
-        new Date(2-5-29)
+        new Date(2-5-29),
+        45,
+        ["ansioso"]
     ),
 ]
 

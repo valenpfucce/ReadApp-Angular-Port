@@ -2,8 +2,8 @@ import { Component, input } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { ActivatedRoute, Router, RouterModule} from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service';
 import { Usuario } from '../../domain/usuario';
+import { UsuariosService } from '../../services/service_usuarios/usuarios.service';
 
 
 @Component({
@@ -18,11 +18,11 @@ export class SidebarPerfilComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private userServiceSS: UserSessionStorageService
+    private userServiceUS: UsuariosService
   ) {}
 
   ngOnInit() {
-    this.usuario = this.userServiceSS.obtenerUsuarioDelSS();
+    this.usuario = this.userServiceUS.getUserActivate();
   }
   infoSidebar = [
    
