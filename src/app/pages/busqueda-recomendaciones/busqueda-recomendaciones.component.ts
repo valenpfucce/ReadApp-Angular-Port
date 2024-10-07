@@ -9,6 +9,7 @@ import { UserSessionStorageService } from '../../services/service_user_session_s
 import { Usuario } from '../../domain/usuario';
 import { BarraBusquedaComponent } from '../../components/header/components/barra-busqueda/barra-busqueda.component';
 import { CardLibroMasComponent } from "../../components/card-libro-mas/card-libro-mas.component";
+import { UsuariosService } from '../../services/service_usuarios/usuarios.service';
 
 @Component({
   selector: 'readapp-busqueda-recomendaciones',
@@ -25,11 +26,11 @@ export class BusquedaRecomendacionesComponent {
     private router : Router,
     private route : ActivatedRoute,
     private serviceRecomendaciones: RecomendacionesService,
-    private userServiceSS: UserSessionStorageService
+    private userServiceUS: UsuariosService
   ){}
 
   ngOnInit(){
-    this.usuario = this.usuario /*this.userServiceSS.obtenerUsuarioDelSS();*/
+    this.usuario = this.userServiceUS.getUserActivate(); /*this.userServiceSS.obtenerUsuarioDelSS();*/
 
     this.data = this.route.snapshot.data as DataBusqueda
     this.recomendaciones = this.data.realizarBusqueda(

@@ -39,7 +39,7 @@ export class PerfilInfoComponent {
 
   ngOnInit() {
    
-    this.usuario = this.usuario /*this.userServiceUS.getUserActivate();*/ //tiene q traer ccosas del back
+    this.usuario = this.userServiceUS.getUserActivate(); //tiene q traer ccosas del back
     const jsonPrueba = JSON.stringify(this.usuario)
     this.usuarioEditable = JSON.parse(JSON.stringify(this.usuario)); //no copia métodos, objetos de fecha, etc 
     console.log(jsonPrueba)
@@ -62,13 +62,13 @@ export class PerfilInfoComponent {
    this.llamarServerPutUS()
   } 
   
-  async llamarServerPutUS(){
-       try {
-       await this.userServiceUS.actualizarUsuario(this.usuarioEditable)
-     } catch (error) {
-       console.error('Error al cargar los datos del usuario', error);
-     }
-   }
+   async llamarServerPutUS(){
+        try {
+        await this.userServiceUS.actualizarUsuario(this.usuarioEditable)
+      } catch (error) {
+        console.error('Error al cargar los datos del usuario', error);
+      }
+    }
 
   
   indicarGuardadoExitoso(){

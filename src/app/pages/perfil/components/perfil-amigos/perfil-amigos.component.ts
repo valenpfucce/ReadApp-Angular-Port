@@ -20,7 +20,7 @@ export class PerfilAmigosComponent {
   ) {}
 
   ngOnInit() {
-    this.usuario = this.usuario /*this.userServiceSS.obtenerUsuarioDelSS();*/
+    this.usuario = this.userServiceUS.getUserActivate();/*this.userServiceSS.obtenerUsuarioDelSS();*/
   }
 
 

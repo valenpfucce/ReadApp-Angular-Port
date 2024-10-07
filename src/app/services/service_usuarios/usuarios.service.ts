@@ -3,8 +3,9 @@ import { usuarios, LoginVer } from '../../mocks/mock_usuarios';
 import { sistemaValidacion, Usuario, UsuarioJSON } from '../../domain/usuario';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { REST_SERVER_URL } from '../configuration';
+
 
 
 
@@ -16,12 +17,10 @@ export class UsuariosService {
   idUsuarioActivo!: number;
   // listaUsuarios = usuarios;
   validador!: sistemaValidacion;
+  router! : Router
   errors: String[] = [];
   loginVerification!: LoginVer;
-  // httpClient!: HttpClient;
-  
-  // usuarioSessionIdString = sessionStorage.getItem('userSession');
-  // usuarioSessionId: number | null = this.usuarioSessionIdString !== null ? +this.usuarioSessionIdString : null;
+ 
   
   private readonly sessionKey = 'userSession';
 
@@ -33,18 +32,23 @@ export class UsuariosService {
   loginGetUsuarioIdToSS(mail: string, contrasenia: string) {
     const idUsuarioEncontrado = this.putVerificationUser(mail, contrasenia);
     if (idUsuarioEncontrado === null) {
-      this.addError('Contraseña incorrecta.');
-      return null;
+      
+      console.error('Usuario no encontrado.');
+      this.navegarALogin()
+      throw new Error('Redirigiendo por usuario no encontrado');
     } else {
+      
       sessionStorage.setItem(this.sessionKey, idUsuarioEncontrado.toString());
-      console.log('Login exitoso, ID de Usuario: ', idUsuarioEncontrado);
+      console.log('Login exitoso, ID de Usuario pero no de putVerificationUser: ', idUsuarioEncontrado);
       /*this.idUsuarioActivo = idUsuarioEncontrado;*/
       return idUsuarioEncontrado;
     }
   }
-
   
-
+  
+  navegarALogin(){this.router.navigate(['/login']);}
+  
+  
   async getUser(id: number) {
     // const usuarioSS$ = this.httpClient.get<UsuarioJSON>(REST_SERVER_URL + '/user/login' + id)
     // return usuarioSS$
@@ -54,13 +58,23 @@ export class UsuariosService {
   
   }
 
-  async putVerificationUser(mailLogin: string, contraseniaLogin: string){
+  putVerificationUser(mailLogin: string, contraseniaLogin: string): Observable<UsuarioLoginJSON>{
 
     const usuarioLogin = new UsuarioLogin(mailLogin,contraseniaLogin) 
+
+    const userID$ =(this.httpClient.post<UsuarioLoginJSON>(`${REST_SERVER_URL}/usuario/login`, usuarioLogin))
+     console.log("pasa del postHTTP", userID$);
+     
+    return userID$
     
-    const response$ = (this.httpClient.post<UsuarioLoginJSON>(`${REST_SERVER_URL}/usuario/login`, usuarioLogin))
-    const userId = await lastValueFrom(response$)
-    return userId
+    
+    
+    
+    
+    
+    // const response$ = (this.httpClient.post<UsuarioLoginJSON>(`${REST_SERVER_URL}/usuario/login`, usuarioLogin))
+    // const userId = await lastValueFrom(response$)
+    // return userId
     
  
  
@@ -113,27 +127,27 @@ export class UsuariosService {
   }
 
   
-  // getUserActivate() {
-  //   const existeUsuario = this.idUsuarioActivo;
+  getUserActivate() {
+     const existeUsuario = usuarios[1]
   
-  //   if (existeUsuario === undefined) {
-  //     this.router.navigate(['/login']);
-  //     throw new Error('Redirigiendo por usuario no encontrado');
-  //   } else {
-  //     return existeUsuario;
-  //   }
+   if (existeUsuario === undefined) {
+      //  this.router.navigate(['/login']);
+      throw new Error('Redirigiendo por usuario no encontrado');
+    } else {
+      return existeUsuario;
+    }
   
-  // }
+  }
 
-  async actualizarUsuario(usuario: Usuario) {
-     try {
-       const usuarios$ = this.httpClient.put<UsuarioJSON[]>({REST_SERVER_URL} + '/usuario/' + usuario.id, usuario.toJSON());
-       return await lastValueFrom(usuarios$);
-     } catch (error) {
-       this.addError('Error al actualizar el usuario.');
-       console.error('Error al actualizar el usuario:', error);
-       throw error;
-     }
+   async actualizarUsuario(usuario: Usuario) {
+      try {
+        const usuarios$ = this.httpClient.put<UsuarioJSON[]>({REST_SERVER_URL} + '/usuario/' + usuario.id, usuario.toJSON());
+        return await lastValueFrom(usuarios$);
+      } catch (error) {
+        this.addError('Error al actualizar el usuario.');
+        console.error('Error al actualizar el usuario:', error);
+        throw error;
+   }
   }
 
 }

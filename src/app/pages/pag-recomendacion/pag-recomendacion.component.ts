@@ -8,6 +8,7 @@ import { CardValoracionComponent } from '../../components/card-valoracion/card-v
 import { CardLibroMasComponent } from '../../components/card-libro-mas/card-libro-mas.component'
 import { Usuario } from '../../domain/usuario'
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
+import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
 
 
 @Component({
@@ -30,11 +31,11 @@ export class PagRecomendacionComponent {
     private router : Router,
     private route : ActivatedRoute,
     private serviceRecomendacion : RecomendacionesService,
-    private userServiceSS: UserSessionStorageService
+    private userServiceUS: UsuariosService
   ){}
 
   ngOnInit() {
-    this.usuario = this.usuario /*this.userServiceSS.obtenerUsuarioDelSS();*/
+    this.usuario = this.userServiceUS.getUserActivate(); /*this.userServiceSS.obtenerUsuarioDelSS();*/
 
     // ===== ROUTE PARAMETRO =====
     //Traer los parametros del routing

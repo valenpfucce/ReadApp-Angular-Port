@@ -1,6 +1,7 @@
 import { Entidad } from "./entidad"
 import { Recomendacion } from "./recomendacion"
 import { FORMATO_FECHA } from "../services/configuration"
+
 // import { DateTime } from 'luxon'
 
 export type UsuarioJSON = {
