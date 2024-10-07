@@ -39,7 +39,7 @@ export class PerfilInfoComponent {
 
   ngOnInit() {
    
-    this.usuario = this.usuario /*this.userServiceUS.getUserActivate();*/
+    this.usuario = this.usuario /*this.userServiceUS.getUserActivate();*/ //tiene q traer ccosas del back
     const jsonPrueba = JSON.stringify(this.usuario)
     this.usuarioEditable = JSON.parse(JSON.stringify(this.usuario)); //no copia métodos, objetos de fecha, etc 
     console.log(jsonPrueba)

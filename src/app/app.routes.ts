@@ -12,6 +12,7 @@ import { RecomendacionesService } from './services/service_recomendaciones/recom
 import { Recomendacion } from './domain/recomendacion';
 import { Usuario } from './domain/usuario';
 import { BarraBusquedaComponent } from './components/header/components/barra-busqueda/barra-busqueda.component';
+import { HttpClient } from '@angular/common/http';
 
 export type DataBusqueda = {
     showCheckBox: boolean

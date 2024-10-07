@@ -54,7 +54,7 @@ export class LoginComponent {
     }
 
     const loginSuccess = this.userService.loginGetUsuarioIdToSS(mail, contrasenia)
-    if (loginSuccess === null) {
+    if (!loginSuccess) {
       this.showPasswordError = true
     } else {
       this.router.navigateByUrl('/home')
