@@ -22,7 +22,7 @@ export class SidebarPerfilComponent {
   ) {}
 
   ngOnInit() {
-    this.usuario = this.userServiceUS.getUserActivate();
+    this.usuario = this.usuario /*this.userServiceSS.obtenerUsuarioDelSS();*/
   }
   infoSidebar = [
    

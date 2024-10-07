@@ -42,7 +42,7 @@ export class Usuario implements Entidad{
     public password : string,
     public fechaNacimiento? : Date,
     public tiempoLectura: number = 0,
-    public tipoLectura: string[] = []
+    public tipoLectura: string[] = [] //es tipo de lectura
   ) {
     this.validador = new sistemaValidacion();
   }
@@ -114,7 +114,7 @@ export class sistemaValidacion{
       this.addError(usuario, 'username', 'El campo no puede estar vacio')
     }
     
-    if (this.stringVacio(usuario.tiempoLectura!)){
+    if (this.numberVacio(usuario.tiempoLectura!)){
       this.addError(usuario, 'tiempoLectura', 'El campo no puede estar vacio')
     }
     
@@ -140,6 +140,10 @@ export class sistemaValidacion{
   return false  // Si no es ni string ni Date, no es válida
  }
 
+  numberVacio(numero: number | null | undefined | any): Boolean { 
+  return typeof numero !== 'number' || isNaN(numero);
+  }
+  
   stringVacio(nombre: string | null | undefined | any): Boolean { 
     return typeof nombre !== 'string' || nombre.trim() === '';}
 

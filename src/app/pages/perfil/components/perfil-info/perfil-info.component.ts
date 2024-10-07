@@ -39,8 +39,10 @@ export class PerfilInfoComponent {
 
   ngOnInit() {
    
-    this.usuario = this.userServiceUS.getUserActivate();
+    this.usuario = this.usuario /*this.userServiceUS.getUserActivate();*/
+    const jsonPrueba = JSON.stringify(this.usuario)
     this.usuarioEditable = JSON.parse(JSON.stringify(this.usuario)); //no copia métodos, objetos de fecha, etc 
+    console.log(jsonPrueba)
     
     // { ...this.usuario };
 
@@ -57,16 +59,16 @@ export class PerfilInfoComponent {
    if (guardadoExitoso){
     this.indicarGuardadoExitoso()
    }
-  //  this.llamarServerPutUS()
+   this.llamarServerPutUS()
   } 
   
-  // async llamarServerPutUS(){
-  //   try {
-  //     await this.userServiceUS.actualizarUsuario(this.usuarioEditable)
-  //   } catch (error) {
-  //     console.error('Error al cargar los datos del usuario', error);
-  //   }
-  // }
+  async llamarServerPutUS(){
+       try {
+       await this.userServiceUS.actualizarUsuario(this.usuarioEditable)
+     } catch (error) {
+       console.error('Error al cargar los datos del usuario', error);
+     }
+   }
 
   
   indicarGuardadoExitoso(){

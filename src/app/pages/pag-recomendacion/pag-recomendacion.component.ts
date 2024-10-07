@@ -34,7 +34,7 @@ export class PagRecomendacionComponent {
   ){}
 
   ngOnInit() {
-    this.usuario = this.userServiceSS.obtenerUsuarioDelSS();
+    this.usuario = this.usuario /*this.userServiceSS.obtenerUsuarioDelSS();*/
 
     // ===== ROUTE PARAMETRO =====
     //Traer los parametros del routing

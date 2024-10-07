@@ -29,7 +29,7 @@ export class BusquedaRecomendacionesComponent {
   ){}
 
   ngOnInit(){
-    this.usuario = this.userServiceSS.obtenerUsuarioDelSS();
+    this.usuario = this.usuario /*this.userServiceSS.obtenerUsuarioDelSS();*/
 
     this.data = this.route.snapshot.data as DataBusqueda
     this.recomendaciones = this.data.realizarBusqueda(
