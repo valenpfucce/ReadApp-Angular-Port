@@ -50,17 +50,6 @@ export class UsuariosService {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     // const idUsuarioEncontrado = this.putVerificationUser(mail, contrasenia);
     // if (idUsuarioEncontrado === null) {
 
@@ -74,13 +63,10 @@ export class UsuariosService {
     //   /*this.idUsuarioActivo = idUsuarioEncontrado;*/
     //    idUsuarioEncontrado;
     // }
-
-
-
-
+  
   }
 
-
+  
   navegarALogin() { this.router.navigate(['/login']); }
 
 
@@ -89,14 +75,12 @@ export class UsuariosService {
     // return usuarioSS$
 
     // return this.listaUsuarios.find(usuario => usuario.id === id);
-
-
   }
 
   putVerificationUser(mailLogin: string, contraseniaLogin: string): Observable<number | null> {
 
     const usuarioLogin = new UsuarioLogin(mailLogin, contraseniaLogin);
-    return this.httpClient.post<UsuarioLoginJSON>(`${REST_SERVER_URL}/usuario/login`, usuarioLogin).pipe(
+    return this.httpClient.post<UsuarioLoginJSON>(`${REST_SERVER_URL}/usuarios/login`, usuarioLogin).pipe(
       map((response) => response?.id || null),
       catchError((error) => {
         this.addError('Error al verificar el usuario.');
@@ -106,16 +90,6 @@ export class UsuariosService {
       })
     )
     
-        
-
-
-
-
-
-
-
-
-
 
     // const usuarioLogin = new UsuarioLogin(mailLogin, contraseniaLogin)
 
@@ -165,13 +139,6 @@ export class UsuariosService {
     // }
 
   }
-
-
-
-
-
-
-
 
 
 
