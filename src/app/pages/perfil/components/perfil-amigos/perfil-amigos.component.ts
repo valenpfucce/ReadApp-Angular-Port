@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SidebarPerfilComponent } from '../../sidebar-perfil.component';
 import { Usuario } from '../../../../domain/usuario';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserSessionStorageService } from '../../../../services/service_user_session_storage/user-session-storage.service';
+import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service';
 
 @Component({
   selector: 'readapp-perfil-amigos',
@@ -16,11 +16,11 @@ export class PerfilAmigosComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private userServiceSS: UserSessionStorageService
+    private userServiceUS: UsuariosService
   ) {}
 
   ngOnInit() {
-    this.usuario = this.userServiceSS.obtenerUsuarioDelSS();
+    this.usuario = this.userServiceUS.getUserActivate();/*this.userServiceSS.obtenerUsuarioDelSS();*/
   }
 
 

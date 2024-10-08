@@ -7,15 +7,15 @@
     <section class="conteiner_datos">
 
       <label for="nombre">Nombre* 
-        <input type="text" name="nombre" required pattern=".*\S.*" required="true" [(ngModel)]="usuario.nombre">
+        <input type="text" name="nombre" required pattern=".*\S.*" required="true" [(ngModel)]="usuarioEditable.nombre">
         <readapp-validacion-field [domainElement]="usuario" [field]="'nombre'"></readapp-validacion-field></label>
         
       <label>Apellido 
-        <input type="text" name="apellido" required pattern=".*\S.*" required="true" [(ngModel)]="usuario.apellido">
+        <input type="text" name="apellido" required pattern=".*\S.*" required="true" [(ngModel)]="usuarioEditable.apellido">
         <readapp-validacion-field [domainElement]="usuario" [field]="'apellido'"></readapp-validacion-field></label>
         
       <label>Username 
-        <input type="text" name="username" required pattern=".*\S.*" [(ngModel)]="usuario.username">
+        <input type="text" name="username" required pattern=".*\S.*" [(ngModel)]="usuarioEditable.username">
         <readapp-validacion-field [domainElement]="usuario" [field]="'username'"></readapp-validacion-field></label>
         
       <label>Fecha de nacimiento 
@@ -23,11 +23,11 @@
         <readapp-validacion-field [domainElement]="usuario" [field]="'fecha'"></readapp-validacion-field></label>
       
       <label>Mail 
-        <input type="text" name="mail" required pattern=".*\S.*" [(ngModel)]="usuario.mail">
+        <input type="text" name="mail" required pattern=".*\S.*" [(ngModel)]="usuarioEditable.mail">
         <readapp-validacion-field [domainElement]="usuario" [field]="'mail'"></readapp-validacion-field></label>
         
       <label>Tiempo de lectura promedio 
-        <input type="text" name="tiempoLectura" required pattern=".*\S.*" [(ngModel)]="usuario.tiempoLectura">
+        <input type="text" name="tiempoLectura" required pattern=".*\S.*" [(ngModel)]="usuarioEditable.tiempoLectura">
         <readapp-validacion-field [domainElement]="usuario" [field]="'tiempoLectura'"></readapp-validacion-field></label>
         
     </section>
