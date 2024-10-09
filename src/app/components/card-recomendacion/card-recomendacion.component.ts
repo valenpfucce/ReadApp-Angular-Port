@@ -14,10 +14,16 @@ import { Recomendacion } from '../../domain/recomendacion';
 export class CardRecomendacionComponent {
   @Input() recomendacion!: Recomendacion
   @Input() puedeEditar!: Boolean
-
+  corazonCliqueado = false
   constructor(
     private router: Router
   ){}
 
+  aValorar(){
+    this.corazonCliqueado = !this.corazonCliqueado
+    //if (corazonCliqueado) {
+    //  usuario.agregarRecomendacionAValorar(this.recomendacion)
+    // }
+  }
 
 }
