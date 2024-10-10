@@ -22,6 +22,6 @@ export class RecomendacionesService {
   }
 
   busquedaMisRecomendaciones(palabraABuscar?: string, idUsuario?: Number){
-    return this.listaRecomendaciones.filter(recomendacion => recomendacion.creadorId == idUsuario)
+    return this.listaRecomendaciones /*.filter(recomendacion => recomendacion.creadorId == idUsuario)*/
   }
 }

@@ -22,8 +22,20 @@ export class SidebarPerfilComponent {
   ) {}
 
   ngOnInit() {
-    this.usuario = this.userServiceUS.getUserActivate(); /*this.userServiceSS.obtenerUsuarioDelSS();*/
+    this.obtenerDatosUsuario(); /*this.userServiceSS.obtenerUsuarioDelSS();*/
   }
+  
+  async obtenerDatosUsuario(): Promise<void>{
+    const usuarioEnLinea = await this.userServiceUS.getUserId()
+    this.usuario = usuarioEnLinea
+  }
+  
+  
+  
+  
+  
+  
+  
   infoSidebar = [
    
     new menuSidebar(

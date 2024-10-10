@@ -20,5 +20,11 @@ export class MenuDesplegableComponent {
     this.router.navigate([opcion]);
     this.menuVisible = false; 
   }
+  
+  navegarOut() {
+    sessionStorage.clear()
+    this.navegar("/login")
+  }
 
+  
 }

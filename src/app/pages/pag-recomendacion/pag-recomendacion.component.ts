@@ -35,7 +35,7 @@ export class PagRecomendacionComponent {
   ){}
 
   ngOnInit() {
-    this.usuario = this.userServiceUS.getUserActivate(); /*this.userServiceSS.obtenerUsuarioDelSS();*/
+    this.obtenerDatosUsuario() /*this.userServiceSS.obtenerUsuarioDelSS();*/
 
     // ===== ROUTE PARAMETRO =====
     //Traer los parametros del routing
@@ -60,12 +60,17 @@ export class PagRecomendacionComponent {
       // }
 
       //VERIFICACION USUARIO EDITAR RECOMENDACION
-      if(this.modoEdicion() && (this.recomendacion.creadorId != this.usuario.id)){ //NO ME ACUERDO COMO ERA EN EL BACK ESTO, no se si otro usuario que no era el creador podia editar
+      if(this.modoEdicion() /*&& (this.recomendacion.creadorId != this.usuario.id)*/){ //NO ME ACUERDO COMO ERA EN EL BACK ESTO, no se si otro usuario que no era el creador podia editar
         console.log('El usuario no tiene permisos de edicion')
         this.navegarA('/home');
       }
 
     });
+  }
+  
+  async obtenerDatosUsuario(): Promise<void>{
+    const usuarioEnLinea = await this.userServiceUS.getUserId()
+    this.usuario = usuarioEnLinea
   }
 
   modoEdicion(){

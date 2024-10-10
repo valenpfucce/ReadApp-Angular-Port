@@ -30,7 +30,7 @@ export class BusquedaRecomendacionesComponent {
   ){}
 
   ngOnInit(){
-    this.usuario = this.userServiceUS.getUserActivate(); /*this.userServiceSS.obtenerUsuarioDelSS();*/
+    this.obtenerDatosUsuario() /*this.userServiceSS.obtenerUsuarioDelSS();*/
 
     this.data = this.route.snapshot.data as DataBusqueda
     this.recomendaciones = this.data.realizarBusqueda(
@@ -40,8 +40,13 @@ export class BusquedaRecomendacionesComponent {
     )
   }
 
+  async obtenerDatosUsuario(): Promise<void>{
+    const usuarioEnLinea = await this.userServiceUS.getUserId()
+    this.usuario = usuarioEnLinea
+  }
+
   puedeEditarRecomendacion(recomendacion : Recomendacion) : Boolean{
-    return recomendacion.creadorId === this.usuario.id
+    return true /*recomendacion.creadorId === this.usuario.id*/
   }
   
   buscar(palabraABuscar?: string){

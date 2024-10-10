@@ -47,11 +47,13 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
   }
   
   static fromJson(usuarioJSON: UsuarioJSON): Usuario {
-    return Object.assign(new Usuario(), usuarioJSON, {
-      ffechaNacimiento: usuarioJSON.fechaNacimiento
+     const usertest = Object.assign(new Usuario(), usuarioJSON, {
+      fechaNacimiento: usuarioJSON.fechaNacimiento
       ? dayjs(usuarioJSON.fechaNacimiento, FORMATO_FECHA).toDate()
       : undefined
     })
+    console.log("usertest",usertest )
+    return usertest
   }
   
   guardarDatos(): boolean{

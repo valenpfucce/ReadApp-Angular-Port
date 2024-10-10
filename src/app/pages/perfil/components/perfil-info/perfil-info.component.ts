@@ -45,7 +45,6 @@ export class PerfilInfoComponent {
     this.usuarioEditable = JSON.parse(JSON.stringify(this.usuario)); //no copia métodos, objetos de fecha, etc 
     console.log(jsonPrueba)
     
-    
   }
   
   async obtenerDatosUsuario(): Promise<void>{
