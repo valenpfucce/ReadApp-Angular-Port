@@ -11,6 +11,7 @@ import { Router } from '@angular/router'
 import { ValidacionFieldComponent } from '../../pages/perfil/components/perfil-info/validacion-field/validacion-field.component'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
 import { CommonModule } from '@angular/common'
+import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
 
  
 @Component({
@@ -36,7 +37,7 @@ import { CommonModule } from '@angular/common'
    constructor(
      private fb: FormBuilder,
      private router: Router,
-     private userService: UsuariosService
+     private userService: UserSessionStorageService
    ) {}
 
    ngOnInit(){

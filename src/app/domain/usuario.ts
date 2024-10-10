@@ -1,6 +1,7 @@
 import { Entidad } from "./entidad"
 import { Recomendacion } from "./recomendacion"
 import { FORMATO_FECHA } from "../services/configuration"
+import { DateTime } from 'luxon'
 
 // import { DateTime } from 'luxon'
 
@@ -15,8 +16,6 @@ export type UsuarioJSON = {
   tiempoLectura: number,
   tipoLectura: string[]
 }
-
-
 
 export class ValidationMessage {
   constructor(
@@ -35,21 +34,27 @@ export class Usuario implements Entidad{
   errors: ValidationMessage[] = [];
 
   constructor(
-    public id: number,
-    public nombre : string, 
-    public apellido : string, 
-    public username : string,
-    public mail : string,
-    public password : string,
+    public id?: number,
+    public nombre : string = '', 
+    public apellido : string= '',
+    public username : string= '',
+    public mail : string= '',
+    public password : string= '',
     public fechaNacimiento? : Date,
     public tiempoLectura: number = 0,
     public tipoLectura: string[] = [] //es tipo de lectura
   ) {
     this.validador = new sistemaValidacion();
   }
-
-  /*Agregar formas de lectura y criterios de busqueda, como listas?*/
-
+  
+  static fromJson(usuarioJSON: UsuarioJSON): Usuario {
+    return Object.assign(new Usuario(), usuarioJSON, {
+      fechaNacimiento: usuarioJSON.fechaNacimiento
+        ? DateTime.fromFormat(usuarioJSON.fechaNacimiento, FORMATO_FECHA).toJSDate()
+        : undefined
+    })
+  }
+  
 
   guardarDatos(): boolean{
 
@@ -77,9 +82,21 @@ export class Usuario implements Entidad{
   //   return !this.fechaNacimiento ? '' : DateTime.fromJSDate(this.fechaNacimiento).toUTC().toFormat(FORMATO_FECHA)
   // }
   
+  
+  idUsuarioNotNull(): number{
+    const idUsuarioAct = sessionStorage.getItem('userSession')
+    if(idUsuarioAct === null){
+      throw new Error('Usuaio Invalido');
+    } else {
+      return Number(idUsuarioAct) 
+    }
+    
+  }
+  
+  
   toJSON(): UsuarioJSON {
     return {
-      id: this.id,
+      id : this.idUsuarioNotNull() ,
       nombre : this.nombre, 
       apellido : this.apellido, 
       username : this.username,

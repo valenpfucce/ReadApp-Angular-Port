@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { usuarios, LoginVer } from '../../mocks/mock_usuarios';
-import { sistemaValidacion, Usuario, UsuarioJSON } from '../../domain/usuario';
+import { sistemaValidacion, Usuario, UsuarioJSON} from '../../domain/usuario';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom, Observable, of } from 'rxjs';
@@ -12,72 +12,38 @@ import { REST_SERVER_URL } from '../configuration';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UsuariosService {
   idUsuarioActivo!: number;
-  // listaUsuarios = usuarios;
   validador!: sistemaValidacion;
   router!: Router
   errors: String[] = [];
-  loginVerification!: LoginVer;
+
 
 
   private readonly sessionKey = 'userSession';
 
   constructor(/*private router: Router,*/ private httpClient: HttpClient) {
     this.validador = new sistemaValidacion();
-    this.loginVerification = new LoginVer();
-  }
-
-  loginGetUsuarioIdToSS(mail: string, contrasenia: string): Observable<number | null> {
-
-    return this.putVerificationUser(mail, contrasenia).pipe(
-      map((idUsuarioEncontrado: number | null) => {
-        if (idUsuarioEncontrado !== null) {
-          sessionStorage.setItem(this.sessionKey, idUsuarioEncontrado.toString());
-          console.log('Login exitoso, ID de Usuario: ', idUsuarioEncontrado);
-          return idUsuarioEncontrado;
-        } else {
-          this.addError('Contraseña incorrecta.');
-          return null;
-        }
-      }),
-      catchError((error) => {
-        this.addError('Error en el proceso de login.');
-        console.error('Error en el login:', error);
-        return of(null); // Retornar null en caso de error
-      })
-    );
-
-
-
-    // const idUsuarioEncontrado = this.putVerificationUser(mail, contrasenia);
-    // if (idUsuarioEncontrado === null) {
-
-    //   console.error('Usuario no encontrado.');
-    //   this.navegarALogin()
-    //   throw new Error('Redirigiendo por usuario no encontrado');
-    // } else {
-
-    //   sessionStorage.setItem(this.sessionKey, idUsuarioEncontrado.toString());
-    //   console.log('Login exitoso, ID de Usuario pero no de putVerificationUser: ', idUsuarioEncontrado);
-    //   /*this.idUsuarioActivo = idUsuarioEncontrado;*/
-    //    idUsuarioEncontrado;
-    // }
-  
-  }
+   
+}
 
   
-  navegarALogin() { this.router.navigate(['/login']); }
+
+  
+navegarALogin() { this.router.navigate(['/login']); }
 
 
-  async getUser(id: number) {
-    // const usuarioSS$ = this.httpClient.get<UsuarioJSON>(REST_SERVER_URL + '/user/login' + id)
-    // return usuarioSS$
+async getUserId() {
+  const usuarioJSON$ = this.httpClient.get<UsuarioJSON>(`${REST_SERVER_URL}/usuarios/` + this.sessionKey)
+  const usuarioJSON = await lastValueFrom(usuarioJSON$)
+  return usuarioJSON ? Usuario.fromJson(usuarioJSON) : undefined
+    
+  
+}
 
-    // return this.listaUsuarios.find(usuario => usuario.id === id);
-  }
-
-  putVerificationUser(mailLogin: string, contraseniaLogin: string): Observable<number | null> {
+  
+putVerificationUser(mailLogin: string, contraseniaLogin: string): Observable<number | null> {
 
     const usuarioLogin = new UsuarioLogin(mailLogin, contraseniaLogin);
     return this.httpClient.post<UsuarioLoginJSON>(`${REST_SERVER_URL}/usuarios/login`, usuarioLogin).pipe(
@@ -97,13 +63,6 @@ export class UsuariosService {
     // console.log("pasa del postHTTP", userID$);
 
     // return userID$
-
-
-
-
-
-
-
 
 
 

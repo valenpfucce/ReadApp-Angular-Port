@@ -23,6 +23,7 @@ import { UsuariosService } from '../../../../services/service_usuarios/usuarios.
   templateUrl: './perfil-info.component.html',
   styleUrl: './perfil-info.component.css'
 })
+
 export class PerfilInfoComponent {
   usuario!: Usuario;
   usuarioEditable!: Usuario;
@@ -39,7 +40,7 @@ export class PerfilInfoComponent {
 
   ngOnInit() {
    
-    this.usuario = this.userServiceUS.getUserActivate(); //tiene q traer ccosas del back
+    this.usuario = this.userServiceUS.getUserId(); //tiene q traer ccosas del back
     const jsonPrueba = JSON.stringify(this.usuario)
     this.usuarioEditable = JSON.parse(JSON.stringify(this.usuario)); //no copia métodos, objetos de fecha, etc 
     console.log(jsonPrueba)
@@ -54,35 +55,37 @@ export class PerfilInfoComponent {
 
   
   guardar() {
-  this.usuario.fechaNacimiento = this.fechaNacimiento === '' ? undefined : dayjs(this.fechaNacimiento).toDate()
-  const guardadoExitoso = this.usuario.guardarDatos()
+   this.usuario.fechaNacimiento = this.fechaNacimiento === '' ? undefined : dayjs(this.fechaNacimiento).toDate()
+   const guardadoExitoso = this.usuario.guardarDatos()
+   
    if (guardadoExitoso){
     this.indicarGuardadoExitoso()
    }
    this.llamarServerPutUS()
+  
+  
   } 
   
-   async llamarServerPutUS(){
+  async llamarServerPutUS(){
         try {
         await this.userServiceUS.actualizarUsuario(this.usuarioEditable)
       } catch (error) {
         console.error('Error al cargar los datos del usuario', error);
       }
-    }
+  }
 
   
+  
+
+  cancelar() {
+  }
+
   indicarGuardadoExitoso(){
     this.saveOK = true
     setTimeout(() => {
     this.saveOK = false;
     }, 3000)
   }
-
- cancelar() {
- }
-
-  
-
 
   navegarA(ruta : string) {
     this.router.navigate([ruta])
