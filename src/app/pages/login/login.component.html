@@ -33,7 +33,7 @@
           *ngIf="
             !showPasswordError 
           "
-        >
+          >
           <small *ngIf="loginForm.get('contrasenia')?.errors?.['required'] && loginForm.get('contrasenia')?.touched"
             >La contraseña es requerida.</small
           >

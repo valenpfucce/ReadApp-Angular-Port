@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { sistemaValidacion, Usuario, UsuarioJSON } from '../../domain/usuario';
 import { Router } from '@angular/router';
@@ -5,7 +6,6 @@ import { HttpClient } from '@angular/common/http';
 import { lastValueFrom, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { REST_SERVER_URL } from '../configuration';
-
 
 
 @Injectable({
@@ -17,8 +17,7 @@ export class UsuariosService {
   validador!: sistemaValidacion;
   router!: Router
   errors: String[] = [];
-
-  private readonly sessionKey = 'userSession';
+  private readonly sessionKey = 'userSession'
 
   constructor(private httpClient: HttpClient) {
     this.validador = new sistemaValidacion();
@@ -41,7 +40,6 @@ export class UsuariosService {
   }
 
 
-
   putVerificationUser(mailLogin: string, contraseniaLogin: string): Observable<number | null> {
 
     const usuarioLogin = new UsuarioLogin(mailLogin, contraseniaLogin);
@@ -52,10 +50,6 @@ export class UsuariosService {
 
 
   }
-
-
-
-
 
 
   actualizarUsuario(usuario: Usuario): Observable<UsuarioJSON[] | null> {
@@ -70,25 +64,23 @@ export class UsuariosService {
 
   navegarALogin() { this.router.navigate(['/login']); }
 
+
   addError(mensajeError: string) {
-    this.errors.push(mensajeError);
+    this.errors.push(mensajeError)
   }
 
 }
 
 class UsuarioLogin {
-  mail: string;
-  contrasenia: string;
+  mail: string
+  contrasenia: string
 
   constructor(mail: string, contrasenia: string) {
-    this.mail = mail;
-    this.contrasenia = contrasenia;
+    this.mail = mail
+    this.contrasenia = contrasenia
   }
 }
 
 export type UsuarioLoginJSON = {
   id: number
 }
-
-
-

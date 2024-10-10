@@ -12,9 +12,9 @@
         </div>
       }
       @else {
-        <button class="boton-rec">
-          <img src="/imagenes/heart.svg" width="20px" height="18px" />
-          <!-- <i class="fa-light fa-heart"></i> -->
+        <button (click)="aValorar()"  class="boton-rec">
+          @if(corazonCliqueado){ <img src="/imagenes/heart-fill.svg" /> }
+          @else { <img src="/imagenes/heart.svg" /> }
         </button>
       }
     </header>
