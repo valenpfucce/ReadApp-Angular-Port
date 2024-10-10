@@ -29,18 +29,27 @@ export class UsuariosService {
 }
 
   
-
   
 navegarALogin() { this.router.navigate(['/login']); }
 
 
-async getUserId() {
-  const usuarioJSON$ = this.httpClient.get<UsuarioJSON>(`${REST_SERVER_URL}/usuarios/` + this.sessionKey)
-  const usuarioJSON = await lastValueFrom(usuarioJSON$)
-  return usuarioJSON ? Usuario.fromJson(usuarioJSON) : undefined
+async getUserId(): Promise<Usuario> {
+  const usuarioJSON = await this.httpClient.get<UsuarioJSON>(`${REST_SERVER_URL}/usuarios/` + this.sessionKey)
+  if (!usuarioJSON){
+    throw new Error("Usuario Invalido")
+  }
+  const usuarioTipoUsuario =  Usuario.fromJson(usuarioJSON)
+  return usuarioTipoUsuario
+}
+  
+  
+  
+  
+  // const usuarioJSON$ = this.httpClient.get<UsuarioJSON>(`${REST_SERVER_URL}/usuarios/` + this.sessionKey)
+  // const usuarioJSON = await lastValueFrom(usuarioJSON$)
+  // return usuarioJSON ? Usuario.fromJson(usuarioJSON) : undefined
     
   
-}
 
   
 putVerificationUser(mailLogin: string, contraseniaLogin: string): Observable<number | null> {

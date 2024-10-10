@@ -1,9 +1,8 @@
 import { Entidad } from "./entidad"
 import { Recomendacion } from "./recomendacion"
 import { FORMATO_FECHA } from "../services/configuration"
-import { DateTime } from 'luxon'
+import dayjs from 'dayjs'
 
-// import { DateTime } from 'luxon'
 
 export type UsuarioJSON = {
   id: number,
@@ -24,12 +23,12 @@ export class ValidationMessage {
   ) {}
 }
 
-export class Usuario implements Entidad{ 
+export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
   
   // tipoLectura = [];
   criterioBusqueda = [];
   recomendacionesAValorar ?: Recomendacion[];
-  amigos ?: Usuario[];
+  amigos ?:[Usuario];
   validador: sistemaValidacion;
   errors: ValidationMessage[] = [];
 
@@ -49,13 +48,12 @@ export class Usuario implements Entidad{
   
   static fromJson(usuarioJSON: UsuarioJSON): Usuario {
     return Object.assign(new Usuario(), usuarioJSON, {
-      fechaNacimiento: usuarioJSON.fechaNacimiento
-        ? DateTime.fromFormat(usuarioJSON.fechaNacimiento, FORMATO_FECHA).toJSDate()
-        : undefined
+      ffechaNacimiento: usuarioJSON.fechaNacimiento
+      ? dayjs(usuarioJSON.fechaNacimiento, FORMATO_FECHA).toDate()
+      : undefined
     })
   }
   
-
   guardarDatos(): boolean{
 
     this.validador.validarDatos(this)

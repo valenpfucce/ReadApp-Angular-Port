@@ -40,13 +40,17 @@ export class PerfilInfoComponent {
 
   ngOnInit() {
    
-    this.usuario = this.userServiceUS.getUserId(); //tiene q traer ccosas del back
+    this.obtenerDatosUsuario()
     const jsonPrueba = JSON.stringify(this.usuario)
     this.usuarioEditable = JSON.parse(JSON.stringify(this.usuario)); //no copia métodos, objetos de fecha, etc 
     console.log(jsonPrueba)
     
-    // { ...this.usuario };
-
+    
+  }
+  
+  async obtenerDatosUsuario(): Promise<void>{
+    const usuarioEnLinea = await this.userServiceUS.getUserId()
+    this.usuario = usuarioEnLinea
   }
   
   cambioCalculador(){
@@ -62,7 +66,6 @@ export class PerfilInfoComponent {
     this.indicarGuardadoExitoso()
    }
    this.llamarServerPutUS()
-  
   
   } 
   
