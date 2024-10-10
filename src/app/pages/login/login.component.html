@@ -16,7 +16,7 @@
         <div class="input-container">
           <input type="text" id="mail" formControlName="mail" required="true" />
         </div>
-        <div class="obligatorio-input" *ngIf="!showPasswordError">
+        <!-- <div class="obligatorio-input" *ngIf="!showPasswordError">
           <small
             *ngIf="
               loginForm.get('mail')?.errors?.['required'] &&
@@ -31,7 +31,7 @@
             "
             >Formato de correo inválido.</small
           >
-        </div>
+        </div> -->
       </div>
 
       <div class="flex container">
@@ -55,7 +55,7 @@
           >
         </div>
         <div *ngIf="showPasswordError" class="error-message">
-          Usuario o contraseña incorrectos.
+         {{showPasswordError}}
         </div>
       </div>
       <div class="boton_container">
