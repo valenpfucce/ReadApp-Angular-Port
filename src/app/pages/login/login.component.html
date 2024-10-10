@@ -16,22 +16,6 @@
         <div class="input-container">
           <input type="text" id="mail" formControlName="mail" required="true" />
         </div>
-        <!-- <div class="obligatorio-input" *ngIf="!showPasswordError">
-          <small
-            *ngIf="
-              loginForm.get('mail')?.errors?.['required'] &&
-              loginForm.get('mail')?.touched
-            "
-            >El correo es requerido.</small
-          >
-          <small
-            *ngIf="
-              loginForm.get('mail')?.errors?.['mail'] &&
-              loginForm.get('mail')?.touched
-            "
-            >Formato de correo inválido.</small
-          >
-        </div> -->
       </div>
 
       <div class="flex container">
@@ -49,14 +33,14 @@
           *ngIf="
             !showPasswordError 
           "
-        >
+          >
           <small *ngIf="loginForm.get('contrasenia')?.errors?.['required'] && loginForm.get('contrasenia')?.touched"
             >La contraseña es requerida.</small
           >
         </div>
         <div *ngIf="showPasswordError" class="error-message">
-         {{showPasswordError}}
-        </div>
+          {{showPasswordError}}
+         </div>
       </div>
       <div class="boton_container">
         <button (click)="login()" class="boton_guardar" type="submit">

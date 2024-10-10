@@ -1,8 +1,8 @@
 import { Entidad } from "./entidad"
 import { Recomendacion } from "./recomendacion"
 import { FORMATO_FECHA } from "../services/configuration"
+import dayjs from 'dayjs'
 
-// import { DateTime } from 'luxon'
 
 export type UsuarioJSON = {
   id: number,
@@ -16,8 +16,6 @@ export type UsuarioJSON = {
   tipoLectura: string[]
 }
 
-
-
 export class ValidationMessage {
   constructor(
     public field: string,
@@ -25,32 +23,39 @@ export class ValidationMessage {
   ) {}
 }
 
-export class Usuario implements Entidad{ 
+export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
   
   // tipoLectura = [];
   criterioBusqueda = [];
   recomendacionesAValorar ?: Recomendacion[];
-  amigos ?: Usuario[];
+  amigos ?:[Usuario];
   validador: sistemaValidacion;
   errors: ValidationMessage[] = [];
 
   constructor(
-    public id: number,
-    public nombre : string, 
-    public apellido : string, 
-    public username : string,
-    public mail : string,
-    public password : string,
+    public id?: number,
+    public nombre : string = '', 
+    public apellido : string= '',
+    public username : string= '',
+    public mail : string= '',
+    public password : string= '',
     public fechaNacimiento? : Date,
     public tiempoLectura: number = 0,
     public tipoLectura: string[] = [] //es tipo de lectura
   ) {
     this.validador = new sistemaValidacion();
   }
-
-  /*Agregar formas de lectura y criterios de busqueda, como listas?*/
-
-
+  
+  static fromJson(usuarioJSON: UsuarioJSON): Usuario {
+     const usertest = Object.assign(new Usuario(), usuarioJSON, {
+      fechaNacimiento: usuarioJSON.fechaNacimiento
+      ? dayjs(usuarioJSON.fechaNacimiento, FORMATO_FECHA).toDate()
+      : undefined
+    })
+    console.log("usertest",usertest )
+    return usertest
+  }
+  
   guardarDatos(): boolean{
 
     this.validador.validarDatos(this)
@@ -77,9 +82,21 @@ export class Usuario implements Entidad{
   //   return !this.fechaNacimiento ? '' : DateTime.fromJSDate(this.fechaNacimiento).toUTC().toFormat(FORMATO_FECHA)
   // }
   
+  
+  idUsuarioNotNull(): number{
+    const idUsuarioAct = sessionStorage.getItem('userSession')
+    if(idUsuarioAct === null){
+      throw new Error('Usuaio Invalido');
+    } else {
+      return Number(idUsuarioAct) 
+    }
+    
+  }
+  
+  
   toJSON(): UsuarioJSON {
     return {
-      id: this.id,
+      id : this.idUsuarioNotNull() ,
       nombre : this.nombre, 
       apellido : this.apellido, 
       username : this.username,

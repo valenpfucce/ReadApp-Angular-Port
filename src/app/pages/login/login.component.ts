@@ -6,12 +6,13 @@ import {
   ReactiveFormsModule,
   Validators
 } from '@angular/forms'
-
 import { Router } from '@angular/router'
 import { ValidacionFieldComponent } from '../../pages/perfil/components/perfil-info/validacion-field/validacion-field.component'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
 import { CommonModule } from '@angular/common'
 import { HttpErrorResponse } from '@angular/common/http'
+import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
+
 
 @Component({
   selector: 'readapp-login',
@@ -34,7 +35,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private userService: UsuariosService
+    private userSesionStorageService: UserSessionStorageService
   ) {}
 
   ngOnInit() {
@@ -60,19 +61,19 @@ export class LoginComponent {
     const { mail, contrasenia } = this.loginForm.value
 
     try {
-      const idUsuario = await this.userService.loginGetUsuarioIdToSS(
+      const idUsuario = await this.userSesionStorageService.loginGetUsuarioIdToSS(
         mail,
         contrasenia
       )
 
       // Esto sólo es para comprobar que me está guardando bien en la variable el id del usuario que ingresó
+
       console.log('ID del usuario:', idUsuario)
 
       if (idUsuario) {
         this.router.navigate(['/home'])
       }
 
-      sessionStorage.clear()
     } catch (error: unknown) {
       if (error instanceof HttpErrorResponse) {
         if (error.status === 0) {
@@ -87,3 +88,4 @@ export class LoginComponent {
     }
   }
 }
+

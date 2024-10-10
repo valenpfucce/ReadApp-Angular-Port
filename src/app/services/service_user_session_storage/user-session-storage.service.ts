@@ -4,15 +4,19 @@ import { UsuariosService } from '../service_usuarios/usuarios.service';
 import { Usuario, UsuarioJSON } from '../../domain/usuario';
 import { HttpClient } from '@angular/common/http';
 import { REST_SERVER_URL } from '../configuration';
+import { firstValueFrom, lastValueFrom, Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserSessionStorageService {
 
   
-  usuarioSessionIdString = sessionStorage.getItem('userSession');
-  usuarioSessionId: number | null = this.usuarioSessionIdString !== null ? +this.usuarioSessionIdString : null;
+  errors: String[] = [];
+  private readonly sessionKey = 'userSession';
   constructor(
     private router : Router,
     private route : ActivatedRoute,
@@ -20,26 +24,74 @@ export class UserSessionStorageService {
     private httpClient: HttpClient
     
   ) { }
+  
+  
+  
   // ===== USER =====
 
+  
+  async loginGetUsuarioIdToSS(
+    mail: string,
+    contrasenia: string
+  ): Promise<number | null> {
+    const usuarioLogin = { mail, contrasenia }
 
-  // obtenerUsuarioDelSS(){
-  //   if (this.usuarioSessionId !== null) {
-  //     // Usar usuarioSessionId para obtener el usuario  
-  //     const usuarioEncontrado = this.userService.getUser(this.usuarioSessionId);
-  //     if (usuarioEncontrado) {
-  //       return usuarioEncontrado;
-  //     } else {
-  //       console.error('Usuario no encontrado.');
-  //       this.navegarAHome()
-  //       throw new Error('Redirigiendo por usuario no encontrado');
-  //     }
-  //   } else {
-  //     // Navegar a la página de login si no se encuentra el ID de sesión
-  //     this.navegarAHome()
-  //     throw new Error('Redirigiendo por usuario no encontrado');
-  //   }
+    try {
+      // Usamos firstValueFrom para convertir el observable en una promesa
+      const response = await firstValueFrom(this.userService.putVerificationUser(mail, contrasenia))
+      sessionStorage.setItem(this.sessionKey, response!.toString())
+      return response
+    } catch (error) {
+      console.error('Error en el login:', error)
+      throw error
+    }
+  }
+
+
+  // loginGetUsuarioIdToSS(mail: string, contrasenia: string): Observable<number | null> {
+
+  //   return this.userService.putVerificationUser(mail, contrasenia).pipe(
+  //     map((idUsuarioEncontrado: number | null) => {
+  //       if (idUsuarioEncontrado !== null) {
+  //         sessionStorage.setItem(this.sessionKey, idUsuarioEncontrado.toString());
+  //         console.log('Login exitoso, ID de Usuario: ', idUsuarioEncontrado);
+  //         return idUsuarioEncontrado;
+  //       } else {
+  //         this.addError('Contraseña incorrecta.');
+  //         return null;
+  //       }
+  //     }),
+  //     catchError((error) => {
+  //       this.addError('Error en el proceso de login.');
+  //       console.error('Error en el login:', error);
+  //       return of(null); // Retornar null en caso de error
+  //     })
+  //   )
+    
+  //   // const idUsuarioEncontrado = this.putVerificationUser(mail, contrasenia);
+  //   // if (idUsuarioEncontrado === null) {
+
+  //   //   console.error('Usuario no encontrado.');
+  //   //   this.navegarALogin()
+  //   //   throw new Error('Redirigiendo por usuario no encontrado');
+  //   // } else {
+
+  //   //   sessionStorage.setItem(this.sessionKey, idUsuarioEncontrado.toString());
+  //   //   console.log('Login exitoso, ID de Usuario pero no de putVerificationUser: ', idUsuarioEncontrado);
+  //   //   /*this.idUsuarioActivo = idUsuarioEncontrado;*/
+  //   //    idUsuarioEncontrado;
+  //   // }
+
+
+
   // }
+    
+    
+  addError(mensajeError: string) {
+      this.errors.push(mensajeError);
+  }
+ 
+
   
     
   
@@ -133,3 +185,5 @@ export class UserSessionStorageService {
   
   navegarAHome(){this.router.navigate(['/login']);}
 }
+  
+
