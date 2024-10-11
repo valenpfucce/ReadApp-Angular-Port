@@ -25,17 +25,17 @@ export class Recomendacion implements Entidad{
       public tiempoLectura?: string
     ){}
 
-    promedioValoraciones(){
-        return this.valoraciones.length === 0
-            ? 0
-            : (this.valoraciones.map(valoracion => valoracion.valoracion).reduce((a, b) => a + b, 0) / this.valoraciones.length).toFixed(1);
-    }
+  promedioValoraciones(){
+    return this.valoraciones.length === 0
+      ? 0
+      : (this.valoraciones.map(valoracion => valoracion.valoracion).reduce((a, b) => a + b, 0) / this.valoraciones.length).toFixed(1);
+  }
 
   static fromJson(recomendacionJSON: Recomendacion): Recomendacion {
     // @ts-ignore
     return Object.assign(new Recomendacion(), recomendacionJSON, {
       lista_libros: recomendacionJSON.lista_libros
-        ?
+      //  ?
       // asignatario: tareaJSON.asignadoA
       //   ? Usuario.fromJSON(tareaJSON.asignadoA)
       //   : undefined,
@@ -44,6 +44,5 @@ export class Recomendacion implements Entidad{
       //   : undefined
     })
   }
-
 }
 

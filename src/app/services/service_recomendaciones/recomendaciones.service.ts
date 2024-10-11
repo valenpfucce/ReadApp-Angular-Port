@@ -18,32 +18,9 @@ export class RecomendacionesService {
     return this.listaRecomendaciones
   }
 
-  // async getRecomendacion(id: number) : Recomendacion {
-  //   const recomendacionEncontrada = this.httpClient
-  //     .get<UsuarioLoginJSON>(`${REST_SERVER_URL}/recomendaciones/${id}`)
-  //     .pipe(
-  //       map((response) => response?.id || null),
-  //       catchError((error) => {
-  //         return of(null) // Retornar null en caso de error
-  //       })
-  //     )
-  // }
-
   getRecomendacion(id: number) {
     return this.listaRecomendaciones.find(recomendacion => recomendacion.id === id)
   }
-
-  // async getRecomendacionCompleta(id: number): Promise<Recomendacion | null> {
-  //   try {
-  //     const recomendacionJSON$ =
-  //       this.httpClient.get<Recomendacion>(`${REST_SERVER_URL}/recomendaciones/completa/${id}`)
-  //     const recomendacionJSON = await lastValueFrom(recomendacionJSON$)
-  //     return recomendacionJSON ? Recomendacion.fromJson(recomendacionJSON) : undefined
-  //   } catch (error) {
-  //     console.error('Error al obtener recomendación:', error);
-  //     return null; // Retorna null en caso de error
-  //   }
-  // }
 
   async getRecomendacionCompleta(id: number) {
     // const recomendacionJSON$ = await this.httpClient.get<Recomendacion>(`${REST_SERVER_URL}/recomendaciones/completa/${id}`)
