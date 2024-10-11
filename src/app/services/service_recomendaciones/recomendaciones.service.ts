@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
 import { recomendaciones } from '../../mocks/mock_recomendaciones';
-import { Usuario } from '../../domain/usuario';
+import {REST_SERVER_URL} from "../configuration";
+import { HttpClient } from '@angular/common/http'
+import {catchError, map} from "rxjs/operators";
+import {lastValueFrom, of} from "rxjs";
+import {UsuarioLoginJSON} from "../service_usuarios/usuarios.service";
+import {Recomendacion} from "../../domain/recomendacion";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecomendacionesService {
   listaRecomendaciones = recomendaciones
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   listar_recomendaciones(){
     return this.listaRecomendaciones
@@ -15,6 +20,12 @@ export class RecomendacionesService {
 
   getRecomendacion(id: number) {
     return this.listaRecomendaciones.find(recomendacion => recomendacion.id === id)
+  }
+
+  async getRecomendacionCompleta(id: number) {
+    // const recomendacionJSON$ = await this.httpClient.get<Recomendacion>(`${REST_SERVER_URL}/recomendaciones/completa/${id}`)
+    const recomendacionJSON = await lastValueFrom(this.httpClient.get<Recomendacion>(`${REST_SERVER_URL}/recomendaciones/completa/${id}`))
+    return recomendacionJSON ? Recomendacion.fromJson(recomendacionJSON) : undefined
   }
 
   busquedaGeneral(palabraABuscar?: string){
