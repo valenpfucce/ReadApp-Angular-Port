@@ -33,16 +33,22 @@ export class RecomendacionesService {
     return this.listaRecomendaciones.find(recomendacion => recomendacion.id === id)
   }
 
-  async getRecomendacionCompleta(id: number): Promise<Recomendacion | null> {
-    try {
-      const recomendacionJSON$ =
-        this.httpClient.get<Recomendacion>(`${REST_SERVER_URL}/recomendaciones/${id}`)
-      const recomendacionJSON = await lastValueFrom(recomendacionJSON$)
-      return recomendacionJSON ? Recomendacion.fromJson(recomendacionJSON) : undefined
-    } catch (error) {
-      console.error('Error al obtener recomendación:', error);
-      return null; // Retorna null en caso de error
-    }
+  // async getRecomendacionCompleta(id: number): Promise<Recomendacion | null> {
+  //   try {
+  //     const recomendacionJSON$ =
+  //       this.httpClient.get<Recomendacion>(`${REST_SERVER_URL}/recomendaciones/completa/${id}`)
+  //     const recomendacionJSON = await lastValueFrom(recomendacionJSON$)
+  //     return recomendacionJSON ? Recomendacion.fromJson(recomendacionJSON) : undefined
+  //   } catch (error) {
+  //     console.error('Error al obtener recomendación:', error);
+  //     return null; // Retorna null en caso de error
+  //   }
+  // }
+
+  async getRecomendacionCompleta(id: number) {
+    // const recomendacionJSON$ = await this.httpClient.get<Recomendacion>(`${REST_SERVER_URL}/recomendaciones/completa/${id}`)
+    const recomendacionJSON = await lastValueFrom(this.httpClient.get<Recomendacion>(`${REST_SERVER_URL}/recomendaciones/completa/${id}`))
+    return recomendacionJSON ? Recomendacion.fromJson(recomendacionJSON) : undefined
   }
 
   busquedaGeneral(palabraABuscar?: string){

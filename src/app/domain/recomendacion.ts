@@ -31,7 +31,7 @@ export class Recomendacion implements Entidad{
             : (this.valoraciones.map(valoracion => valoracion.valoracion).reduce((a, b) => a + b, 0) / this.valoraciones.length).toFixed(1);
     }
 
-  static fromJson(recomendacionJSON: RecomendacionJSON): Recomendacion {
+  static fromJson(recomendacionJSON: Recomendacion): Recomendacion {
     // @ts-ignore
     return Object.assign(new Recomendacion(), recomendacionJSON, {
       lista_libros: recomendacionJSON.lista_libros
