@@ -1,6 +1,12 @@
 import { Entidad } from "./entidad";
 import { Usuario } from "./usuario";
 
+export type ValoracionJSON = {
+  creador: string,
+  valor : number,
+  comentario: String
+}
+
 export class Valoracion implements Entidad {
     constructor(
       public id : number,
@@ -12,4 +18,3 @@ export class Valoracion implements Entidad {
       public valoracion: number
     ) {}
   }
-  

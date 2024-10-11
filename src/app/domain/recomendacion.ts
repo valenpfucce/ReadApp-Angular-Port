@@ -1,48 +1,67 @@
 import { Entidad } from "./entidad";
-import { Libro } from "./libro";
+import { Libro, LibroJSON } from './libro'
 import { Valoracion } from "./valoracion";
+import { recomendaciones } from '../mocks/mock_recomendaciones'
 
 
 export type RecomendacionJSON = {
   id: number,
-  creadorId: number, //NO DEBERIA TRAER EL CREADOR ID, CHEQUEAR EN EL BACK
+  creadorId: number,
   titulo: string,
   publica: boolean,
   descripcion: string,
-  lista_libros: string[],
-  valoraciones: string[]
+  lista_libros: LibroJSON[],
+  //valoraciones: ValoracionJSON,
+  tiempoLectura: number,
+  avgValoraciones: number
 }
 
-export class Recomendacion implements Entidad{
-    constructor(
-      public id: number,
-      // public creadorId : number,
-      public titulo: string,
-      public publica: boolean,
-      public descripcion: string,
-      public lista_libros: Libro[],
-      public valoraciones: Valoracion[],
-      public tiempoLectura?: string
-    ){}
+export class Recomendacion implements Entidad {
+  constructor(
+    public id: number,
+    public creadorId: number,
+    public titulo: string,
+    public publica: boolean,
+    public descripcion: string,
+    public lista_libros: Libro[],
+   // public valoraciones: Valoracion[],
+    public tiempoLectura?: number,
+    public avgValoraciones?: number
+  ) {}
 
-  promedioValoraciones(){
-    return this.valoraciones.length === 0
-      ? 0
-      : (this.valoraciones.map(valoracion => valoracion.valoracion).reduce((a, b) => a + b, 0) / this.valoraciones.length).toFixed(1);
-  }
+  // static fromJson(recomendacionJSON: RecomendacionJSON): Recomendacion {
+  //
+  //   // @ts-ignore
+  //   return Object.assign(new Recomendacion(), recomendacionJSON, {
+  //     lista_libros: recomendacionJSON.lista_libros
+  //     ? JSON.parse(recomendacionJSON.lista_libros)
+  //       : undefined,
+  //     // asignatario: tareaJSON.asignadoA
+  //     //   ? Usuario.fromJSON(tareaJSON.asignadoA)
+  //     //   : undefined,
+  //     // fecha: tareaJSON.fecha
+  //     //   ? DateTime.fromFormat(tareaJSON.fecha, FORMATO_FECHA).toJSDate()
+  //     //   : undefined
+  //   })
+  // }
 
-  static fromJson(recomendacionJSON: Recomendacion): Recomendacion {
-    // @ts-ignore
-    return Object.assign(new Recomendacion(), recomendacionJSON, {
-      lista_libros: recomendacionJSON.lista_libros
-      //  ?
-      // asignatario: tareaJSON.asignadoA
-      //   ? Usuario.fromJSON(tareaJSON.asignadoA)
-      //   : undefined,
-      // fecha: tareaJSON.fecha
-      //   ? DateTime.fromFormat(tareaJSON.fecha, FORMATO_FECHA).toJSDate()
-      //   : undefined
-    })
+  static fromJson(recomendacionJSON: RecomendacionJSON): Recomendacion {
+    const listaLibros: Libro[] = recomendacionJSON.lista_libros.map(libroJSON => Libro.fromJson(libroJSON));
+
+    // Convertir valoraciones si es necesario (similar a cómo manejas los libros)
+    //const valoraciones: Valoracion[] = recomendacionJSON.valoraciones.map(valoracion => Valoracion.fromJson(valoracion));
+
+    return new Recomendacion(
+      recomendacionJSON.id,
+      recomendacionJSON.creadorId,
+      recomendacionJSON.titulo,
+      recomendacionJSON.publica,
+      recomendacionJSON.descripcion,
+      listaLibros,
+      //valoraciones,
+      recomendacionJSON.tiempoLectura,
+      recomendacionJSON.avgValoraciones
+    );
   }
 }
 
