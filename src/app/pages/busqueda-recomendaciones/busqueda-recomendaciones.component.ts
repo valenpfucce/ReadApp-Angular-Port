@@ -30,15 +30,28 @@ export class BusquedaRecomendacionesComponent {
     private sessionStorage: UserSessionStorageService
   ){}
 
-  ngOnInit(){
+  ngOnInit() {
+
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
-    this.obtenerDatosUsuario(userIdSS)
-    
     this.data = this.route.snapshot.data as DataBusqueda
+    if(userIdSS != null){
+      this.busquedaAlService(userIdSS)
+    }
+
+    // this.recomendaciones = this.busquedaAlService()
+    // this.recomendaciones = this.data.realizarBusqueda(
+    //   this.serviceRecomendaciones,
+    //   undefined,
+    //   this.usuario.id
+    // )
+  }
+
+
+  async busquedaAlService(userIdSS : number){
     this.recomendaciones = this.data.realizarBusqueda(
       this.serviceRecomendaciones,
       undefined,
-      this.usuario.id
+      userIdSS
     )
   }
 
@@ -50,7 +63,7 @@ export class BusquedaRecomendacionesComponent {
   puedeEditarRecomendacion(recomendacion : Recomendacion) : Boolean{
     return true /*recomendacion.creadorId === this.usuario.id*/
   }
-  
+
   buscar(palabraABuscar?: string){
     this.recomendaciones = this.data.realizarBusqueda(
       this.serviceRecomendaciones,

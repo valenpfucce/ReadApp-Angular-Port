@@ -14,7 +14,7 @@ export class RecomendacionesService {
 
   async getAllRecomendaciones() {
     const recomendaciones = await lastValueFrom(
-      this.httpClient.get<RecomendacionJSON[]>(REST_SERVER_URL + 'recomendaciones/todas')
+      this.httpClient.get<RecomendacionJSON[]>(REST_SERVER_URL + '/recomendaciones/todas')
     )
     return recomendaciones.map((recomendacionJSON) =>
       Recomendacion.fromJson(recomendacionJSON)
@@ -41,7 +41,7 @@ export class RecomendacionesService {
   }
 
   async busquedaGeneral(palabraABuscar?: string) {
-    return await this.getAllRecomendaciones()
+    return this.getAllRecomendaciones()
   }
 
   async busquedaMisRecomendaciones(palabraABuscar?: string, idUsuario?: Number) {

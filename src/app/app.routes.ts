@@ -14,31 +14,66 @@ import { Usuario } from './domain/usuario';
 import { BarraBusquedaComponent } from './components/header/components/barra-busqueda/barra-busqueda.component';
 import { HttpClient } from '@angular/common/http';
 
+// export type DataBusqueda = {
+//     showCheckBox: boolean
+//     showCardMas: boolean
+//     realizarBusqueda: (
+//         serviceRecomendaciones: RecomendacionesService,
+//         palabraABuscar?: string,
+//         idUsuario?: number
+//     ) => Recomendacion[]
+// }
+//
+// const dataBusquedaHome: DataBusqueda = {
+//     showCheckBox: false,
+//     showCardMas: false,
+//     realizarBusqueda:(serviceRecomendaciones, palabraABuscar) => {
+//         return serviceRecomendaciones.busquedaGeneral(palabraABuscar)
+//     }
+// }
+//
+// const dataBusquedaMisRecomendaciones: DataBusqueda = {
+//     showCheckBox: true,
+//     showCardMas: true,
+//     realizarBusqueda:(serviceRecomendaciones, palabraABuscar, idUsuario) => {
+//         return serviceRecomendaciones.busquedaMisRecomendaciones(palabraABuscar, idUsuario)
+//     }
+// }
+
+
 export type DataBusqueda = {
-    showCheckBox: boolean
-    showCardMas: boolean
-    realizarBusqueda: (
-        serviceRecomendaciones: RecomendacionesService,
-        palabraABuscar?: string,
-        idUsuario?: number
-    ) => Recomendacion[]
-}
+  showCheckBox: boolean;
+  showCardMas: boolean;
+  realizarBusqueda: (
+    serviceRecomendaciones: RecomendacionesService,
+    palabraABuscar?: string,
+    idUsuario?: number
+  ) => Recomendacion[]; // Aquí el tipo de retorno sigue siendo Recomendacion[]
+};
 
 const dataBusquedaHome: DataBusqueda = {
-    showCheckBox: false,
-    showCardMas: false,
-    realizarBusqueda:(serviceRecomendaciones, palabraABuscar) => {
-        return serviceRecomendaciones.busquedaGeneral(palabraABuscar)
-    }
-}
+  showCheckBox: false,
+  showCardMas: false,
+  realizarBusqueda: (serviceRecomendaciones, palabraABuscar) => {
+    let resultados: Recomendacion[] = [];
+    (async () => {
+      resultados = await serviceRecomendaciones.busquedaGeneral(palabraABuscar);
+    })();
+    return resultados;
+  }
+};
 
 const dataBusquedaMisRecomendaciones: DataBusqueda = {
-    showCheckBox: true,
-    showCardMas: true,
-    realizarBusqueda:(serviceRecomendaciones, palabraABuscar, idUsuario) => {
-        return serviceRecomendaciones.busquedaMisRecomendaciones(palabraABuscar, idUsuario)
-    }
-}
+  showCheckBox: true,
+  showCardMas: true,
+  realizarBusqueda: (serviceRecomendaciones, palabraABuscar, idUsuario) => {
+    let resultados: Recomendacion[] = [];
+    (async () => {
+      resultados = await serviceRecomendaciones.busquedaMisRecomendaciones(palabraABuscar, idUsuario);
+    })();
+    return resultados;
+  }
+};
 
 
 export const routes: Routes = [
