@@ -24,7 +24,7 @@ export type DataBusqueda = {
     ) => Recomendacion[]
 }
 
-const dataBusquedaHome: DataBusqueda = { 
+const dataBusquedaHome: DataBusqueda = {
     showCheckBox: false,
     showCardMas: false,
     realizarBusqueda:(serviceRecomendaciones, palabraABuscar) => {
@@ -45,7 +45,7 @@ export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component:LoginComponent },
     { path: 'home', component:BusquedaRecomendacionesComponent, data: dataBusquedaHome},
-    { path: 'recomendacion/:id/detalle', component:PagRecomendacionComponent, data: { modo: 'detalle' } },
+    { path: 'recomendacion/:id/detalle', component:PagRecomendacionComponent, data: { modo: 'comentario' } },
     { path: 'recomendacion/:id/edicion', component:PagRecomendacionComponent, data: { modo: 'edicion' } },
     { path: 'barra_busqueda', component:BarraBusquedaComponent},
     { path: 'libros_leidos', component:PerfilLibrosLeidosComponent},
@@ -55,9 +55,9 @@ export const routes: Routes = [
         { path: 'amigos', title:'Amigos', component:PerfilAmigosComponent},
         { path: 'info', title:'Informacion del Usuario' , component:PerfilInfoComponent},
         { path: 'recomendacionesAValorar', title: 'Recomendaciones A Valorar', component: PerfilRecomendacionesAValorarComponent}
-        ] 
+        ]
     },
-    
+
    { path: '**', component:NotfoundComponent}
 ];
 

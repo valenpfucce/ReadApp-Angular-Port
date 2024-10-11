@@ -1,7 +1,6 @@
 import { Entidad } from "./entidad";
 import { Libro, LibroJSON } from './libro'
-import { Valoracion } from "./valoracion";
-import { recomendaciones } from '../mocks/mock_recomendaciones'
+import { Valoracion, ValoracionJSON } from './valoracion'
 
 
 export type RecomendacionJSON = {
@@ -11,7 +10,7 @@ export type RecomendacionJSON = {
   publica: boolean,
   descripcion: string,
   lista_libros: LibroJSON[],
-  //valoraciones: ValoracionJSON,
+  valoraciones: ValoracionJSON[],
   tiempoLectura: number,
   avgValoraciones: number
 }
@@ -24,7 +23,7 @@ export class Recomendacion implements Entidad {
     public publica: boolean,
     public descripcion: string,
     public lista_libros: Libro[],
-   // public valoraciones: Valoracion[],
+    public valoraciones: Valoracion[],
     public tiempoLectura?: number,
     public avgValoraciones?: number
   ) {}
@@ -48,8 +47,7 @@ export class Recomendacion implements Entidad {
   static fromJson(recomendacionJSON: RecomendacionJSON): Recomendacion {
     const listaLibros: Libro[] = recomendacionJSON.lista_libros.map(libroJSON => Libro.fromJson(libroJSON));
 
-    // Convertir valoraciones si es necesario (similar a cómo manejas los libros)
-    //const valoraciones: Valoracion[] = recomendacionJSON.valoraciones.map(valoracion => Valoracion.fromJson(valoracion));
+    const valoraciones: Valoracion[] = recomendacionJSON.valoraciones.map(valoracion => Valoracion.fromJson(valoracion));
 
     return new Recomendacion(
       recomendacionJSON.id,
@@ -58,7 +56,7 @@ export class Recomendacion implements Entidad {
       recomendacionJSON.publica,
       recomendacionJSON.descripcion,
       listaLibros,
-      //valoraciones,
+      valoraciones,
       recomendacionJSON.tiempoLectura,
       recomendacionJSON.avgValoraciones
     );
