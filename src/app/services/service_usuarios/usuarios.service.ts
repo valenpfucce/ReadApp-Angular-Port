@@ -7,7 +7,6 @@ import { lastValueFrom, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { REST_SERVER_URL } from '../configuration';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -21,16 +20,13 @@ export class UsuariosService {
 
   constructor(private httpClient: HttpClient) {
     this.validador = new sistemaValidacion();
+    
 
   }
 
+  async getUserId(userIdSS : number | null): Promise<Usuario> {  //GetUserById
 
-
-
-  async getUserId(): Promise<Usuario> {
-
-    const idUser = sessionStorage.getItem(this.sessionKey)
-    const usuarioJSON = await lastValueFrom(this.httpClient.get<UsuarioJSON>(`${REST_SERVER_URL}/usuarios/` + idUser))
+    const usuarioJSON = await lastValueFrom(this.httpClient.get<UsuarioJSON>(`${REST_SERVER_URL}/usuarios/` + userIdSS))
     console.log("json q trae del back", usuarioJSON)
     if (!usuarioJSON) {
       throw new Error("Usuario Invalido")
@@ -47,7 +43,6 @@ export class UsuariosService {
       map((response) => response?.id || null)
 
     )
-
 
   }
 

@@ -26,12 +26,14 @@ export class BusquedaRecomendacionesComponent {
     private router : Router,
     private route : ActivatedRoute,
     private serviceRecomendaciones: RecomendacionesService,
-    private userServiceUS: UsuariosService
+    private userServiceUS: UsuariosService,
+    private sessionStorage: UserSessionStorageService
   ){}
 
   ngOnInit(){
-    this.obtenerDatosUsuario() /*this.userServiceSS.obtenerUsuarioDelSS();*/
-
+    const userIdSS = this.sessionStorage.obtenerIDuserSS()
+    this.obtenerDatosUsuario(userIdSS)
+    
     this.data = this.route.snapshot.data as DataBusqueda
     this.recomendaciones = this.data.realizarBusqueda(
       this.serviceRecomendaciones,
@@ -40,8 +42,8 @@ export class BusquedaRecomendacionesComponent {
     )
   }
 
-  async obtenerDatosUsuario(): Promise<void>{
-    const usuarioEnLinea = await this.userServiceUS.getUserId()
+  async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
+    const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
     this.usuario = usuarioEnLinea
   }
 

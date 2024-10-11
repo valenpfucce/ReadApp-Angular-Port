@@ -34,21 +34,24 @@ export class PerfilInfoComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private userServiceUS: UsuariosService
+    private userServiceUS: UsuariosService,
+    private sessionStorage: UserSessionStorageService
     
   ) {}
 
   ngOnInit() {
-   
-    this.obtenerDatosUsuario()
+    const userIdSS = this.sessionStorage.obtenerIDuserSS()
+    console.log("userIdSS", userIdSS)
+    this.obtenerDatosUsuario(userIdSS)
     const jsonPrueba = JSON.stringify(this.usuario)
     this.usuarioEditable = JSON.parse(JSON.stringify(this.usuario)); //no copia métodos, objetos de fecha, etc 
     console.log(jsonPrueba)
     
   }
   
-  async obtenerDatosUsuario(): Promise<void>{
-    const usuarioEnLinea = await this.userServiceUS.getUserId()
+  async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
+    const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
+    console.log("usuarioEnLinea", usuarioEnLinea)
     this.usuario = usuarioEnLinea
   }
   

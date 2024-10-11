@@ -31,12 +31,13 @@ export class PagRecomendacionComponent {
     private router : Router,
     private route : ActivatedRoute,
     private serviceRecomendacion : RecomendacionesService,
-    private userServiceUS: UsuariosService
+    private userServiceUS: UsuariosService,
+    private sessionStorage: UserSessionStorageService
   ){}
 
   ngOnInit() {
-    this.obtenerDatosUsuario() /*this.userServiceSS.obtenerUsuarioDelSS();*/
-
+    const userIdSS = this.sessionStorage.obtenerIDuserSS()
+    this.obtenerDatosUsuario(userIdSS)
     // ===== ROUTE PARAMETRO =====
     //Traer los parametros del routing
     this.route.params.subscribe(params => {
@@ -68,8 +69,8 @@ export class PagRecomendacionComponent {
     });
   }
   
-  async obtenerDatosUsuario(): Promise<void>{
-    const usuarioEnLinea = await this.userServiceUS.getUserId()
+  async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
+    const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
     this.usuario = usuarioEnLinea
   }
 
