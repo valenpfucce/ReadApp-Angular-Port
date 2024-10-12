@@ -1,38 +1,65 @@
-import { Injectable } from '@angular/core';
-import { recomendaciones } from '../../mocks/mock_recomendaciones';
-import {REST_SERVER_URL} from "../configuration";
+import { Injectable } from '@angular/core'
+import { REST_SERVER_URL } from '../configuration'
 import { HttpClient } from '@angular/common/http'
-import {catchError, map} from "rxjs/operators";
-import {lastValueFrom, of} from "rxjs";
-import {UsuarioLoginJSON} from "../service_usuarios/usuarios.service";
-import {Recomendacion} from "../../domain/recomendacion";
+import { lastValueFrom } from 'rxjs'
+import { Recomendacion, RecomendacionJSON } from '../../domain/recomendacion'
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecomendacionesService {
-  listaRecomendaciones = recomendaciones
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
-  listar_recomendaciones(){
-    return this.listaRecomendaciones
+  async busquedaRecomendaciones(busqueda?: string) {
+    const recomendaciones = await lastValueFrom(
+      this.httpClient.post<RecomendacionJSON[]>(REST_SERVER_URL + '/recomendaciones/busqueda', busqueda)
+    )
+    const recomendacionLista = recomendaciones.map((recomendacionJSON) =>
+      Recomendacion.fromJson(recomendacionJSON)
+    )
+    console.log(recomendacionLista)
+    // if (recomendacionLista.length > 0) {
+    //   return recomendacionLista
+    // }
+    // const recomendacionVacia: Recomendacion[] = []
+    // return recomendacionVacia
+    return recomendacionLista
   }
 
-  getRecomendacion(id: number) {
-    return this.listaRecomendaciones.find(recomendacion => recomendacion.id === id)
-  }
-
-  async getRecomendacionCompleta(id: number) {
+  async getRecomendacionById(id: number) {
     // const recomendacionJSON$ = await this.httpClient.get<Recomendacion>(`${REST_SERVER_URL}/recomendaciones/completa/${id}`)
-    const recomendacionJSON = await lastValueFrom(this.httpClient.get<Recomendacion>(`${REST_SERVER_URL}/recomendaciones/completa/${id}`))
-    return recomendacionJSON ? Recomendacion.fromJson(recomendacionJSON) : undefined
+    const recomendacionJSON = await lastValueFrom(
+      this.httpClient.get<RecomendacionJSON>(
+        `${REST_SERVER_URL}/recomendaciones/` + id
+      )
+    )
+    if (!recomendacionJSON) {
+      throw new Error('Recomendacion no encontrada')
+    }
+    return Recomendacion.fromJson(recomendacionJSON)
   }
 
-  busquedaGeneral(palabraABuscar?: string){
-    return this.listaRecomendaciones
+  async busquedaGeneral(palabraABuscar?: string) {
+    return this.busquedaRecomendaciones(palabraABuscar)
   }
 
-  busquedaMisRecomendaciones(palabraABuscar?: string, idUsuario?: Number){
-    return this.listaRecomendaciones /*.filter(recomendacion => recomendacion.creadorId == idUsuario)*/
+  async busquedaMisRecomendaciones(palabraABuscar?: string, idUsuario?: number) {
+    return this.getRecomendacionesEditables(idUsuario, palabraABuscar)
+  }
+
+  async getRecomendacionesEditables(userId: number | undefined, busqueda?: string) {
+    const recomendaciones = await lastValueFrom(
+      this.httpClient.post<RecomendacionJSON[]>(REST_SERVER_URL + '/permiso/editar/usuario/' + userId, busqueda)
+    )
+    const recomendacionLista = recomendaciones.map((recomendacionJSON) =>
+      Recomendacion.fromJson(recomendacionJSON)
+    )
+    console.log(recomendacionLista)
+    // if (recomendacionLista.length > 0) {
+    //   return recomendacionLista
+    // }
+    // const recomendacionVacia: Recomendacion[] = []
+    // return recomendacionVacia
+    return recomendacionLista
   }
 }

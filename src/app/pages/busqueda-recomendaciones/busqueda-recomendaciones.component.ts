@@ -30,36 +30,45 @@ export class BusquedaRecomendacionesComponent {
     private sessionStorage: UserSessionStorageService
   ){}
 
-  ngOnInit(){
+  async ngOnInit() {
+
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
-    this.obtenerDatosUsuario(userIdSS)
-    
     this.data = this.route.snapshot.data as DataBusqueda
-    this.recomendaciones = this.data.realizarBusqueda(
-      this.serviceRecomendaciones,
-      undefined,
-      this.usuario.id
-    )
+    if(userIdSS != null){
+      //this.recomendaciones = await this.getSR() //CAMBIAR??!??!??!?!?!???!?!??"??!??? WTFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      this.recomendaciones = await this.busquedaAlService(userIdSS)
+    }
+
+    // this.recomendaciones = this.busquedaAlService()
+    // this.recomendaciones = this.data.realizarBusqueda(
+    //   this.serviceRecomendaciones,
+    //   undefined,
+    //   this.usuario.id
+    // )
   }
 
-  async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
-    const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
-    this.usuario = usuarioEnLinea
+  async getSR(){
+    return await this.serviceRecomendaciones.busquedaRecomendaciones()
+  }
+
+  async busquedaAlService(userIdSS : number, palabraABuscar?: string){
+    this.recomendaciones = this.data.realizarBusqueda(
+      this.serviceRecomendaciones,
+      palabraABuscar,
+      userIdSS
+    )
+    return this.recomendaciones
   }
 
   puedeEditarRecomendacion(recomendacion : Recomendacion) : Boolean{
     return true /*recomendacion.creadorId === this.usuario.id*/
   }
-  
+
   buscar(palabraABuscar?: string){
     this.recomendaciones = this.data.realizarBusqueda(
       this.serviceRecomendaciones,
       palabraABuscar,
       undefined
     )
-  }
-
-  navegarA(ruta : string) {
-    this.router.navigate([ruta])
   }
 }

@@ -13,7 +13,7 @@ import { Recomendacion } from '../../domain/recomendacion';
 })
 export class CardRecomendacionComponent {
   @Input() recomendacion!: Recomendacion
-  @Input() puedeEditar!: Boolean
+  @Input() puedeEditar: Boolean = false
   corazonCliqueado = false
   constructor(
     private router: Router
