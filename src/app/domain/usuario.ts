@@ -2,6 +2,8 @@ import { Entidad } from "./entidad"
 import { Recomendacion } from "./recomendacion"
 import { FORMATO_FECHA } from "../services/configuration"
 import dayjs from 'dayjs'
+import { Libro } from "./libro"
+import {FormaDeLeer,  Promedio, Ansioso, Fanatico,Recurrente} from "./formaDeLeer"
 
 
 export type UsuarioJSON = {
@@ -13,8 +15,11 @@ export type UsuarioJSON = {
   password : string,
   fechaNacimiento? : Date,
   tiempoLectura: number,
-  tipoLectura: string[],
-  perfilLista: string[] 
+  formaDeLeer: FormaDeLeer,
+  perfilLista: string[],
+  librosLeidos: Libro[],
+  autoresPreferidos: string[],
+  cantVecesLeido: Map<Libro["id"],number>
 }
 
 export class ValidationMessage {
@@ -42,21 +47,49 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
     public password : string= '',
     public fechaNacimiento? : Date,
     public tiempoLectura: number = 0,
-    public tipoLectura: string[] = [] ,
-    public perfil: string[] = []//es tipo de lectura, llega como objetos
+    public formaDeLeer?: FormaDeLeer,
+    public perfil: string[] = [], //es tipo de lectura, llega como objetos
+    public librosLeidos: Libro[] = [],
+    public autoresPreferidos: string[] = [],
+    public cantVecesLeido: Map<Libro["id"],number> = new Map()
+    
   ) {
     this.validador = new sistemaValidacion();
   }
   
   static fromJson(usuarioJSON: UsuarioJSON): Usuario {
     console.log("antes de transformar",usuarioJSON ) 
+    
+    // let formaDeLeer: FormaDeLeer | undefined;
+    // switch (usuarioJSON.formaDeLeer?.type) {
+    //   case 'promedio':
+    //     formaDeLeer = new Promedio;
+    //     break;
+    //   case 'ansioso':
+    //     formaDeLeer = new Ansioso;
+    //     break;
+    //   case 'fanatico':
+    //     formaDeLeer = new Fanatico;
+    //     break;
+    //   case 'recurrente':
+    //     formaDeLeer = new Recurrente;
+    //     break;
+    //   default:
+    //     formaDeLeer = undefined; // Si el tipo no coincide, puedes dejar undefined o manejarlo de otra forma
+    // }
     const usertest = Object.assign(new Usuario(), usuarioJSON, {
       fechaNacimiento: usuarioJSON.fechaNacimiento
       ? dayjs(usuarioJSON.fechaNacimiento, FORMATO_FECHA).toDate()
       : undefined,
       perfil: Array.isArray(usuarioJSON.perfilLista)
       ? usuarioJSON.perfilLista.map((perfil:any) => perfil.type.toString()) // Convierte a string
-      : [(usuarioJSON.perfilLista as any).type.toString()] // Si es un único perfil, lo envuelve en un array
+      : [(usuarioJSON.perfilLista as any).type.toString()], // Si es un único perfil, lo envuelve en un array
+      
+    
+      // autoresPreferidos: Array.isArray(usuarioJSON.autoresPreferidos)
+      // ? usuarioJSON.autoresPreferidos.map((autor:any) => autor.type.toString()) // Convierte a string
+      // : [(usuarioJSON.autoresPreferidos as any).type.toString()],
+    
     });
     console.log("usertest",usertest )
     return usertest
@@ -72,6 +105,11 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
 
   }
  
+  tiempoDeLecturaPromedio(libro: Libro): number {  
+  return libro.cant_palabras_libro / this.tiempoLectura  
+  } 
+
+  
   hasErrors(field: string): boolean {
   return this.errors.some((_) => _.field == field)
   }
@@ -110,8 +148,11 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
       password : this.password,
       fechaNacimiento : this.fechaNacimiento,
       tiempoLectura: this.tiempoLectura,
-      tipoLectura: this.tipoLectura,
-      perfilLista: this.perfil
+      formaDeLeer: this.formaDeLeer!,
+      perfilLista: this.perfil,
+      librosLeidos: this.librosLeidos,
+      autoresPreferidos: this.autoresPreferidos,
+      cantVecesLeido: this.cantVecesLeido
     }
   }
   

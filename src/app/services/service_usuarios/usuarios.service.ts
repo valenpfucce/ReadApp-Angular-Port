@@ -39,7 +39,6 @@ export class UsuariosService {
     const usuarioLogin = new UsuarioLogin(mailLogin, contraseniaLogin);
     return this.httpClient.post<UsuarioLoginJSON>(`${REST_SERVER_URL}/usuarios/login`, usuarioLogin).pipe(
       map((response) => response?.id || null)
-
     )
 
   }

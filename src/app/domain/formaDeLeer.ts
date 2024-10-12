@@ -1,70 +1,75 @@
-// import { Libro } from "./libro";
-// import { Usuario } from "./usuario";
+import { Libro } from "./libro";
+import { Usuario } from "./usuario";
 
-// interface FormaDeLeer {
-//     tiempoDeLectura(libro: Libro, usuario: Usuario): number;
-// }
+export interface FormaDeLeer {
+    type: any;
+    tiempoDeLectura(libro: Libro, usuario: Usuario): number;
+}
 
-// class Promedio implements FormaDeLeer {
-//     tiempoDeLectura(libro: Libro, usuario: Usuario): number {
-//         return usuario.tiempoDeLecturaPromedio(libro);
-//     }
-// }
+export class Promedio implements FormaDeLeer {
+    type: any;
+    tiempoDeLectura(libro: Libro, usuario: Usuario): number {
+        return usuario.tiempoDeLecturaPromedio(libro);
+    }
+}
 
-// // Clase Ansioso
-// class Ansioso implements FormaDeLeer {
-//     tiempoDeLectura(libro: Libro, usuario: Usuario): number {
-//         return libro.esBestSeller()
-//             ? usuario.tiempoDeLecturaPromedio(libro) * 0.5
-//             : usuario.tiempoDeLecturaPromedio(libro) * 0.8;
-//     }
-// }
+// Clase Ansioso
+export class Ansioso implements FormaDeLeer {
+    type: any;
+    tiempoDeLectura(libro: Libro, usuario: Usuario): number {
+        return libro.esBestSeller
+            ? usuario.tiempoDeLecturaPromedio(libro) * 0.5
+            : usuario.tiempoDeLecturaPromedio(libro) * 0.8;
+    }
+}
 
-// // Clase Fanatico
-// class Fanatico implements FormaDeLeer {
-//     tiempoDeLectura(libro: Libro, usuario: Usuario): number {
-//         return this.validacionFanatico(libro, usuario)
-//             ? this.tiempoLongitud(libro, usuario)
-//             : usuario.tiempoDeLecturaPromedio(libro);
-//     }
+// Clase Fanatico
+export class Fanatico implements FormaDeLeer {
+    type: any;
+    tiempoDeLectura(libro: Libro, usuario: Usuario): number {
+        return this.validacionFanatico(libro, usuario)
+            ? this.tiempoLongitud(libro, usuario)
+            : usuario.tiempoDeLecturaPromedio(libro);
+    }
 
-//     private validacionFanatico(libro: Libro, usuario: Usuario): boolean {
-//         return (
-//             !usuario.librosLeidos.includes(libro) &&
-//             usuario.autoresPreferidos.includes(libro.autor)
-//         );
-//     }
+    private validacionFanatico(libro: Libro, usuario: Usuario): boolean {
+        return (
+            !usuario.librosLeidos.includes(libro) &&
+            usuario.autoresPreferidos.includes(libro.autor_apellido) //REVISAR get usuario -> obj.autor y necesito una listas de
+        );
+    }
 
-//     private tiempoLongitud(libro: Libro, usuario: Usuario): number {
-//         return !libro.esLargo()
-//             ? usuario.tiempoDeLecturaPromedio(libro) + libro.paginas * 2
-//             : usuario.tiempoDeLecturaPromedio(libro) +
-//             libro.paginasLargo * 2 +
-//             (libro.paginas - libro.paginasLargo);
-//     }
-// }
+    private tiempoLongitud(libro: Libro, usuario: Usuario): number {
+        return !libro.esLargo
+            ? usuario.tiempoDeLecturaPromedio(libro) + libro.cant_palabras_libro * 2
+            : usuario.tiempoDeLecturaPromedio(libro) +
+            libro.paginasLargo * 2 +
+            (libro.cant_palabras_libro - libro.paginasLargo);
+    }
+}
 
-// // Clase Recurrente
+// Clase Recurrente
 
-// class Recurrente implements FormaDeLeer {
-//     private valorRecurrente(libro: Libro, usuario: Usuario): number {
-//         const vecesLeido = usuario.cantVecesLeido.get(libro) || 0;
-//         return vecesLeido <= 5
-//             ? this.calculoPorcentaje(libro, usuario)
-//             : usuario.tiempoDeLecturaPromedio(libro) * 0.95;
-//     }
+export class Recurrente implements FormaDeLeer {
+    type: any;
+    private valorRecurrente(libro: Libro, usuario: Usuario): number {
+        const vecesLeido = usuario.cantVecesLeido.get(libro.id) || 0;
+        return vecesLeido <= 5
+            ? this.calculoPorcentaje(libro, usuario)
+            : usuario.tiempoDeLecturaPromedio(libro) * 0.95;
+    }
 
-//     private calculoPorcentaje(libro: Libro, usuario: Usuario): number {
-//         const vecesLeido = usuario.cantVecesLeido.get(libro) || 0;
-//         return (
-//             usuario.tiempoDeLecturaPromedio(libro) -
-//             (vecesLeido / 100) * usuario.tiempoDeLecturaPromedio(libro)
-//         );
-//     }
+    private calculoPorcentaje(libro: Libro, usuario: Usuario): number {
+        const vecesLeido = usuario.cantVecesLeido.get(libro.id) || 0;   //REVISAR, map de libro.id , number
+        return (
+            usuario.tiempoDeLecturaPromedio(libro) -
+            (vecesLeido / 100) * usuario.tiempoDeLecturaPromedio(libro)
+        );
+    }
 
-//     tiempoDeLectura(libro: Libro, usuario: Usuario): number {
-//         return usuario.librosLeidos.includes(libro)
-//             ? this.valorRecurrente(libro, usuario)
-//             : usuario.tiempoDeLecturaPromedio(libro);
-//     }
-// }
+    tiempoDeLectura(libro: Libro, usuario: Usuario): number {
+        return usuario.librosLeidos.includes(libro)
+            ? this.valorRecurrente(libro, usuario)
+            : usuario.tiempoDeLecturaPromedio(libro);
+    }
+}

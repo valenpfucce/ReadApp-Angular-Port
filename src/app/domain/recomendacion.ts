@@ -65,7 +65,11 @@ export class Recomendacion implements Entidad {
           libroData.cant_pags_libro,
           libroData.cant_palabras_libro,
           libroData.idiomas_libro,
-          libroData.ventas_semanales
+          libroData.ventas_semanales,
+          libroData.esBestSeller,
+          libroData.esDesafiante,
+          libroData.esLargo,
+          libroData.paginasLargo
         )
       );
 
