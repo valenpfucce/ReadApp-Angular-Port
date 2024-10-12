@@ -30,12 +30,12 @@ export class BusquedaRecomendacionesComponent {
     private sessionStorage: UserSessionStorageService
   ){}
 
-  ngOnInit() {
+  async ngOnInit() {
 
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     this.data = this.route.snapshot.data as DataBusqueda
     if(userIdSS != null){
-      this.busquedaAlService(userIdSS)
+      this.recomendaciones = await this.getSR() //CAMBIAR??!??!??!?!?!???!?!??"??!??? WTFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
     }
 
     // this.recomendaciones = this.busquedaAlService()
@@ -46,6 +46,9 @@ export class BusquedaRecomendacionesComponent {
     // )
   }
 
+  async getSR(){
+    return await this.serviceRecomendaciones.getAllRecomendaciones()
+  }
 
   async busquedaAlService(userIdSS : number){
     this.recomendaciones = this.data.realizarBusqueda(

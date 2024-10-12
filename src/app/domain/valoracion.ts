@@ -2,15 +2,6 @@ import { Entidad } from './entidad'
 import { Usuario } from './usuario'
 import dayjs from 'dayjs'
 
-export type ValoracionJSON = {
-  creador_nombre: string,
-  creador_apellido: string,
-  img_perfil: string,
-  valor : number,
-  comentario: string,
-  fecha: Date
-}
-
 export class Valoracion {
   constructor(
     public creador_nombre: string,
@@ -22,8 +13,4 @@ export class Valoracion {
     public fecha: string
   ) {}
 
-  static fromJson(valoracionJSON: ValoracionJSON): Valoracion {
-    // @ts-ignore
-    return Object.assign(new Valoracion(), valoracionJSON, {})
-  }
 }

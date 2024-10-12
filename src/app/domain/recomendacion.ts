@@ -1,6 +1,6 @@
 import { Entidad } from "./entidad";
-import { Libro, LibroJSON } from './libro'
-import { Valoracion, ValoracionJSON } from './valoracion'
+import { Libro } from './libro'
+import { Valoracion } from './valoracion'
 
 
 export type RecomendacionJSON = {
@@ -9,11 +9,12 @@ export type RecomendacionJSON = {
   titulo: string,
   publica: boolean,
   descripcion: string,
-  lista_libros: LibroJSON[],
-  valoraciones: ValoracionJSON[],
+  lista_libros: Libro[],
+  valoraciones: Valoracion[],
   tiempoLectura: number,
   avgValoraciones: number
 }
+
 
 export class Recomendacion implements Entidad {
   constructor(
@@ -22,44 +23,74 @@ export class Recomendacion implements Entidad {
     public titulo: string,
     public publica: boolean,
     public descripcion: string,
-    public lista_libros: Libro[],
-    public valoraciones: Valoracion[],
+    public lista_libros: Libro[],  // Ya no es un string, sino un arreglo de Libro
+    public valoraciones: Valoracion[],  // Ya no es un string, sino un arreglo de Valoracion
     public tiempoLectura?: number,
     public avgValoraciones?: number
   ) {}
 
   // static fromJson(recomendacionJSON: RecomendacionJSON): Recomendacion {
+  //   // Inicializa listaLibros como un arreglo vacío
+  //   const listaLibros: Libro[] = (recomendacionJSON.lista_libros && Array.isArray(recomendacionJSON.lista_libros))
+  //     ? recomendacionJSON.lista_libros.map((libroJSON: LibroJSON) => Libro.fromJson(libroJSON))
+  //     : [];
   //
-  //   // @ts-ignore
-  //   return Object.assign(new Recomendacion(), recomendacionJSON, {
-  //     lista_libros: recomendacionJSON.lista_libros
-  //     ? JSON.parse(recomendacionJSON.lista_libros)
-  //       : undefined,
-  //     // asignatario: tareaJSON.asignadoA
-  //     //   ? Usuario.fromJSON(tareaJSON.asignadoA)
-  //     //   : undefined,
-  //     // fecha: tareaJSON.fecha
-  //     //   ? DateTime.fromFormat(tareaJSON.fecha, FORMATO_FECHA).toJSDate()
-  //     //   : undefined
-  //   })
+  //   // Inicializa valoraciones como un arreglo vacío
+  //   const valoraciones: Valoracion[] = (recomendacionJSON.valoraciones && Array.isArray(recomendacionJSON.valoraciones))
+  //     ? recomendacionJSON.valoraciones.map((valoracionJSON: ValoracionJSON) => Valoracion.fromJson(valoracionJSON))
+  //     : [];
+  //
+  //   console.log("fromJSON")
+  //   return new Recomendacion(
+  //     recomendacionJSON.id,
+  //     recomendacionJSON.creadorId,
+  //     recomendacionJSON.titulo,
+  //     recomendacionJSON.publica,
+  //     recomendacionJSON.descripcion,
+  //     listaLibros,
+  //     valoraciones,
+  //     recomendacionJSON.tiempoLectura,
+  //     recomendacionJSON.avgValoraciones
+  //   );
   // }
 
-  static fromJson(recomendacionJSON: RecomendacionJSON): Recomendacion {
-    const listaLibros: Libro[] = recomendacionJSON.lista_libros.map(libroJSON => Libro.fromJson(libroJSON));
+  static fromJson(data: any): Recomendacion {
+      const libros = data.libros.map((libroData: any) =>
+        new Libro(
+          libroData.id,
+          libroData.titulo_libro,
+          libroData.autor_nombre,
+          libroData.autor_apellido,
+          libroData.imagen_libro_url,
+          libroData.cant_pags_libro,
+          libroData.cant_palabras_libro,
+          libroData.idiomas_libro,
+          libroData.ventas_semanales
+        )
+      );
 
-    const valoraciones: Valoracion[] = recomendacionJSON.valoraciones.map(valoracion => Valoracion.fromJson(valoracion));
-
-    return new Recomendacion(
-      recomendacionJSON.id,
-      recomendacionJSON.creadorId,
-      recomendacionJSON.titulo,
-      recomendacionJSON.publica,
-      recomendacionJSON.descripcion,
-      listaLibros,
-      valoraciones,
-      recomendacionJSON.tiempoLectura,
-      recomendacionJSON.avgValoraciones
+    const valoraciones = data.valoraciones.map((valoracionData: any) =>
+      new Valoracion(
+        valoracionData.creador_nombre,
+        valoracionData.creador_apellido,
+        valoracionData.img_perfil,
+        valoracionData.valor,
+        valoracionData.comentario,
+        valoracionData.fecha
+      )
     );
-  }
+
+      return new Recomendacion(
+        data.id,
+        data.creadorId,
+        data.titulo,
+        data.publica,
+        data.descripcion,
+        libros,
+        valoraciones,
+        data.avgValoraciones
+      );
+    }
 }
+
 

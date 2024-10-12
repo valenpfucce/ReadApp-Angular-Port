@@ -16,9 +16,15 @@ export class RecomendacionesService {
     const recomendaciones = await lastValueFrom(
       this.httpClient.get<RecomendacionJSON[]>(REST_SERVER_URL + '/recomendaciones/todas')
     )
-    return recomendaciones.map((recomendacionJSON) =>
+    const recomendacionLista = recomendaciones.map((recomendacionJSON) =>
       Recomendacion.fromJson(recomendacionJSON)
     )
+    console.log(recomendacionLista)
+    if(recomendacionLista.length > 0){
+      return recomendacionLista
+    }
+    const recomendacionVacia : Recomendacion[] = []
+    return recomendacionVacia
   }
 
   // getRecomendacion(id: number) {
