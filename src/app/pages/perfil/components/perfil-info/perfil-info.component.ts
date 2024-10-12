@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ElementRef, ViewChild } from '@angular/core'
 import dayjs from 'dayjs'
 import { FormsModule } from '@angular/forms';
 import { SidebarPerfilComponent } from '../../sidebar-perfil.component';
@@ -43,44 +43,77 @@ export class PerfilInfoComponent {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     console.log("userIdSS", userIdSS)
     this.obtenerDatosUsuario(userIdSS)
-    const jsonPrueba = JSON.stringify(this.usuario)
-    this.usuarioEditable = JSON.parse(JSON.stringify(this.usuario)); //no copia métodos, objetos de fecha, etc 
-    console.log(jsonPrueba)
-    
+      
   }
   
   async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
     const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
-    console.log("usuarioEnLinea", usuarioEnLinea)
     this.usuario = usuarioEnLinea
+    this.usuarioEditable = usuarioEnLinea
+    this.ngAfterViewInit()
   }
-  
+ 
+
   cambioCalculador(){
     this.esCalculador = !this.esCalculador
   }
+  
+  //ViweChild accede al elemnto del html con el #tipoPerfil, en este caso los checks
+  @ViewChild('precavido', { static: false }) precavidoRef!: ElementRef;
+  @ViewChild('demandante', { static: false }) demandanteRef!: ElementRef;
+  @ViewChild('cambiante', { static: false }) cambianteRef!: ElementRef;
+  @ViewChild('leedor', { static: false}, ) leedorRef!: ElementRef;
+  @ViewChild('nativista', { static: false }) nativistaRef!: ElementRef;
+  @ViewChild('poliglota', { static: false }) poliglotaRef!: ElementRef;
+  @ViewChild('experimentado', { static: false }) experimentadoRef!: ElementRef;
+  @ViewChild('calculador', { static: false }) calculadorRef!: ElementRef;
 
+  ngAfterViewInit(){
+    console.log(this.leedorRef.nativeElement);
+    this.activarChecksCriterioPerfil(this.usuarioEditable); 
+  }
+
+  activarChecksCriterioPerfil(usuario: Usuario) {
+    console.log("metodo active check", this.usuario.perfil)
+    const tipoPerfil = usuario.perfil
+    console.log("tipoPerfil", tipoPerfil)
+    
+    const checkboxes: { [key: string]: ElementRef } = {
+      'precavido': this.precavidoRef,
+      'demandante': this.demandanteRef,
+      'cambiante': this.cambianteRef,
+      'leedor': this.leedorRef,
+      'nativista': this.nativistaRef,
+      'poliglota': this.poliglotaRef,
+      'experimentado': this.experimentadoRef,
+      'calculador': this.calculadorRef
+    };
+
+
+    tipoPerfil.forEach(perfil => {
+      if (checkboxes[perfil]) {
+        checkboxes[perfil].nativeElement.checked = true;
+      }
+    })
+  }
   
   guardar() {
-   this.usuario.fechaNacimiento = this.fechaNacimiento === '' ? undefined : dayjs(this.fechaNacimiento).toDate()
-   const guardadoExitoso = this.usuario.guardarDatos()
-   
+   this.usuarioEditable.fechaNacimiento = this.fechaNacimiento === '' ? undefined : dayjs(this.fechaNacimiento).toDate()
+   const guardadoExitoso = this.usuarioEditable.guardarDatos()
+   this.llamarServerPutUS()
    if (guardadoExitoso){
     this.indicarGuardadoExitoso()
    }
-   this.llamarServerPutUS()
-  
+   
   } 
   
   async llamarServerPutUS(){
         try {
-        await this.userServiceUS.actualizarUsuario(this.usuarioEditable)
+        await this.userServiceUS.actualizarUsuario(this.usuario,this.usuarioEditable)
       } catch (error) {
         console.error('Error al cargar los datos del usuario', error);
       }
   }
-
-  
-  
 
   cancelar() {
   }

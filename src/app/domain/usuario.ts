@@ -13,7 +13,8 @@ export type UsuarioJSON = {
   password : string,
   fechaNacimiento? : Date,
   tiempoLectura: number,
-  tipoLectura: string[]
+  tipoLectura: string[],
+  perfilLista: string[] 
 }
 
 export class ValidationMessage {
@@ -26,7 +27,7 @@ export class ValidationMessage {
 export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
   
   // tipoLectura = [];
-  criterioBusqueda = [];
+  
   recomendacionesAValorar ?: Recomendacion[];
   amigos ?:[Usuario];
   validador: sistemaValidacion;
@@ -41,17 +42,22 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
     public password : string= '',
     public fechaNacimiento? : Date,
     public tiempoLectura: number = 0,
-    public tipoLectura: string[] = [] //es tipo de lectura
+    public tipoLectura: string[] = [] ,
+    public perfil: string[] = []//es tipo de lectura, llega como objetos
   ) {
     this.validador = new sistemaValidacion();
   }
   
   static fromJson(usuarioJSON: UsuarioJSON): Usuario {
-     const usertest = Object.assign(new Usuario(), usuarioJSON, {
+    console.log("antes de transformar",usuarioJSON ) 
+    const usertest = Object.assign(new Usuario(), usuarioJSON, {
       fechaNacimiento: usuarioJSON.fechaNacimiento
       ? dayjs(usuarioJSON.fechaNacimiento, FORMATO_FECHA).toDate()
-      : undefined
-    })
+      : undefined,
+      perfil: Array.isArray(usuarioJSON.perfilLista)
+      ? usuarioJSON.perfilLista.map((perfil:any) => perfil.type.toString()) // Convierte a string
+      : [(usuarioJSON.perfilLista as any).type.toString()] // Si es un único perfil, lo envuelve en un array
+    });
     console.log("usertest",usertest )
     return usertest
   }
@@ -104,7 +110,8 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
       password : this.password,
       fechaNacimiento : this.fechaNacimiento,
       tiempoLectura: this.tiempoLectura,
-      tipoLectura: this.tipoLectura
+      tipoLectura: this.tipoLectura,
+      perfilLista: this.perfil
     }
   }
   
