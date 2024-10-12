@@ -13,11 +13,15 @@ import { Recomendacion } from '../../domain/recomendacion';
 })
 export class CardRecomendacionComponent {
   @Input() recomendacion!: Recomendacion
-  @Input() puedeEditar: Boolean = false
+  @Input() puedeEditar!: Boolean
   corazonCliqueado = false
   constructor(
     private router: Router
   ){}
+
+  ngOnInit(){
+    console.log(this.recomendacion)
+  }
 
   aValorar(){
     this.corazonCliqueado = !this.corazonCliqueado

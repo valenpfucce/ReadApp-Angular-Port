@@ -9,7 +9,9 @@ export type LibroJSON = {
   cant_pags_libro: number
   cant_palabras_libro: number
   idiomas_libro: string[]
-  ventas_semanales: number
+  ventas_semanales: number,
+  esBestSeller: Boolean,
+  esDesafiante: Boolean
 }
 
 export class Libro implements Entidad {
@@ -22,7 +24,9 @@ export class Libro implements Entidad {
     public cant_pags_libro: number,
     public cant_palabras_libro: number,
     public idiomas_libro: string[],
-    public ventas_semanales: number
+    public ventas_semanales: number,
+    public esBestSeller: Boolean,
+    public esDesafiante: Boolean
   ) {}
 
   static fromJson(libroJSON: LibroJSON): Libro {
@@ -36,7 +40,9 @@ export class Libro implements Entidad {
         libroJSON.cant_pags_libro,
         libroJSON.cant_palabras_libro,
         libroJSON.idiomas_libro,
-        libroJSON.ventas_semanales
+        libroJSON.ventas_semanales,
+        libroJSON.esBestSeller,
+        libroJSON.esDesafiante
       ),
       libroJSON,
       {}
