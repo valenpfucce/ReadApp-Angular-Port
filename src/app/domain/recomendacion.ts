@@ -29,31 +29,6 @@ export class Recomendacion implements Entidad {
     public avgValoraciones?: number
   ) {}
 
-  // static fromJson(recomendacionJSON: RecomendacionJSON): Recomendacion {
-  //   // Inicializa listaLibros como un arreglo vacío
-  //   const listaLibros: Libro[] = (recomendacionJSON.lista_libros && Array.isArray(recomendacionJSON.lista_libros))
-  //     ? recomendacionJSON.lista_libros.map((libroJSON: LibroJSON) => Libro.fromJson(libroJSON))
-  //     : [];
-  //
-  //   // Inicializa valoraciones como un arreglo vacío
-  //   const valoraciones: Valoracion[] = (recomendacionJSON.valoraciones && Array.isArray(recomendacionJSON.valoraciones))
-  //     ? recomendacionJSON.valoraciones.map((valoracionJSON: ValoracionJSON) => Valoracion.fromJson(valoracionJSON))
-  //     : [];
-  //
-  //   console.log("fromJSON")
-  //   return new Recomendacion(
-  //     recomendacionJSON.id,
-  //     recomendacionJSON.creadorId,
-  //     recomendacionJSON.titulo,
-  //     recomendacionJSON.publica,
-  //     recomendacionJSON.descripcion,
-  //     listaLibros,
-  //     valoraciones,
-  //     recomendacionJSON.tiempoLectura,
-  //     recomendacionJSON.avgValoraciones
-  //   );
-  // }
-
   static fromJson(data: any): Recomendacion {
       const libros = data.libros.map((libroData: any) =>
         new Libro(
@@ -70,6 +45,7 @@ export class Recomendacion implements Entidad {
           libroData.esDesafiante,
           libroData.esLargo,
           libroData.paginasLargo
+
         )
       );
 

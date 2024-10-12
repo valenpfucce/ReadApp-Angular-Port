@@ -17,7 +17,7 @@ export class RecomendacionesService {
     const recomendacionLista = recomendaciones.map((recomendacionJSON) =>
       Recomendacion.fromJson(recomendacionJSON)
     )
-    console.log(recomendacionLista)
+    console.log("BusquedaRecomendaciones TODAS >:D\n",recomendacionLista)
     // if (recomendacionLista.length > 0) {
     //   return recomendacionLista
     // }
@@ -40,7 +40,9 @@ export class RecomendacionesService {
   }
 
   async busquedaGeneral(palabraABuscar?: string) {
-    return this.busquedaRecomendaciones(palabraABuscar)
+    const busquedaGeneralRec  = await this.busquedaRecomendaciones(palabraABuscar)
+    console.log("BusquedaGeneral Recs con palabra a buscar\n",busquedaGeneralRec)
+    return busquedaGeneralRec
   }
 
   async busquedaMisRecomendaciones(palabraABuscar?: string, idUsuario?: number) {
@@ -49,17 +51,24 @@ export class RecomendacionesService {
 
   async getRecomendacionesEditables(userId: number | undefined, busqueda?: string) {
     const recomendaciones = await lastValueFrom(
-      this.httpClient.post<RecomendacionJSON[]>(REST_SERVER_URL + '/permiso/editar/usuario/' + userId, busqueda)
+      this.httpClient.post<RecomendacionJSON[]>(REST_SERVER_URL + '/recomendaciones/permiso/editar/usuario/' + userId, busqueda)
     )
     const recomendacionLista = recomendaciones.map((recomendacionJSON) =>
       Recomendacion.fromJson(recomendacionJSON)
     )
-    console.log(recomendacionLista)
+    console.log("Recomendaciones Editables ;D\n", recomendacionLista)
     // if (recomendacionLista.length > 0) {
     //   return recomendacionLista
     // }
     // const recomendacionVacia: Recomendacion[] = []
     // return recomendacionVacia
     return recomendacionLista
+  }
+
+  async puedeEditarRecomendacion(recomendacionId : number, usuarioId: number) {
+    const puedeEditar : Boolean = await lastValueFrom(
+      this.httpClient.get<Boolean>(REST_SERVER_URL + '/recomendaciones/' + recomendacionId + '/puede/editar/usuario/' + usuarioId)
+    )
+    return puedeEditar
   }
 }

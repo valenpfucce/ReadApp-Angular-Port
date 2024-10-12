@@ -9,7 +9,7 @@ import { PerfilAmigosComponent } from './pages/perfil/components/perfil-amigos/p
 import { PerfilLibrosLeidosComponent } from './pages/perfil/components/perfil-libros-leidos/perfil-libros-leidos.component';
 import { PerfilRecomendacionesAValorarComponent } from './pages/perfil/components/perfil-recomendaciones-a-valorar/perfil-recomendaciones-a-valorar.component';
 import { RecomendacionesService } from './services/service_recomendaciones/recomendaciones.service';
-import { Recomendacion } from './domain/recomendacion';
+import {Recomendacion, RecomendacionJSON} from './domain/recomendacion';
 import { Usuario } from './domain/usuario';
 import { BarraBusquedaComponent } from './components/header/components/barra-busqueda/barra-busqueda.component';
 import { HttpClient } from '@angular/common/http';
@@ -48,32 +48,26 @@ export type DataBusqueda = {
     serviceRecomendaciones: RecomendacionesService,
     palabraABuscar?: string,
     idUsuario?: number
-  ) => Recomendacion[]; // Aquí el tipo de retorno sigue siendo Recomendacion[]
+  ) => Promise<Recomendacion[]>; // Cambiamos el tipo de retorno a Promise<Recomendacion[]>
 };
 
 const dataBusquedaHome: DataBusqueda = {
   showCheckBox: false,
   showCardMas: false,
   realizarBusqueda: (serviceRecomendaciones, palabraABuscar) => {
-    let resultados: Recomendacion[] = [];
-    (async () => {
-      resultados = await serviceRecomendaciones.busquedaGeneral(palabraABuscar);
-    })();
-    return resultados;
+    return serviceRecomendaciones.busquedaGeneral(palabraABuscar);
   }
 };
 
 const dataBusquedaMisRecomendaciones: DataBusqueda = {
   showCheckBox: true,
   showCardMas: true,
-  realizarBusqueda: (serviceRecomendaciones, palabraABuscar, idUsuario) => {
-    let resultados: Recomendacion[] = [];
-    (async () => {
-      resultados = await serviceRecomendaciones.busquedaMisRecomendaciones(palabraABuscar, idUsuario);
-    })();
+  realizarBusqueda: async (serviceRecomendaciones, palabraABuscar, idUsuario) => {
+    const resultados: Recomendacion[] = await serviceRecomendaciones.busquedaMisRecomendaciones(palabraABuscar, idUsuario);
     return resultados;
   }
 };
+
 
 
 export const routes: Routes = [

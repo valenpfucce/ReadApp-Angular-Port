@@ -20,6 +20,7 @@ import { UsuariosService } from '../../services/service_usuarios/usuarios.servic
 })
 export class BusquedaRecomendacionesComponent {
   usuario!: Usuario
+  userIdSS!: number;
   data!: DataBusqueda
   recomendaciones!: Recomendacion[]
   constructor(
@@ -30,14 +31,14 @@ export class BusquedaRecomendacionesComponent {
     private sessionStorage: UserSessionStorageService
   ){}
 
-  async ngOnInit() {
-
-    const userIdSS = this.sessionStorage.obtenerIDuserSS()
+  ngOnInit() {
+    const userIdSSAChequear = this.sessionStorage.obtenerIDuserSS()
     this.data = this.route.snapshot.data as DataBusqueda
-    if(userIdSS != null){
-      //this.recomendaciones = await this.getSR() //CAMBIAR??!??!??!?!?!???!?!??"??!??? WTFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-      this.recomendaciones = await this.busquedaAlService(userIdSS)
+    if (userIdSSAChequear != null) {
+      this.userIdSS = userIdSSAChequear
+      this.busquedaAlService(this.userIdSS)
     }
+
 
     // this.recomendaciones = this.busquedaAlService()
     // this.recomendaciones = this.data.realizarBusqueda(
@@ -52,20 +53,18 @@ export class BusquedaRecomendacionesComponent {
   }
 
   async busquedaAlService(userIdSS : number, palabraABuscar?: string){
-    this.recomendaciones = this.data.realizarBusqueda(
+    this.recomendaciones = await this.data.realizarBusqueda(
       this.serviceRecomendaciones,
-      palabraABuscar,
+      undefined,
       userIdSS
     )
+    console.log(this.recomendaciones)
     return this.recomendaciones
   }
 
-  puedeEditarRecomendacion(recomendacion : Recomendacion) : Boolean{
-    return true /*recomendacion.creadorId === this.usuario.id*/
-  }
 
-  buscar(palabraABuscar?: string){
-    this.recomendaciones = this.data.realizarBusqueda(
+  async buscar(palabraABuscar?: string) {
+    this.recomendaciones = await this.data.realizarBusqueda(
       this.serviceRecomendaciones,
       palabraABuscar,
       undefined

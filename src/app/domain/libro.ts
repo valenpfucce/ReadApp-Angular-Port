@@ -14,6 +14,7 @@ export type LibroJSON = {
   esDesafiante: Boolean,
   esLargo: Boolean,
   paginasLargo: number
+
 }
 
 export class Libro implements Entidad {
@@ -31,6 +32,7 @@ export class Libro implements Entidad {
     public esDesafiante: Boolean,
     public esLargo: Boolean,
     public paginasLargo: number
+
   ) {}
 
   static fromJson(libroJSON: LibroJSON): Libro {
@@ -49,6 +51,7 @@ export class Libro implements Entidad {
         libroJSON.esDesafiante,
         libroJSON.esLargo,
         libroJSON.paginasLargo
+
       ),
       libroJSON,
       {}
