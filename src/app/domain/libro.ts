@@ -11,7 +11,10 @@ export type LibroJSON = {
   idiomas_libro: string[]
   ventas_semanales: number,
   esBestSeller: Boolean,
-  esDesafiante: Boolean
+  esDesafiante: Boolean,
+  esLargo: Boolean,
+  paginasLargo: number
+
 }
 
 export class Libro implements Entidad {
@@ -26,7 +29,10 @@ export class Libro implements Entidad {
     public idiomas_libro: string[],
     public ventas_semanales: number,
     public esBestSeller: Boolean,
-    public esDesafiante: Boolean
+    public esDesafiante: Boolean,
+    public esLargo: Boolean,
+    public paginasLargo: number
+
   ) {}
 
   static fromJson(libroJSON: LibroJSON): Libro {
@@ -42,7 +48,10 @@ export class Libro implements Entidad {
         libroJSON.idiomas_libro,
         libroJSON.ventas_semanales,
         libroJSON.esBestSeller,
-        libroJSON.esDesafiante
+        libroJSON.esDesafiante,
+        libroJSON.esLargo,
+        libroJSON.paginasLargo
+
       ),
       libroJSON,
       {}

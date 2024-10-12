@@ -42,7 +42,10 @@ export class Recomendacion implements Entidad {
           libroData.idiomas_libro,
           libroData.ventas_semanales,
           libroData.esBestSeller,
-          libroData.esDesafiante
+          libroData.esDesafiante,
+          libroData.esLargo,
+          libroData.paginasLargo
+
         )
       );
 

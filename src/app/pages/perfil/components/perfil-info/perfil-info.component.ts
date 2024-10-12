@@ -8,6 +8,7 @@ import { UserSessionStorageService } from '../../../../services/service_user_ses
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from '../../../../domain/usuario';
 import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service';
+import {FormaDeLeer, Promedio, Ansioso, Fanatico,Recurrente} from '../../../../domain/formaDeLeer'
 
 
 @Component({
@@ -17,7 +18,7 @@ import { UsuariosService } from '../../../../services/service_usuarios/usuarios.
     SidebarPerfilComponent,
     FormsModule,
     ValidacionFieldComponent,
-    CommonModule
+    CommonModule,
   ],
 
   templateUrl: './perfil-info.component.html',
@@ -30,6 +31,10 @@ export class PerfilInfoComponent {
   fechaNacimiento= ''
   saveOK = false
   esCalculador = false 
+  esPromedio: boolean = false;
+  esAnsioso: boolean = false;
+  esFanatico: boolean = false;
+  esRecurrente: boolean = false;
 
   constructor(
     private router: Router,
@@ -51,11 +56,24 @@ export class PerfilInfoComponent {
     this.usuario = usuarioEnLinea
     this.usuarioEditable = usuarioEnLinea
     this.ngAfterViewInit()
+    this.comprobarFormaDeLeer()
   }
  
 
   cambioCalculador(){
     this.esCalculador = !this.esCalculador
+  }
+  
+  comprobarFormaDeLeer() {
+    if (this.usuario.formaDeLeer instanceof Promedio) {
+      this.esPromedio = true;
+    } else if (this.usuario.formaDeLeer instanceof Ansioso) {
+      this.esAnsioso = true;
+    } else if (this.usuario.formaDeLeer instanceof Fanatico) {
+      this.esFanatico = true;
+    } else if (this.usuario.formaDeLeer instanceof Recurrente) {
+      this.esRecurrente = true;
+    }
   }
   
   //ViweChild accede al elemnto del html con el #tipoPerfil, en este caso los checks
