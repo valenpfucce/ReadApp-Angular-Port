@@ -35,7 +35,8 @@ export class BusquedaRecomendacionesComponent {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     this.data = this.route.snapshot.data as DataBusqueda
     if(userIdSS != null){
-      this.recomendaciones = await this.getSR() //CAMBIAR??!??!??!?!?!???!?!??"??!??? WTFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      //this.recomendaciones = await this.getSR() //CAMBIAR??!??!??!?!?!???!?!??"??!??? WTFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      this.recomendaciones = await this.busquedaAlService(userIdSS)
     }
 
     // this.recomendaciones = this.busquedaAlService()
@@ -47,20 +48,16 @@ export class BusquedaRecomendacionesComponent {
   }
 
   async getSR(){
-    return await this.serviceRecomendaciones.getAllRecomendaciones()
+    return await this.serviceRecomendaciones.busquedaRecomendaciones()
   }
 
-  async busquedaAlService(userIdSS : number){
+  async busquedaAlService(userIdSS : number, palabraABuscar?: string){
     this.recomendaciones = this.data.realizarBusqueda(
       this.serviceRecomendaciones,
-      undefined,
+      palabraABuscar,
       userIdSS
     )
-  }
-
-  async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
-    const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
-    this.usuario = usuarioEnLinea
+    return this.recomendaciones
   }
 
   puedeEditarRecomendacion(recomendacion : Recomendacion) : Boolean{
@@ -73,9 +70,5 @@ export class BusquedaRecomendacionesComponent {
       palabraABuscar,
       undefined
     )
-  }
-
-  navegarA(ruta : string) {
-    this.router.navigate([ruta])
   }
 }
