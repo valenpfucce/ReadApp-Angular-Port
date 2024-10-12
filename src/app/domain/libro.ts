@@ -1,5 +1,16 @@
 import { Entidad } from './entidad'
 
+export type LibroJSON = {
+  id: number
+  titulo_libro: string
+  autor_nombre: string
+  autor_apellido: string
+  imagen_libro_url: string
+  cant_pags_libro: number
+  cant_palabras_libro: number
+  idiomas_libro: string[]
+  ventas_semanales: number
+}
 
 export class Libro implements Entidad {
   constructor(
@@ -14,4 +25,21 @@ export class Libro implements Entidad {
     public ventas_semanales: number
   ) {}
 
+  static fromJson(libroJSON: LibroJSON): Libro {
+    return Object.assign(
+      new Libro(
+        libroJSON.id,
+        libroJSON.titulo_libro,
+        libroJSON.autor_nombre,
+        libroJSON.autor_apellido,
+        libroJSON.imagen_libro_url,
+        libroJSON.cant_pags_libro,
+        libroJSON.cant_palabras_libro,
+        libroJSON.idiomas_libro,
+        libroJSON.ventas_semanales
+      ),
+      libroJSON,
+      {}
+    )
+  }
 }

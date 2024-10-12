@@ -27,9 +27,13 @@
               }
             ],
             "styles": [
-              "src/estilos.css"
+              "src/estilos.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -85,9 +89,9 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css"            ],
+            "scripts": [
             ],
-            "scripts": [],
             "karmaConfig": "karma.conf.js"
           }
         }
