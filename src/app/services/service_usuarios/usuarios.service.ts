@@ -20,8 +20,6 @@ export class UsuariosService {
 
   constructor(private httpClient: HttpClient) {
     this.validador = new sistemaValidacion();
-    
-
   }
 
   async getUserId(userIdSS : number | null): Promise<Usuario> {  //GetUserById
@@ -47,14 +45,12 @@ export class UsuariosService {
   }
 
 
-  actualizarUsuario(usuario: Usuario): Observable<UsuarioJSON[] | null> {
-    return this.httpClient.put<UsuarioJSON[]>(`${REST_SERVER_URL}/usuario/login`, usuario.toJSON()).pipe(
-      catchError((error) => {
-        this.addError('Error al actualizar el usuario.');
-        console.error('Error al actualizar el usuario:', error);
-        return of(null); // Retornar null en caso de error
-      })
-    );
+  async actualizarUsuario(usuarioBack: Usuario, usuarioEditable:Usuario): Promise<void> {
+     
+    if(!usuarioBack.id){
+      throw new Error("ID del Usuario invalido")
+    }
+    this.httpClient.put<void>(`${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id, usuarioEditable.toJSON())
   }
 
   navegarALogin() { this.router.navigate(['/login']); }
@@ -63,7 +59,7 @@ export class UsuariosService {
   addError(mensajeError: string) {
     this.errors.push(mensajeError)
   }
-
+ 
 }
 
 class UsuarioLogin {
