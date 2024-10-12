@@ -1,10 +1,10 @@
 
 
     <div class="flex perfil_container">
-        <h1> Recomendaciones a Valorar</h1>
+        <h1>Recomendaciones a Valorar</h1>
         <section class="flex lista_perfil recomendaciones">
             <section class="grid-cartas">
-                @for (recomendacion of usuario.recomendacionesAValorar; track recomendacion) {
+                @for (recomendacion of recomendacionesAValorar; track recomendacion) {
                     <readapp-card-recomendacion [recomendacion]="recomendacion"></readapp-card-recomendacion>
                 }
             </section>

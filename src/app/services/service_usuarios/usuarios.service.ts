@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { lastValueFrom, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { REST_SERVER_URL } from '../configuration';
+import { Recomendacion, RecomendacionJSON } from '../../domain/recomendacion'
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +47,7 @@ export class UsuariosService {
 
 
   async actualizarUsuario(usuarioBack: Usuario, usuarioEditable:Usuario): Promise<void> {
-     
+
     if(!usuarioBack.id){
       throw new Error("ID del Usuario invalido")
     }
@@ -59,7 +60,18 @@ export class UsuariosService {
   addError(mensajeError: string) {
     this.errors.push(mensajeError)
   }
- 
+
+  async getRecomendacionesAValorar(userId: number){
+    const recomendaciones = await lastValueFrom(
+      this.httpClient.get<RecomendacionJSON[]>(REST_SERVER_URL + '/usuarios/recomendaciones-a-valorar/' + userId)
+    )
+    const recomendacionLista = recomendaciones.map((recomendacionJSON) =>
+      Recomendacion.fromJson(recomendacionJSON)
+    )
+    return recomendacionLista
+  }
+
+
 }
 
 class UsuarioLogin {
