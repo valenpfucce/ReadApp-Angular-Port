@@ -34,10 +34,11 @@ export class BusquedaRecomendacionesComponent {
   ngOnInit() {
     const userIdSSAChequear = this.sessionStorage.obtenerIDuserSS()
     this.data = this.route.snapshot.data as DataBusqueda
-    if(userIdSSAChequear != null){
+    if (userIdSSAChequear != null) {
       this.userIdSS = userIdSSAChequear
       this.busquedaAlService(this.userIdSS)
     }
+
 
     // this.recomendaciones = this.busquedaAlService()
     // this.recomendaciones = this.data.realizarBusqueda(
@@ -61,10 +62,6 @@ export class BusquedaRecomendacionesComponent {
     return this.recomendaciones
   }
 
-
-  puedeEditarRecomendacion(recomendacionId: number){
-    return this.serviceRecomendaciones.puedeEditarRecomendacion(recomendacionId, this.userIdSS)
-  }
 
   async buscar(palabraABuscar?: string) {
     this.recomendaciones = await this.data.realizarBusqueda(

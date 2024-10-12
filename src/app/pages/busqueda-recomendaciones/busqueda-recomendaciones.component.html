@@ -6,7 +6,7 @@
 <main class = "flex">
     <section class="grid-cartas">
         @for (recomendacion of recomendaciones; track recomendacion) {
-            <readapp-card-recomendacion [recomendacion]="recomendacion" [puedeEditar]="await puedeEditarRecomendacion(recomendacion.id)">
+            <readapp-card-recomendacion [recomendacion]="recomendacion">
             </readapp-card-recomendacion>
         }
         <!-- <readapp-card-libro-mas
