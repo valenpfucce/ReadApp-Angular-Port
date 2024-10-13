@@ -65,10 +65,9 @@ export class RecomendacionesService {
     return recomendacionLista
   }
 
-  async puedeEditarRecomendacion(recomendacionId : number, usuarioId: number) {
-    const puedeEditar : Boolean = await lastValueFrom(
-      this.httpClient.get<Boolean>(REST_SERVER_URL + '/recomendaciones/' + recomendacionId + '/puede/editar/usuario/' + usuarioId)
+  async puedeEditarRecomendacion(recomendacionId : number, usuarioId: number): Promise<boolean> {
+    return await lastValueFrom(
+      this.httpClient.get<boolean>(REST_SERVER_URL + `/recomendaciones/${recomendacionId}/puede/editar/usuario/${usuarioId}`)
     )
-    return puedeEditar
   }
 }

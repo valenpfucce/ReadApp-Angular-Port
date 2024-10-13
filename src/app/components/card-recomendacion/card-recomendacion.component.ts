@@ -16,12 +16,12 @@ import {UserSessionStorageService} from "../../services/service_user_session_sto
 })
 export class CardRecomendacionComponent {
   @Input() recomendacion!: Recomendacion
-  corazonCliqueado = false
+  corazonCliqueado!: boolean
   userIdSS! : number
-  puedeEditar! : Boolean
+  puedeEditar! : boolean
   constructor(
-    private router: Router,
     private serviceRecomendaciones: RecomendacionesService,
+    private userServiceUS: UsuariosService,
     private sessionStorage: UserSessionStorageService
   ){}
 
@@ -31,21 +31,28 @@ export class CardRecomendacionComponent {
     if (userIdSSAChequear != null) {
       this.userIdSS = userIdSSAChequear
       this.puedeEditar = await this.puedeEditarRecomendacion()
+      this.corazonCliqueado = await this.estaEnRecomendacionesAValorar()
     } else {
       this.puedeEditar = false
     }
   }
 
   async puedeEditarRecomendacion() {
-    return  await this.serviceRecomendaciones.puedeEditarRecomendacion(this.recomendacion.id, this.userIdSS)
+    return await this.serviceRecomendaciones.puedeEditarRecomendacion(this.recomendacion.id, this.userIdSS)
   }
 
 
-  aValorar(){
+  async aValorar(){
     this.corazonCliqueado = !this.corazonCliqueado
-    //if (corazonCliqueado) {
-    //  usuario.agregarRecomendacionAValorar(this.recomendacion)
-    // }
+    if(this.corazonCliqueado) {
+      await this.userServiceUS.agregarRecomendacionAValorar(this.recomendacion.id, this.userIdSS)
+    }else {
+      await this.userServiceUS.eliminarRecomendacionAValorar(this.recomendacion.id, this.userIdSS)
+    }
+  }
+
+  async estaEnRecomendacionesAValorar(): Promise<boolean>{
+    return await this.userServiceUS.estaEnRecomendacionesAValorar(this.recomendacion.id, this.userIdSS)
   }
 
 }
