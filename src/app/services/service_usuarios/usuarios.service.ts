@@ -45,7 +45,6 @@ export class UsuariosService {
 
 
   async actualizarUsuario(usuarioBack: Usuario, usuarioEditable:Usuario): Promise<void> {
-     
     if(!usuarioBack.id){
       throw new Error("ID del Usuario invalido")
     }

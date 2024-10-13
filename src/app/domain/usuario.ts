@@ -19,7 +19,8 @@ export type UsuarioJSON = {
   perfilLista: string[],
   librosLeidos: Libro[],
   autoresPreferidos: string[],
-  cantVecesLeido: Map<Libro["id"],number>
+  cantVecesLeido: Map<Libro["id"],number>,
+  img_perfil: string
 }
 
 export class ValidationMessage {
@@ -51,32 +52,16 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
     public perfil: string[] = [], //es tipo de lectura, llega como objetos
     public librosLeidos: Libro[] = [],
     public autoresPreferidos: string[] = [],
-    public cantVecesLeido: Map<Libro["id"],number> = new Map()
-    
+    public cantVecesLeido: Map<Libro["id"],number> = new Map(),
+    public img_perfil: string = ''
+  
   ) {
     this.validador = new sistemaValidacion();
   }
   
   static fromJson(usuarioJSON: UsuarioJSON): Usuario {
     console.log("antes de transformar",usuarioJSON ) 
-    
-    // let formaDeLeer: FormaDeLeer | undefined;
-    // switch (usuarioJSON.formaDeLeer?.type) {
-    //   case 'promedio':
-    //     formaDeLeer = new Promedio;
-    //     break;
-    //   case 'ansioso':
-    //     formaDeLeer = new Ansioso;
-    //     break;
-    //   case 'fanatico':
-    //     formaDeLeer = new Fanatico;
-    //     break;
-    //   case 'recurrente':
-    //     formaDeLeer = new Recurrente;
-    //     break;
-    //   default:
-    //     formaDeLeer = undefined; // Si el tipo no coincide, puedes dejar undefined o manejarlo de otra forma
-    // }
+  
     const usertest = Object.assign(new Usuario(), usuarioJSON, {
       fechaNacimiento: usuarioJSON.fechaNacimiento
       ? dayjs(usuarioJSON.fechaNacimiento, FORMATO_FECHA).toDate()
@@ -84,6 +69,15 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
       perfil: Array.isArray(usuarioJSON.perfilLista)
       ? usuarioJSON.perfilLista.map((perfil:any) => perfil.type.toString()) // Convierte a string
       : [(usuarioJSON.perfilLista as any).type.toString()], // Si es un único perfil, lo envuelve en un array
+      formaDeLeer: usuarioJSON.formaDeLeer.type == 'ansioso'
+      ? usuarioJSON.formaDeLeer = new Ansioso()
+      : usuarioJSON.formaDeLeer.type == 'promedio'
+      ? usuarioJSON.formaDeLeer = new Promedio()
+      : usuarioJSON.formaDeLeer.type == 'fanatico'
+      ? usuarioJSON.formaDeLeer = new Fanatico()
+      : usuarioJSON.formaDeLeer.type == 'recurrente'
+      ? usuarioJSON.formaDeLeer = new Recurrente()
+      : usuarioJSON.formaDeLeer.type == 'undefined'
       
     
       // autoresPreferidos: Array.isArray(usuarioJSON.autoresPreferidos)
@@ -94,6 +88,27 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
     console.log("usertest",usertest )
     return usertest
   }
+  
+  asignarFormaLeer(usuarioJSON:UsuarioJSON){
+    let formaDeLeer: FormaDeLeer | undefined;
+    switch (usuarioJSON.formaDeLeer?.type) {
+      case 'promedio':
+        formaDeLeer = new Promedio();
+        break;
+      case 'ansioso':
+        formaDeLeer = new Ansioso();
+        break;
+      case 'fanatico':
+        formaDeLeer = new Fanatico();
+        break;
+      case 'recurrente':
+        formaDeLeer = new Recurrente();
+        break;
+      default:
+        formaDeLeer = undefined; 
+    }
+  }
+  
   
   guardarDatos(): boolean{
 
@@ -152,7 +167,8 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
       perfilLista: this.perfil,
       librosLeidos: this.librosLeidos,
       autoresPreferidos: this.autoresPreferidos,
-      cantVecesLeido: this.cantVecesLeido
+      cantVecesLeido: this.cantVecesLeido,
+      img_perfil: this.img_perfil
     }
   }
   
