@@ -24,7 +24,6 @@ export class BusquedaRecomendacionesComponent {
   data!: DataBusqueda
   recomendaciones!: Recomendacion[]
   constructor(
-    private router : Router,
     private route : ActivatedRoute,
     private serviceRecomendaciones: RecomendacionesService,
     private userServiceUS: UsuariosService,

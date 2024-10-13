@@ -60,7 +60,7 @@ export class UsuariosService {
     this.errors.push(mensajeError)
   }
 
-  async getRecomendacionesAValorar(userId: number){
+  async getRecomendacionesAValorar(userId: number): Promise<Recomendacion[]>{
     const recomendaciones = await lastValueFrom(
       this.httpClient.get<RecomendacionJSON[]>(REST_SERVER_URL + '/usuarios/recomendaciones-a-valorar/' + userId)
     )
@@ -68,6 +68,25 @@ export class UsuariosService {
       Recomendacion.fromJson(recomendacionJSON)
     )
     return recomendacionLista
+  }
+
+  async agregarRecomendacionAValorar(recomendacionId: number, userId: number) {
+    await lastValueFrom(
+      this.httpClient.post(`${REST_SERVER_URL}/usuarios/${userId}/agregar-recomendacion-a-valorar/${recomendacionId}`, {})
+    );
+  }
+
+  async eliminarRecomendacionAValorar(recomendacionId: number, userId: number) {
+    await lastValueFrom(
+      this.httpClient.delete(`${REST_SERVER_URL}/usuarios/${userId}/eliminar-recomendacion-a-valorar/${recomendacionId}`)
+    );
+  }
+
+  async estaEnRecomendacionesAValorar(recomendacionId : number, usuarioId: number): Promise<boolean> {
+    return await lastValueFrom(
+      this.httpClient.get<boolean>(REST_SERVER_URL + `/usuarios/${usuarioId}/recomendacion-en-a-valorar/${recomendacionId}`, {})
+
+    )
   }
 
 
