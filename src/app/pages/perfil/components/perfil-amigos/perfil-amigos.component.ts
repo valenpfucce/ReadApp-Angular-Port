@@ -11,7 +11,7 @@ import {CardLibroMasComponent} from "../../../../components/card-libro-mas/card-
   standalone: true,
     imports: [SidebarPerfilComponent, CardLibroMasComponent],
   templateUrl: './perfil-amigos.component.html',
-  styleUrls: ['./perfil-amigos.component.css', '../../../../estilos_generales/cartas_libros_btn_mas.css']
+  styleUrl: './perfil-amigos.component.css'
 })
 export class PerfilAmigosComponent {
   usuario! : Usuario

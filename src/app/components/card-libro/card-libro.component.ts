@@ -8,8 +8,9 @@ import { Libro } from '../../domain/libro';
   standalone: true,
   imports: [JoinListaGuionPipe, CortarPalabraPipe],
   templateUrl: './card-libro.component.html',
-  styleUrl: './card-libro.component.css'
+  styleUrl: '../../estilos_generales/cartas_libros.css'
 })
+
 export class CardLibroComponent {
   @Input() libro!: Libro
   @Input() modo!: 'detalle' | 'edicion';
@@ -18,9 +19,9 @@ export class CardLibroComponent {
   ngOnInit() {
     console.log('AAAAAAAAAAAAAAAAAA', this.libro);
   }
-  
+
   mostrarBotonBorrar() {
-    return (this.modo === 'edicion') ? true : false
+    return (this.modo === 'edicion')
   }
 
   esTrending(){

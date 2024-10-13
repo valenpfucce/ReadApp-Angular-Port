@@ -11,6 +11,5 @@ import {NgClass} from "@angular/common";
   styleUrls: ['../../estilos_generales/cartas_libros.css', './card-libro-mas.component.css']
 })
 export class CardLibroMasComponent {
-  @Input() showCard!: boolean
   @Input() tamanio!: 'chica' | 'mediana' | 'grande';
 }

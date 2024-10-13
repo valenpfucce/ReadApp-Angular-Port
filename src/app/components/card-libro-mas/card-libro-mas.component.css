@@ -3,6 +3,7 @@
   height: 7.5rem;
   background-color: var(--color-fondo);
   padding: 1em;
+  border: none;
 }
 
 .carta.mediana {
@@ -10,10 +11,13 @@
   height: 25rem;
   margin: 1.5rem;
   padding: 1.5rem;
+  background-color: var(--color-clarito);
+  border: 3px solid var(--color-beige-mas-claro);
 }
 
 .carta.grande {
   background-color: var(--color-beige);
+  border: 3px solid var(--color-beige-mas-claro);
 }
 
 .circulo-mas {
