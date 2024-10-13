@@ -4,13 +4,14 @@ import { Usuario } from '../../../../domain/usuario';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service';
 import { UserSessionStorageService } from '../../../../services/service_user_session_storage/user-session-storage.service';
+import {CardLibroMasComponent} from "../../../../components/card-libro-mas/card-libro-mas.component";
 
 @Component({
   selector: 'readapp-perfil-amigos',
   standalone: true,
-  imports: [SidebarPerfilComponent],
+    imports: [SidebarPerfilComponent, CardLibroMasComponent],
   templateUrl: './perfil-amigos.component.html',
-  styleUrls: ['./perfil-amigos.component.css', '../../../../estilos_generales/cartas_libros_btn_mas.css']
+  styleUrl: './perfil-amigos.component.css'
 })
 export class PerfilAmigosComponent {
   usuario! : Usuario
@@ -24,7 +25,7 @@ export class PerfilAmigosComponent {
   ngOnInit() {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     this.obtenerDatosUsuario(userIdSS)/*this.userServiceSS.obtenerUsuarioDelSS();*/
-  
+
   }
 
   async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
@@ -32,11 +33,11 @@ export class PerfilAmigosComponent {
     this.usuario = usuarioEnLinea
   }
 
-  
+
   navegarA(ruta : string) {
     this.router.navigate([ruta])
   }
 }
-  
+
 
 

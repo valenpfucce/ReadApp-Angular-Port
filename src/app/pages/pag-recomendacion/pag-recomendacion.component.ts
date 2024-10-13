@@ -101,9 +101,6 @@ export class PagRecomendacionComponent {
     return (this.modo === 'detalle')
   }
 
-  modoDetalle(){
-
-  }
   //FIN DETALLE
 
   navegarA(ruta : string) {
