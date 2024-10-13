@@ -27,6 +27,9 @@ export class PagRecomendacionComponent {
   userIdSS!: number
   idRecomendacion! : number
   recomendacion! : Recomendacion
+  esPublica! : Boolean
+  iconoRecomendacion! : String
+  altRecomendacion! : String
 
   constructor(
     private router : Router,
@@ -53,12 +56,13 @@ export class PagRecomendacionComponent {
         this.navegarA('/home');
       }
       this.modo = this.route.snapshot.data['modo'];
+      this.setIconoRecomendacion(this.recomendacion.publica)
       if(this.esModoDetalle()){this.modoDetalle()}
       if(this.esModoEdicion()){this.modoEdicion()}
-
-
     });
   }
+
+
 
   async puedeEditarLlamadaService(){
     return await this.serviceRecomendacion.puedeEditarRecomendacion(this.recomendacion.id, this.userIdSS)
@@ -67,6 +71,17 @@ export class PagRecomendacionComponent {
   async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
     const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
     this.usuario = usuarioEnLinea
+  }
+
+  setIconoRecomendacion(newPublicaBoolean : Boolean) {
+    this.esPublica = newPublicaBoolean
+    if (this.esPublica) {
+      this.iconoRecomendacion = '/imagenes/globe-simple.svg';
+      this.altRecomendacion = 'Publica';
+    } else {
+      this.iconoRecomendacion = '/imagenes/globe-x.svg';
+      this.altRecomendacion = 'Privada';
+    }
   }
 
   //===> EDICION

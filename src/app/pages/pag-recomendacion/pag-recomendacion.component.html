@@ -5,12 +5,7 @@
       <br />
       <header class="contenido-pagina-header">
         <h2>{{recomendacion.titulo}}</h2>
-        @if(!recomendacion.publica){
-          <img src="/imagenes/globe-x.svg" alt="Privada" class="icono-superior-derecha-recomendacion" />
-        }
-        @if(recomendacion.publica){
-          <img src="/imagenes/globe-simple.svg" alt="Publica" class="icono-superior-derecha-recomendacion" />
-        }
+          <img src="{{this.iconoRecomendacion}}" alt="{{this.altRecomendacion}}" class="icono-superior-derecha-recomendacion" />
       </header>
       <h3>Libros</h3>
     </div>
