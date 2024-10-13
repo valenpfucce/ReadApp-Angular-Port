@@ -15,7 +15,10 @@ import { UserSessionStorageService } from '../../services/service_user_session_s
   styleUrl: './sidebar-perfil.component.css'
 })
 export class SidebarPerfilComponent {
-  usuario!: Usuario; 
+  usuario!: Usuario;
+  nombreUser! : String | null
+  apellidoUser!: String | null
+  imgUser!: String | null
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -26,48 +29,52 @@ export class SidebarPerfilComponent {
   ngOnInit() {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     this.obtenerDatosUsuario(userIdSS); /*this.userServiceSS.obtenerUsuarioDelSS();*/
+    this.nombreUser = this.sessionStorage.obtenerNombreUserSS()
+    this.apellidoUser = this.sessionStorage.obtenerApellidoUserSS()
+    this.imgUser = this.sessionStorage.obtenerImgUserSS()
+
   }
-  
+
   async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
     const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
     this.usuario = usuarioEnLinea
   }
-  
-  
+
+
   infoSidebar = [
-   
+
     new menuSidebar(
       "Informacion",
       '/imagenes/info.svg',
       'info'
     ),
-  
+
     new menuSidebar(
       "Amigos",
       "/imagenes/amigos.svg" ,
       'amigos'
     ),
-    
+
     new menuSidebar(
       "Libros leidos",
       "/imagenes/libros.svg",
       'libros_leidos'
     ),
-  
+
     new menuSidebar(
       "Libros a leer",
       "/imagenes/librosaleer.svg",
       'libros_a_leer'
     ),
-  
+
     new menuSidebar(
       "Recomendaciones a valorar",
       "/imagenes/valorarReco.svg",
       'recomendacionesAValorar'
     ),
-  
+
   ]
-  
+
 }
 
 export class menuSidebar{
@@ -76,7 +83,7 @@ export class menuSidebar{
     public nombre: string,
     public icono_url: string,
     public router: string,
-   
+
   ){}
 }
 

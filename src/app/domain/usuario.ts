@@ -8,8 +8,8 @@ import {FormaDeLeer,  Promedio, Ansioso, Fanatico,Recurrente} from "./formaDeLee
 
 export type UsuarioJSON = {
   id: number,
-  nombre : string, 
-  apellido : string, 
+  nombre : string,
+  apellido : string,
   username : string,
   mail : string,
   password : string,
@@ -31,17 +31,17 @@ export class ValidationMessage {
 }
 
 export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
-  
+
   // tipoLectura = [];
-  
-  recomendacionesAValorar ?: Recomendacion[];
-  amigos ?:[Usuario];
+
+  recomendacionesAValorar : Recomendacion[] = [];
+  amigos : Usuario[] = [];
   validador: sistemaValidacion;
   errors: ValidationMessage[] = [];
 
   constructor(
     public id?: number,
-    public nombre : string = '', 
+    public nombre : string = '',
     public apellido : string= '',
     public username : string= '',
     public mail : string= '',
@@ -54,14 +54,14 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
     public autoresPreferidos: string[] = [],
     public cantVecesLeido: Map<Libro["id"],number> = new Map(),
     public img_perfil: string = ''
-  
+
   ) {
     this.validador = new sistemaValidacion();
   }
-  
+
   static fromJson(usuarioJSON: UsuarioJSON): Usuario {
-    console.log("antes de transformar",usuarioJSON ) 
-  
+    console.log("antes de transformar",usuarioJSON )
+
     const usertest = Object.assign(new Usuario(), usuarioJSON, {
       fechaNacimiento: usuarioJSON.fechaNacimiento
       ? dayjs(usuarioJSON.fechaNacimiento, FORMATO_FECHA).toDate()
@@ -78,17 +78,17 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
       : usuarioJSON.formaDeLeer.type == 'recurrente'
       ? usuarioJSON.formaDeLeer = new Recurrente()
       : usuarioJSON.formaDeLeer.type == 'undefined'
-      
-    
+
+
       // autoresPreferidos: Array.isArray(usuarioJSON.autoresPreferidos)
       // ? usuarioJSON.autoresPreferidos.map((autor:any) => autor.type.toString()) // Convierte a string
       // : [(usuarioJSON.autoresPreferidos as any).type.toString()],
-    
+
     });
     console.log("usertest",usertest )
     return usertest
   }
-  
+
   asignarFormaLeer(usuarioJSON:UsuarioJSON){
     let formaDeLeer: FormaDeLeer | undefined;
     switch (usuarioJSON.formaDeLeer?.type) {
@@ -105,11 +105,11 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
         formaDeLeer = new Recurrente();
         break;
       default:
-        formaDeLeer = undefined; 
+        formaDeLeer = undefined;
     }
   }
-  
-  
+
+
   guardarDatos(): boolean{
 
     this.validador.validarDatos(this)
@@ -119,12 +119,12 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
       return true;
 
   }
- 
-  tiempoDeLecturaPromedio(libro: Libro): number {  
-  return libro.cant_palabras_libro / this.vpromedio  
-  } 
 
-  
+  tiempoDeLecturaPromedio(libro: Libro): number {
+  return libro.cant_palabras_libro / this.vpromedio
+  }
+
+
   hasErrors(field: string): boolean {
   return this.errors.some((_) => _.field == field)
   }
@@ -136,28 +136,28 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
   agregarRecomendacionAValorar(recomendacion: Recomendacion){
     this.recomendacionesAValorar?.push(recomendacion)
   }
-  
+
   // fechaString(): string | undefined {
   //   return !this.fechaNacimiento ? '' : DateTime.fromJSDate(this.fechaNacimiento).toUTC().toFormat(FORMATO_FECHA)
   // }
-  
-  
+
+
   idUsuarioNotNull(): number{
     const idUsuarioAct = sessionStorage.getItem('userSession')
     if(idUsuarioAct === null){
       throw new Error('Usuaio Invalido');
     } else {
-      return Number(idUsuarioAct) 
+      return Number(idUsuarioAct)
     }
-    
+
   }
-  
-  
+
+
   toJSON(): UsuarioJSON {
     return {
       id : this.idUsuarioNotNull() ,
-      nombre : this.nombre, 
-      apellido : this.apellido, 
+      nombre : this.nombre,
+      apellido : this.apellido,
       username : this.username,
       mail : this.mail,
       password : this.password,
@@ -171,39 +171,39 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
       img_perfil: this.img_perfil
     }
   }
-  
+
 
 }
 
 export class sistemaValidacion{
-  
+
   validarDatos(usuario:Usuario):void{
     usuario.errors.length = 0
-    
+
     if (this.stringVacio(usuario.nombre!)){
       this.addError(usuario, 'nombre', 'El campo no puede estar vacio')
     }else if (this.conSimbolos(usuario.nombre!)){
       this.addError(usuario, 'nombre', 'El campo solo puede contener letras')
     }
-  
+
     if (this.stringVacio(usuario.apellido!)){
       this.addError(usuario, 'apellido', 'El campo no puede estar vacio')
     }else if (this.conSimbolos(usuario.apellido!)){
       this.addError(usuario, 'apellido', 'El campo solo puede contener letras')
     }
-     
+
     if (this.stringVacio(usuario.username!)){
       this.addError(usuario, 'username', 'El campo no puede estar vacio')
     }
-    
+
     if (this.numberVacio(usuario.vpromedio!)){
       this.addError(usuario, 'tiempoLectura', 'El campo no puede estar vacio')
     }
-    
+
     if (this.validarFecha(usuario.fechaNacimiento!)){
       this.addError(usuario, 'fecha', 'Debe ingresar fecha de nacimiento')
     }
-  
+
     if (this.stringVacio(usuario.mail!)){
       this.addError(usuario, 'mail', 'El campo no puede estar vacio')
     } else if (this.sinDireccion(usuario.mail!)){
@@ -213,7 +213,7 @@ export class sistemaValidacion{
 
   validarFecha(fecha: string | Date | null | undefined): boolean {
     if (!fecha) return false;  // Si está vacío o nulo, no es válido
-  
+
     // Si es una cadena, verificamos que no esté vacía y tenga el formato correcto
   if (typeof fecha === 'string') {
     return fecha.trim() !== '' && /^\d{4}-\d{2}-\d{2}$/.test(fecha)
@@ -222,22 +222,22 @@ export class sistemaValidacion{
   return false  // Si no es ni string ni Date, no es válida
  }
 
-  numberVacio(numero: number | null | undefined | any): Boolean { 
+  numberVacio(numero: number | null | undefined | any): Boolean {
   return typeof numero !== 'number' || isNaN(numero);
   }
-  
-  stringVacio(nombre: string | null | undefined | any): Boolean { 
+
+  stringVacio(nombre: string | null | undefined | any): Boolean {
     return typeof nombre !== 'string' || nombre.trim() === '';}
 
-  
+
   conSimbolos(nombre: string): Boolean {
     const regex = /^[A-Za-z\s]+$/
     return !regex.test(nombre) }
- 
+
   sinDireccion(mail: string): Boolean{
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;   
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return !regex.test(mail) }
-  
+
 
   addError(usuario:Usuario,field: string, message: string) {
     usuario.errors.push(new ValidationMessage(field, message))

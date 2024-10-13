@@ -30,29 +30,29 @@ export class PerfilInfoComponent {
   usuarioEditable!: Usuario;
   fechaNacimiento= ''
   saveOK = false
-  esCalculador = false 
+  esCalculador = false
   esPromedio: boolean = false;
   esAnsioso: boolean = false;
   esFanatico: boolean = false;
   esRecurrente: boolean = false;
-  
+
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private userServiceUS: UsuariosService,
     private sessionStorage: UserSessionStorageService
-    
+
   ) {}
-  
+
 
   ngOnInit() {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     console.log("userIdSS", userIdSS)
     this.obtenerDatosUsuario(userIdSS)
-     
+
   }
-  
+
   async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
     const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
     this.usuario = usuarioEnLinea
@@ -60,11 +60,11 @@ export class PerfilInfoComponent {
     this.comprobarFormaDeLeer()
     this.ngAfterViewInit()
   }
- 
+
   cambioCalculador(){
     this.esCalculador = !this.esCalculador
   }
-  
+
   comprobarFormaDeLeer() {
     if (this.usuarioEditable.formaDeLeer instanceof Promedio) {
       this.esPromedio = true;
@@ -76,7 +76,7 @@ export class PerfilInfoComponent {
       this.esRecurrente = true;
     }
   }
-  
+
   //ViweChild accede al elemnto del html con el #tipoPerfil, en este caso los checks
   @ViewChild('precavido', { static: false }) precavidoRef!: ElementRef;
   @ViewChild('demandante', { static: false }) demandanteRef!: ElementRef;
@@ -89,12 +89,12 @@ export class PerfilInfoComponent {
 
   ngAfterViewInit(){
     console.log(this.leedorRef.nativeElement);
-    this.activarChecksCriterioPerfil(this.usuarioEditable); 
+    this.activarChecksCriterioPerfil(this.usuarioEditable);
   }
 
   activarChecksCriterioPerfil(usuario: Usuario) {
     const tipoPerfil = usuario.perfil
-    
+
     const checkboxes: { [key: string]: ElementRef } = {
       'precavido': this.precavidoRef,
       'demandante': this.demandanteRef,
@@ -113,17 +113,17 @@ export class PerfilInfoComponent {
       }
     })
   }
-  
+
   guardar() {
-   this.usuarioEditable.fechaNacimiento = this.fechaNacimiento === '' ? undefined : dayjs(this.fechaNacimiento).toDate()
+    this.usuarioEditable.fechaNacimiento = this.fechaNacimiento === '' ? undefined : dayjs(this.fechaNacimiento).toDate()
    const guardadoExitoso = this.usuarioEditable.guardarDatos()
    this.llamarServerPutUS()
    if (guardadoExitoso){
     this.indicarGuardadoExitoso()
    }
-   
-  } 
-  
+
+  }
+
   async llamarServerPutUS(){
         try {
         await this.userServiceUS.actualizarUsuario(this.usuario,this.usuarioEditable)

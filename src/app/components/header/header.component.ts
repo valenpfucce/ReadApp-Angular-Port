@@ -13,27 +13,26 @@ import { UserSessionStorageService } from '../../services/service_user_session_s
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  usuario!: Usuario;
+  nombreUser! : String | null
+  apellidoUser!: String | null
+  imgUser!: String | null
 
   constructor(
     private userServiceUS: UsuariosService,
     private sessionStorage: UserSessionStorageService
-    
+
   ) {}
-  
+
   ngOnInit() {
-    const userIdSS = this.sessionStorage.obtenerIDuserSS()
-    this.obtenerDatosUsuario(userIdSS)
+    // const userIdSS = this.sessionStorage.obtenerIDuserSS()
+    // this.obtenerDatosUsuario(userIdSS)
+    this.nombreUser = this.sessionStorage.obtenerNombreUserSS()
+    this.apellidoUser = this.sessionStorage.obtenerApellidoUserSS()
+    this.imgUser = this.sessionStorage.obtenerImgUserSS()
   }
-  
-  async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
-    const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
-    this.usuario = usuarioEnLinea
-  }
-  
-  
-  
-  menuVisible: boolean = false; 
+
+
+  menuVisible: boolean = false;
 
   toggleMenu() {  //alternar vista menu
     this.menuVisible = !this.menuVisible;
