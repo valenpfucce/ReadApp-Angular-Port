@@ -7,11 +7,12 @@ import { LibrosService } from '../../../../services/service_libros/libros.servic
 import { UserSessionStorageService } from '../../../../services/service_user_session_storage/user-session-storage.service';
 import { Usuario } from '../../../../domain/usuario';
 import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service';
+import { CardLibroMasComponent } from "../../../../components/card-libro-mas/card-libro-mas.component";
 
 @Component({
   selector: 'readapp-perfil-libros-leidos',
   standalone: true,
-  imports: [HeaderComponent, SidebarPerfilComponent, CardLibroComponent,],
+  imports: [HeaderComponent, SidebarPerfilComponent, CardLibroComponent, CardLibroMasComponent],
   templateUrl: './perfil-libros-leidos.component.html',
   styleUrls: [
     '../../../../estilos_generales/estilo_recomendacion.css',
