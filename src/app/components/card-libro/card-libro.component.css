@@ -20,7 +20,7 @@
     position: absolute;
     bottom: 1.93rem;
     right: 2.58rem;
-} 
+}
 
 .iconos {
     width: 3.6rem;
@@ -36,7 +36,7 @@
 }
 
 .contenido-carta {
-    color: var(--color-letra);
+    color: white;
     display: flex;
     width: 100%;
     height: 100%;
@@ -102,26 +102,26 @@
         box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
         padding: 0.5rem;
     }
-    
+
     .iconos-inferior-derecha {
         width: 1.98rem;
         height: 1.98rem;
         position: absolute;
         bottom: 1.23rem;
         right: 1.63rem;
-    } 
-    
+    }
+
     .iconos {
         width: 2.29rem;
         height: 2.29rem;
         transition: transform 0.3s ease;
     }
-    
+
     .iconos:hover {
         transform: scale(1.3);
         cursor: pointer;
     }
-    
+
     .iconoschicos {
         vertical-align: middle;
         margin-right: 0.5rem;
@@ -136,29 +136,29 @@
     .imagen-libro {
         margin-left: 0.5rem;
     }
-    
+
     .contenedor-texto {
         margin-left: 0.99rem;
     }
-    
+
     .titulo-libro {
         font-size: 1.59rem;
         margin-bottom: 0.3rem;
     }
-    
+
     .autor-libro {
         font-size: 1.39rem;
         margin-bottom: 0.99rem;
     }
-    
+
     .detalles-libro {
         font-size: 1.23rem;
         line-height: 2rem;
     }
-    
+
     .detalles-libro li {
         margin-bottom: 0.5rem;
-    }    
+    }
 }
 
 
@@ -181,12 +181,12 @@
     }
 
     .contenedor-imagen {
-        margin-bottom: 1.51rem; 
+        margin-bottom: 1.51rem;
     }
 
     .contenedor-texto {
-        margin-left: 0; 
-        text-align: left; 
+        margin-left: 0;
+        text-align: left;
     }
 
     .detalles-libro li {

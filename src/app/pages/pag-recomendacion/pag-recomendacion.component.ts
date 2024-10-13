@@ -75,11 +75,11 @@ export class PagRecomendacionComponent {
   }
 
   modoEdicion(){
-    return (this.modo === 'edicion') ? true : false
+    return (this.modo === 'edicion')
   }
 
   modoDetalle(){
-    return (this.modo === 'detalle') ? true : false
+    return (this.modo === 'detalle')
   }
 
   navegarA(ruta : string) {
