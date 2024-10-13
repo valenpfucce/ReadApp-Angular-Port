@@ -24,8 +24,12 @@ import { UsuariosService } from '../../services/service_usuarios/usuarios.servic
 export class PagRecomendacionComponent {
   modo!: 'detalle' | 'edicion';
   usuario!: Usuario
+  userIdSS!: number
   idRecomendacion! : number
   recomendacion! : Recomendacion
+  esPublica! : Boolean
+  iconoRecomendacion! : String
+  altRecomendacion! : String
 
   constructor(
     private router : Router,
@@ -36,37 +40,32 @@ export class PagRecomendacionComponent {
   ){}
 
   ngOnInit() {
-    const userIdSS = this.sessionStorage.obtenerIDuserSS()
-    this.obtenerDatosUsuario(userIdSS)
+    const userIdSSAChequear = this.sessionStorage.obtenerIDuserSS()
+    if (userIdSSAChequear != null) { this.userIdSS = userIdSSAChequear }
     // ===== ROUTE PARAMETRO =====
     //Traer los parametros del routing
     this.route.params.subscribe(async params => {
       this.idRecomendacion = +params['id'];
       console.log('ID Recomendacion:', this.idRecomendacion);
-      const recomendacionEncontrada = this.serviceRecomendacion.getRecomendacionById(this.idRecomendacion);
+      const recomendacionEncontrada = await this.serviceRecomendacion.getRecomendacionById(this.idRecomendacion);
       if (recomendacionEncontrada) {
-        this.recomendacion = await recomendacionEncontrada;
+        this.recomendacion = recomendacionEncontrada;
         console.log('Recomendación encontrada:', recomendacionEncontrada);
       } else {
         console.log('Recomendación no encontrada --> /home');
         this.navegarA('/home');
       }
       this.modo = this.route.snapshot.data['modo'];
-
-
-      //VERIFICACION USUARIO DETALLE RECOMENDACION SI ES PRIVADA Y NO ES EL CREADOR
-      // if((this.modoDetalle() && (this.recomendacion.creadorId === this.usuario.id) && this.recomendacion.propia === true)){ //NO ME ACUERDO COMO ERA EN EL BACK ESTO, no se si otro usuario que no era el creador podia editar
-      //   console.log('El usuario no tiene permisos de edicion')
-      //   this.navegarA('/home');
-      // }
-
-      //VERIFICACION USUARIO EDITAR RECOMENDACION
-      if (this.modoEdicion() /*&& (this.recomendacion.creadorId != this.usuario.id)*/) { //NO ME ACUERDO COMO ERA EN EL BACK ESTO, no se si otro usuario que no era el creador podia editar
-        console.log('El usuario no tiene permisos de edicion')
-        this.navegarA('/home');
-      }
-
+      this.setIconoRecomendacion(this.recomendacion.publica)
+      if(this.esModoDetalle()){this.modoDetalle()}
+      if(this.esModoEdicion()){this.modoEdicion()}
     });
+  }
+
+
+
+  async puedeEditarLlamadaService(){
+    return await this.serviceRecomendacion.puedeEditarRecomendacion(this.recomendacion.id, this.userIdSS)
   }
 
   async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
@@ -74,13 +73,38 @@ export class PagRecomendacionComponent {
     this.usuario = usuarioEnLinea
   }
 
-  modoEdicion(){
-    return (this.modo === 'edicion') ? true : false
+  setIconoRecomendacion(newPublicaBoolean : Boolean) {
+    this.esPublica = newPublicaBoolean
+    if (this.esPublica) {
+      this.iconoRecomendacion = '/imagenes/globe-simple.svg';
+      this.altRecomendacion = 'Publica';
+    } else {
+      this.iconoRecomendacion = '/imagenes/globe-x.svg';
+      this.altRecomendacion = 'Privada';
+    }
+  }
+
+  //===> EDICION
+  esModoEdicion(){
+    return (this.modo === 'edicion')
+  }
+  async modoEdicion() {
+    if (!(await this.puedeEditarLlamadaService())) {
+      this.navegarA('/home')
+    }
+
+  }
+  //FIN EDICION
+
+  //===> DETALLE
+  esModoDetalle(){
+    return (this.modo === 'detalle')
   }
 
   modoDetalle(){
-    return (this.modo === 'detalle') ? true : false
+
   }
+  //FIN DETALLE
 
   navegarA(ruta : string) {
     this.router.navigate([ruta])
