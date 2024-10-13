@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { lastValueFrom, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { REST_SERVER_URL } from '../configuration';
+import { Recomendacion, RecomendacionJSON } from '../../domain/recomendacion'
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,8 @@ export class UsuariosService {
 
 
   async actualizarUsuario(usuarioBack: Usuario, usuarioEditable:Usuario): Promise<void> {
+
+
     if(!usuarioBack.id){
       throw new Error("ID del Usuario invalido")
     }
@@ -57,7 +60,37 @@ export class UsuariosService {
   addError(mensajeError: string) {
     this.errors.push(mensajeError)
   }
- 
+
+  async getRecomendacionesAValorar(userId: number): Promise<Recomendacion[]>{
+    const recomendaciones = await lastValueFrom(
+      this.httpClient.get<RecomendacionJSON[]>(REST_SERVER_URL + '/usuarios/recomendaciones-a-valorar/' + userId)
+    )
+    const recomendacionLista = recomendaciones.map((recomendacionJSON) =>
+      Recomendacion.fromJson(recomendacionJSON)
+    )
+    return recomendacionLista
+  }
+
+  async agregarRecomendacionAValorar(recomendacionId: number, userId: number) {
+    await lastValueFrom(
+      this.httpClient.post(`${REST_SERVER_URL}/usuarios/${userId}/agregar-recomendacion-a-valorar/${recomendacionId}`, {})
+    );
+  }
+
+  async eliminarRecomendacionAValorar(recomendacionId: number, userId: number) {
+    await lastValueFrom(
+      this.httpClient.delete(`${REST_SERVER_URL}/usuarios/${userId}/eliminar-recomendacion-a-valorar/${recomendacionId}`)
+    );
+  }
+
+  async estaEnRecomendacionesAValorar(recomendacionId : number, usuarioId: number): Promise<boolean> {
+    return await lastValueFrom(
+      this.httpClient.get<boolean>(REST_SERVER_URL + `/usuarios/${usuarioId}/recomendacion-en-a-valorar/${recomendacionId}`, {})
+
+    )
+  }
+
+
 }
 
 class UsuarioLogin {

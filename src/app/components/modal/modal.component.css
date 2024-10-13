@@ -1,0 +1,157 @@
+/* Estilos para la ventana modal */
+.modal-dialog {
+  position: fixed; /* Fijar el modal en la pantalla */
+  top: 50%; /* Centrar verticalmente */
+  left: 50%; /* Centrar horizontalmente */
+  transform: translate(-50%, -50%); /* Ajustar la posición para centrarlo completamente */
+  max-width: 80%;
+  width: 100%; /* Que ocupe el ancho disponible */
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh; /* Limitar la altura del modal */
+  z-index: 1050; /* Asegura que esté por encima de otros elementos */
+  position: relative;
+}
+
+/* Estilo para el header con el título y el botón de cerrar */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Estilos para el cuerpo del modal */
+.modal-body {
+  overflow-y: auto; /* Scroll solo en el contenido */
+  padding: 20px;
+  flex: 1; /* Para que la modal-body ocupe el espacio disponible */
+  max-height: calc(80vh - 120px); /* Limita la altura del contenido */
+}
+
+.readapp-card-libro {
+  margin-bottom: 10px;
+}
+
+/* Estilos para el pie del modal (botones) */
+.modal-footer {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+ 
+.btn-guardar,
+.btn-cancelar {
+  cursor: pointer;
+}
+.success-message {
+  position: fixed; /* Asegura que el mensaje de éxito esté posicionado sobre todo */
+  top: 50%; /* Centrado verticalmente */
+  left: 50%; /* Centrado horizontalmente */
+  transform: translate(-50%, -50%); /* Para que el mensaje se centre */
+  background-color: #dff0d8;
+  color: #3c763d;
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 9999; /* Asegura que esté por encima del modal */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.success-message img {
+  margin-right: 10px;
+  width: 24px; /* Ajusta el tamaño de la imagen */
+  height: auto;
+}
+
+
+@keyframes success-animation {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.success-message.show {
+  opacity: 1;
+}
+
+/* Adaptación para móviles */
+@media (max-width: 768px) {
+  .modal-dialog {
+    width: 90%;
+    max-width: none;
+  }
+  .modal-body {
+    padding: 10px;
+    max-height: 300px;
+  }
+  .modal-header h5 {
+    font-size: 1.1rem;
+  }
+  button {
+    padding: 8px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-dialog {
+    max-width: 100%;
+    padding: 5px;
+    margin: 0 auto;
+    border-radius: 6px;
+  }
+
+  .modal-title {
+    font-size: 1rem;
+  }
+
+  .close {
+    font-size: 1rem;
+  }
+
+  .modal-body {
+    max-height: calc(80vh - 120px);
+  }
+
+  .libro-card {
+    margin-bottom: 10px;
+  }
+
+  .modal-footer {
+    padding: 5px 10px;
+  }
+
+  .btn-guardar,
+.btn-cancelar {
+  /* padding-bottom: 500px; NO FUNCIONA REVISAR  luego*/
+  cursor: pointer;
+}
+}
+

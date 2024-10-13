@@ -24,7 +24,6 @@ export class BusquedaRecomendacionesComponent {
   data!: DataBusqueda
   recomendaciones!: Recomendacion[]
   constructor(
-    private router : Router,
     private route : ActivatedRoute,
     private serviceRecomendaciones: RecomendacionesService,
     private userServiceUS: UsuariosService,
@@ -38,27 +37,14 @@ export class BusquedaRecomendacionesComponent {
       this.userIdSS = userIdSSAChequear
       this.busquedaAlService(this.userIdSS)
     }
-
-
-    // this.recomendaciones = this.busquedaAlService()
-    // this.recomendaciones = this.data.realizarBusqueda(
-    //   this.serviceRecomendaciones,
-    //   undefined,
-    //   this.usuario.id
-    // )
   }
 
-  async getSR(){
-    return await this.serviceRecomendaciones.busquedaRecomendaciones()
-  }
-
-  async busquedaAlService(userIdSS : number, palabraABuscar?: string){
+  async busquedaAlService(userIdSS : number, palabraABuscar?: string):Promise<Recomendacion[]>{
     this.recomendaciones = await this.data.realizarBusqueda(
       this.serviceRecomendaciones,
       undefined,
       userIdSS
     )
-    console.log(this.recomendaciones)
     return this.recomendaciones
   }
 
