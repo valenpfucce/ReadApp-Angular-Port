@@ -1,37 +1,18 @@
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Libros agregados</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <!-- <readapp-barra-busqueda></readapp-barra-busqueda> -->
-      <div class="modal-body"*ngFor="let libro of libros">
-              <readapp-card-libro [libro]="libro"></readapp-card-libro>
-              <!-- {{ libro.titulo_libro }} - {{ libro.autor_libro}} Ajusta las propiedades según tu modelo -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
-        >
-          Guardar cambios
-        </button>
+<div class="modal-dialog" *ngIf="isModalOpen" (click)="$event.stopPropagation()">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Todos los libros</h5> <!-- modificar para que aparezcan los de usuario tambien -->
+      <button type="button" class="close" (click)="closeModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="libro-card">
+        <readapp-card-libro  *ngFor="let libro of libros" [libro]="libro"></readapp-card-libro>
       </div>
     </div>
+
+  </div>
+  <div class="boton_container">
+    <button type="button" class="boton_cancelar" (click)="cancel()">Cancelar</button>
+    <button type="button" class="boton_guardar" (click)="saveChanges()">Guardar Cambios</button>
   </div>
 </div>

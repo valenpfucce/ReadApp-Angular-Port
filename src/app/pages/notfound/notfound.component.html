@@ -5,8 +5,6 @@
     <button (click)="volverAlInicio()">ir al inicio</button>
 </div>
 <div>
-  <button class type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Abrir Modal
-  </button>
-    <readapp-modal></readapp-modal>
-  </div>
+  <button type="button" (click)="openModal()">Abrir Modal</button>
+  <readapp-modal *ngIf="isModalOpen" [isModalOpen]="isModalOpen" (close)="closeModal()"></readapp-modal>
+</div>
