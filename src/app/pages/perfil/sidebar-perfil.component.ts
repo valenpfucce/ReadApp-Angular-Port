@@ -51,13 +51,13 @@ export class SidebarPerfilComponent {
     new menuSidebar(
       "Libros leidos",
       "/imagenes/libros.svg",
-      'info'
+      'libros_leidos'
     ),
   
     new menuSidebar(
       "Libros a leer",
       "/imagenes/librosaleer.svg",
-      'info'
+      'libros_a_leer'
     ),
   
     new menuSidebar(

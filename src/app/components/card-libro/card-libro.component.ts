@@ -14,6 +14,11 @@ export class CardLibroComponent {
   @Input() libro!: Libro
   @Input() modo!: 'detalle' | 'edicion';
 
+  //PRUEBA PARA VER SI ME IMPRIME, ELIMINARLO
+  ngOnInit() {
+    console.log('AAAAAAAAAAAAAAAAAA', this.libro);
+  }
+  
   mostrarBotonBorrar() {
     return (this.modo === 'edicion') ? true : false
   }
