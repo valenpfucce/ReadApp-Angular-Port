@@ -4,7 +4,7 @@
     position: fixed;
     top: 8rem;
     width: 100%;
-    z-index: 1000;
+    z-index: 1;
 }
 
 .barra-busqueda input[type="text"] {
@@ -79,7 +79,7 @@
     .barra-busqueda-container {
         top: 0;
     }
-    
+
     .barra-busqueda label{
         margin-top: 1rem;
     }

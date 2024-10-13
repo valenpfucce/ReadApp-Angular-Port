@@ -2,25 +2,25 @@
     display: none;
     position: absolute;
     right: 0;
-    top: 99%; 
+    top: 100%;
     background-color: var(--color-clarito);
     border: 0.1rem solid var(--color-marron);
     border-radius: 0.4rem;
     box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
-    z-index: 9999;
-    width: 20rem; 
+    z-index: 1000;
+    width: 20rem;
   }
-  
+
   .menu.show {
     display: block;
   }
-  
+
   .menu ul {
     list-style: none;
     margin: 0;
     padding: 0;
   }
-  
+
   .menu ul li {
     font-size: 1.5rem;
     padding: 1rem 1.5rem;
@@ -28,25 +28,24 @@
     border-bottom: 0.1rem solid #ddd;
     color: #2c1906;
   }
-  
+
   .menu ul li:hover {
     background-color: var(--color-beige-mas-claro);
   }
-  
+
   .menu ul li:last-child {
     border-bottom: none;
   }
-  
+
 
   @media (max-width: 400px) {
-    
+
 
     .menu {
       position: fixed;
-      bottom: 10;
-      top:54.5%;
+      top:58.35%;
 ;
     }
-    
+
 
 }
