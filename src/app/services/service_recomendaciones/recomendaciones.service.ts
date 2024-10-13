@@ -18,16 +18,10 @@ export class RecomendacionesService {
       Recomendacion.fromJson(recomendacionJSON)
     )
     console.log("BusquedaRecomendaciones TODAS >:D\n",recomendacionLista)
-    // if (recomendacionLista.length > 0) {
-    //   return recomendacionLista
-    // }
-    // const recomendacionVacia: Recomendacion[] = []
-    // return recomendacionVacia
     return recomendacionLista
   }
 
   async getRecomendacionById(id: number) {
-    // const recomendacionJSON$ = await this.httpClient.get<Recomendacion>(`${REST_SERVER_URL}/recomendaciones/completa/${id}`)
     const recomendacionJSON = await lastValueFrom(
       this.httpClient.get<RecomendacionJSON>(
         `${REST_SERVER_URL}/recomendaciones/` + id
@@ -57,11 +51,6 @@ export class RecomendacionesService {
       Recomendacion.fromJson(recomendacionJSON)
     )
     console.log("Recomendaciones Editables ;D\n", recomendacionLista)
-    // if (recomendacionLista.length > 0) {
-    //   return recomendacionLista
-    // }
-    // const recomendacionVacia: Recomendacion[] = []
-    // return recomendacionVacia
     return recomendacionLista
   }
 

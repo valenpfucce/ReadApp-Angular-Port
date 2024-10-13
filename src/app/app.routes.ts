@@ -84,6 +84,7 @@ export const routes: Routes = [
         { path: 'amigos', title:'Amigos', component:PerfilAmigosComponent},
         { path: 'info', title:'Informacion del Usuario' , component:PerfilInfoComponent},
         { path: 'libros_leidos', title: 'Libros leídos', component:PerfilLibrosLeidosComponent},
+        { path: 'libros_a_leer', title: 'Libros a leer', component:PerfilLibrosLeidosComponent},
         { path: 'recomendacionesAValorar', title: 'Recomendaciones A Valorar', component: PerfilRecomendacionesAValorarComponent}
         ]
     },

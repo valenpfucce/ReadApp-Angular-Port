@@ -1,0 +1,31 @@
+<div class="flex perfil_container">
+    <h1>Libros a leer</h1>
+    <section class="contenedor-cartas">
+      <section class="grid-libros">
+        @for (libro of librosLeidos; track libro) {
+          <readapp-card-libro 
+            [libro]="libro" 
+            [modo]="'detalle'">
+          </readapp-card-libro>
+        }
+      </section>
+    </section>
+  
+    <h1>Libros por Leer</h1>
+    <section class="contenedor-cartas">
+      <section class="grid-libros">
+        @for (libro of librosPorLeer; track libro) {
+          <readapp-card-libro 
+            [libro]="libro" 
+            [modo]="'detalle'">
+          </readapp-card-libro>
+        }
+      </section>
+    </section>
+  
+    <div class="boton_container">
+      <button class="boton_cancelar" type="submit">Cancelar</button>
+      <button class="boton_guardar" type="submit">Guardar cambios</button>
+    </div>
+</div>
+  
