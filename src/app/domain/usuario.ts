@@ -14,7 +14,7 @@ export type UsuarioJSON = {
   mail : string,
   password : string,
   fechaNacimiento? : Date,
-  tiempoLectura: number,
+  vpromedio: number,
   formaDeLeer: FormaDeLeer,
   perfilLista: string[],
   librosLeidos: Libro[],
@@ -47,7 +47,7 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
     public mail : string= '',
     public password : string= '',
     public fechaNacimiento? : Date,
-    public tiempoLectura: number = 0,
+    public vpromedio: number = 0,
     public formaDeLeer?: FormaDeLeer,
     public perfil: string[] = [], //es tipo de lectura, llega como objetos
     public librosLeidos: Libro[] = [],
@@ -121,7 +121,7 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
   }
  
   tiempoDeLecturaPromedio(libro: Libro): number {  
-  return libro.cant_palabras_libro / this.tiempoLectura  
+  return libro.cant_palabras_libro / this.vpromedio  
   } 
 
   
@@ -162,7 +162,7 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
       mail : this.mail,
       password : this.password,
       fechaNacimiento : this.fechaNacimiento,
-      tiempoLectura: this.tiempoLectura,
+      vpromedio: this.vpromedio,
       formaDeLeer: this.formaDeLeer!,
       perfilLista: this.perfil,
       librosLeidos: this.librosLeidos,
@@ -196,7 +196,7 @@ export class sistemaValidacion{
       this.addError(usuario, 'username', 'El campo no puede estar vacio')
     }
     
-    if (this.numberVacio(usuario.tiempoLectura!)){
+    if (this.numberVacio(usuario.vpromedio!)){
       this.addError(usuario, 'tiempoLectura', 'El campo no puede estar vacio')
     }
     
