@@ -77,12 +77,13 @@ export const routes: Routes = [
     { path: 'recomendacion/:id/detalle', component:PagRecomendacionComponent, data: { modo: 'comentario' } },
     { path: 'recomendacion/:id/edicion', component:PagRecomendacionComponent, data: { modo: 'edicion' } },
     { path: 'barra_busqueda', component:BarraBusquedaComponent},
-    { path: 'libros_leidos', component:PerfilLibrosLeidosComponent},
+    
     { path: 'mis_recomendaciones', component:BusquedaRecomendacionesComponent, data: dataBusquedaMisRecomendaciones},
 
     { path: 'perfil', component:SidebarPerfilComponent, children:[
         { path: 'amigos', title:'Amigos', component:PerfilAmigosComponent},
         { path: 'info', title:'Informacion del Usuario' , component:PerfilInfoComponent},
+        { path: 'libros_leidos', title: 'Libros leídos', component:PerfilLibrosLeidosComponent},
         { path: 'recomendacionesAValorar', title: 'Recomendaciones A Valorar', component: PerfilRecomendacionesAValorarComponent}
         ]
     },
