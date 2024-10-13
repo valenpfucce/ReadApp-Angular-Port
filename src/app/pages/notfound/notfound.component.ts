@@ -1,15 +1,18 @@
 import { Component } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { ModalComponent } from '../../components/modal/modal.component'
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-notfound',
   standalone: true,
-  imports: [ModalComponent],
+  imports: [ModalComponent, CommonModule],
   templateUrl: './notfound.component.html',
   styleUrl: './notfound.component.css'
 })
 export class NotfoundComponent {
+  isModalOpen = false
+
   constructor(
     private router: Router,
     private route: ActivatedRoute
@@ -24,7 +27,6 @@ export class NotfoundComponent {
   navegarA(ruta: string) {
     this.router.navigate([ruta])
   }
-  isModalOpen = false
 
   openModal() {
     this.isModalOpen = true

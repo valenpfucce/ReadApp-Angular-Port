@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { LibrosService } from '../../services/service_libros/libros.service'
 import { Libro } from '../../domain/libro'
 import { CommonModule } from '@angular/common'
@@ -13,7 +13,9 @@ import { BarraBusquedaComponent } from '../header/components/barra-busqueda/barr
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
-  libros!: Libro[] // Array para almacenar los libros
+  libros!: Libro[]
+  @Input() isModalOpen: boolean = false // Aquí declaras la propiedad como Input
+  @Output() close = new EventEmitter<void>()
 
   constructor(private librosService: LibrosService) {}
 
@@ -26,7 +28,20 @@ export class ModalComponent implements OnInit {
       this.libros = await this.librosService.getLibros() // Obtiene los libros del servicio
       console.log('Libros cargados:', this.libros) // Verifica que los libros se carguen correctamente
     } catch (error) {
-      console.error('Error al cargar los libros:', error) // Maneja errores
+      console.error('Error al cargar los libros:', error)
     }
+  }
+  closeModal() {
+    this.close.emit()
+  }
+
+  saveChanges() {
+    console.log('Cambios guardados')
+    this.closeModal()
+  }
+
+  cancel() {
+    console.log('Cambios cancelados')
+    this.closeModal()
   }
 }
