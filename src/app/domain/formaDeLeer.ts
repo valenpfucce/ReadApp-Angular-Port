@@ -73,3 +73,10 @@ export class Recurrente implements FormaDeLeer {
             : usuario.tiempoDeLecturaPromedio(libro);
     }
 }
+
+// export class Undefined implements FormaDeLeer {
+//     type: any;
+//     tiempoDeLectura(libro: Libro, usuario: Usuario): number {
+//         return 0*0
+//     }
+// }

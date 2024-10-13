@@ -35,6 +35,7 @@ export class PerfilInfoComponent {
   esAnsioso: boolean = false;
   esFanatico: boolean = false;
   esRecurrente: boolean = false;
+  
 
   constructor(
     private router: Router,
@@ -43,35 +44,35 @@ export class PerfilInfoComponent {
     private sessionStorage: UserSessionStorageService
     
   ) {}
+  
 
   ngOnInit() {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     console.log("userIdSS", userIdSS)
     this.obtenerDatosUsuario(userIdSS)
-      
+     
   }
   
   async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
     const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
     this.usuario = usuarioEnLinea
     this.usuarioEditable = usuarioEnLinea
-    this.ngAfterViewInit()
     this.comprobarFormaDeLeer()
+    this.ngAfterViewInit()
   }
  
-
   cambioCalculador(){
     this.esCalculador = !this.esCalculador
   }
   
   comprobarFormaDeLeer() {
-    if (this.usuario.formaDeLeer instanceof Promedio) {
+    if (this.usuarioEditable.formaDeLeer instanceof Promedio) {
       this.esPromedio = true;
-    } else if (this.usuario.formaDeLeer instanceof Ansioso) {
+    } else if (this.usuarioEditable.formaDeLeer instanceof Ansioso) {
       this.esAnsioso = true;
-    } else if (this.usuario.formaDeLeer instanceof Fanatico) {
+    } else if (this.usuarioEditable.formaDeLeer instanceof Fanatico) {
       this.esFanatico = true;
-    } else if (this.usuario.formaDeLeer instanceof Recurrente) {
+    } else if (this.usuarioEditable.formaDeLeer instanceof Recurrente) {
       this.esRecurrente = true;
     }
   }
@@ -92,9 +93,7 @@ export class PerfilInfoComponent {
   }
 
   activarChecksCriterioPerfil(usuario: Usuario) {
-    console.log("metodo active check", this.usuario.perfil)
     const tipoPerfil = usuario.perfil
-    console.log("tipoPerfil", tipoPerfil)
     
     const checkboxes: { [key: string]: ElementRef } = {
       'precavido': this.precavidoRef,
