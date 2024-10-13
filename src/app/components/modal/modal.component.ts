@@ -26,9 +26,9 @@ export class ModalComponent implements OnInit {
   async loadLibros(): Promise<void> {
     try {
       this.libros = await this.librosService.getLibros() // Obtiene los libros del servicio
-      console.log('Libros cargados:', this.libros) // Verifica que los libros se carguen correctamente
+      console.log('Libros cargados en front:', this.libros) // Verifica que los libros se carguen correctamente
     } catch (error) {
-      console.error('Error al cargar los libros:', error)
+      console.error('Error al cargar los libros en front:', error)
     }
   }
   closeModal() {

@@ -17,18 +17,6 @@ export class LibrosService {
       )
       console.log('Libros traídos del backend:', librosJSON)
       return librosJSON.map((libroJSON) => Libro.fromJson(libroJSON))
-      // (libroData) =>
-      //   new Libro(
-      //     libroData.id,
-      //     libroData.titulo_libro, // Asegúrate de que el campo sea 'titulo', no 'titulo_libro'
-      //     libroData.autor_nombre,
-      //     libroData.autor_apellido, // Combina nombre y apellido
-      //     libroData.imagen_libro_url, // Asigna un valor por defecto si no hay imagen
-      //     libroData.cant_pags_libro, // Asegúrate de tener un valor por defecto
-      //     libroData.cant_palabras_libro,
-      //     libroData.idiomas_libro,
-      //     libroData.ventas_semanales
-      //   )
     } catch (error) {
       console.error('Error al obtener los libros:', error)
       throw new Error('No se pudieron cargar los libros')

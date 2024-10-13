@@ -13,22 +13,20 @@
       
    
 
-<div class="flex perfil_container">
-  <h1>Libros leídos</h1>
-  <section class="contenedor-cartas">
-      <section class="grid-libros">
-        
-          
-        
-          
-          <readapp-card-libro-mas></readapp-card-libro-mas>
-          
-        
-      </section>
-  </section>
-
-  <div class="boton_container">
-      <button class="boton_cancelar" type="submit">Cancelar</button>
-      <button class="boton_guardar" type="submit">Guardar cambios</button>
-  </div>
-</div>
+      <div class="flex perfil_container">
+        <h1>Libros leídos</h1>
+        <section class="contenedor-cartas">
+            <section class="grid-libros">
+                <readapp-card-libro-mas (openModalEvent)="openModal()"></readapp-card-libro-mas>        
+            </section>
+        </section>
+      
+        <div class="boton_container">
+            <button class="boton_cancelar" type="submit">Cancelar</button>
+            <button class="boton_guardar" type="submit">Guardar cambios</button>
+        </div>
+      
+        <!-- Modal -->
+        <readapp-modal *ngIf="isModalOpen" [isModalOpen]="isModalOpen" (close)="closeModal()"></readapp-modal>
+      </div>
+      
