@@ -25,8 +25,8 @@ export class Recomendacion implements Entidad {
     public descripcion: string,
     public lista_libros: Libro[],  // Ya no es un string, sino un arreglo de Libro
     public valoraciones: Valoracion[],  // Ya no es un string, sino un arreglo de Valoracion
-    public tiempoLectura?: number,
-    public avgValoraciones?: number
+    public avgValoraciones? : number,
+    public tiempoLectura?: number
   ) {}
 
   static fromJson(data: any): Recomendacion {
@@ -68,7 +68,7 @@ export class Recomendacion implements Entidad {
         data.descripcion,
         libros,
         valoraciones,
-        data.avgValoraciones
+        isNaN(data.avgValoraciones) ? 0 : data.avgValoraciones
       );
     }
 }
