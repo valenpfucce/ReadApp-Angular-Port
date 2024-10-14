@@ -30,6 +30,8 @@ export class PagRecomendacionComponent {
   esPublica! : Boolean
   iconoRecomendacion! : String
   altRecomendacion! : String
+  puedeEditar! : boolean
+  puedeValorar! : boolean
 
   constructor(
     private router : Router,
@@ -65,7 +67,15 @@ export class PagRecomendacionComponent {
 
 
   async puedeEditarLlamadaService(){
-    return await this.serviceRecomendacion.puedeEditarRecomendacion(this.recomendacion.id, this.userIdSS)
+    const puedeValorarSR = await this.serviceRecomendacion.puedeValorarRecomendacion(this.recomendacion.id, this.userIdSS)
+    this.puedeValorar = puedeValorarSR
+    return puedeValorarSR;
+  }
+
+  async puedeValorarLlamadaService(){
+    const puedeEditarSR = await this.serviceRecomendacion.puedeEditarRecomendacion(this.recomendacion.id, this.userIdSS)
+    this.puedeEditar = puedeEditarSR
+    return puedeEditarSR;
   }
 
   async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
@@ -101,7 +111,10 @@ export class PagRecomendacionComponent {
     return (this.modo === 'detalle')
   }
 
-  modoDetalle(){}
+  modoDetalle(){
+    this.puedeEditarLlamadaService()
+    this.puedeValorarLlamadaService()
+  }
 
   //FIN DETALLE
 

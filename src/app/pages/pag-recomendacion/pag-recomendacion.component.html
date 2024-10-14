@@ -39,7 +39,23 @@
       ) {
         <readapp-card-valoracion [valoracion]="valoracion"></readapp-card-valoracion>
       }
+<!--      @if (esModoDetalle() && puedeValorar){                ESTO HAY QUE AGREGARLO UNA VEZ LA MODAL ESTE HECHA Y EL LLAMADO AL BACK TAMBIEN-->
+      @if (esModoDetalle()){
+        <div class="mas mas-valoracion">
+          <div class="circulo-mas">
+            <div class="icono-mas">+</div>
+          </div>
+        </div>
+      }
     </section>
-    <!--FALTA AGREGAR BOTÓN + TIENE QUE SER UN COMPONENTE APARTE?-->
+    <div class="boton_container btn_cont_derecha">
+      @if (esModoDetalle()){
+        <button class="boton_guardar" type="submit" (click)="navegarA('/home')" >Volver</button>
+      }
+      @if (esModoEdicion()){
+        <button class="boton_cancelar" type="submit">Cancelar</button>
+        <button class="boton_guardar" type="submit">Guardar cambios</button>
+      }
+    </div>
   </div>
 </main>

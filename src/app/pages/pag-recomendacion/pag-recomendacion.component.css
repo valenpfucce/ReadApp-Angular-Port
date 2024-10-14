@@ -10,11 +10,11 @@
 } */
 
 .contenedor-cartas {
-  display: inline-flex; 
+  display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  width: auto; 
+  width: auto;
   gap: 4em;
   margin: 2.35em;
   margin-left: 4em;
@@ -46,6 +46,45 @@
   justify-content: flex-start;
   align-items: baseline;
 }
+.mas.mas-valoracion {
+  margin: 10rem;
+}
+
+.carta.mas {
+  background-color: var(--color-secundario);
+}
+
+.circulo-mas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5.5rem;
+  height: 5.5rem;
+  background-color: white;
+  border: none;
+  border-radius: 4.5rem;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.circulo-mas:hover {
+  background-color: var(--color-cuarto);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(-0.3rem);
+}
+
+.icono-mas {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #000;
+
+}
+
 
 /*TABLETS (401px a 768px)*/
 @media screen and (min-width: 401px) and (max-width: 768px) {
@@ -83,9 +122,9 @@
 
 @media screen and (max-width: 400px) {
   .contenedor-cartas {
-    display: flex; 
+    display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     max-width: 100%;
     margin: 0 auto;
     margin-top: 1.25rem;
