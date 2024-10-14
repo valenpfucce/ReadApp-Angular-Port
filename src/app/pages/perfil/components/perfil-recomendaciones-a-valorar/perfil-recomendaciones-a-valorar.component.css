@@ -3,12 +3,10 @@
     width: 100%;
 }
 
-.grid-cartas{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
+.flex {
+  align-content: flex-start;
+  flex-wrap: wrap;
 }
-
 
 @media (min-width: 401px) and (max-width: 768px)  {
     .grid-cartas{

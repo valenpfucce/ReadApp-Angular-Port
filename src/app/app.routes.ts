@@ -11,35 +11,8 @@ import { PerfilRecomendacionesAValorarComponent } from './pages/perfil/component
 import { RecomendacionesService } from './services/service_recomendaciones/recomendaciones.service';
 import {Recomendacion, RecomendacionJSON} from './domain/recomendacion';
 import { Usuario } from './domain/usuario';
-import { BarraBusquedaComponent } from './components/header/components/barra-busqueda/barra-busqueda.component';
+import { BarraBusquedaComponent } from './components/barra-busqueda/barra-busqueda.component';
 import { HttpClient } from '@angular/common/http';
-
-// export type DataBusqueda = {
-//     showCheckBox: boolean
-//     showCardMas: boolean
-//     realizarBusqueda: (
-//         serviceRecomendaciones: RecomendacionesService,
-//         palabraABuscar?: string,
-//         idUsuario?: number
-//     ) => Recomendacion[]
-// }
-//
-// const dataBusquedaHome: DataBusqueda = {
-//     showCheckBox: false,
-//     showCardMas: false,
-//     realizarBusqueda:(serviceRecomendaciones, palabraABuscar) => {
-//         return serviceRecomendaciones.busquedaGeneral(palabraABuscar)
-//     }
-// }
-//
-// const dataBusquedaMisRecomendaciones: DataBusqueda = {
-//     showCheckBox: true,
-//     showCardMas: true,
-//     realizarBusqueda:(serviceRecomendaciones, palabraABuscar, idUsuario) => {
-//         return serviceRecomendaciones.busquedaMisRecomendaciones(palabraABuscar, idUsuario)
-//     }
-// }
-
 
 export type DataBusqueda = {
   showCheckBox: boolean;
@@ -77,9 +50,7 @@ export const routes: Routes = [
     { path: 'recomendacion/:id/detalle', component:PagRecomendacionComponent, data: { modo: 'detalle' } },
     { path: 'recomendacion/:id/edicion', component:PagRecomendacionComponent, data: { modo: 'edicion' } },
     { path: 'barra_busqueda', component:BarraBusquedaComponent},
-
     { path: 'mis_recomendaciones', component:BusquedaRecomendacionesComponent, data: dataBusquedaMisRecomendaciones},
-
     { path: 'perfil', component:SidebarPerfilComponent, children:[
         { path: 'amigos', title:'Amigos', component:PerfilAmigosComponent},
         { path: 'info', title:'Informacion del Usuario' , component:PerfilInfoComponent},

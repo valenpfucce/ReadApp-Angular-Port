@@ -7,7 +7,7 @@ import { Recomendacion } from '../../domain/recomendacion';
 import { DataBusqueda } from '../../app.routes';
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service';
 import { Usuario } from '../../domain/usuario';
-import { BarraBusquedaComponent } from '../../components/header/components/barra-busqueda/barra-busqueda.component';
+import { BarraBusquedaComponent } from '../../components/barra-busqueda/barra-busqueda.component';
 import { CardLibroMasComponent } from "../../components/card-libro-mas/card-libro-mas.component";
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service';
 
