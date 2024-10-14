@@ -135,20 +135,9 @@ export class PerfilInfoComponent {
       }
   }
 
-  // typeFormaLeer(){
-  //  if(this.esAnsioso){
-  //   this.usuarioEditable.formaDeLeer = {  type:'Ansioso'}
-
-  //   }
-
-
-
-
-  // }
-
-
 
   cancelar() {
+  this.obtenerDatosUsuario(this.usuario.id!)
   }
 
   indicarGuardadoExitoso(){
