@@ -3,14 +3,14 @@ import { LibrosService } from '../../services/service_libros/libros.service'
 import { Libro } from '../../domain/libro'
 import { CommonModule } from '@angular/common'
 import { CardLibroComponent } from '../card-libro/card-libro.component'
-import { BarraBusquedaComponent } from '../header/components/barra-busqueda/barra-busqueda.component'
+import { BarraBusquedaComponent } from '../barra-busqueda/barra-busqueda.component'
 
 @Component({
   selector: 'readapp-modal',
   standalone: true,
   imports: [CommonModule, CardLibroComponent, BarraBusquedaComponent],
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  styleUrls: ['../../estilos_generales/cartas_libros.css', './modal.component.css']
 })
 export class ModalComponent implements OnInit {
   libros!: Libro[]
@@ -38,7 +38,7 @@ export class ModalComponent implements OnInit {
   seleccionarLibro(libro: Libro) {
     const index = this.librosSeleccionados.indexOf(libro);
     if (index === -1) {
-      
+
       // Si no esta en la lista, lo agrego
       this.librosSeleccionados.push(libro)
     } else {
@@ -55,7 +55,7 @@ export class ModalComponent implements OnInit {
   saveChanges() {
     console.log('Libros seleccionados guardados:', this.librosSeleccionados)
     this.librosGuardados = this.librosSeleccionados
-    this.librosEnviados.emit(this.librosGuardados) 
+    this.librosEnviados.emit(this.librosGuardados)
     this.librosSeleccionados = []
     this.closeModal()
   }

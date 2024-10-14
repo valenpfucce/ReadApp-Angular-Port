@@ -7,29 +7,29 @@
 
 <div *NgIf="libros.length > 0">
     <h2>Libros que has leído</h2>
-    
+
     <div class="grid-libros">
       Iterar sobre los libros y renderizar cada uno como una tarjeta -->
-      
-   
+
+
 
       <div class="flex perfil_container">
         <h1>Libros leídos</h1>
-        <section class="contenedor-cartas">
-            <section class="grid-libros">
-              @for (libro of librosRecibidos; track libro; let i = $index) {
-                <readapp-card-libro (librosEnviados) = "recibirLibros(libros)"[libro]="libro" [modo]="modo"></readapp-card-libro>
-              }
-                <readapp-card-libro-mas (openModalEvent)="openModal()"></readapp-card-libro-mas>        
-            </section>
+        <section class="flex lista_perfil">
+          <section class="contenedor-cartas">
+              <section class="grid-libros">
+                @for (libro of librosRecibidos; track libro; let i = $index) {
+                  <readapp-card-libro (librosEnviados) = "recibirLibros(libros)"[libro]="libro" [modo]="modo"></readapp-card-libro>
+                }
+                  <readapp-card-libro-mas (openModalEvent)="openModal()"></readapp-card-libro-mas>
+              </section>
+          </section>
         </section>
-      
         <div class="boton_container">
             <button class="boton_cancelar" type="submit">Cancelar</button>
             <button class="boton_guardar" type="submit">Guardar cambios</button>
         </div>
-      
+
         <!-- Modal -->
         <readapp-modal *ngIf="isModalOpen" [isModalOpen]="isModalOpen" (close)="closeModal()"></readapp-modal>
       </div>
-      

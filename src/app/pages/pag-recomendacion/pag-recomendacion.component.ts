@@ -17,6 +17,7 @@ import { UsuariosService } from '../../services/service_usuarios/usuarios.servic
   imports: [HeaderComponent,CardValoracionComponent, CardLibroComponent, CardLibroMasComponent],
   templateUrl: './pag-recomendacion.component.html',
   styleUrls: [
+    '../../estilos_generales/cartas_libros.css',
     '../../estilos_generales/estilo_recomendacion.css',
     './pag-recomendacion.component.css'
   ]
