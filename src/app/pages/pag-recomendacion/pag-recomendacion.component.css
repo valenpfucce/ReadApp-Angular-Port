@@ -9,18 +9,6 @@
   position: relative;
 } */
 
-.contenedor-cartas {
-  display: inline-flex; 
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  width: auto; 
-  gap: 4em;
-  margin: 2.35em;
-  margin-left: 4em;
-  margin-right: 4em;
-}
-
 .titulo_valoraciones {
   width: 100%;
   font-size: 3rem;
@@ -83,9 +71,9 @@
 
 @media screen and (max-width: 400px) {
   .contenedor-cartas {
-    display: flex; 
+    display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     max-width: 100%;
     margin: 0 auto;
     margin-top: 1.25rem;

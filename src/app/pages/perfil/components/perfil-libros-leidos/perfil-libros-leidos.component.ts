@@ -24,8 +24,8 @@ import { CommonModule } from '@angular/common'
   templateUrl: './perfil-libros-leidos.component.html',
   styleUrls: [
     '../../../../estilos_generales/estilo_recomendacion.css',
+    '../../../../estilos_generales/cartas_libros.css',
     '../../../../pages/pag-recomendacion/pag-recomendacion.component.css',
-    '../../../../components/card-libro/card-libro.component.css',
     '../perfil-amigos/perfil-amigos.component.css',
     './perfil-libros-leidos.component.css'
   ]
@@ -36,7 +36,7 @@ export class PerfilLibrosLeidosComponent implements OnInit {
   palabraABuscar: string = ''
   usuario!: Usuario
   modo!: 'detalle' | 'edicion'
-  
+
 
   constructor(
     private librosService: LibrosService,

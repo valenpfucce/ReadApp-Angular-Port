@@ -7,8 +7,8 @@
     margin: 3rem 5rem 5rem 5rem;
     align-items: flex-start;
     width: calc(100vw - 60rem);
-    box-sizing: border-box; 
-    
+    box-sizing: border-box;
+
 }
 
 .perfil_container label {
@@ -23,6 +23,7 @@
 .lista_perfil {
     gap: 10px;
     flex-wrap: wrap;
+    justify-content: flex-start;
     border-top: 1px solid #949090;
     padding: 0.8rem;
     width: calc(100vw - 60rem);

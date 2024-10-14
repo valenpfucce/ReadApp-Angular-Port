@@ -21,7 +21,7 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  max-height: 80vh; /* Limitar la altura del modal al 80% de la pantalla */
+  max-height: 85vh; /* Limitar la altura del modal al 80% de la pantalla */
   overflow: hidden; /* Ocultar cualquier contenido que se salga del modal */
   z-index: 1050; /* Asegura que esté por encima de otros elementos */
   height: 100%;
@@ -31,18 +31,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 4rem;
 }
 
 .modal-title {
-  font-size: 1.5rem;
   font-weight: bold;
 }
 
 .close {
   background: none;
   border: none;
-  font-size: 1.5rem;
   cursor: pointer;
+  font-size: 1em;
+  color: var(--color-bordo)
 }
 
 /* Estilos para el cuerpo del modal */
@@ -53,13 +54,9 @@
   max-height: calc(80vh - 120px); /* Limita la altura del contenido */
 }
 
-.readapp-card-libro {
-  margin-bottom: 10px;
+.contenedor-cartas {
+  justify-content: center;
 }
-
-/* .libro-card {
-  margin-bottom: 100px;
-} */
 
 .boton_container {
   display: flex;
@@ -75,7 +72,7 @@
   max-width: 45%; /* Asegura que los botones no sobrepasen el 45% del contenedor */
   padding: 10px; /* Ajusta el padding para evitar que los botones se hagan muy grandes */
   box-sizing: border-box;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
 .success-message {
@@ -113,8 +110,8 @@
     padding: 10px;
     max-height: calc(70vh - 100px);
   }
-  .modal-header h5 {
-    font-size: 1.1rem;
+  .modal-header {
+    font-size: 2rem;
   }
   button {
     padding: 8px 15px;
@@ -136,19 +133,15 @@
   }
 
   .modal-title {
-    font-size: 1rem;
+    font-size: 2rem;
   }
 
   .close {
-    font-size: 1rem;
+    font-size: 2rem;
   }
 
   .modal-body {
     max-height: calc(80vh - 120px);
-  }
-
-  .libro-card {
-    margin-bottom: 10px;
   }
 
   .boton_cancelar, .boton_guardar {
