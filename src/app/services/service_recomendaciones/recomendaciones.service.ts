@@ -59,4 +59,10 @@ export class RecomendacionesService {
       this.httpClient.get<boolean>(REST_SERVER_URL + `/recomendaciones/${recomendacionId}/puede/editar/usuario/${usuarioId}`)
     )
   }
+
+  async puedeValorarRecomendacion(recomendacionId : number, usuarioId: number): Promise<boolean> {
+    return await lastValueFrom(
+      this.httpClient.get<boolean>(REST_SERVER_URL + `/recomendaciones/${recomendacionId}/puede/valorar/usuario/${usuarioId}`)
+    )
+  }
 }

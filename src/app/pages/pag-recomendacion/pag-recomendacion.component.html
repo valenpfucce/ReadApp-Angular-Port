@@ -4,10 +4,26 @@
     <div class="titulos">
       <br />
       <header class="contenido-pagina-header">
-        <h2>{{recomendacion.titulo}}</h2>
+        @if(esModoDetalle()){
+          <h2>{{recomendacion.titulo}}</h2>
           <img src="{{this.iconoRecomendacion}}" alt="{{this.altRecomendacion}}" class="icono-superior-derecha-recomendacion" />
+        }
+        @if(esModoEdicion()){
+          <section class="input-recomendacion">
+            <label class="label-titulos asterisco" for="titulo">Título</label>
+            <div class="division-edicion-titulo-rec">
+              <input type="text" placeholder="Recomendación loca" />
+              <div class="barra-busqueda edicion-rec ">
+                <label>
+                  <input type="checkbox">
+                  Visibilidad privada
+                </label>
+              </div>
+            </div>
+          </section>
+        }
       </header>
-      <h3>Libros</h3>
+      <h3> Libros </h3>
     </div>
     <div class="contenedor-cartas">
       @for (libro of recomendacion.lista_libros; track libro; let i = $index) {
@@ -39,7 +55,23 @@
       ) {
         <readapp-card-valoracion [valoracion]="valoracion"></readapp-card-valoracion>
       }
+<!--      @if (esModoDetalle() && puedeValorar){                ESTO HAY QUE AGREGARLO UNA VEZ LA MODAL ESTE HECHA Y EL LLAMADO AL BACK TAMBIEN-->
+      @if (esModoDetalle()){
+        <div class="mas mas-valoracion">
+          <div class="circulo-mas">
+            <div class="icono-mas">+</div>
+          </div>
+        </div>
+      }
     </section>
-    <!--FALTA AGREGAR BOTÓN + TIENE QUE SER UN COMPONENTE APARTE?-->
+    <div class="boton_container btn_cont_derecha">
+      @if (esModoDetalle()){
+        <button class="boton_guardar" type="submit" (click)="navegarA('/home')" >Volver</button>
+      }
+      @if (esModoEdicion()){
+        <button class="boton_cancelar" type="submit">Cancelar</button>
+        <button class="boton_guardar" type="submit">Guardar cambios</button>
+      }
+    </div>
   </div>
 </main>

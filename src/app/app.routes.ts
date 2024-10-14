@@ -47,7 +47,7 @@ export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component:LoginComponent },
     { path: 'home', component:BusquedaRecomendacionesComponent, data: dataBusquedaHome},
-    { path: 'recomendacion/:id/detalle', component:PagRecomendacionComponent, data: { modo: 'comentario' } },
+    { path: 'recomendacion/:id/detalle', component:PagRecomendacionComponent, data: { modo: 'detalle' } },
     { path: 'recomendacion/:id/edicion', component:PagRecomendacionComponent, data: { modo: 'edicion' } },
     { path: 'barra_busqueda', component:BarraBusquedaComponent},
     { path: 'mis_recomendaciones', component:BusquedaRecomendacionesComponent, data: dataBusquedaMisRecomendaciones},
