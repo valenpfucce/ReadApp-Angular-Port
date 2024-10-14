@@ -33,7 +33,7 @@ export class UserSessionStorageService {
       const usuarioEncontrado: Usuario = await this.obtenerDatosUsuario(response)
       sessionStorage.setItem("user_name", usuarioEncontrado.nombre)
       sessionStorage.setItem("user_lastname", usuarioEncontrado.apellido)
-      sessionStorage.setItem("user_img", usuarioEncontrado.img_perfil)
+      sessionStorage.setItem("user_img", usuarioEncontrado.imgperfil)
       return response
     } catch (error) {
       console.error('Error en el login:', error)

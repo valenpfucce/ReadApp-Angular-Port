@@ -1,0 +1,22 @@
+// import { Usuario , UsuarioJSON} from "../domain/usuario";
+
+
+// export interface toJSONDTO {
+    
+//       id : this.idUsuarioNotNull() ,
+//       nombre : .nombre,
+//       apellido : this.apellido,
+//       username : this.username,
+//       mail : this.mail,
+//       fechaNacimiento : this.fechaNacimiento,
+//       vpromedio: this.vpromedio,
+//       formaDeLeer: this.formaDeLeer!,
+//       perfilLista: this.perfilLista,
+//       librosLeidos: this.librosLeidos,
+//       autoresPreferidos: this.autoresPreferidos,
+//       amigos: this.amigos,
+//       cantVecesLeido: this.cantVecesLeido,
+//       img_perfil: this.img_perfil,
+      
+    
+// }

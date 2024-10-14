@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { sistemaValidacion, Usuario, UsuarioJSON } from '../../domain/usuario';
+import { AmigosJSON, sistemaValidacion, Usuario, UsuarioJSON } from '../../domain/usuario';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom, Observable, of } from 'rxjs';
@@ -33,6 +33,21 @@ export class UsuariosService {
     const usuarioTipoUsuario = await Usuario.fromJson(usuarioJSON)
     return usuarioTipoUsuario
   }
+  
+  async getAmigosId(userId : number | null): Promise<Usuario[]> {
+    
+    const usuarioAmigos = await lastValueFrom(this.httpClient.get<AmigosJSON[]>(REST_SERVER_URL + '/usuarios/amigos/' + userId))
+ 
+    const amigosLista = usuarioAmigos.map((AmigosJSON) => 
+    Usuario.fromJsonAmigos(AmigosJSON))
+    return amigosLista
+  }
+  
+  async agregarAmigo(amigoId: number, userId: number) {
+    await lastValueFrom(
+      this.httpClient.post(`${REST_SERVER_URL}/usuarios/${userId}/agregar-amigo/${amigoId}`, {})
+    );
+  }
 
 
   putVerificationUser(mailLogin: string, contraseniaLogin: string): Observable<number | null> {
@@ -46,14 +61,19 @@ export class UsuariosService {
 
 
   async actualizarUsuario(usuarioBack: Usuario, usuarioEditable:Usuario): Promise<void> {
-
-
-    if(!usuarioBack.id){
-      throw new Error("ID del Usuario invalido")
-    }
-    this.httpClient.put<void>(`${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id, usuarioEditable.toJSON())
+     
+    console.log("entra a actualuzar",usuarioEditable )
+    console.log("entra a actualuzar JSON",usuarioEditable.toJSON() )
+    
+    await lastValueFrom(
+      this.httpClient.put<void>(`${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id, usuarioEditable.toJSON())
+    );
+  
   }
+   
+    
 
+  
   navegarALogin() { this.router.navigate(['/login']); }
 
 
@@ -61,6 +81,8 @@ export class UsuariosService {
     this.errors.push(mensajeError)
   }
 
+  
+  
   async getRecomendacionesAValorar(userId: number): Promise<Recomendacion[]>{
     const recomendaciones = await lastValueFrom(
       this.httpClient.get<RecomendacionJSON[]>(REST_SERVER_URL + '/usuarios/recomendaciones-a-valorar/' + userId)
@@ -71,6 +93,7 @@ export class UsuariosService {
     return recomendacionLista
   }
 
+  
   async agregarRecomendacionAValorar(recomendacionId: number, userId: number) {
     await lastValueFrom(
       this.httpClient.post(`${REST_SERVER_URL}/usuarios/${userId}/agregar-recomendacion-a-valorar/${recomendacionId}`, {})
