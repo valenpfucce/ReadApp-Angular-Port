@@ -4,5 +4,16 @@
       <header>{{amigo.nombre}} {{amigo.apellido }}</header>
       <h3>{{amigo.username}}</h3>
     </div>
-    <button><img src="/imagenes/trash.svg"></button>
-</article>
+    
+    <button *ngIf="!esModal"><img src="/imagenes/trash.svg"></button>
+    <button *ngIf="esTrueModal">
+      <div   class="circulo-mas">
+        <div class="icono-mas">+</div>
+      </div>
+    </button>
+   
+   
+
+
+
+  </article>

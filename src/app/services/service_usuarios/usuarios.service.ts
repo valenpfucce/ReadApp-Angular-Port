@@ -34,6 +34,16 @@ export class UsuariosService {
     return usuarioTipoUsuario
   }
   
+  async getUsuariosCard(){ Promise<Usuario[]>
+    const usuarioAmigos = await lastValueFrom(this.httpClient.get<AmigosJSON[]>(REST_SERVER_URL + '/usuarios/todos/'))
+ 
+    const amigosLista = usuarioAmigos.map((AmigosJSON) => 
+    Usuario.fromJsonAmigos(AmigosJSON))
+    return amigosLista
+
+  }
+  
+  
   async getAmigosId(userId : number | null): Promise<Usuario[]> {
     
     const usuarioAmigos = await lastValueFrom(this.httpClient.get<AmigosJSON[]>(REST_SERVER_URL + '/usuarios/amigos/' + userId))
