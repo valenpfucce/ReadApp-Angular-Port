@@ -4,10 +4,26 @@
     <div class="titulos">
       <br />
       <header class="contenido-pagina-header">
-        <h2>{{recomendacion.titulo}}</h2>
+        @if(esModoDetalle()){
+          <h2>{{recomendacion.titulo}}</h2>
           <img src="{{this.iconoRecomendacion}}" alt="{{this.altRecomendacion}}" class="icono-superior-derecha-recomendacion" />
+        }
+        @if(esModoEdicion()){
+          <section class="input-recomendacion">
+            <label class="label-titulos asterisco" for="titulo">Título</label>
+            <div class="division-edicion-titulo-rec">
+              <input type="text" placeholder="Recomendación loca" />
+              <div class="barra-busqueda edicion-rec ">
+                <label>
+                  <input type="checkbox">
+                  Visibilidad privada
+                </label>
+              </div>
+            </div>
+          </section>
+        }
       </header>
-      <h3>Libros</h3>
+      <h3> Libros </h3>
     </div>
     <div class="contenedor-cartas">
       @for (libro of recomendacion.lista_libros; track libro; let i = $index) {

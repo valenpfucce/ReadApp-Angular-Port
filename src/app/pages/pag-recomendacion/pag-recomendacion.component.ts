@@ -59,6 +59,7 @@ export class PagRecomendacionComponent {
       }
       this.modo = this.route.snapshot.data['modo'];
       this.setIconoRecomendacion(this.recomendacion.publica)
+      console.log("puede editar recomendacion?: " ,await this.puedeEditarLlamadaService())
       if(this.esModoDetalle()){this.modoDetalle()}
       if(this.esModoEdicion()){this.modoEdicion()}
     });
@@ -66,13 +67,13 @@ export class PagRecomendacionComponent {
 
 
 
-  async puedeEditarLlamadaService(){
+  async puedeValorarLlamadaService(){
     const puedeValorarSR = await this.serviceRecomendacion.puedeValorarRecomendacion(this.recomendacion.id, this.userIdSS)
     this.puedeValorar = puedeValorarSR
-    return puedeValorarSR;
+    return puedeValorarSR
   }
 
-  async puedeValorarLlamadaService(){
+  async puedeEditarLlamadaService(){
     const puedeEditarSR = await this.serviceRecomendacion.puedeEditarRecomendacion(this.recomendacion.id, this.userIdSS)
     this.puedeEditar = puedeEditarSR
     return puedeEditarSR;
@@ -98,11 +99,8 @@ export class PagRecomendacionComponent {
   esModoEdicion(){
     return (this.modo === 'edicion')
   }
-  async modoEdicion() {
-    if (!(await this.puedeEditarLlamadaService())) {
-      this.navegarA('/home')
-    }
-
+  modoEdicion() {
+    if(!this.puedeEditar){this.navegarA('/home')}
   }
   //FIN EDICION
 
@@ -112,7 +110,6 @@ export class PagRecomendacionComponent {
   }
 
   modoDetalle(){
-    this.puedeEditarLlamadaService()
     this.puedeValorarLlamadaService()
   }
 
