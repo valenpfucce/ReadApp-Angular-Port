@@ -11,6 +11,7 @@ import { Libro } from '../../domain/libro'
   styleUrl: '../../estilos_generales/cartas_libros.css'
 })
 export class CardLibroComponent {
+  librosSeleccionados: Libro[] = []
   @Input() libro!: Libro
   @Input() modo!: 'detalle' | 'edicion'
 

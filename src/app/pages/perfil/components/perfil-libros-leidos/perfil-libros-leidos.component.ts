@@ -32,8 +32,11 @@ import { CommonModule } from '@angular/common'
 })
 export class PerfilLibrosLeidosComponent implements OnInit {
   libros: Libro[] = []
+  librosRecibidos: any[] = []
   palabraABuscar: string = ''
   usuario!: Usuario
+  modo!: 'detalle' | 'edicion'
+  
 
   constructor(
     private librosService: LibrosService,
@@ -45,6 +48,7 @@ export class PerfilLibrosLeidosComponent implements OnInit {
     //id desde el session storage
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     this.obtenerDatosUsuario(userIdSS)
+    this.modo = 'detalle'
   }
 
   async obtenerDatosUsuario(userIdSS: number | null): Promise<void> {
@@ -67,6 +71,13 @@ export class PerfilLibrosLeidosComponent implements OnInit {
       console.error('Error al cargar los libros:', error)
     }
   }
+
+  recibirLibros(libros: any[]){
+    this.librosRecibidos = libros
+    console.log('AAAAAAAAAAAAAAAAAAA') //prueba
+    console.log(this.librosRecibidos)
+  }
+
 
   listaLibrosLeidos() {
     this.libros = this.usuario.librosLeidos.map((libro: LibroJSON) =>

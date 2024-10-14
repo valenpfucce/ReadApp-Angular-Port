@@ -7,7 +7,12 @@
     </div>
     <div class="modal-body">
       <div class="libro-card">
-        <readapp-card-libro   *ngFor="let libro of libros" [libro]="libro"></readapp-card-libro>
+        <readapp-card-libro
+          *ngFor="let libro of libros"
+          [libro]="libro"
+          (click)="seleccionarLibro(libro)" 
+          [ngClass]="{'selected': librosSeleccionados.includes(libro)}">
+        </readapp-card-libro>
       </div>
     </div>
 

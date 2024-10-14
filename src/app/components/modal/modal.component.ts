@@ -14,8 +14,11 @@ import { BarraBusquedaComponent } from '../header/components/barra-busqueda/barr
 })
 export class ModalComponent implements OnInit {
   libros!: Libro[]
+  librosSeleccionados: Libro[] = []
+  librosGuardados: Libro[] = []
   @Input() isModalOpen: boolean = false // Aquí declaras la propiedad como Input
   @Output() close = new EventEmitter<void>()
+  @Output() librosEnviados = new EventEmitter<Libro[]>()
 
   constructor(private librosService: LibrosService) {}
 
@@ -31,12 +34,29 @@ export class ModalComponent implements OnInit {
       console.error('Error al cargar los libros en front:', error)
     }
   }
+
+  seleccionarLibro(libro: Libro) {
+    const index = this.librosSeleccionados.indexOf(libro);
+    if (index === -1) {
+      
+      // Si no esta en la lista, lo agrego
+      this.librosSeleccionados.push(libro)
+    } else {
+      // Si está en la lista, lo saco
+      this.librosSeleccionados.splice(index, 1)
+    }
+    console.log(this.librosSeleccionados)
+  }
+
   closeModal() {
     this.close.emit()
   }
 
   saveChanges() {
-    console.log('Cambios guardados')
+    console.log('Libros seleccionados guardados:', this.librosSeleccionados)
+    this.librosGuardados = this.librosSeleccionados
+    this.librosEnviados.emit(this.librosGuardados) 
+    this.librosSeleccionados = []
     this.closeModal()
   }
 
