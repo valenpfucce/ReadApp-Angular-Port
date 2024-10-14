@@ -1,44 +1,11 @@
 
-    <!-- <readapp-sidebar-perfil></readapp-sidebar-perfil> -->
-
     <div class="flex perfil_container">
         <h1> Amigos</h1>
         <section class="flex lista_perfil">
-          <article class="flex carta_amigo">
-            <img src="/imagenes/bilardo.jpg">
-            <div class="flex amigo_info">
-              <header> Nombre Apellido </header>
-              <h3>Username</h3>
-            </div>
-            <button><img src="/imagenes/trash.svg"></button>
-          </article>
-
-          <article class="flex carta_amigo">
-            <img src="/imagenes/bilardo.jpg">
-            <div class="flex amigo_info">
-              <header> Nombre Apellido </header>
-              <h3>Username</h3>
-            </div>
-            <button><img src="/imagenes/trash.svg"></button>
-          </article>
-
-          <article class="flex carta_amigo">
-            <img src="/imagenes/bilardo.jpg">
-            <div class="flex amigo_info">
-              <header> Nombre Apellido </header>
-              <h3>Username</h3>
-            </div>
-            <button><img src="/imagenes/trash.svg"></button>
-          </article>
-
-          <article class="flex carta_amigo">
-            <img src="/imagenes/bilardo.jpg">
-            <div class="flex amigo_info">
-              <header> Nombre Apellido </header>
-              <h3>Username</h3>
-            </div>
-            <button><img src="/imagenes/trash.svg"></button>
-          </article>
+          
+          @for (amigo of listaAmigos; track amigo) {
+            <readapp-card-amigo [amigo]="amigo"></readapp-card-amigo>
+          }
 
           <readapp-card-libro-mas [tamanio] = "'chica'"></readapp-card-libro-mas>
 

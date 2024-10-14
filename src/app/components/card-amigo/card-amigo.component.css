@@ -1,0 +1,82 @@
+.carta_amigo {
+    color: var(--color-letra-carta);
+    width: 27rem;
+    height: 8rem;
+    background-color: var(--color-beige-mas-claro);
+    border-radius: 1rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0.5rem;
+    align-items: flex-start;
+    padding: 0.8rem;
+    gap: 0.8rem;
+    
+}
+
+.carta_amigo img {
+    max-width: 6.8rem;
+    border-radius: 50%;
+    max-height:6.8rem;
+    object-fit: cover;
+}
+
+.amigo_info {
+    flex-direction: column;
+    margin-top: 0.2rem;
+    align-items: flex-start;
+}
+
+.amigo_info header{
+    font-weight: bold;
+    font-size: 1.6em;
+    cursor: pointer;
+}
+
+.amigo_info h3 {
+    text-align: start;
+    font-size: 1.4em;
+    color: var(--color-marron);
+}
+
+
+.icono_delete:hover {
+    font-weight: bold;
+}
+
+.carta_amigo button {
+    background: url('/public/imagenes/trash.svg');
+    background: contain;
+    border: none;
+    width: 3rem;
+    cursor: pointer;
+    margin-left: 2.5rem;
+    margin-top: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.carta_amigo button:hover {
+    transform: scale(1.2);
+}
+
+
+@media all and (max-width: 76.8rem) and (min-width: 40.1rem) {
+
+    .carta_amigo {
+        margin: 0.1rem;
+    }
+
+}
+
+
+@media all and (max-width: 40rem) {
+
+    .carta_amigo {
+        margin: 0.1rem;
+        align-items: center;
+    }
+
+    .amigo_info header{
+        font-size: 1.5em;
+
+    }
+
+}

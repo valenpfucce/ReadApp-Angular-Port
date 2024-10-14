@@ -8,6 +8,11 @@ export interface FormaDeLeer {
 
 export class Promedio implements FormaDeLeer {
     type: any;
+    
+    constructor() {
+        this.type = 'Promedio'; // Inicializa el tipo en el constructor
+    }
+    
     tiempoDeLectura(libro: Libro, usuario: Usuario): number {
         return usuario.tiempoDeLecturaPromedio(libro);
     }
@@ -16,6 +21,11 @@ export class Promedio implements FormaDeLeer {
 // Clase Ansioso
 export class Ansioso implements FormaDeLeer {
     type: any;
+    
+    constructor() {
+        this.type = 'Ansioso'; // Inicializa el tipo en el constructor
+    }
+    
     tiempoDeLectura(libro: Libro, usuario: Usuario): number {
         return libro.esBestSeller
             ? usuario.tiempoDeLecturaPromedio(libro) * 0.5
@@ -26,6 +36,12 @@ export class Ansioso implements FormaDeLeer {
 // Clase Fanatico
 export class Fanatico implements FormaDeLeer {
     type: any;
+    
+    constructor() {
+        this.type = 'Fanatico'; // Inicializa el tipo en el constructor
+    }
+    
+
     tiempoDeLectura(libro: Libro, usuario: Usuario): number {
         return this.validacionFanatico(libro, usuario)
             ? this.tiempoLongitud(libro, usuario)
@@ -52,6 +68,11 @@ export class Fanatico implements FormaDeLeer {
 
 export class Recurrente implements FormaDeLeer {
     type: any;
+    
+    constructor() {
+        this.type = 'Recurrente'; // Inicializa el tipo en el constructor
+    }
+    
     private valorRecurrente(libro: Libro, usuario: Usuario): number {
         const vecesLeido = usuario.cantVecesLeido.get(libro.id) || 0;
         return vecesLeido <= 5
@@ -74,9 +95,10 @@ export class Recurrente implements FormaDeLeer {
     }
 }
 
-// export class Undefined implements FormaDeLeer {
-//     type: any;
-//     tiempoDeLectura(libro: Libro, usuario: Usuario): number {
-//         return 0*0
-//     }
-// }
+export class Perfil  {
+    // type: any;
+    // constructor() {
+    //     this.type = 'Recurrente'; // Inicializa el tipo en el constructor
+    // }
+   
+}

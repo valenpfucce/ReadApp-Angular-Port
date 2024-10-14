@@ -93,7 +93,7 @@ export class PerfilInfoComponent {
   }
 
   activarChecksCriterioPerfil(usuario: Usuario) {
-    const tipoPerfil = usuario.perfil
+    const tipoPerfil = usuario.perfilLista
 
     const checkboxes: { [key: string]: ElementRef } = {
       'precavido': this.precavidoRef,
@@ -117,7 +117,9 @@ export class PerfilInfoComponent {
   guardar() {
     this.usuarioEditable.fechaNacimiento = this.fechaNacimiento === '' ? undefined : dayjs(this.fechaNacimiento).toDate()
    const guardadoExitoso = this.usuarioEditable.guardarDatos()
+   //this.typeFormaLeer()
    this.llamarServerPutUS()
+   
    if (guardadoExitoso){
     this.indicarGuardadoExitoso()
    }
@@ -127,10 +129,24 @@ export class PerfilInfoComponent {
   async llamarServerPutUS(){
         try {
         await this.userServiceUS.actualizarUsuario(this.usuario,this.usuarioEditable)
+        this.indicarGuardadoExitoso()
       } catch (error) {
         console.error('Error al cargar los datos del usuario', error);
       }
   }
+
+  // typeFormaLeer(){
+  //  if(this.esAnsioso){
+  //   this.usuarioEditable.formaDeLeer = {  type:'Ansioso'}
+
+  //   }
+
+
+
+
+  // }
+
+
 
   cancelar() {
   }

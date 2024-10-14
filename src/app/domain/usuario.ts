@@ -3,7 +3,15 @@ import { Recomendacion } from "./recomendacion"
 import { FORMATO_FECHA } from "../services/configuration"
 import dayjs from 'dayjs'
 import { Libro } from "./libro"
-import {FormaDeLeer,  Promedio, Ansioso, Fanatico,Recurrente} from "./formaDeLeer"
+import {FormaDeLeer,  Promedio, Ansioso, Fanatico,Recurrente, Perfil} from "./formaDeLeer"
+
+export type AmigosJSON = {
+  id: number,
+  nombre: string,
+  apellido: string,
+  username: string,
+  imgperfil: string,
+}
 
 
 export type UsuarioJSON = {
@@ -12,7 +20,6 @@ export type UsuarioJSON = {
   apellido : string,
   username : string,
   mail : string,
-  password : string,
   fechaNacimiento? : Date,
   vpromedio: number,
   formaDeLeer: FormaDeLeer,
@@ -20,7 +27,8 @@ export type UsuarioJSON = {
   librosLeidos: Libro[],
   autoresPreferidos: string[],
   cantVecesLeido: Map<Libro["id"],number>,
-  img_perfil: string
+  imgperfil: string,
+  amigos : number[]
 }
 
 export class ValidationMessage {
@@ -35,7 +43,6 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
   // tipoLectura = [];
 
   recomendacionesAValorar : Recomendacion[] = [];
-  amigos : Usuario[] = [];
   validador: sistemaValidacion;
   errors: ValidationMessage[] = [];
 
@@ -45,15 +52,15 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
     public apellido : string= '',
     public username : string= '',
     public mail : string= '',
-    public password : string= '',
     public fechaNacimiento? : Date,
     public vpromedio: number = 0,
     public formaDeLeer?: FormaDeLeer,
-    public perfil: string[] = [], //es tipo de lectura, llega como objetos
+    public perfilLista: string[] = [], //es tipo de lectura, llega como objetos
     public librosLeidos: Libro[] = [],
     public autoresPreferidos: string[] = [],
     public cantVecesLeido: Map<Libro["id"],number> = new Map(),
-    public img_perfil: string = ''
+    public imgperfil: string = '',
+    public amigos: number[] = []
 
   ) {
     this.validador = new sistemaValidacion();
@@ -66,18 +73,18 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
       fechaNacimiento: usuarioJSON.fechaNacimiento
       ? dayjs(usuarioJSON.fechaNacimiento, FORMATO_FECHA).toDate()
       : undefined,
-      perfil: Array.isArray(usuarioJSON.perfilLista)
-      ? usuarioJSON.perfilLista.map((perfil:any) => perfil.type.toString()) // Convierte a string
+      perfilLista: Array.isArray(usuarioJSON.perfilLista)
+      ? usuarioJSON.perfilLista.map((perfilLista:any) => perfilLista.type.toString()) // Convierte a string
       : [(usuarioJSON.perfilLista as any).type.toString()], // Si es un único perfil, lo envuelve en un array
-      formaDeLeer: usuarioJSON.formaDeLeer.type == 'ansioso'
+      formaDeLeer: usuarioJSON.formaDeLeer.type == 'Ansioso'
       ? usuarioJSON.formaDeLeer = new Ansioso()
-      : usuarioJSON.formaDeLeer.type == 'promedio'
+      : usuarioJSON.formaDeLeer.type == 'Promedio'
       ? usuarioJSON.formaDeLeer = new Promedio()
-      : usuarioJSON.formaDeLeer.type == 'fanatico'
+      : usuarioJSON.formaDeLeer.type == 'Fanatico'
       ? usuarioJSON.formaDeLeer = new Fanatico()
-      : usuarioJSON.formaDeLeer.type == 'recurrente'
+      : usuarioJSON.formaDeLeer.type == 'Recurrente'
       ? usuarioJSON.formaDeLeer = new Recurrente()
-      : usuarioJSON.formaDeLeer.type == 'undefined'
+      : undefined
 
 
       // autoresPreferidos: Array.isArray(usuarioJSON.autoresPreferidos)
@@ -88,6 +95,13 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
     console.log("usertest",usertest )
     return usertest
   }
+
+  static fromJsonAmigos(AmigosJSON: AmigosJSON){
+    const nuevoAmigo = Object.assign(new Usuario(), AmigosJSON)
+    return nuevoAmigo
+  }
+   
+
 
   asignarFormaLeer(usuarioJSON:UsuarioJSON){
     let formaDeLeer: FormaDeLeer | undefined;
@@ -153,24 +167,38 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
   }
 
 
-  toJSON(): UsuarioJSON {
+  toJSON() {
     return {
       id : this.idUsuarioNotNull() ,
       nombre : this.nombre,
       apellido : this.apellido,
       username : this.username,
       mail : this.mail,
-      password : this.password,
       fechaNacimiento : this.fechaNacimiento,
       vpromedio: this.vpromedio,
       formaDeLeer: this.formaDeLeer!,
-      perfilLista: this.perfil,
+      perfilLista: this.convertirPerfilLista(),
       librosLeidos: this.librosLeidos,
       autoresPreferidos: this.autoresPreferidos,
+      amigos: this.amigos,
       cantVecesLeido: this.cantVecesLeido,
-      img_perfil: this.img_perfil
+      imgperfil: this.imgperfil,
+      
     }
   }
+  
+  convertirPerfilLista(): Perfil[]{
+    const listaPerfilesOBJ: Perfil[] = [] 
+    
+    this.perfilLista.forEach(perfil => listaPerfilesOBJ.push(perfil))
+    console.log("a ver cmo es la lista perfil", listaPerfilesOBJ)
+
+    return listaPerfilesOBJ
+  }
+
+
+
+
 
 
 }
