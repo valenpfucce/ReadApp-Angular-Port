@@ -16,9 +16,10 @@
         class="contenedor-cartas"
         *ngIf="rutaActual.includes('perfil/libros_leidos')"
       >
-        <readapp-card-libro
+        <readapp-card-libro 
           *ngFor="let libro of libros"
           [libro]="libro"
+          [esModal]="true"
           (click)="seleccionarLibro(libro)"
           [ngClass]="{ selected: librosSeleccionados.includes(libro) }"
         >
@@ -31,6 +32,7 @@
         <readapp-card-libro
           *ngFor="let libro of libros"
           [libro]="libro"
+          [esModal]="true"
           (click)="seleccionarLibro(libro)"
           [ngClass]="{ selected: librosSeleccionados.includes(libro) }"
         >

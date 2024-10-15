@@ -5,6 +5,10 @@
           <img src="../imagenes/trash.svg" class="iconos" alt="borrar"/>
         </div>
       }
+      
+      <div *ngIf="esModal" class="iconos-inferior-derecha ">
+        <button>Agregar Botón</button>
+      </div>
       <div class="contenedor-imagen">
         <img src={{libro.imagen_libro_url}} alt="Imagen del Libro" class="imagen-libro" />
       </div>
