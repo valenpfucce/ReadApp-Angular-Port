@@ -32,7 +32,7 @@ import { CommonModule } from '@angular/common'
 })
 export class PerfilLibrosLeidosComponent implements OnInit {
   libros: Libro[] = []
-  librosRecibidos: any[] = []
+  librosRecibidos: Libro[] = []
   palabraABuscar: string = ''
   usuario!: Usuario
   modo!: 'detalle' | 'edicion'
@@ -74,7 +74,6 @@ export class PerfilLibrosLeidosComponent implements OnInit {
 
   recibirLibros(libros: any[]){
     this.librosRecibidos = libros
-    console.log('AAAAAAAAAAAAAAAAAAA') //prueba
     console.log(this.librosRecibidos)
   }
 
