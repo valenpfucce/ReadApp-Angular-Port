@@ -9,12 +9,12 @@ import { CardLibroMasComponent } from '../../components/card-libro-mas/card-libr
 import { Usuario } from '../../domain/usuario'
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
-
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-pag-recomendacion',
   standalone: true,
-  imports: [HeaderComponent,CardValoracionComponent, CardLibroComponent, CardLibroMasComponent],
+  imports: [HeaderComponent, CardValoracionComponent, CardLibroComponent, CardLibroMasComponent, FormsModule],
   templateUrl: './pag-recomendacion.component.html',
   styleUrls: [
     '../../estilos_generales/cartas_libros.css',
@@ -33,6 +33,8 @@ export class PagRecomendacionComponent {
   altRecomendacion! : String
   puedeEditar! : boolean
   puedeValorar! : boolean
+  guardarRecomendacion! : Recomendacion
+  visibilidadPrivadaCheck! : Boolean
 
   constructor(
     private router : Router,
@@ -102,8 +104,18 @@ export class PagRecomendacionComponent {
   }
   modoEdicion() {
     if(!this.puedeEditar){this.navegarA('/home')}
+    this.guardarRecomendacion = Object.assign({}, this.recomendacion);
   }
-  //FIN EDICION
+
+  guardarCambiosEdicion(){
+    this.visibilidadPrivadaGuardar()
+    console.log(this.guardarRecomendacion);
+  }
+
+  visibilidadPrivadaGuardar(){
+    this.guardarRecomendacion.publica = !this.visibilidadPrivadaCheck;
+  }
+  //FIN EDICION <===
 
   //===> DETALLE
   esModoDetalle(){
@@ -119,6 +131,7 @@ export class PagRecomendacionComponent {
   navegarA(ruta : string) {
     this.router.navigate([ruta])
   }
+
 
 }
 

@@ -12,10 +12,10 @@
           <section class="input-recomendacion">
             <label class="label-titulos asterisco" for="titulo">Título</label>
             <div class="division-edicion-titulo-rec">
-              <input type="text" placeholder="Recomendación loca" />
+              <input type="text" placeholder="{{recomendacion.titulo}}" [(ngModel)]="guardarRecomendacion.titulo"/>
               <div class="barra-busqueda edicion-rec ">
                 <label>
-                  <input type="checkbox">
+                  <input type="checkbox" [(ngModel)]="visibilidadPrivadaCheck">
                   Visibilidad privada
                 </label>
               </div>
@@ -33,6 +33,7 @@
         <readapp-card-libro-mas [tamanio] = "'grande'"></readapp-card-libro-mas>
       }
     </div>
+    @if(esModoDetalle()){
     <div class="titulos">
       <h3>Reseña</h3>
     </div>
@@ -41,36 +42,45 @@
         {{recomendacion.descripcion}}
       </p>
     </div>
-    <hr class="hr_estilo" />
-    <div class="titulo_valoraciones">
-      <h3>Valoraciones</h3>
-      <img src="/imagenes/star-fill.svg" alt="Estrella valoracion" />
-      <h4>{{recomendacion.avgValoraciones}} / 5</h4>
-    </div>
-    <section class="flex contenedor-valoraciones">
-      @for (
-        valoracion of recomendacion.valoraciones;
-        track valoracion;
-        let i = $index
-      ) {
-        <readapp-card-valoracion [valoracion]="valoracion"></readapp-card-valoracion>
-      }
-<!--      @if (esModoDetalle() && puedeValorar){                ESTO HAY QUE AGREGARLO UNA VEZ LA MODAL ESTE HECHA Y EL LLAMADO AL BACK TAMBIEN-->
-      @if (esModoDetalle()){
-        <div class="mas mas-valoracion">
-          <div class="circulo-mas">
-            <div class="icono-mas">+</div>
+    }
+    @if(esModoEdicion()){
+      <div class="titulos textoprincipal input-recomendacion">
+        <label class="asterisco" for="resenia">Reseña</label>
+        <textarea id="resenia" class="textarea-auto-ajustable" [(ngModel)]="guardarRecomendacion.descripcion">{{recomendacion.descripcion}}</textarea>
+      </div>
+    }
+    @if (esModoDetalle()){
+      <hr class="hr_estilo" />
+      <div class="titulo_valoraciones">
+        <h3>Valoraciones</h3>
+        <img src="/imagenes/star-fill.svg" alt="Estrella valoracion" />
+        <h4>{{recomendacion.avgValoraciones}} / 5</h4>
+      </div>
+      <section class="flex contenedor-valoraciones">
+        @for (
+          valoracion of recomendacion.valoraciones;
+          track valoracion;
+          let i = $index
+        ) {
+          <readapp-card-valoracion [valoracion]="valoracion"></readapp-card-valoracion>
+        }
+        <!--@if (esModoDetalle() && puedeValorar){                ESTO HAY QUE AGREGARLO UNA VEZ LA MODAL ESTE HECHA Y EL LLAMADO AL BACK TAMBIEN-->
+        @if (esModoDetalle()){
+          <div class="mas mas-valoracion">
+            <div class="circulo-mas">
+              <div class="icono-mas">+</div>
+            </div>
           </div>
-        </div>
-      }
-    </section>
+        }
+      </section>
+    }
     <div class="boton_container btn_cont_derecha">
       @if (esModoDetalle()){
         <button class="boton_guardar" type="submit" (click)="navegarA('/home')" >Volver</button>
       }
       @if (esModoEdicion()){
-        <button class="boton_cancelar" type="submit">Cancelar</button>
-        <button class="boton_guardar" type="submit">Guardar cambios</button>
+        <button class="boton_cancelar" type="submit" (click)="this.navegarA('/home')">Cancelar</button>
+        <button class="boton_guardar" type="submit" (click)="this.guardarCambiosEdicion()">Guardar cambios</button>
       }
     </div>
   </div>

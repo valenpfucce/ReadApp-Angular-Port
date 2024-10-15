@@ -9,7 +9,6 @@ import { Recomendacion, RecomendacionJSON } from '../../domain/recomendacion'
 })
 export class RecomendacionesService {
   constructor(private httpClient: HttpClient) {}
-
   async busquedaRecomendaciones(busqueda?: string) {
     const recomendaciones = await lastValueFrom(
       this.httpClient.post<RecomendacionJSON[]>(REST_SERVER_URL + '/recomendaciones/busqueda', busqueda)
