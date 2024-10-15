@@ -22,13 +22,14 @@ export class ModalComponent implements OnInit {
   librosGuardados: Libro[] = []
   amigos!: Usuario[]
   rutaActual: String = ''
+  tituloModal = ""
   
  
 
   @Input() isModalOpen: boolean = false // Aquí declaras la propiedad como Input
   @Output() close = new EventEmitter<void>()
   @Output() librosEnviados = new EventEmitter<Libro[]>()
-  // @Output() esModal:EventEmitter<boolean> = new EventEmitter<boolean>()
+  
 
   constructor(private librosService: LibrosService,private router: Router,private userServiceUS: UsuariosService) {}
 
@@ -36,15 +37,27 @@ export class ModalComponent implements OnInit {
     await this.loadLibros() // Llama a la función para cargar los libros
     this.rutaActual = this.router.url
     console.log("ruta actual", this.rutaActual)
-    this.getUsuarios
+    this.getUsuarios()
+    this.asignarTitulo()
   }
   
-  // cambioesModal(){
+  asignarTitulo(){   
+  switch (this.rutaActual) {
+    case '/perfil/libros_leidos':
+      this.tituloModal = "Libros Leidos"
+      break;
+    case '/perfil/libros_a_leer':
+      this.tituloModal = "Libros a leer"
+      break;
+    case "/perfil/amigos":
+      this.tituloModal = "Todos los usuarios"
+    break;
+    default:
+      this.tituloModal = "Ventana modal"
+    break;
+  }
+  }
 
-  //   this.esModal.emit(true) 
-    
-  // }
- 
 
   async loadLibros(): Promise<void> {
     try {
@@ -56,9 +69,7 @@ export class ModalComponent implements OnInit {
   }
   
   async getUsuarios(){
-    console.log("entra en getUser")
     this.amigos = await this.userServiceUS.getUsuariosCard()
-   
 
   }
   
