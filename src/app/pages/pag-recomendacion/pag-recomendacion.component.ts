@@ -9,12 +9,15 @@ import { CardLibroMasComponent } from '../../components/card-libro-mas/card-libr
 import { Usuario } from '../../domain/usuario'
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
-
+import {FormsModule} from "@angular/forms";
+import {ModalComponent} from "../../components/modal/modal.component";
+import {CommonModule, NgIf} from "@angular/common";
+import {Libro} from "../../domain/libro";
 
 @Component({
   selector: 'app-pag-recomendacion',
   standalone: true,
-  imports: [HeaderComponent,CardValoracionComponent, CardLibroComponent, CardLibroMasComponent],
+  imports: [HeaderComponent, CardValoracionComponent, CardLibroComponent, CardLibroMasComponent, FormsModule, ModalComponent, NgIf, ModalComponent, CommonModule],
   templateUrl: './pag-recomendacion.component.html',
   styleUrls: [
     '../../estilos_generales/cartas_libros.css',
@@ -26,13 +29,15 @@ export class PagRecomendacionComponent {
   modo!: 'detalle' | 'edicion';
   usuario!: Usuario
   userIdSS!: number
-  idRecomendacion! : number
-  recomendacion! : Recomendacion
-  esPublica! : Boolean
-  iconoRecomendacion! : String
-  altRecomendacion! : String
-  puedeEditar! : boolean
-  puedeValorar! : boolean
+  idRecomendacion!: number
+  recomendacion!: Recomendacion
+  esPublica!: Boolean
+  iconoRecomendacion!: String
+  altRecomendacion!: String
+  puedeEditar!: boolean
+  puedeValorar!: boolean
+  guardarRecomendacion!: Recomendacion
+  visibilidadPrivadaCheck!: Boolean
 
   constructor(
     private router : Router,
@@ -59,7 +64,7 @@ export class PagRecomendacionComponent {
         this.navegarA('/home');
       }
       this.modo = this.route.snapshot.data['modo'];
-      this.setIconoRecomendacion(this.recomendacion.publica)
+      this.setIconoRecomendacion(this.recomendacion.esPublica)
       console.log("puede editar recomendacion?: " ,await this.puedeEditarLlamadaService())
       if(this.esModoDetalle()){this.modoDetalle()}
       if(this.esModoEdicion()){this.modoEdicion()}
@@ -102,8 +107,29 @@ export class PagRecomendacionComponent {
   }
   modoEdicion() {
     if(!this.puedeEditar){this.navegarA('/home')}
+    this.guardarRecomendacion = Object.assign({}, this.recomendacion);
+
   }
-  //FIN EDICION
+
+  guardarCambiosEdicion(){
+    this.visibilidadPrivadaGuardar()
+    console.log(this.guardarRecomendacion);
+    this.serviceRecomendacion.editarRecomendacion(this.guardarRecomendacion, this.userIdSS)
+  }
+
+  visibilidadPrivadaGuardar(){
+    this.guardarRecomendacion.publica = !this.visibilidadPrivadaCheck;
+  }
+
+  recibirLibros(libros: Libro[]){
+    libros.forEach( libroNuevo => {
+      const existe = this.guardarRecomendacion.lista_libros.some((libro) => libro.id === libroNuevo.id);
+      if (!existe) {
+        this.guardarRecomendacion.lista_libros.push(libroNuevo);
+      }
+    })
+  }
+  //FIN EDICION <===
 
   //===> DETALLE
   esModoDetalle(){
@@ -119,6 +145,22 @@ export class PagRecomendacionComponent {
   navegarA(ruta : string) {
     this.router.navigate([ruta])
   }
+
+  trackByFn(index: number, item: Libro) {
+    return item.id // Usamos el ID del libro para hacer tracking en el *ngFor
+  }
+
+  isModalOpen = false
+
+  openModal() {
+    console.log('Método openModal ejecutado') // Verificar si se ejecuta al hacer clic
+    this.isModalOpen = true // Cambiar el estado para abrir el modal
+  }
+
+  closeModal() {
+    this.isModalOpen = false // Cerrar el modal
+  }
+
 
 }
 

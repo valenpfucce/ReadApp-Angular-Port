@@ -16,7 +16,7 @@
         class="contenedor-cartas"
         *ngIf="rutaActual.includes('perfil/libros_leidos')"
       >
-        <readapp-card-libro 
+        <readapp-card-libro
           *ngFor="let libro of libros"
           [libro]="libro"
           [esModal]="true"
@@ -38,6 +38,19 @@
         >
         </readapp-card-libro>
       </div>
+      <div
+        class="contenedor-cartas"
+        *ngIf='rutaActual.includes("/recomendacion/" + this.recomendacionNum + "/edicion")'
+      >
+        <readapp-card-libro
+          *ngFor="let libro of libros"
+          [libro]="libro"
+          [esModal]="true"
+          (click)="seleccionarLibro(libro)"
+          [ngClass]="{ selected: librosSeleccionados.includes(libro) }"
+        >
+        </readapp-card-libro>
+      </div>
 
       <div
         class="contenedor-cartas"
@@ -47,10 +60,10 @@
         [amigo]="amigo"
         [esModal]="true">
         </readapp-card-amigo>
-      
+
       </div>
     </div>
-    
+
   </div>
   <div class="boton_container">
     <button type="button" class="boton_cancelar" (click)="cancel()">

@@ -11,10 +11,17 @@ import { FormsModule } from '@angular/forms';
 })
 export class BarraBusquedaComponent {
   @Output() buscarPalabra: EventEmitter<string> = new EventEmitter()
+  @Output() filtrarPrivadas: EventEmitter<boolean> = new EventEmitter()
   palabraABuscar?: string
   @Input() showCheckBox = false
+  mostrarPrivadas = false
 
   buscar(){
     this.buscarPalabra.emit(this.palabraABuscar)
+  }
+
+  soloPrivadas() {
+    this.mostrarPrivadas = !this.mostrarPrivadas
+    this.filtrarPrivadas.emit(this.mostrarPrivadas)
   }
 }

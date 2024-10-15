@@ -7,7 +7,7 @@
           <img src="/imagenes/magnifying-glass-bold.svg" width="20px" height="15px" />
         </button>
         @if(showCheckBox){
-          <label><input type="checkbox">
+          <label><input type="checkbox" (click)="soloPrivadas()">
             Sólo ver recomendaciones privadas
           </label>
         }
