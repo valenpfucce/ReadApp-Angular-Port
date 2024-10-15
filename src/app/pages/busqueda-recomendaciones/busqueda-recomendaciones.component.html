@@ -2,10 +2,11 @@
 <readapp-barra-busqueda
     [showCheckBox] = "this.data.showCheckBox"
     (buscarPalabra)="buscar($event)"
+    (filtrarPrivadas)="filtrarRecomendacionesPrivadas($event)"
 ></readapp-barra-busqueda>
 <main class = "flex">
     <section class="grid-cartas">
-        @for (recomendacion of recomendaciones; track recomendacion) {
+        @for (recomendacion of recomendacionesFiltradas; track recomendacion) {
             <readapp-card-recomendacion [recomendacion]="recomendacion">
             </readapp-card-recomendacion>
         }
@@ -15,5 +16,4 @@
           ></readapp-card-libro-mas>
         }
     </section>
-
 </main>

@@ -23,10 +23,10 @@ export class BusquedaRecomendacionesComponent {
   userIdSS!: number;
   data!: DataBusqueda
   recomendaciones!: Recomendacion[]
+  recomendacionesFiltradas!: Recomendacion[]
   constructor(
     private route : ActivatedRoute,
     private serviceRecomendaciones: RecomendacionesService,
-    private userServiceUS: UsuariosService,
     private sessionStorage: UserSessionStorageService
   ){}
 
@@ -39,12 +39,13 @@ export class BusquedaRecomendacionesComponent {
     }
   }
 
-  async busquedaAlService(userIdSS : number, palabraABuscar?: string):Promise<Recomendacion[]>{
+  async busquedaAlService(userIdSS : number):Promise<Recomendacion[]>{
     this.recomendaciones = await this.data.realizarBusqueda(
       this.serviceRecomendaciones,
       undefined,
       userIdSS
     )
+    this.recomendacionesFiltradas = [...this.recomendaciones]
     return this.recomendaciones
   }
 
@@ -55,5 +56,17 @@ export class BusquedaRecomendacionesComponent {
       palabraABuscar,
       undefined
     )
+    this.recomendacionesFiltradas = [...this.recomendaciones]
+  }
+
+  filtrarRecomendacionesPrivadas(mostrarPrivadas: boolean) {
+    if(mostrarPrivadas){
+      this.recomendacionesFiltradas = this.recomendaciones.filter(recomendacion => !recomendacion.esPublica)
+    }
+    else {
+      this.recomendacionesFiltradas = [...this.recomendaciones]
+    }
+
+    return this.recomendacionesFiltradas
   }
 }

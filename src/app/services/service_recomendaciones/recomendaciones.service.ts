@@ -17,7 +17,6 @@ export class RecomendacionesService {
     const recomendacionLista = recomendaciones.map((recomendacionJSON) =>
       Recomendacion.fromJson(recomendacionJSON)
     )
-    console.log("BusquedaRecomendaciones TODAS >:D\n",recomendacionLista)
     return recomendacionLista
   }
 
@@ -50,7 +49,6 @@ export class RecomendacionesService {
     const recomendacionLista = recomendaciones.map((recomendacionJSON) =>
       Recomendacion.fromJson(recomendacionJSON)
     )
-    console.log("Recomendaciones Editables ;D\n", recomendacionLista)
     return recomendacionLista
   }
 
