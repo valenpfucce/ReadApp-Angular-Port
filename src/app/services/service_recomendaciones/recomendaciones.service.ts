@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { REST_SERVER_URL } from '../configuration'
 import { HttpClient } from '@angular/common/http'
-import {lastValueFrom, Observable} from 'rxjs'
+import {firstValueFrom, lastValueFrom, Observable} from 'rxjs'
 import { Recomendacion, RecomendacionJSON } from '../../domain/recomendacion'
 import {map} from "rxjs/operators";
 import {UsuarioLoginJSON} from "../service_usuarios/usuarios.service";
@@ -61,12 +61,25 @@ export class RecomendacionesService {
     )
   }
 
-  async editarRecomendacion(recomendacion: Recomendacion, userId: number){
-    console.log("Enviando al back...")
-    return this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/editar/por/` + userId, recomendacion)
+  //async editarRecomendacion(recomendacion: Recomendacion, userId: number){
+  //  console.log("Enviando al back...")
+  //  return this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/editar/por/` + userId, recomendacion)
+  //}
+
+  async editarRecomendacion(recomendacion: Recomendacion, userId: number): Promise<any> {
+    console.log("Enviando al back...\n",recomendacion);
+    try {
+      const response = await firstValueFrom(this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/editar/por/` + userId, recomendacion));
+      console.log("Respuesta recibida:", response);
+      return response;
+    } catch (error) {
+      console.error("Error al enviar al back:", error);
+      throw error;
+    }
   }
 
-  async puedeValorarRecomendacion(recomendacionId : number, usuarioId: number): Promise<boolean> {
+
+async puedeValorarRecomendacion(recomendacionId : number, usuarioId: number): Promise<boolean> {
     return await lastValueFrom(
       this.httpClient.get<boolean>(REST_SERVER_URL + `/recomendaciones/${recomendacionId}/puede/valorar/usuario/${usuarioId}`)
     )
