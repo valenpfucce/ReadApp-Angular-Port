@@ -137,6 +137,7 @@
         padding: 1rem;
         width: 100%;
         max-width: 100%;
+        justify-content: center
     }
 
     .carta_amigo {

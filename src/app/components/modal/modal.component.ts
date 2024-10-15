@@ -8,6 +8,7 @@ import { CardAmigoComponent } from '../card-amigo/card-amigo.component';
 import { Router } from '@angular/router';
 import { Usuario } from '../../domain/usuario'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
+import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
 
 @Component({
   selector: 'readapp-modal',
@@ -24,6 +25,7 @@ export class ModalComponent implements OnInit {
   rutaActual: String = ''
   tituloModal = ""
   
+  
  
 
   @Input() isModalOpen: boolean = false // Aquí declaras la propiedad como Input
@@ -31,13 +33,18 @@ export class ModalComponent implements OnInit {
   @Output() librosEnviados = new EventEmitter<Libro[]>()
   
 
-  constructor(private librosService: LibrosService,private router: Router,private userServiceUS: UsuariosService) {}
+  constructor(
+    private librosService: LibrosService,
+    private router: Router,
+    private userServiceUS: UsuariosService,
+    private sessionStorage: UserSessionStorageService) {}
 
   async ngOnInit(): Promise<void> {
+    const userIdSS = this.sessionStorage.obtenerIDuserSS()
     await this.loadLibros() // Llama a la función para cargar los libros
     this.rutaActual = this.router.url
     console.log("ruta actual", this.rutaActual)
-    this.getUsuarios()
+    this.getUsuarios(userIdSS!)
     this.asignarTitulo()
   }
   
@@ -68,9 +75,10 @@ export class ModalComponent implements OnInit {
     }
   }
   
-  async getUsuarios(){
-    this.amigos = await this.userServiceUS.getUsuariosCard()
-
+  async getUsuarios(idActual: number){
+    const amigosTODOS = await this.userServiceUS.getUsuariosCard()
+    const amigosFiltro = amigosTODOS.filter(amigo => amigo.id !== idActual);
+    this.amigos = amigosFiltro
   }
   
   seleccionarLibro(libro: Libro) {
