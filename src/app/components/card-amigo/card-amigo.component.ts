@@ -18,14 +18,5 @@ import { ModalComponent } from '../modal/modal.component';
 export class CardAmigoComponent {
   @Input() amigo!: Usuario
   @Input() esModal: boolean = false;
-  esTrueModal! : Boolean
-  
-  ngOnInit(){
-    console.log('esModal:', this.esModal);
-    if(this.esModal){
-     this.esTrueModal = true
-    } 
-    console.log('truetrue:', this.esTrueModal);
-  }
-  
+ 
 }
