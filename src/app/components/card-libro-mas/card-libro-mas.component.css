@@ -1,6 +1,6 @@
 .carta.chica {
-  width: 27rem;
-  height: 7.5rem;
+  width: 25rem; 
+  height: 8.5rem;
   background-color: var(--color-fondo);
   padding: 1em;
   border: none;
