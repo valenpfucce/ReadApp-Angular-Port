@@ -10,11 +10,14 @@ import { Usuario } from '../../domain/usuario'
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
 import {FormsModule} from "@angular/forms";
+import {ModalComponent} from "../../components/modal/modal.component";
+import {CommonModule, NgIf} from "@angular/common";
+import {Libro} from "../../domain/libro";
 
 @Component({
   selector: 'app-pag-recomendacion',
   standalone: true,
-  imports: [HeaderComponent, CardValoracionComponent, CardLibroComponent, CardLibroMasComponent, FormsModule],
+  imports: [HeaderComponent, CardValoracionComponent, CardLibroComponent, CardLibroMasComponent, FormsModule, ModalComponent, NgIf, ModalComponent, CommonModule],
   templateUrl: './pag-recomendacion.component.html',
   styleUrls: [
     '../../estilos_generales/cartas_libros.css',
@@ -105,6 +108,7 @@ export class PagRecomendacionComponent {
   modoEdicion() {
     if(!this.puedeEditar){this.navegarA('/home')}
     this.guardarRecomendacion = Object.assign({}, this.recomendacion);
+
   }
 
   guardarCambiosEdicion(){
@@ -130,6 +134,21 @@ export class PagRecomendacionComponent {
 
   navegarA(ruta : string) {
     this.router.navigate([ruta])
+  }
+
+  trackByFn(index: number, item: Libro) {
+    return item.id // Usamos el ID del libro para hacer tracking en el *ngFor
+  }
+
+  isModalOpen = false
+
+  openModal() {
+    console.log('Método openModal ejecutado') // Verificar si se ejecuta al hacer clic
+    this.isModalOpen = true // Cambiar el estado para abrir el modal
+  }
+
+  closeModal() {
+    this.isModalOpen = false // Cerrar el modal
   }
 
 

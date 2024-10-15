@@ -30,7 +30,7 @@
         <readapp-card-libro [libro]="libro" [modo]=this.modo></readapp-card-libro>
       }
       @if (esModoEdicion()){
-        <readapp-card-libro-mas [tamanio] = "'grande'"></readapp-card-libro-mas>
+        <readapp-card-libro-mas [tamanio] = "'grande'" (openModalEvent)="openModal()"></readapp-card-libro-mas>
       }
     </div>
     @if(esModoDetalle()){
@@ -84,4 +84,6 @@
       }
     </div>
   </div>
+  <!-- Modal -->
+  <readapp-modal *ngIf="isModalOpen" [isModalOpen]="isModalOpen" (close)="closeModal()" [recomendacionNum]="idRecomendacion"></readapp-modal>
 </main>
