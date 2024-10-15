@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CardRecomendacionComponent } from '../../../../components/card-recomendacion/card-recomendacion.component';
 import { Usuario } from '../../../../domain/usuario';
-import { ActivatedRoute, Router } from '@angular/router'
+import {ActivatedRoute, Router, RouterLink} from '@angular/router'
 import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service'
 import {
   UserSessionStorageService
@@ -12,7 +12,7 @@ import {CardLibroMasComponent} from "../../../../components/card-libro-mas/card-
 @Component({
   selector: 'readapp-perfil-recomendaciones-a-valorar',
   standalone: true,
-    imports: [CardRecomendacionComponent, CardLibroMasComponent],
+  imports: [CardRecomendacionComponent, CardLibroMasComponent, RouterLink],
   templateUrl: './perfil-recomendaciones-a-valorar.component.html',
   styleUrls: ['../perfil-amigos/perfil-amigos.component.css','./perfil-recomendaciones-a-valorar.component.css']
 })
@@ -32,6 +32,10 @@ export class PerfilRecomendacionesAValorarComponent {
   async getRecomendaciones(userId: number):Promise<Recomendacion[]>{
     this.recomendacionesAValorar = await this.userServiceUS.getRecomendacionesAValorar(userId)
     return this.recomendacionesAValorar
+  }
+
+  reloadPage(){
+    window.location.reload();
   }
 
 }

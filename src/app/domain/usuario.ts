@@ -100,7 +100,7 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
     const nuevoAmigo = Object.assign(new Usuario(), AmigosJSON)
     return nuevoAmigo
   }
-   
+
 
 
   asignarFormaLeer(usuarioJSON:UsuarioJSON){
@@ -183,13 +183,13 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
       amigos: this.amigos,
       cantVecesLeido: this.cantVecesLeido,
       imgperfil: this.imgperfil,
-      
+
     }
   }
-  
+
   convertirPerfilLista(): Perfil[]{
-    const listaPerfilesOBJ: Perfil[] = [] 
-    
+    const listaPerfilesOBJ: Perfil[] = []
+
     this.perfilLista.forEach(perfil => listaPerfilesOBJ.push(perfil))
     console.log("a ver cmo es la lista perfil", listaPerfilesOBJ)
 
@@ -225,7 +225,7 @@ export class sistemaValidacion{
     }
 
     if (this.numberVacio(usuario.vpromedio!)){
-      this.addError(usuario, 'tiempoLectura', 'El campo no puede estar vacio')
+      this.addError(usuario, 'tiempoLectura?', 'El campo no puede estar vacio')
     }
 
     if (this.validarFecha(usuario.fechaNacimiento!)){

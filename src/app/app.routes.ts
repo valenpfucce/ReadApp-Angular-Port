@@ -45,12 +45,12 @@ const dataBusquedaMisRecomendaciones: DataBusqueda = {
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
-    { path: 'login', component:LoginComponent },
-    { path: 'home', component:BusquedaRecomendacionesComponent, data: dataBusquedaHome},
-    { path: 'recomendacion/:id/detalle', component:PagRecomendacionComponent, data: { modo: 'detalle' } },
-    { path: 'recomendacion/:id/edicion', component:PagRecomendacionComponent, data: { modo: 'edicion' } },
+    { path: 'login', title:'Readapp', component:LoginComponent },
+    { path: 'home', title: 'Home', component:BusquedaRecomendacionesComponent, data: dataBusquedaHome},
+    { path: 'recomendacion/:id/detalle', title:'Detalle de Recomendación', component:PagRecomendacionComponent, data: { modo: 'detalle' } },
+    { path: 'recomendacion/:id/edicion', title:'Edición de Recomendación', component:PagRecomendacionComponent, data: { modo: 'edicion' } },
     { path: 'barra_busqueda', component:BarraBusquedaComponent},
-    { path: 'mis_recomendaciones', component:BusquedaRecomendacionesComponent, data: dataBusquedaMisRecomendaciones},
+    { path: 'mis_recomendaciones', title: 'Mis Recomendaciones', component:BusquedaRecomendacionesComponent, data: dataBusquedaMisRecomendaciones},
     { path: 'perfil', component:SidebarPerfilComponent, children:[
         { path: 'amigos', title:'Amigos', component:PerfilAmigosComponent},
         { path: 'info', title:'Informacion del Usuario' , component:PerfilInfoComponent},

@@ -59,7 +59,7 @@ export class PagRecomendacionComponent {
         this.navegarA('/home');
       }
       this.modo = this.route.snapshot.data['modo'];
-      this.setIconoRecomendacion(this.recomendacion.publica)
+      this.setIconoRecomendacion(this.recomendacion.esPublica)
       console.log("puede editar recomendacion?: " ,await this.puedeEditarLlamadaService())
       if(this.esModoDetalle()){this.modoDetalle()}
       if(this.esModoEdicion()){this.modoEdicion()}

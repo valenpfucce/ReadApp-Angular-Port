@@ -7,7 +7,7 @@ export type RecomendacionJSON = {
   id: number,
   creadorId: number,
   titulo: string,
-  publica: boolean,
+  esPublica: boolean,
   descripcion: string,
   lista_libros: Libro[],
   valoraciones: Valoracion[],
@@ -21,11 +21,11 @@ export class Recomendacion implements Entidad {
     public id: number,
     public creadorId: number,
     public titulo: string,
-    public publica: boolean,
+    public esPublica: boolean,
     public descripcion: string,
     public lista_libros: Libro[],  // Ya no es un string, sino un arreglo de Libro
     public valoraciones: Valoracion[],  // Ya no es un string, sino un arreglo de Valoracion
-    public avgValoraciones? : number,
+    public avgValoraciones?: number,
     public tiempoLectura?: number
   ) {}
 
@@ -60,16 +60,7 @@ export class Recomendacion implements Entidad {
       )
     );
 
-      return new Recomendacion(
-        data.id,
-        data.creadorId,
-        data.titulo,
-        data.publica,
-        data.descripcion,
-        libros,
-        valoraciones,
-        isNaN(data.avgValoraciones) ? 0 : data.avgValoraciones
-      );
+      return new Recomendacion(data.id, data.creadorId, data.titulo, data.esPublica, data.descripcion, libros, valoraciones, isNaN(data.avgValoraciones) ? 0 : data.avgValoraciones);
     }
 }
 
