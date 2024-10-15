@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core'
 import { REST_SERVER_URL } from '../configuration'
 import { HttpClient } from '@angular/common/http'
-import { lastValueFrom } from 'rxjs'
+import {lastValueFrom, Observable} from 'rxjs'
 import { Recomendacion, RecomendacionJSON } from '../../domain/recomendacion'
+import {map} from "rxjs/operators";
+import {UsuarioLoginJSON} from "../service_usuarios/usuarios.service";
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +59,11 @@ export class RecomendacionesService {
     return await lastValueFrom(
       this.httpClient.get<boolean>(REST_SERVER_URL + `/recomendaciones/${recomendacionId}/puede/editar/usuario/${usuarioId}`)
     )
+  }
+
+  async editarRecomendacion(recomendacion: Recomendacion, userId: number){
+    console.log("Enviando al back...")
+    return this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/editar/por/` + userId, recomendacion)
   }
 
   async puedeValorarRecomendacion(recomendacionId : number, usuarioId: number): Promise<boolean> {

@@ -114,6 +114,7 @@ export class PagRecomendacionComponent {
   guardarCambiosEdicion(){
     this.visibilidadPrivadaGuardar()
     console.log(this.guardarRecomendacion);
+    this.serviceRecomendacion.editarRecomendacion(this.guardarRecomendacion, this.userIdSS)
   }
 
   visibilidadPrivadaGuardar(){
