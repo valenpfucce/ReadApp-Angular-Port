@@ -1,24 +1,63 @@
 <div class="overlay" *ngIf="isModalOpen"></div>
-<div class="modal-dialog" *ngIf="isModalOpen" (click)="$event.stopPropagation()">
+<div
+  class="modal-dialog"
+  *ngIf="isModalOpen"
+  (click)="$event.stopPropagation()"
+>
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title">Todos los libros</h5> <!-- modificar para que aparezcan los de usuario tambien -->
+      <h5 class="modal-title">Todos los libros</h5>
+      <!-- modificar para que aparezcan los de usuario tambien -->
       <button type="button" class="close" (click)="closeModal()">X</button>
     </div>
+
     <div class="modal-body">
-      <div class="contenedor-cartas">
+      <div
+        class="contenedor-cartas"
+        *ngIf="rutaActual.includes('perfil/libros_leidos')"
+      >
+        <readapp-card-libro 
+          *ngFor="let libro of libros"
+          [libro]="libro"
+          [esModal]="true"
+          (click)="seleccionarLibro(libro)"
+          [ngClass]="{ selected: librosSeleccionados.includes(libro) }"
+        >
+        </readapp-card-libro>
+      </div>
+      <div
+        class="contenedor-cartas"
+        *ngIf="rutaActual.includes('perfil/libros_a_leer')"
+      >
         <readapp-card-libro
           *ngFor="let libro of libros"
           [libro]="libro"
+          [esModal]="true"
           (click)="seleccionarLibro(libro)"
-          [ngClass]="{'selected': librosSeleccionados.includes(libro)}">
+          [ngClass]="{ selected: librosSeleccionados.includes(libro) }"
+        >
         </readapp-card-libro>
       </div>
-    </div>
 
+      <div
+        class="contenedor-cartas"
+        *ngIf="rutaActual.includes('perfil/amigos')"
+      >
+        <readapp-card-amigo *ngFor="let amigo of amigos"
+        [amigo]="amigo"
+        [esModal]="true">
+        </readapp-card-amigo>
+      
+      </div>
+    </div>
+    
   </div>
   <div class="boton_container">
-    <button type="button" class="boton_cancelar" (click)="cancel()">Cancelar</button>
-    <button type="button" class="boton_guardar" (click)="saveChanges()">Guardar Cambios</button>
+    <button type="button" class="boton_cancelar" (click)="cancel()">
+      Cancelar
+    </button>
+    <button type="button" class="boton_guardar" (click)="saveChanges()">
+      Guardar Cambios
+    </button>
   </div>
 </div>
