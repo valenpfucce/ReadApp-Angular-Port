@@ -25,7 +25,10 @@ export class ModalComponent implements OnInit {
   rutaActual: String = ''
   tituloModal = ""
 
-
+  usuarioIdActual! : number
+  
+  
+ 
 
 
   @Input() isModalOpen: boolean = false // Aquí declaras la propiedad como Input
@@ -42,11 +45,13 @@ export class ModalComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
+    this.usuarioIdActual = userIdSS!
     await this.loadLibros() // Llama a la función para cargar los libros
     this.rutaActual = this.router.url
     console.log("ruta actual", this.rutaActual)
     await this.getUsuarios(userIdSS!)
     this.asignarTitulo()
+
   }
 
   asignarTitulo(){
@@ -91,10 +96,12 @@ export class ModalComponent implements OnInit {
 
       // Si no esta en la lista, lo agrego
       this.librosSeleccionados.push(libro)
+      
     } else {
       // Si está en la lista, lo saco
       this.librosSeleccionados.splice(index, 1)
     }
+    //tengo que hacer la funcion de manejo de errores
     console.log(this.librosSeleccionados)
   }
 
@@ -106,6 +113,17 @@ export class ModalComponent implements OnInit {
     console.log('Libros seleccionados guardados:', this.librosSeleccionados)
     this.librosGuardados = this.librosSeleccionados
     this.librosEnviados.emit(this.librosGuardados)
+
+    /* tengo que hacer la logica de que cuando aprieto guardar cambios del modal
+    las cards seleccionadas se muestren en el perfil libros leidos.
+    y cuando aprieto guardar cambios del perfil el boton guardar cambios del perfil, 
+    los libros que seleccione se manden al back */
+
+
+    this.librosSeleccionados.forEach(libro => 
+    this.librosService.agregarALibrosLeidos(libro.id, this.usuarioIdActual)
+    );
+    
     this.librosSeleccionados = []
     this.closeModal()
   }

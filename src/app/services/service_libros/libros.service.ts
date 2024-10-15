@@ -22,4 +22,11 @@ export class LibrosService {
       throw new Error('No se pudieron cargar los libros')
     }
   }
+
+  async agregarALibrosLeidos(libroId: number, userId: number) {
+    await lastValueFrom(
+    this.httpClient.post(`${REST_SERVER_URL}/${userId}/agregar-libro/${libroId}`, {})
+    );
+  }
+  
 }
