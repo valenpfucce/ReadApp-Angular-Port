@@ -5,6 +5,7 @@ import {firstValueFrom, lastValueFrom, Observable} from 'rxjs'
 import { Recomendacion, RecomendacionJSON } from '../../domain/recomendacion'
 import {map} from "rxjs/operators";
 import {UsuarioLoginJSON} from "../service_usuarios/usuarios.service";
+import {RecomendacionUpdateDTO} from "../../dto/repositorioDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -65,14 +66,15 @@ export class RecomendacionesService {
   //}
 
   async editarRecomendacion(recomendacion: Recomendacion, userId: number): Promise<any> {
-    console.log("Enviando al back...\n",recomendacion);
+    console.log("Enviando al back...\n",recomendacion)
     try {
-      const response = await firstValueFrom(this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/editar/por/` + userId, recomendacion));
-      console.log("Respuesta recibida:", response);
+      console.log("JSON enviado al backend:", JSON.stringify(RecomendacionUpdateDTO.toJson(recomendacion)));
+      const response = await firstValueFrom(this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/editar/por/` + userId, (RecomendacionUpdateDTO.toJson(recomendacion))))
+      console.log("Respuesta recibida:", response)
       return response;
     } catch (error) {
-      console.error("Error al enviar al back:", error);
-      throw error;
+      console.error("Error al enviar al back:", error)
+      throw error
     }
   }
 

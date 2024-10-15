@@ -118,7 +118,7 @@ export class PagRecomendacionComponent {
   }
 
   visibilidadPrivadaGuardar(){
-    this.guardarRecomendacion.publica = !this.visibilidadPrivadaCheck;
+    this.guardarRecomendacion.esPublica = !this.visibilidadPrivadaCheck;
   }
 
   recibirLibros(libros: Libro[]){
