@@ -24,14 +24,15 @@ export class ModalComponent implements OnInit {
   amigos!: Usuario[]
   rutaActual: String = ''
   tituloModal = ""
-  
-  
- 
+
+
+
 
   @Input() isModalOpen: boolean = false // Aquí declaras la propiedad como Input
   @Output() close = new EventEmitter<void>()
   @Output() librosEnviados = new EventEmitter<Libro[]>()
-  
+  @Input() recomendacionNum : number = 0
+
 
   constructor(
     private librosService: LibrosService,
@@ -44,11 +45,11 @@ export class ModalComponent implements OnInit {
     await this.loadLibros() // Llama a la función para cargar los libros
     this.rutaActual = this.router.url
     console.log("ruta actual", this.rutaActual)
-    this.getUsuarios(userIdSS!)
+    await this.getUsuarios(userIdSS!)
     this.asignarTitulo()
   }
-  
-  asignarTitulo(){   
+
+  asignarTitulo(){
   switch (this.rutaActual) {
     case '/perfil/libros_leidos':
       this.tituloModal = "Libros Leidos"
@@ -59,6 +60,9 @@ export class ModalComponent implements OnInit {
     case "/perfil/amigos":
       this.tituloModal = "Todos los usuarios"
     break;
+    case "/recomendacion/" + this.recomendacionNum + "/edicion":
+      this.tituloModal = "Agregar Libros a Recomendación"
+      break;
     default:
       this.tituloModal = "Ventana modal"
     break;
@@ -74,13 +78,13 @@ export class ModalComponent implements OnInit {
       console.error('Error al cargar los libros en front:', error)
     }
   }
-  
+
   async getUsuarios(idActual: number){
     const amigosTODOS = await this.userServiceUS.getUsuariosCard()
     const amigosFiltro = amigosTODOS.filter(amigo => amigo.id !== idActual);
     this.amigos = amigosFiltro
   }
-  
+
   seleccionarLibro(libro: Libro) {
     const index = this.librosSeleccionados.indexOf(libro);
     if (index === -1) {

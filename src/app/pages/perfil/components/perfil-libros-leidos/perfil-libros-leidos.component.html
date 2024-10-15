@@ -4,7 +4,7 @@
           <section class="contenedor-cartas">
               <section class="grid-libros">
                 @for (libro of librosRecibidos; track libro; let i = $index) {
-                  <readapp-card-libro (librosEnviados) = "recibirLibros(libros)"[libro]="libro" [modo]="modo"></readapp-card-libro>
+                  <readapp-card-libro (librosEnviados)="recibirLibros(libros)" [libro]="libro" [modo]="modo"></readapp-card-libro>
                 }
                   <readapp-card-libro-mas (click) ="openModal()"></readapp-card-libro-mas>
               </section>
