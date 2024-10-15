@@ -31,6 +31,7 @@ import { CommonModule } from '@angular/common'
   ]
 })
 export class PerfilLibrosLeidosComponent implements OnInit {
+
   libros: Libro[] = []
   librosRecibidos: Libro[] = []
   palabraABuscar: string = ''
@@ -72,7 +73,7 @@ export class PerfilLibrosLeidosComponent implements OnInit {
     }
   }
 
-  recibirLibros(libros: any[]){
+  recibirLibros(libros: Libro[]){
     this.librosRecibidos = libros
     console.log(this.librosRecibidos)
   }
