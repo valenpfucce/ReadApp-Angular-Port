@@ -13,6 +13,7 @@ import {Recomendacion, RecomendacionJSON} from './domain/recomendacion';
 import { Usuario } from './domain/usuario';
 import { BarraBusquedaComponent } from './components/barra-busqueda/barra-busqueda.component';
 import { HttpClient } from '@angular/common/http';
+import { PerfilLibrosALeerComponent } from './pages/perfil/components/perfil-libros-a-leer/perfil-libros-a-leer.component';
 
 export type DataBusqueda = {
   showCheckBox: boolean;
@@ -55,7 +56,7 @@ export const routes: Routes = [
         { path: 'amigos', title:'Amigos', component:PerfilAmigosComponent},
         { path: 'info', title:'Informacion del Usuario' , component:PerfilInfoComponent},
         { path: 'libros_leidos', title: 'Libros leídos', component:PerfilLibrosLeidosComponent},
-        { path: 'libros_a_leer', title: 'Libros a leer', component:PerfilLibrosLeidosComponent},
+        { path: 'libros_a_leer', title: 'Libros a leer', component:PerfilLibrosALeerComponent},
         { path: 'recomendacionesAValorar', title: 'Recomendaciones A Valorar', component: PerfilRecomendacionesAValorarComponent}
         ]
     },

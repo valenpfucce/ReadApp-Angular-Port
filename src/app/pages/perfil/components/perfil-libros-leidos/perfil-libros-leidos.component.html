@@ -1,18 +1,3 @@
-<!-- <div class="main">
-  <readapp-sidebar-perfil></readapp-sidebar-perfil>
-<div class="contenedor-cartas">
-<div *NgIf="libros.length === 0">
-  <p>No has leído ningún libro aún.</p>
-</div>
-
-<div *NgIf="libros.length > 0">
-    <h2>Libros que has leído</h2>
-
-    <div class="grid-libros">
-      Iterar sobre los libros y renderizar cada uno como una tarjeta -->
-
-
-
       <div class="flex perfil_container">
         <h1>Libros leídos</h1>
         <section class="flex lista_perfil">
@@ -21,7 +6,7 @@
                 @for (libro of librosRecibidos; track libro; let i = $index) {
                   <readapp-card-libro (librosEnviados) = "recibirLibros(libros)"[libro]="libro" [modo]="modo"></readapp-card-libro>
                 }
-                  <readapp-card-libro-mas (openModalEvent)="openModal()"></readapp-card-libro-mas>
+                  <readapp-card-libro-mas (click) ="openModal()"></readapp-card-libro-mas>
               </section>
           </section>
         </section>
@@ -31,5 +16,9 @@
         </div>
 
         <!-- Modal -->
-        <readapp-modal *ngIf="isModalOpen" [isModalOpen]="isModalOpen" (close)="closeModal()"></readapp-modal>
+        <readapp-modal *ngIf="isModalOpen" 
+          [isModalOpen]="isModalOpen" 
+          (close)="closeModal()"
+          (librosEnviados)="recibirLibros($event)">
+        </readapp-modal>
       </div>
