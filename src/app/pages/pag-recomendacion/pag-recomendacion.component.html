@@ -26,10 +26,15 @@
       <h3> Libros </h3>
     </div>
     <div class="contenedor-cartas">
-      @for (libro of recomendacion.lista_libros; track libro; let i = $index) {
-        <readapp-card-libro [libro]="libro" [modo]=this.modo></readapp-card-libro>
+      @if(esModoDetalle()){
+        @for (libro of recomendacion.lista_libros; track libro; let i = $index) {
+          <readapp-card-libro [libro]="libro" [modo]=this.modo></readapp-card-libro>
+        }
       }
       @if (esModoEdicion()){
+        @for (libro of guardarRecomendacion.lista_libros; track libro; let i = $index) {
+          <readapp-card-libro [libro]="libro" [modo]=this.modo></readapp-card-libro>
+        }
         <readapp-card-libro-mas [tamanio] = "'grande'" (openModalEvent)="openModal()"></readapp-card-libro-mas>
       }
     </div>
@@ -85,5 +90,5 @@
     </div>
   </div>
   <!-- Modal -->
-  <readapp-modal *ngIf="isModalOpen" [isModalOpen]="isModalOpen" (close)="closeModal()" [recomendacionNum]="idRecomendacion"></readapp-modal>
+  <readapp-modal *ngIf="isModalOpen" [isModalOpen]="isModalOpen" (close)="closeModal()" [recomendacionNum]="idRecomendacion" (librosEnviados)="this.recibirLibros($event)"></readapp-modal>
 </main>

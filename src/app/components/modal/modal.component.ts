@@ -45,7 +45,7 @@ export class ModalComponent implements OnInit {
     await this.loadLibros() // Llama a la función para cargar los libros
     this.rutaActual = this.router.url
     console.log("ruta actual", this.rutaActual)
-    this.getUsuarios(userIdSS!)
+    await this.getUsuarios(userIdSS!)
     this.asignarTitulo()
   }
 

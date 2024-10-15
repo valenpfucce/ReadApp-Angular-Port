@@ -29,15 +29,15 @@ export class PagRecomendacionComponent {
   modo!: 'detalle' | 'edicion';
   usuario!: Usuario
   userIdSS!: number
-  idRecomendacion! : number
-  recomendacion! : Recomendacion
-  esPublica! : Boolean
-  iconoRecomendacion! : String
-  altRecomendacion! : String
-  puedeEditar! : boolean
-  puedeValorar! : boolean
-  guardarRecomendacion! : Recomendacion
-  visibilidadPrivadaCheck! : Boolean
+  idRecomendacion!: number
+  recomendacion!: Recomendacion
+  esPublica!: Boolean
+  iconoRecomendacion!: String
+  altRecomendacion!: String
+  puedeEditar!: boolean
+  puedeValorar!: boolean
+  guardarRecomendacion!: Recomendacion
+  visibilidadPrivadaCheck!: Boolean
 
   constructor(
     private router : Router,
@@ -118,6 +118,15 @@ export class PagRecomendacionComponent {
 
   visibilidadPrivadaGuardar(){
     this.guardarRecomendacion.publica = !this.visibilidadPrivadaCheck;
+  }
+
+  recibirLibros(libros: Libro[]){
+    libros.forEach( libroNuevo => {
+      const existe = this.guardarRecomendacion.lista_libros.some((libro) => libro.id === libroNuevo.id);
+      if (!existe) {
+        this.guardarRecomendacion.lista_libros.push(libroNuevo);
+      }
+    })
   }
   //FIN EDICION <===
 
