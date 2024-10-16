@@ -64,7 +64,7 @@ export class PerfilLibrosLeidosComponent implements OnInit {
       const userId = this.sessionStorage.obtenerIDuserSS()
 
       if (userId != null) {
-        this.libros = await this.librosService.getLibros()
+        this.libros = await this.librosService.busquedaLibros()
       } else {
         console.error('No se encontro el ID del usuario')
       }

@@ -27,10 +27,6 @@ export class ModalComponent implements OnInit {
 
   usuarioIdActual! : number
 
-
-
-
-
   @Input() isModalOpen: boolean = false // Aquí declaras la propiedad como Input
   @Output() close = new EventEmitter<void>()
   @Output() librosEnviados = new EventEmitter<Libro[]>()
@@ -77,10 +73,20 @@ export class ModalComponent implements OnInit {
 
   async loadLibros(): Promise<void> {
     try {
-      this.libros = await this.librosService.getLibros() // Obtiene los libros del servicio
+      this.libros = await this.librosService.busquedaLibros(undefined) // Obtiene los libros del servicio
       console.log('Libros cargados en front:', this.libros) // Verifica que los libros se carguen correctamente
     } catch (error) {
       console.error('Error al cargar los libros en front:', error)
+    }
+  }
+
+  async buscar(palabraABuscar?: string): Promise<void> {
+    if(this.tituloModal == "Todos los usuarios"){
+      console.log(false)
+      this.amigos = await this.userServiceUS.getUsuariosCard(palabraABuscar)
+    }
+    else {
+      this.libros = await this.librosService.busquedaLibros(palabraABuscar)
     }
   }
 
