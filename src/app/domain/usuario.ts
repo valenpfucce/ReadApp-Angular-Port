@@ -103,6 +103,15 @@ export class Usuario{ //SAQUE LA IMPLEMENTACION ENTIDAD
 
 
 
+  insanciarFormaLeer (formaleer: "promedio" | "ansioso"){
+    const formas = {
+      "promedio": new Promedio(),
+      "ansioso": new Ansioso(),
+    }
+
+    return formas[formaleer]
+  }
+
   asignarFormaLeer(usuarioJSON:UsuarioJSON){
     let formaDeLeer: FormaDeLeer | undefined;
     switch (usuarioJSON.formaDeLeer?.type) {

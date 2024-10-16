@@ -26,9 +26,9 @@ export class ModalComponent implements OnInit {
   tituloModal = ""
 
   usuarioIdActual! : number
-  
-  
- 
+
+
+
 
 
   @Input() isModalOpen: boolean = false // Aquí declaras la propiedad como Input
@@ -93,11 +93,9 @@ export class ModalComponent implements OnInit {
   seleccionarLibro(libro: Libro) {
     const index = this.librosSeleccionados.indexOf(libro);
     if (index === -1) {
-
       // Si no esta en la lista, lo agrego
       this.librosSeleccionados.push(libro)
-      
-    } else {
+      } else {
       // Si está en la lista, lo saco
       this.librosSeleccionados.splice(index, 1)
     }
@@ -116,14 +114,14 @@ export class ModalComponent implements OnInit {
 
     /* tengo que hacer la logica de que cuando aprieto guardar cambios del modal
     las cards seleccionadas se muestren en el perfil libros leidos.
-    y cuando aprieto guardar cambios del perfil el boton guardar cambios del perfil, 
+    y cuando aprieto guardar cambios del perfil el boton guardar cambios del perfil,
     los libros que seleccione se manden al back */
 
 
-    this.librosSeleccionados.forEach(libro => 
+    this.librosSeleccionados.forEach(libro =>
     this.librosService.agregarALibrosLeidos(libro.id, this.usuarioIdActual)
     );
-    
+
     this.librosSeleccionados = []
     this.closeModal()
   }
