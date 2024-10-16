@@ -10,7 +10,8 @@
       <!-- modificar para que aparezcan los de usuario tambien -->
       <button type="button" class="close" (click)="closeModal()">X</button>
     </div>
-
+    <readapp-barra-busqueda (buscarPalabra)="buscar($event)">
+    </readapp-barra-busqueda>
     <div class="modal-body">
       <div
         class="contenedor-cartas"
@@ -70,7 +71,7 @@
       Cancelar
     </button>
     <button type="button" class="boton_guardar" (click)="saveChanges()">
-      Guardar Cambios
+      Listo
     </button>
   </div>
 </div>

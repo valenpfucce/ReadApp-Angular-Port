@@ -1,10 +1,8 @@
-import { Injectable } from '@angular/core'
-import { REST_SERVER_URL } from '../configuration'
-import { HttpClient } from '@angular/common/http'
-import {firstValueFrom, lastValueFrom, Observable} from 'rxjs'
-import { Recomendacion, RecomendacionJSON } from '../../domain/recomendacion'
-import {map} from "rxjs/operators";
-import {UsuarioLoginJSON} from "../service_usuarios/usuarios.service";
+import {Injectable} from '@angular/core'
+import {REST_SERVER_URL} from '../configuration'
+import {HttpClient} from '@angular/common/http'
+import {firstValueFrom, lastValueFrom} from 'rxjs'
+import {Recomendacion, RecomendacionJSON} from '../../domain/recomendacion'
 import {RecomendacionUpdateDTO} from "../../dto/repositorioDTO";
 
 @Injectable({
@@ -12,14 +10,14 @@ import {RecomendacionUpdateDTO} from "../../dto/repositorioDTO";
 })
 export class RecomendacionesService {
   constructor(private httpClient: HttpClient) {}
+
   async busquedaRecomendaciones(busqueda?: string) {
     const recomendaciones = await lastValueFrom(
       this.httpClient.post<RecomendacionJSON[]>(REST_SERVER_URL + '/recomendaciones/busqueda', busqueda)
     )
-    const recomendacionLista = recomendaciones.map((recomendacionJSON) =>
+    return recomendaciones.map((recomendacionJSON) =>
       Recomendacion.fromJson(recomendacionJSON)
     )
-    return recomendacionLista
   }
 
   async getRecomendacionById(id: number) {
@@ -59,11 +57,6 @@ export class RecomendacionesService {
       this.httpClient.get<boolean>(REST_SERVER_URL + `/recomendaciones/${recomendacionId}/puede/editar/usuario/${usuarioId}`)
     )
   }
-
-  //async editarRecomendacion(recomendacion: Recomendacion, userId: number){
-  //  console.log("Enviando al back...")
-  //  return this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/editar/por/` + userId, recomendacion)
-  //}
 
   async editarRecomendacion(recomendacion: Recomendacion, userId: number): Promise<any> {
     console.log("Enviando al back...\n",recomendacion)

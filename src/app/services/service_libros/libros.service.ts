@@ -10,15 +10,13 @@ import { REST_SERVER_URL } from '../configuration'
 export class LibrosService {
   constructor(private httpClient: HttpClient) {}
 
-  async getLibros(): Promise<Libro[]> {
+  async busquedaLibros(busqueda?: string): Promise<Libro[]> {
     try {
       const librosJSON = await lastValueFrom(
-        this.httpClient.get<LibroJSON[]>(`${REST_SERVER_URL}/libros`)
+        this.httpClient.post<LibroJSON[]>(`${REST_SERVER_URL}/libros/busqueda`, busqueda)
       )
-      console.log('Libros traídos del backend:', librosJSON)
       return librosJSON.map((libroJSON) => Libro.fromJson(libroJSON))
     } catch (error) {
-      console.error('Error al obtener los libros:', error)
       throw new Error('No se pudieron cargar los libros')
     }
   }
@@ -28,5 +26,5 @@ export class LibrosService {
     this.httpClient.post(`${REST_SERVER_URL}/${userId}/agregar-libro/${libroId}`, {})
     );
   }
-  
+
 }
