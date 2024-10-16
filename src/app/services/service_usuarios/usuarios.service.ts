@@ -55,7 +55,7 @@ export class UsuariosService {
 
   async agregarAmigo(amigoId: number, userId: number) {
     await lastValueFrom(
-      this.httpClient.post(`${REST_SERVER_URL}/usuarios/${userId}/agregar-amigo/${amigoId}`, {})
+      this.httpClient.patch(`${REST_SERVER_URL}/usuarios/${userId}/agregar-amigo/${amigoId}`, {})
     );
   }
 
@@ -106,7 +106,7 @@ export class UsuariosService {
 
   async agregarRecomendacionAValorar(recomendacionId: number, userId: number) {
     await lastValueFrom(
-      this.httpClient.post(`${REST_SERVER_URL}/usuarios/${userId}/agregar-recomendacion-a-valorar/${recomendacionId}`, {})
+      this.httpClient.patch(`${REST_SERVER_URL}/usuarios/${userId}/agregar-recomendacion-a-valorar/${recomendacionId}`, {})
     );
   }
 
