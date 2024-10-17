@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Libro, LibroJSON } from '../../domain/libro'
 import { HttpClient } from '@angular/common/http'
-import { lastValueFrom } from 'rxjs'
+import { lastValueFrom, Observable } from 'rxjs'
 import { REST_SERVER_URL } from '../configuration'
 
 @Injectable({
@@ -13,7 +13,10 @@ export class LibrosService {
   async busquedaLibros(busqueda?: string): Promise<Libro[]> {
     try {
       const librosJSON = await lastValueFrom(
-        this.httpClient.post<LibroJSON[]>(`${REST_SERVER_URL}/libros/busqueda`, busqueda)
+        this.httpClient.post<LibroJSON[]>(
+          `${REST_SERVER_URL}/libros/busqueda`,
+          busqueda
+        )
       )
       return librosJSON.map((libroJSON) => Libro.fromJson(libroJSON))
     } catch (error) {
@@ -23,8 +26,26 @@ export class LibrosService {
 
   async agregarALibrosLeidos(libroId: number, userId: number) {
     await lastValueFrom(
-    this.httpClient.post(`${REST_SERVER_URL}/${userId}/agregar-libro/${libroId}`, {})
-    );
+      this.httpClient.post(
+        `${REST_SERVER_URL}/${userId}/agregar-libro/${libroId}`,
+        {}
+      )
+    )
   }
+  async agregarLibrosPorLeer(
+    userId: number,
+    librosIds: number[]
+  ): Promise<any> {
+    const url = `${REST_SERVER_URL}/libros/${userId}/agregar-libros`
 
+    try {
+      const response = await lastValueFrom(
+        this.httpClient.patch(url, librosIds)
+      )
+      return response
+    } catch (error) {
+      console.error('Error al agregar libros:', error)
+      throw error // Puedes lanzar el error o manejarlo de acuerdo a tus necesidades
+    }
+  }
 }
