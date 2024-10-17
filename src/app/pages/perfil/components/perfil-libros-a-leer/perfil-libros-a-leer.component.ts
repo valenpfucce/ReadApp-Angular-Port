@@ -38,6 +38,7 @@ export class PerfilLibrosALeerComponent implements OnInit {
   librosRecibidos: Libro[] = []
   modo!: 'detalle' | 'edicion'
   isModalOpen = false
+  userIdSS!: number
 
   constructor(
     private librosService: LibrosService,
@@ -104,5 +105,21 @@ export class PerfilLibrosALeerComponent implements OnInit {
 
     // Convertimos el mapa de vuelta en un array
     return Array.from(librosUnicos.values())
+  }
+
+  async saveChanges() {
+    if (this.librosRecibidos.length > 0) {
+      await this.userServiceUS.agregarLibrosALeer(
+        this.librosRecibidos,
+        this.userIdSS
+      )
+    } else {
+      console.log('no se actualiza nada')
+    }
+    this.reloadPage()
+  }
+
+  reloadPage() {
+    window.location.reload()
   }
 }
