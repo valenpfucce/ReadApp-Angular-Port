@@ -154,11 +154,21 @@ export class UsuariosService {
     )
   }
 
-  async agregarLibrosALeer(librosRecibidos: Libro[], userId: number) {
+  async getLibrosALeer(userId: number): Promise<Libro[]> {
+    const usuarioJSON = await lastValueFrom(
+      this.httpClient.get<UsuarioJSON>(`${REST_SERVER_URL}/usuarios/${userId}`)
+    )
+    // Devuelve directamente los librosALeer del usuario.
+    return usuarioJSON.librosALeer
+  }
+  async agregarLibrosALeer(
+    librosRecibidos: Libro[],
+    userId: number
+  ): Promise<void> {
     await lastValueFrom(
       this.httpClient.patch(
-        `${REST_SERVER_URL}/usuarios/${userId}/agregar-libro-a-leer/${librosRecibidos}`,
-        {}
+        `${REST_SERVER_URL}/usuarios/${userId}/agregar-libro-a-leer`,
+        { libros: librosRecibidos }
       )
     )
   }

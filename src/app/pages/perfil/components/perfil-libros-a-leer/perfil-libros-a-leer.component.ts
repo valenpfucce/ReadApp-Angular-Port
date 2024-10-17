@@ -36,6 +36,8 @@ export class PerfilLibrosALeerComponent implements OnInit {
   usuario!: Usuario
   libros: Libro[] = []
   librosRecibidos: Libro[] = []
+  librosALeer!: Libro[]
+  librosTotales: Libro[] = []
   modo!: 'detalle' | 'edicion'
   isModalOpen = false
   userIdSS!: number
@@ -48,12 +50,15 @@ export class PerfilLibrosALeerComponent implements OnInit {
 
   ngOnInit() {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
-    this.obtenerDatosUsuario(userIdSS)
-    if (userIdSS) {
-      this.obtenerDatosUsuario(userIdSS)
-    } else {
-      console.error('Usuario ID no disponible en la sesión.')
+    if (userIdSS != null) {
+      this.getLibrosALeer(userIdSS).then((libros) => {
+        this.librosALeer = libros // Asignar los libros al componente
+      })
     }
+    this.obtenerDatosUsuario(userIdSS)
+    this.modo = 'detalle'
+
+    console.log('bla', userIdSS)
   }
 
   async obtenerDatosUsuario(userIdSS: number | null): Promise<void> {
@@ -65,9 +70,10 @@ export class PerfilLibrosALeerComponent implements OnInit {
     } else {
       console.error('No se pudo cargar el usuario.')
     }
+    console.log(usuarioEnLinea)
   }
 
-  trackByFn(index: number, item: Libro) {
+  trackByFn(item: Libro) {
     return item.id // Usamos el ID del libro para hacer tracking en el *ngFor
   }
 
@@ -82,6 +88,11 @@ export class PerfilLibrosALeerComponent implements OnInit {
 
   recibirLibros(libros: Libro[]) {
     this.librosRecibidos = libros
+  }
+
+  async getLibrosALeer(userId: number): Promise<Libro[]> {
+    this.librosALeer = await this.userServiceUS.getLibrosALeer(userId)
+    return this.librosALeer
   }
 
   // Fusionamos las listas de libros (los actuales y los nuevos) eliminando duplicados.
@@ -121,5 +132,6 @@ export class PerfilLibrosALeerComponent implements OnInit {
 
   reloadPage() {
     window.location.reload()
+    console.log('soy un refresh')
   }
 }
