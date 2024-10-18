@@ -1,5 +1,6 @@
 <div class="flex perfil_container">
     <h1>Libros a leer</h1>
+    <section class="flex lista_perfil">
     <section class="contenedor-cartas">
       <section class="grid-libros">
         @for (libro of librosALeer; track libro; let i = $index) {
@@ -13,6 +14,7 @@
 
         <readapp-card-libro-mas (click) ="openModal()"></readapp-card-libro-mas>
       </section>
+    </section>
     </section>
   
     <div class="boton_container">
