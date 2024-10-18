@@ -27,6 +27,7 @@ export class UsuariosService {
     this.validador = new sistemaValidacion()
   }
 
+
   async getUserById(userIdSS: number | null): Promise<Usuario> {
     const usuarioJSON = await lastValueFrom(this.httpClient.get<UsuarioJSON>(`${REST_SERVER_URL}/usuarios/` + userIdSS))
 
@@ -83,14 +84,16 @@ export class UsuariosService {
       .pipe(map((response) => response?.id || null))
   }
 
-
-  async actualizarUsuario(usuarioBack: Usuario, usuarioEditable:Usuario): Promise<void> {
-
+  async actualizarUsuario(
+    usuarioBack: Usuario,
+    usuarioEditable: Usuario
+  ): Promise<void> {
     await lastValueFrom(
-      this.httpClient.put<void>(`${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id, usuarioEditable.toJSON())
+      this.httpClient.put<void>(
+        `${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id,
+        usuarioEditable.toJSON()
+      )
     )
-
-
   }
 
   navegarALogin() {
@@ -143,24 +146,16 @@ export class UsuariosService {
     )
   }
 
-  async getLibrosALeer(userId: number): Promise<Libro[]> {
-    const usuarioJSON = await lastValueFrom(
-      this.httpClient.get<UsuarioJSON>(`${REST_SERVER_URL}/usuarios/${userId}`)
-    )
-    // Convertir cada libro JSON en una instancia de la clase Libro
-    const libros = usuarioJSON.librosPorLeer.map((libroJson) =>
-      Libro.fromApiResponse(libroJson)
-    )
-    console.log('aca tenes tus libros', libros)
-    return libros
-  }
-
   async agregarLibrosALeer(userId: number, libros: Libro[]): Promise<void> {
+    console.log('esto tengo que mandar', libros)
     try {
       console.log('Enviando los siguientes libros al backend:', libros)
-      const response = await this.httpClient
-        .post(`${REST_SERVER_URL}/usuarios/${userId}/librosALeer`, libros)
-        .toPromise()
+      const response = await lastValueFrom(
+        this.httpClient.patch(
+          `${REST_SERVER_URL}/usuarios/${userId}/agregar-libros-leer`,
+          libros
+        )
+      )
       console.log('Libros enviados exitosamente al backend', response)
     } catch (error) {
       console.error(

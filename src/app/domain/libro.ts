@@ -16,7 +16,7 @@ export type LibroJSON = {
   paginasLargo: number
 }
 
-export class Libro implements Entidad {
+export class Libro {
   constructor(
     public id: number,
     public titulo_libro: string,
@@ -55,21 +55,25 @@ export class Libro implements Entidad {
     )
   }
 
-  static fromApiResponse(data: any): Libro {
-    return new Libro(
-      data.id,
-      data.titulo_libro || data.titulo, // Prioriza 'titulo_libro' pero usa 'titulo' si está disponible
-      data.autor_nombre || data.autor?.nombre, // Usa 'autor_nombre' o 'autor.nombre'
-      data.autor_apellido || data.autor?.apellido, // Usa 'autor_apellido' o 'autor.apellido'
-      data.imagen_libro_url || data.imagen, // Usa 'imagen_libro_url' o 'imagen'
-      data.cant_pags_libro || data.paginas, // Usa 'cant_pags_libro' o 'paginas'
-      data.cant_palabras_libro || data.palabras, // Usa 'cant_palabras_libro' o 'palabras'
-      data.idiomas_libro || data.traducciones, // Usa 'idiomas_libro' o 'traducciones'
-      data.ventas_semanales || data.ventasSemanales, // Usa 'ventas_semanales' o 'ventasSemanales'
-      data.esBestSeller || false, // Default es 'false' si no viene
-      data.esDesafiante || false, // Default es 'false' si no viene
-      data.esLargo || false, // Default es 'false' si no viene
-      data.paginasLargo || data.paginas // Usa 'paginasLargo' o 'paginas'
-    )
+  // Nuevo método para transformar los datos del backend
+  static fromBackend(libroBackend: any): Libro {
+    const libroJSON: LibroJSON = {
+      id: libroBackend.id,
+      titulo_libro: libroBackend.titulo, // Mapeo de 'titulo' a 'titulo_libro'
+      autor_nombre: libroBackend.autor?.nombre, // Mapeo de 'autor.nombre' a 'autor_nombre'
+      autor_apellido: libroBackend.autor?.apellido, // Mapeo de 'autor.apellido' a 'autor_apellido'
+      imagen_libro_url: libroBackend.imagen, // Mapeo de 'imagen' a 'imagen_libro_url'
+      cant_pags_libro: libroBackend.paginas, // Mapeo de 'paginas' a 'cant_pags_libro'
+      cant_palabras_libro: libroBackend.palabras, // Mapeo de 'palabras' a 'cant_palabras_libro'
+      idiomas_libro: libroBackend.traducciones, // Mapeo de 'traducciones' a 'idiomas_libro'
+      ventas_semanales: libroBackend.ventasSemanales, // Mapeo de 'ventasSemanales' a 'ventas_semanales'
+      esBestSeller: false, // Suponiendo que no está disponible en el backend
+      esDesafiante: libroBackend.complejo, // Mapeo de 'complejo' a 'esDesafiante'
+      esLargo: false, // No disponible en el backend, puedes ajustarlo según sea necesario
+      paginasLargo: libroBackend.paginasLargo // Mapeo directo de 'paginasLargo'
+    }
+
+    // Llama al método `fromJson` para hacer la conversión
+    return Libro.fromJson(libroJSON)
   }
 }
