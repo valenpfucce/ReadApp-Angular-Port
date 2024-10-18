@@ -50,11 +50,11 @@ export class PerfilLibrosALeerComponent implements OnInit {
   async ngOnInit() {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     if (userIdSS != null) {
-      this.userServiceUS
+      await this.userServiceUS
         .getLibrosALeer(userIdSS)
         .then((libros) => {
           this.librosALeer = libros
-          console.log('asdasdasdasdr:', this.librosALeer)
+          console.log('Estos son los libros a leer:', this.librosALeer)
         })
         .catch((error) => {
           console.error('Error obteniendo libros a leer:', error)
