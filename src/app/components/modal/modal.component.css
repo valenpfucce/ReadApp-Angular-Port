@@ -49,6 +49,8 @@
 
 /* Estilos para el cuerpo del modal */
 .modal-body {
+  display: flex;
+  justify-content: center;
   overflow-y: auto; /* Scroll solo en el contenido */
   padding: 20px;
   flex: 1; /* Para que la modal-body ocupe el espacio disponible */

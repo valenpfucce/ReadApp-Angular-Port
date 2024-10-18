@@ -16,6 +16,7 @@ export class HeaderComponent {
   nombreUser! : String | null
   apellidoUser!: String | null
   imgUser!: String | null
+  usuario!:Usuario
 
   constructor(
     private userServiceUS: UsuariosService,
@@ -24,13 +25,18 @@ export class HeaderComponent {
   ) {}
 
   ngOnInit() {
-    // const userIdSS = this.sessionStorage.obtenerIDuserSS()
-    // this.obtenerDatosUsuario(userIdSS)
+    const userIdSS = this.sessionStorage.obtenerIDuserSS()
+    this.obtenerDatosUsuario(userIdSS)
     this.nombreUser = this.sessionStorage.obtenerNombreUserSS()
     this.apellidoUser = this.sessionStorage.obtenerApellidoUserSS()
     this.imgUser = this.sessionStorage.obtenerImgUserSS()
   }
 
+  async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
+    const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
+    this.usuario = usuarioEnLinea
+  
+  }
 
   menuVisible: boolean = false;
 

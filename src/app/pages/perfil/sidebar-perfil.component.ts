@@ -28,7 +28,7 @@ export class SidebarPerfilComponent {
 
   ngOnInit() {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
-    this.obtenerDatosUsuario(userIdSS); /*this.userServiceSS.obtenerUsuarioDelSS();*/
+    this.obtenerDatosUsuario(userIdSS);
     this.nombreUser = this.sessionStorage.obtenerNombreUserSS()
     this.apellidoUser = this.sessionStorage.obtenerApellidoUserSS()
     this.imgUser = this.sessionStorage.obtenerImgUserSS()

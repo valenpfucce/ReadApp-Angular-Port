@@ -6,8 +6,8 @@
     </div>
     
     <button *ngIf="!esModal"><img src="/imagenes/trash.svg"></button>
-    <button *ngIf="esModal" (click)="agregarAmigo()">
-      <div   class="circulo-mas">
+    <button *ngIf="esModal"  >
+      <div   class="circulo-mas" (click)="agregarAmigo();toggleActive()" [ngClass]="{'active': isActive}">
         <div class="icono-mas">+</div>
       </div>
     </button>

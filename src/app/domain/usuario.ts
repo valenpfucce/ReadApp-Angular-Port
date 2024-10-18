@@ -31,7 +31,9 @@ export type UsuarioJSON = {
   formaDeLeer: FormaDeLeer
   perfilLista: string[]
   librosLeidos: Libro[]
-  librosPorLeer: Libro[]
+  
+  librosPorLeer: Libro[] //AGUS ES TUYO?
+  
   autoresPreferidos: string[]
   cantVecesLeido: Map<Libro['id'], number>
   imgperfil: string
@@ -46,9 +48,7 @@ export class ValidationMessage {
 }
 
 export class Usuario {
-  //SAQUE LA IMPLEMENTACION ENTIDAD
 
-  // tipoLectura = [];
 
   recomendacionesAValorar: Recomendacion[] = []
   validador: sistemaValidacion
@@ -110,34 +110,39 @@ export class Usuario {
     return nuevoAmigo
   }
 
-  insanciarFormaLeer(formaleer: 'promedio' | 'ansioso') {
-    const formas = {
-      promedio: new Promedio(),
-      ansioso: new Ansioso()
-    }
 
+  insanciarFormaLeer(formaleer: 'Promedio' | 'Ansioso' | 'Fanatico' | 'Recurrente') {
+    const formas = {
+      Promedio: new Promedio(),
+      Ansioso: new Ansioso(),
+      Fanatico: new Fanatico(),
+      Recurrente: new Recurrente()
+
+    }
     return formas[formaleer]
   }
 
-  asignarFormaLeer(usuarioJSON: UsuarioJSON) {
-    let formaDeLeer: FormaDeLeer | undefined
-    switch (usuarioJSON.formaDeLeer?.type) {
-      case 'promedio':
-        formaDeLeer = new Promedio()
-        break
-      case 'ansioso':
-        formaDeLeer = new Ansioso()
-        break
-      case 'fanatico':
-        formaDeLeer = new Fanatico()
-        break
-      case 'recurrente':
-        formaDeLeer = new Recurrente()
-        break
-      default:
-        formaDeLeer = undefined
-    }
-  }
+
+  // asignarFormaLeer(usuarioJSON:UsuarioJSON){
+  //   let formaDeLeer: FormaDeLeer | undefined;
+  //   switch (usuarioJSON.formaDeLeer?.type) {
+  //     case 'promedio':
+  //       formaDeLeer = new Promedio();
+  //       break;
+  //     case 'ansioso':
+  //       formaDeLeer = new Ansioso();
+  //       break;
+  //     case 'fanatico':
+  //       formaDeLeer = new Fanatico();
+  //       break;
+  //     case 'recurrente':
+  //       formaDeLeer = new Recurrente();
+  //       break;
+  //     default:
+  //       formaDeLeer = undefined;
+  //   }
+  // }
+
 
   guardarDatos(): boolean {
     this.validador.validarDatos(this)
@@ -189,23 +194,17 @@ export class Usuario {
       fechaNacimiento: this.fechaNacimiento,
       vpromedio: this.vpromedio,
       formaDeLeer: this.formaDeLeer!,
-      perfilLista: this.convertirPerfilLista(),
+      perfilLista: this.perfilLista,
       librosLeidos: this.librosLeidos,
-      autoresPreferidos: this.autoresPreferidos,
-      amigos: this.amigos,
-      cantVecesLeido: this.cantVecesLeido,
+
+      //autoresPreferidos: this.autoresPreferidos,
+      // amigos: this.amigos,
+      // cantVecesLeido: this.cantVecesLeido,
+
       imgperfil: this.imgperfil
     }
   }
 
-  convertirPerfilLista(): Perfil[] {
-    const listaPerfilesOBJ: Perfil[] = []
-
-    this.perfilLista.forEach((perfil) => listaPerfilesOBJ.push(perfil))
-    console.log('a ver cmo es la lista perfil', listaPerfilesOBJ)
-
-    return listaPerfilesOBJ
-  }
 }
 
 export class sistemaValidacion {

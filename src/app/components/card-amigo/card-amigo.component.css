@@ -86,6 +86,13 @@
     transform: translateY(-0.3rem);
 }
 
+
+.circulo-mas.active{
+    background-color: rgb(161, 209, 113);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+    
+}
+
 .icono-mas {
     font-size: 3rem;
     font-weight: bold;
