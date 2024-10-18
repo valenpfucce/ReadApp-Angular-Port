@@ -1,20 +1,25 @@
 <div class="flex perfil_container">
     <h1>Libros a leer</h1>
+    <section class="flex lista_perfil">
     <section class="contenedor-cartas">
       <section class="grid-libros">
+        @for (libro of librosALeer; track libro; let i = $index) {
+          <readapp-card-libro [libro]="libro"></readapp-card-libro>
+        }  
+
+
         @for (libro of librosRecibidos; track libro; let i = $index) {
           <readapp-card-libro (librosEnviados)="recibirLibros(libros)" [libro]="libro" [modo]="modo"></readapp-card-libro>
         }
-        <div *ngFor="let libro of librosRecibidos">
-          <readapp-card-libro [libro]="libro"></readapp-card-libro>
-        </div>
+
         <readapp-card-libro-mas (click) ="openModal()"></readapp-card-libro-mas>
       </section>
+    </section>
     </section>
   
     <div class="boton_container">
       <button class="boton_cancelar" type="submit">Cancelar</button>
-      <button class="boton_guardar" type="submit">Guardar cambios</button>
+      <button (click)="saveChanges()" class="boton_guardar" type="submit">Guardar cambios</button>
     </div>
 
             <!-- Modal -->

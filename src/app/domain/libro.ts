@@ -9,12 +9,11 @@ export type LibroJSON = {
   cant_pags_libro: number
   cant_palabras_libro: number
   idiomas_libro: string[]
-  ventas_semanales: number,
-  esBestSeller: Boolean,
-  esDesafiante: Boolean,
-  esLargo: Boolean,
+  ventas_semanales: number
+  esBestSeller: Boolean
+  esDesafiante: Boolean
+  esLargo: Boolean
   paginasLargo: number
-
 }
 
 export class Libro implements Entidad {
@@ -32,7 +31,6 @@ export class Libro implements Entidad {
     public esDesafiante: Boolean,
     public esLargo: Boolean,
     public paginasLargo: number
-
   ) {}
 
   static fromJson(libroJSON: LibroJSON): Libro {
@@ -51,10 +49,27 @@ export class Libro implements Entidad {
         libroJSON.esDesafiante,
         libroJSON.esLargo,
         libroJSON.paginasLargo
-
       ),
       libroJSON,
       {}
+    )
+  }
+
+  static fromApiResponse(data: any): Libro {
+    return new Libro(
+      data.id,
+      data.titulo_libro || data.titulo, // Prioriza 'titulo_libro' pero usa 'titulo' si está disponible
+      data.autor_nombre || data.autor?.nombre, // Usa 'autor_nombre' o 'autor.nombre'
+      data.autor_apellido || data.autor?.apellido, // Usa 'autor_apellido' o 'autor.apellido'
+      data.imagen_libro_url || data.imagen, // Usa 'imagen_libro_url' o 'imagen'
+      data.cant_pags_libro || data.paginas, // Usa 'cant_pags_libro' o 'paginas'
+      data.cant_palabras_libro || data.palabras, // Usa 'cant_palabras_libro' o 'palabras'
+      data.idiomas_libro || data.traducciones, // Usa 'idiomas_libro' o 'traducciones'
+      data.ventas_semanales || data.ventasSemanales, // Usa 'ventas_semanales' o 'ventasSemanales'
+      data.esBestSeller || false, // Default es 'false' si no viene
+      data.esDesafiante || false, // Default es 'false' si no viene
+      data.esLargo || false, // Default es 'false' si no viene
+      data.paginasLargo || data.paginas // Usa 'paginasLargo' o 'paginas'
     )
   }
 }
