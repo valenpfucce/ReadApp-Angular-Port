@@ -11,12 +11,20 @@ import {RecomendacionUpdateDTO} from "../../dto/repositorioDTO";
 export class RecomendacionesService {
   constructor(private httpClient: HttpClient) {}
 
-  async busquedaRecomendaciones(busqueda?: string) {
+  // async busquedaRecomendaciones(busqueda?: string) {
+  //   const recomendaciones = await lastValueFrom(
+  //     this.httpClient.post<RecomendacionJSON[]>(REST_SERVER_URL + '/recomendaciones/busqueda', busqueda)
+  //   )
+  //   return recomendaciones.map((recomendacionJSON) =>
+  //     Recomendacion.fromJson(recomendacionJSON)
+  //   )
+  // }
+
+  async busquedaRecomendaciones(busqueda?: string, idUsuario?: number) {
     const recomendaciones = await lastValueFrom(
-      this.httpClient.post<RecomendacionJSON[]>(REST_SERVER_URL + '/recomendaciones/busqueda', busqueda)
+      this.httpClient.post<RecomendacionJSON[]>(REST_SERVER_URL + '/recomendaciones/busqueda/' + idUsuario, busqueda)
     )
-    return recomendaciones.map((recomendacionJSON) =>
-      Recomendacion.fromJson(recomendacionJSON)
+    return recomendaciones.map((recomendacionJSON) => Recomendacion.fromJson(recomendacionJSON)
     )
   }
 
@@ -32,17 +40,15 @@ export class RecomendacionesService {
     return Recomendacion.fromJson(recomendacionJSON)
   }
 
-  async busquedaGeneral(palabraABuscar?: string) {
-    const busquedaGeneralRec  = await this.busquedaRecomendaciones(palabraABuscar)
-    console.log("BusquedaGeneral Recs con palabra a buscar\n",busquedaGeneralRec)
-    return busquedaGeneralRec
+  async busquedaGeneral(palabraABuscar?: string, idUsuario?: number) {
+    return await this.busquedaRecomendaciones(palabraABuscar, idUsuario)
   }
 
   async busquedaMisRecomendaciones(palabraABuscar?: string, idUsuario?: number) {
-    return this.getRecomendacionesEditables(idUsuario, palabraABuscar)
+    return await this.getRecomendacionesEditables(idUsuario, palabraABuscar)
   }
 
-  async getRecomendacionesEditables(userId: number | undefined, busqueda?: string) {
+  async getRecomendacionesEditables(userId?: number, busqueda?: string) {
     const recomendaciones = await lastValueFrom(
       this.httpClient.post<RecomendacionJSON[]>(REST_SERVER_URL + '/recomendaciones/permiso/editar/usuario/' + userId, busqueda)
     )

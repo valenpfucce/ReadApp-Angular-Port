@@ -3,9 +3,9 @@ import { LibrosService } from '../../services/service_libros/libros.service'
 import { Libro } from '../../domain/libro'
 import { CommonModule } from '@angular/common'
 import { CardLibroComponent } from '../card-libro/card-libro.component'
-import { BarraBusquedaComponent } from '../barra-busqueda/barra-busqueda.component'
-import { CardAmigoComponent } from '../card-amigo/card-amigo.component'
-import { Router } from '@angular/router'
+import {BarraBusquedaComponent, BuscarEvento} from '../barra-busqueda/barra-busqueda.component'
+import { CardAmigoComponent } from '../card-amigo/card-amigo.component';
+import { Router } from '@angular/router';
 import { Usuario } from '../../domain/usuario'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
@@ -83,13 +83,15 @@ export class ModalComponent implements OnInit {
       console.error('Error al cargar los libros en front:', error)
     }
   }
-
-  async buscar(palabraABuscar?: string): Promise<void> {
-    if (this.tituloModal == 'Todos los usuarios') {
+  
+  async buscar(evento: BuscarEvento): Promise<void> {
+    if(this.tituloModal == "Todos los usuarios"){
       console.log(false)
-      this.amigos = await this.userServiceUS.getUsuariosCard(palabraABuscar)
-    } else {
-      this.libros = await this.librosService.busquedaLibros(palabraABuscar)
+      this.amigos = await this.userServiceUS.getUsuariosCard(evento.palabraABuscar)
+    }
+    else {
+      this.libros = await this.librosService.busquedaLibros(evento.palabraABuscar)
+
     }
   }
 

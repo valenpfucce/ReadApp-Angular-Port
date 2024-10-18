@@ -22,14 +22,14 @@ export type DataBusqueda = {
     serviceRecomendaciones: RecomendacionesService,
     palabraABuscar?: string,
     idUsuario?: number
-  ) => Promise<Recomendacion[]>; // Cambiamos el tipo de retorno a Promise<Recomendacion[]>
+  ) => Promise<Recomendacion[]>;
 };
 
 const dataBusquedaHome: DataBusqueda = {
   showCheckBox: false,
   showCardMas: false,
-  realizarBusqueda: (serviceRecomendaciones, palabraABuscar) => {
-    return serviceRecomendaciones.busquedaGeneral(palabraABuscar);
+  realizarBusqueda: (serviceRecomendaciones, palabraABuscar, idUsuario) => {
+    return serviceRecomendaciones.busquedaGeneral(palabraABuscar, idUsuario);
   }
 };
 

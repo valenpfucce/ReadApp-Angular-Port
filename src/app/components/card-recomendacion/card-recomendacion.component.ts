@@ -26,7 +26,6 @@ export class CardRecomendacionComponent {
   ){}
 
   async ngOnInit() {
-    console.log(this.recomendacion)
     const userIdSSAChequear = this.sessionStorage.obtenerIDuserSS()
     if (userIdSSAChequear != null) {
       this.userIdSS = userIdSSAChequear
