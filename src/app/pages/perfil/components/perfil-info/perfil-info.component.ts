@@ -31,10 +31,11 @@ export class PerfilInfoComponent {
   fechaNacimiento= ''
   saveOK = false
   esCalculador = false
-  esPromedio: boolean = false;
-  esAnsioso: boolean = false;
-  esFanatico: boolean = false;
-  esRecurrente: boolean = false;
+  esPromedio: boolean = false
+  esAnsioso: boolean = false
+  esFanatico: boolean = false
+  esRecurrente: boolean = false
+  mensajeError: string | null = null
 
 
   constructor(
@@ -76,8 +77,33 @@ export class PerfilInfoComponent {
       this.esRecurrente = true;
     }
   }
+  
+  cambioFormaLeerPUT(formaleer: string) {
+    switch (formaleer) {
+        case 'Promedio':
+            this.esPromedio;
+            this.usuarioEditable.formaDeLeer = new Promedio();
+            break;
+        case 'Ansioso':
+            this.esAnsioso;
+            this.usuarioEditable.formaDeLeer = new Ansioso();
+            break;
+        case 'Fanatico':
+            this.esFanatico;
+            this.usuarioEditable.formaDeLeer = new Fanatico();
+            break;
+        case 'Recurrente':
+            this.esRecurrente;
+            this.usuarioEditable.formaDeLeer = new Recurrente();
+            break;
+        default:
+            console.log("Forma de leer no reconocida: ", formaleer);
+            break;
+    }
+}
+  
 
-  //ViweChild accede al elemnto del html con el #tipoPerfil, en este caso los checks
+//ViweChild accede al elemnto del html con el #tipoPerfil, en este caso los checks
   @ViewChild('precavido', { static: false }) precavidoRef!: ElementRef;
   @ViewChild('demandante', { static: false }) demandanteRef!: ElementRef;
   @ViewChild('cambiante', { static: false }) cambianteRef!: ElementRef;
@@ -114,16 +140,30 @@ export class PerfilInfoComponent {
     })
   }
 
+  onCheckboxChange(criterio: string, event: Event) {
+    const isChecked = (event.target as HTMLInputElement).checked;
+
+    if (isChecked) {
+        // Si el checkbox se selecciona, agrega el criterio a la lista de UsuarioEditable
+        if (!this.usuarioEditable.perfilLista.includes(criterio)) {
+            this.usuarioEditable.perfilLista.push(criterio);
+        }
+    } else {
+        // Si se deselecciona, lo eliminamos de la lista
+        const index = this.usuarioEditable.perfilLista.indexOf(criterio);
+        if (index > -1) {
+            this.usuarioEditable.perfilLista.splice(index, 1);
+        }
+    }
+}
+
+
   guardar() {
     this.usuarioEditable.fechaNacimiento = this.fechaNacimiento === '' ? undefined : dayjs(this.fechaNacimiento).toDate()
-   const guardadoExitoso = this.usuarioEditable.guardarDatos()
-   //this.typeFormaLeer()
+   this.usuarioEditable.guardarDatos()
    this.llamarServerPutUS()
+   window.location.reload();
    
-   if (guardadoExitoso){
-    this.indicarGuardadoExitoso()
-   }
-
   }
 
   async llamarServerPutUS(){
@@ -131,13 +171,18 @@ export class PerfilInfoComponent {
         await this.userServiceUS.actualizarUsuario(this.usuario,this.usuarioEditable)
         this.indicarGuardadoExitoso()
       } catch (error) {
-        console.error('Error al cargar los datos del usuario', error);
+        this.mensajeError = 'Error en el servidor. Por favor, inténtelo de nuevo mas tarde'
+        setTimeout(() => {
+          this.mensajeError = null;
+        }, 5000);
       }
   }
+  
 
 
   cancelar() {
   this.obtenerDatosUsuario(this.usuario.id!)
+  
   }
 
   indicarGuardadoExitoso(){

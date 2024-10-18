@@ -26,7 +26,7 @@ export class UsuariosService {
   async getUserId(userIdSS : number | null): Promise<Usuario> {  //GetUserById
 
     const usuarioJSON = await lastValueFrom(this.httpClient.get<UsuarioJSON>(`${REST_SERVER_URL}/usuarios/` + userIdSS))
-    console.log("json q trae del back", usuarioJSON)
+  
     if (!usuarioJSON) {
       throw new Error("Usuario Invalido")
     }
@@ -72,12 +72,9 @@ export class UsuariosService {
 
   async actualizarUsuario(usuarioBack: Usuario, usuarioEditable:Usuario): Promise<void> {
 
-    console.log("entra a actualuzar",usuarioEditable )
-    console.log("entra a actualuzar JSON",usuarioEditable.toJSON() )
-
     await lastValueFrom(
       this.httpClient.put<void>(`${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id, usuarioEditable.toJSON())
-    );
+    )
 
   }
 

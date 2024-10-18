@@ -21,19 +21,23 @@ export class CardAmigoComponent {
   @Input() amigo!: Usuario
   @Input() esModal: boolean = false;
   iduserActual: number = 0
+  isActive: boolean = false;
 
  
   constructor(
     private userServiceUS: UsuariosService,
     private sessionStorage: UserSessionStorageService)
   {}
-  
-  
+
   
   ngOnInit(){
     const idUserSS = this.sessionStorage.obtenerIDuserSS()
     this.iduserActual = idUserSS!
 
+  }
+
+  toggleActive() {
+    this.isActive = !this.isActive; 
   }
 
   async agregarAmigo(){
