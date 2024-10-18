@@ -62,6 +62,17 @@ export class PerfilLibrosALeerComponent implements OnInit {
     } else {
       console.error('El userId es nulo')
     }
+
+    await this.cargarLibrosALeer()
+  }
+
+  async cargarLibrosALeer(): Promise<void> {
+    try {
+      // Obtener la lista de libros por leer desde el backend
+      this.librosALeer = await this.userServiceUS.getLibrosALeer(this.userIdSS)
+    } catch (error) {
+      console.error('Error al cargar la lista de libros por leer:', error)
+    }
   }
 
   trackByFn(item: Libro) {
@@ -107,15 +118,26 @@ export class PerfilLibrosALeerComponent implements OnInit {
   async saveChanges() {
     console.log('Libros recibidos:', this.librosRecibidos)
 
-    if ((this.librosRecibidos ?? []).length > 0) {
+    try {
       await this.userServiceUS.agregarLibrosALeer(
-        this.librosRecibidos,
-        this.userIdSS
+        this.userIdSS,
+        this.librosRecibidos
       )
-      console.log('BUEEEEEEEEEEEEEEE')
-      this.reloadPage()
-    } else {
-      console.log('no se actualiza nada')
+      console.log('Libros añadidos correctamente a la lista de libros por leer')
+
+      // Volver a cargar la lista de libros del usuario tras añadir los libros
+      this.librosALeer = await this.userServiceUS.getLibrosALeer(this.userIdSS)
+
+      // Limpiar la lista de libros recibidos
+      this.librosRecibidos = []
+    } catch (error) {
+      console.error(
+        'Error al agregar los libros o al obtener la lista actualizada:',
+        error
+      )
+      if (error instanceof Error) {
+        console.error('Mensaje de error:', error.message)
+      }
     }
   }
 

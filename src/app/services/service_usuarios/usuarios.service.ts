@@ -166,16 +166,22 @@ export class UsuariosService {
     return libros
   }
 
-  async agregarLibrosALeer(
-    librosRecibidos: Libro[],
-    userId: number
-  ): Promise<void> {
-    await lastValueFrom(
-      this.httpClient.patch(
-        `${REST_SERVER_URL}/usuarios/${userId}/agregar-libro-a-leer`,
-        { libros: librosRecibidos }
+  async agregarLibrosALeer(userId: number, libros: Libro[]): Promise<void> {
+    try {
+      console.log('Enviando los siguientes libros al backend:', libros)
+      const response = await this.httpClient
+        .post(`${REST_SERVER_URL}/usuarios/${userId}/librosALeer`, libros)
+        .toPromise()
+      console.log('Libros enviados exitosamente al backend', response)
+    } catch (error) {
+      console.error(
+        'Error al agregar los libros o al obtener la lista actualizada:',
+        error
       )
-    )
+      if (error instanceof Error) {
+        console.error('Mensaje de error:', error.message)
+      }
+    }
   }
 }
 
