@@ -31,6 +31,9 @@ export type UsuarioJSON = {
   formaDeLeer: FormaDeLeer
   perfilLista: string[]
   librosLeidos: Libro[]
+  
+  librosPorLeer: Libro[] //AGUS ES TUYO?
+  
   autoresPreferidos: string[]
   cantVecesLeido: Map<Libro['id'], number>
   imgperfil: string
@@ -45,7 +48,7 @@ export class ValidationMessage {
 }
 
 export class Usuario {
-  
+
 
   recomendacionesAValorar: Recomendacion[] = []
   validador: sistemaValidacion
@@ -62,6 +65,7 @@ export class Usuario {
     public formaDeLeer?: FormaDeLeer,
     public perfilLista: string[] = [], //es tipo de lectura, llega como objetos
     public librosLeidos: Libro[] = [],
+    public librosPorLeer: Libro[] = [],
     public autoresPreferidos: string[] = [],
     public cantVecesLeido: Map<Libro['id'], number> = new Map(),
     public imgperfil: string = '',
@@ -106,15 +110,18 @@ export class Usuario {
     return nuevoAmigo
   }
 
+
   insanciarFormaLeer(formaleer: 'Promedio' | 'Ansioso' | 'Fanatico' | 'Recurrente') {
     const formas = {
       Promedio: new Promedio(),
       Ansioso: new Ansioso(),
       Fanatico: new Fanatico(),
       Recurrente: new Recurrente()
+
     }
     return formas[formaleer]
   }
+
 
   // asignarFormaLeer(usuarioJSON:UsuarioJSON){
   //   let formaDeLeer: FormaDeLeer | undefined;
@@ -135,6 +142,7 @@ export class Usuario {
   //       formaDeLeer = undefined;
   //   }
   // }
+
 
   guardarDatos(): boolean {
     this.validador.validarDatos(this)
@@ -188,14 +196,15 @@ export class Usuario {
       formaDeLeer: this.formaDeLeer!,
       perfilLista: this.perfilLista,
       librosLeidos: this.librosLeidos,
+
       //autoresPreferidos: this.autoresPreferidos,
       // amigos: this.amigos,
       // cantVecesLeido: this.cantVecesLeido,
+
       imgperfil: this.imgperfil
     }
   }
 
-  
 }
 
 export class sistemaValidacion {

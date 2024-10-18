@@ -36,37 +36,46 @@ export class PerfilLibrosALeerComponent implements OnInit {
   usuario!: Usuario
   libros: Libro[] = []
   librosRecibidos: Libro[] = []
+  librosALeer!: Libro[]
+  librosTotales: Libro[] = []
   modo!: 'detalle' | 'edicion'
   isModalOpen = false
-
+  userIdSS!: number
   constructor(
     private librosService: LibrosService,
     private sessionStorage: UserSessionStorageService,
     private userServiceUS: UsuariosService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
-    this.obtenerDatosUsuario(userIdSS)
-    if (userIdSS) {
-      this.obtenerDatosUsuario(userIdSS)
+    if (userIdSS != null) {
+      await this.userServiceUS
+        .getLibrosALeer(userIdSS)
+        .then((libros) => {
+          this.librosALeer = libros
+          console.log('Estos son los libros a leer:', this.librosALeer)
+        })
+        .catch((error) => {
+          console.error('Error obteniendo libros a leer:', error)
+        })
     } else {
-      console.error('Usuario ID no disponible en la sesión.')
+      console.error('El userId es nulo')
+    }
+
+    await this.cargarLibrosALeer()
+  }
+
+  async cargarLibrosALeer(): Promise<void> {
+    try {
+      // Obtener la lista de libros por leer desde el backend
+      this.librosALeer = await this.userServiceUS.getLibrosALeer(this.userIdSS)
+    } catch (error) {
+      console.error('Error al cargar la lista de libros por leer:', error)
     }
   }
 
-  async obtenerDatosUsuario(userIdSS: number | null): Promise<void> {
-    const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
-
-    if (usuarioEnLinea) {
-      this.usuario = usuarioEnLinea
-      console.log('Usuario cargado correctamente:', this.usuario)
-    } else {
-      console.error('No se pudo cargar el usuario.')
-    }
-  }
-
-  trackByFn(index: number, item: Libro) {
+  trackByFn(item: Libro) {
     return item.id // Usamos el ID del libro para hacer tracking en el *ngFor
   }
 
@@ -76,33 +85,64 @@ export class PerfilLibrosALeerComponent implements OnInit {
 
   closeModal() {
     this.isModalOpen = false
-    console.log('Libros Recibidos:', this.librosRecibidos)
+    console.log('Libros Recibidossssssssssss:', this.librosRecibidos)
   }
 
   recibirLibros(libros: Libro[]) {
     this.librosRecibidos = libros
   }
 
-  // Fusionamos las listas de libros (los actuales y los nuevos) eliminando duplicados.
-  fusionarListasLibros(
-    librosActuales: Libro[],
-    librosRecibidos: Libro[]
-  ): Libro[] {
-    const librosUnicos = new Map<number, Libro>()
+  // // Fusionamos las listas de libros (los actuales y los nuevos) eliminando duplicados.
+  // fusionarListasLibros(
+  //   librosActuales: Libro[],
+  //   librosRecibidos: Libro[]
+  // ): Libro[] {
+  //   const librosUnicos = new Map<number, Libro>()
 
-    // Agregamos los libros actuales al mapa (clave es el id del libro)
-    librosActuales.forEach((libro) => {
-      librosUnicos.set(libro.id, libro)
-    })
+  //   // Agregamos los libros actuales al mapa (clave es el id del libro)
+  //   librosActuales.forEach((libro) => {
+  //     librosUnicos.set(libro.id, libro)
+  //   })
 
-    // Agregamos los nuevos libros, solo si no están ya en la lista
-    librosRecibidos.forEach((libro) => {
-      if (!librosUnicos.has(libro.id)) {
-        librosUnicos.set(libro.id, libro)
+  //   // Agregamos los nuevos libros, solo si no están ya en la lista
+  //   librosRecibidos.forEach((libro) => {
+  //     if (!librosUnicos.has(libro.id)) {
+  //       librosUnicos.set(libro.id, libro)
+  //     }
+  //   })
+
+  //   // Convertimos el mapa de vuelta en un array
+  //   return Array.from(librosUnicos.values())
+  // }
+
+  async saveChanges() {
+    console.log('Libros recibidos:', this.librosRecibidos)
+
+    try {
+      await this.userServiceUS.agregarLibrosALeer(
+        this.userIdSS,
+        this.librosRecibidos
+      )
+      console.log('Libros añadidos correctamente a la lista de libros por leer')
+
+      // Volver a cargar la lista de libros del usuario tras añadir los libros
+      this.librosALeer = await this.userServiceUS.getLibrosALeer(this.userIdSS)
+
+      // Limpiar la lista de libros recibidos
+      this.librosRecibidos = []
+    } catch (error) {
+      console.error(
+        'Error al agregar los libros o al obtener la lista actualizada:',
+        error
+      )
+      if (error instanceof Error) {
+        console.error('Mensaje de error:', error.message)
       }
-    })
+    }
+  }
 
-    // Convertimos el mapa de vuelta en un array
-    return Array.from(librosUnicos.values())
+  reloadPage() {
+    window.location.reload()
+    console.log('soy un refresh')
   }
 }

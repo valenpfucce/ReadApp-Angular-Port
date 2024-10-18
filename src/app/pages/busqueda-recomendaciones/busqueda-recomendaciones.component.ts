@@ -7,7 +7,7 @@ import { Recomendacion } from '../../domain/recomendacion';
 import { DataBusqueda } from '../../app.routes';
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service';
 import { Usuario } from '../../domain/usuario';
-import { BarraBusquedaComponent } from '../../components/barra-busqueda/barra-busqueda.component';
+import {BarraBusquedaComponent, BuscarEvento} from '../../components/barra-busqueda/barra-busqueda.component';
 import { CardLibroMasComponent } from "../../components/card-libro-mas/card-libro-mas.component";
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service';
 
@@ -19,8 +19,7 @@ import { UsuariosService } from '../../services/service_usuarios/usuarios.servic
   styleUrl: './busqueda-recomendaciones.component.css'
 })
 export class BusquedaRecomendacionesComponent {
-  usuario!: Usuario
-  userIdSS!: number;
+  idUsuario!: number;
   data!: DataBusqueda
   recomendaciones!: Recomendacion[]
   recomendacionesFiltradas!: Recomendacion[]
@@ -31,30 +30,20 @@ export class BusquedaRecomendacionesComponent {
   ){}
 
   ngOnInit() {
-    const userIdSSAChequear = this.sessionStorage.obtenerIDuserSS()
+    const idUsuarioAChequear = this.sessionStorage.obtenerIDuserSS()
     this.data = this.route.snapshot.data as DataBusqueda
-    if (userIdSSAChequear != null) {
-      this.userIdSS = userIdSSAChequear
-      this.busquedaAlService(this.userIdSS)
+    if (idUsuarioAChequear != null) {
+      this.idUsuario = idUsuarioAChequear
+      const evento: BuscarEvento = {palabraABuscar: undefined, idUsuario: this.idUsuario }
+      this.buscar(evento)
     }
   }
 
-  async busquedaAlService(userIdSS : number):Promise<Recomendacion[]>{
+  async buscar(evento: BuscarEvento) {
     this.recomendaciones = await this.data.realizarBusqueda(
       this.serviceRecomendaciones,
-      undefined,
-      userIdSS
-    )
-    this.recomendacionesFiltradas = [...this.recomendaciones]
-    return this.recomendaciones
-  }
-
-
-  async buscar(palabraABuscar?: string) {
-    this.recomendaciones = await this.data.realizarBusqueda(
-      this.serviceRecomendaciones,
-      palabraABuscar,
-      undefined
+      evento.palabraABuscar,
+      evento.idUsuario
     )
     this.recomendacionesFiltradas = [...this.recomendaciones]
   }
