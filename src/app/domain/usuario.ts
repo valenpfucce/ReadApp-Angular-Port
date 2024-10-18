@@ -31,7 +31,7 @@ export type UsuarioJSON = {
   formaDeLeer: FormaDeLeer
   perfilLista: string[]
   librosLeidos: Libro[]
-  librosALeer: Libro[]
+  librosPorLeer: Libro[]
   autoresPreferidos: string[]
   cantVecesLeido: Map<Libro['id'], number>
   imgperfil: string
@@ -65,7 +65,7 @@ export class Usuario {
     public formaDeLeer?: FormaDeLeer,
     public perfilLista: string[] = [], //es tipo de lectura, llega como objetos
     public librosLeidos: Libro[] = [],
-    public librosALeer: Libro[] = [],
+    public librosPorLeer: Libro[] = [],
     public autoresPreferidos: string[] = [],
     public cantVecesLeido: Map<Libro['id'], number> = new Map(),
     public imgperfil: string = '',

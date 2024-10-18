@@ -2,12 +2,15 @@
     <h1>Libros a leer</h1>
     <section class="contenedor-cartas">
       <section class="grid-libros">
+        @for (libro of librosALeer; track libro; let i = $index) {
+          <readapp-card-libro [libro]="libro"></readapp-card-libro>
+        }  
+
+
         @for (libro of librosRecibidos; track libro; let i = $index) {
           <readapp-card-libro (librosEnviados)="recibirLibros(libros)" [libro]="libro" [modo]="modo"></readapp-card-libro>
         }
-        <div *ngFor="let libro of librosRecibidos">
-          <readapp-card-libro [libro]="libro"></readapp-card-libro>
-        </div>
+
         <readapp-card-libro-mas (click) ="openModal()"></readapp-card-libro-mas>
       </section>
     </section>

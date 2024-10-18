@@ -154,13 +154,27 @@ export class UsuariosService {
     )
   }
 
+  // async getLibrosALeer(userId: number): Promise<Libro[]> {
+  //   const usuarioJSON = await lastValueFrom(
+  //     this.httpClient.get<UsuarioJSON>(`${REST_SERVER_URL}/usuarios/${userId}`)
+  //   )
+  //   console.log('Respuesta del servidor:', usuarioJSON) // Revisa la estructura del JSON
+  //   console.log('Respuesta del servidor:', usuarioJSON.librosPorLeer)
+  //   return usuarioJSON.librosPorLeer || []
+  // }
+
   async getLibrosALeer(userId: number): Promise<Libro[]> {
     const usuarioJSON = await lastValueFrom(
       this.httpClient.get<UsuarioJSON>(`${REST_SERVER_URL}/usuarios/${userId}`)
     )
-    // Devuelve directamente los librosALeer del usuario.
-    return usuarioJSON.librosALeer
+    // Convertir cada libro JSON en una instancia de la clase Libro
+    const libros = usuarioJSON.librosPorLeer.map((libroJson) =>
+      Libro.fromJson(libroJson)
+    )
+    console.log('aca tenes tus libros', libros)
+    return libros
   }
+
   async agregarLibrosALeer(
     librosRecibidos: Libro[],
     userId: number
