@@ -1,6 +1,13 @@
 import { Component, EventEmitter, Input, NgModule, Output } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { FormsModule } from '@angular/forms';
+import {UserSessionStorageService} from "../../services/service_user_session_storage/user-session-storage.service";
+
+
+export interface BuscarEvento {
+  palabraABuscar?:string
+  idUsuario?: number
+}
 
 @Component({
   selector: 'readapp-barra-busqueda',
@@ -9,15 +16,27 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './barra-busqueda.component.html',
   styleUrl: './barra-busqueda.component.css'
 })
+
 export class BarraBusquedaComponent {
-  @Output() buscarPalabra: EventEmitter<string> = new EventEmitter()
+  @Output() buscarPalabra: EventEmitter<BuscarEvento> = new EventEmitter()
   @Output() filtrarPrivadas: EventEmitter<boolean> = new EventEmitter()
   palabraABuscar?: string
+  idUsuario!: number
   @Input() showCheckBox = false
   mostrarPrivadas = false
 
+  constructor(private sessionStorage: UserSessionStorageService) {
+  }
+  ngOnInit(){
+    const idUsuarioAChequear = this.sessionStorage.obtenerIDuserSS()
+    if (idUsuarioAChequear != null) {
+      this.idUsuario = idUsuarioAChequear
+    }
+  }
+
   buscar(){
-    this.buscarPalabra.emit(this.palabraABuscar)
+    const evento: BuscarEvento = {palabraABuscar: this.palabraABuscar, idUsuario: this.idUsuario }
+    this.buscarPalabra.emit(evento)
   }
 
   soloPrivadas() {
