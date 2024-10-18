@@ -2,24 +2,13 @@
     <h1>Libros a leer</h1>
     <section class="contenedor-cartas">
       <section class="grid-libros">
-        @for (libro of librosLeidos; track libro) {
-          <readapp-card-libro 
-            [libro]="libro" 
-            [modo]="'detalle'">
-          </readapp-card-libro>
+        @for (libro of librosRecibidos; track libro; let i = $index) {
+          <readapp-card-libro (librosEnviados)="recibirLibros(libros)" [libro]="libro" [modo]="modo"></readapp-card-libro>
         }
-      </section>
-    </section>
-  
-    <h1>Libros por Leer</h1>
-    <section class="contenedor-cartas">
-      <section class="grid-libros">
-        @for (libro of librosPorLeer; track libro) {
-          <readapp-card-libro 
-            [libro]="libro" 
-            [modo]="'detalle'">
-          </readapp-card-libro>
-        }
+        <div *ngFor="let libro of librosRecibidos">
+          <readapp-card-libro [libro]="libro"></readapp-card-libro>
+        </div>
+        <readapp-card-libro-mas (click) ="openModal()"></readapp-card-libro-mas>
       </section>
     </section>
   
@@ -27,5 +16,13 @@
       <button class="boton_cancelar" type="submit">Cancelar</button>
       <button class="boton_guardar" type="submit">Guardar cambios</button>
     </div>
+
+            <!-- Modal -->
+          <readapp-modal *ngIf="isModalOpen" 
+            [isModalOpen]="isModalOpen" 
+            (close)="closeModal()"
+            (librosEnviados)="recibirLibros($event)"          >
+            >
+          </readapp-modal>
 </div>
   
