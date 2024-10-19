@@ -155,15 +155,14 @@ export class PerfilInfoComponent {
             this.usuarioEditable.perfilLista.splice(index, 1);
         }
     }
-}
+  }
 
 
   guardar() {
     this.usuarioEditable.fechaNacimiento = this.fechaNacimiento === '' ? undefined : dayjs(this.fechaNacimiento).toDate()
    this.usuarioEditable.guardarDatos()
    this.llamarServerPutUS()
-   window.location.reload();
-   
+ 
   }
 
   async llamarServerPutUS(){
@@ -179,7 +178,6 @@ export class PerfilInfoComponent {
   }
   
 
-
   cancelar() {
   this.obtenerDatosUsuario(this.usuario.id!)
   
@@ -189,7 +187,9 @@ export class PerfilInfoComponent {
     this.saveOK = true
     setTimeout(() => {
     this.saveOK = false;
+    window.location.reload();
     }, 3000)
+
   }
 
   navegarA(ruta : string) {

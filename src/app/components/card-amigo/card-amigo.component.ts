@@ -6,6 +6,7 @@ import { Usuario } from '../../domain/usuario';
 import { ModalComponent } from '../modal/modal.component';
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service';
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service';
+import { AmigosService } from '../../services/service_amigos/amigos.service';
 
 @Component({
   selector: 'readapp-card-amigo',
@@ -22,11 +23,13 @@ export class CardAmigoComponent {
   @Input() esModal: boolean = false;
   iduserActual: number = 0
   isActive: boolean = false;
+  isActiveTrash: boolean = false;
 
  
   constructor(
     private userServiceUS: UsuariosService,
-    private sessionStorage: UserSessionStorageService)
+    private sessionStorage: UserSessionStorageService,
+    private amigoService: AmigosService)
   {}
 
   
@@ -40,10 +43,18 @@ export class CardAmigoComponent {
     this.isActive = !this.isActive; 
   }
 
-  async agregarAmigo(){
-    
-    await this.userServiceUS.agregarAmigo(this.amigo.id!, this.iduserActual)
+  toggleActivateTrash(){
+    this.isActiveTrash = !this.isActiveTrash; 
+  }
 
+  async agregarAmigo(amigo:Usuario){
+    this.amigoService.stageAmigosPorGuardar.push(amigo)
+  }
+
+  async eliminarAmigo(amigo:Usuario){
+    console.log(amigo)
+    this.amigoService.stageAmigosPorEliminar.push(amigo)
+    
   }
 
 

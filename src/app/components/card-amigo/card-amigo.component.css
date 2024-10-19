@@ -14,6 +14,11 @@
    
 }
 
+.carta_amigo.trashActivate{
+    background-color: rgb(168, 70, 70);
+    color: aliceblue;
+}
+
 .carta_amigo img {
     max-width: 6.8rem;
     border-radius: 50%;
@@ -37,7 +42,7 @@
 .amigo_info h3 {
     text-align: start;
     font-size: 1.4em;
-    color: var(--color-marron);
+    color: rgb(102, 97, 97);
 }
 
 
@@ -98,6 +103,7 @@
     font-weight: bold;
     color: #000;
 }
+
 
 
 @media all and (max-width: 76.8rem) and (min-width: 40.1rem) {
