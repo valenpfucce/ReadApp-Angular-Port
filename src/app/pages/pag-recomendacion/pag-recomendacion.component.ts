@@ -13,11 +13,12 @@ import {FormsModule} from "@angular/forms";
 import {ModalComponent} from "../../components/modal/modal.component";
 import {CommonModule, NgIf} from "@angular/common";
 import {Libro} from "../../domain/libro";
+import {ModalValoracionComponent} from "../../components/modal-valoracion/modal-valoracion.component";
 
 @Component({
   selector: 'app-pag-recomendacion',
   standalone: true,
-  imports: [HeaderComponent, CardValoracionComponent, CardLibroComponent, CardLibroMasComponent, FormsModule, ModalComponent, NgIf, ModalComponent, CommonModule],
+  imports: [HeaderComponent, CardValoracionComponent, CardLibroComponent, CardLibroMasComponent, FormsModule, ModalComponent, NgIf, ModalComponent, ModalValoracionComponent, CommonModule],
   templateUrl: './pag-recomendacion.component.html',
   styleUrls: [
     '../../estilos_generales/cartas_libros.css',
@@ -170,6 +171,16 @@ export class PagRecomendacionComponent {
     this.isModalOpen = false // Cerrar el modal
   }
 
+  isModalValoracionOpen = false
+
+  openModalValoracion() {
+    console.log('Método openModal ejecutado') // Verificar si se ejecuta al hacer clic
+    this.isModalValoracionOpen = true
+  }
+
+  closeModalValoracion() {
+    this.isModalValoracionOpen = false
+  }
 
 }
 

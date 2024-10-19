@@ -1,0 +1,30 @@
+<div class="overlay" *ngIf="isModalValoracionOpen">
+  <div
+    class="modal-dialog"
+    *ngIf="isModalValoracionOpen"
+    (click)="$event.stopPropagation()"
+  >
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">{{tituloModal}}</h5>
+      <!-- modificar para que aparezcan los de usuario tambien -->
+      <button type="button" class="close" (click)="closeModal()">x</button>
+    </div>
+  </div>
+    <div class="autor-valoracion">
+    <img src="{{usuarioActual.imgperfil}}" class="foto-autor" alt="{{usuarioActual.nombre}}" />
+    <div class="flex nombre-autor">
+      <h1>{{usuarioActual.nombre}} {{usuarioActual.apellido}}</h1>
+<!--      <h4>{{valoracion.fecha}}</h4>-->
+    </div>
+  </div>
+  <div class="boton_container">
+    <button type="button" class="boton_cancelar" (click)="cancel()">
+      Cancelar
+    </button>
+    <button type="button" class="boton_guardar" (click)="saveChanges()">
+      Listo
+    </button>
+  </div>
+</div>
+</div>

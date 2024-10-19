@@ -1,0 +1,178 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  z-index: 1040; /* Asegura que esté por debajo del modal */
+}
+
+.modal-dialog {
+  position: fixed; /* Fijar el modal en la pantalla */
+  top: 50%; /* Centrar verticalmente */
+  left: 50%; /* Centrar horizontalmente */
+  transform: translate(-50%, -50%); /* Ajustar la posición para centrarlo completamente */
+  max-width: 90%; /* Ancho máximo del modal en pantallas grandes */
+  width: 50%; /* Que ocupe el ancho disponible en pantallas pequeñas */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh; /* Limitar la altura del modal al 80% de la pantalla */
+  overflow: hidden; /* Ocultar cualquier contenido que se salga del modal */
+  z-index: 1050; /* Asegura que esté por encima de otros elementos */
+  height: 100%;
+}
+/* Estilo para el header con el título y el botón de cerrar */
+.modal-header {
+  background-color: var(--color-beige-mas-claro);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 4rem;
+  padding: 0.4em;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  color: var(--color-bordo)
+}
+
+/* Estilos para el cuerpo del modal */
+.modal-body {
+  display: flex;
+  justify-content: center;
+  overflow-y: auto; /* Scroll solo en el contenido */
+  padding: 20px;
+  flex: 1; /* Para que la modal-body ocupe el espacio disponible */
+  max-height: calc(80vh - 120px); /* Limita la altura del contenido */
+}
+
+.contenedor-cartas {
+  margin-top: 4em;
+  justify-content: center;
+}
+
+.boton_container {
+  display: flex;
+  justify-content: center; /* Espacio entre los botones */
+  gap: 10px; /* Separar los botones entre sí */
+  padding: 10px;
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
+  box-sizing: border-box; /* Asegura que el padding no sobrepase el ancho del contenedor */
+}
+
+.boton_cancelar, .boton_guardar {
+  flex: 1; /* Asegura que ambos botones ocupen un espacio igual dentro del contenedor */
+  max-width: 30%; /* Asegura que los botones no sobrepasen el 45% del contenedor */
+  padding: 10px; /* Ajusta el padding para evitar que los botones se hagan muy grandes */
+  box-sizing: border-box;
+  font-size: 1.5rem;
+}
+
+.success-message {
+  position: fixed; /* Asegura que el mensaje de éxito esté posicionado sobre todo */
+  top: 50%; /* Centrado verticalmente */
+  left: 50%; /* Centrado horizontalmente */
+  transform: translate(-50%, -50%); /* Para que el mensaje se centre */
+  background-color: #dff0d8;
+  color: #3c763d;
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 9999; /* Asegura que esté por encima del modal */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.success-message img {
+  margin-right: 10px;
+  width: 24px; /* Ajusta el tamaño de la imagen */
+  height: auto;
+}
+
+.foto-autor {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-clarito);
+  margin: 10px;
+}
+
+.autor-valoracion {
+  display: flex;
+  font-size: 1rem;
+  justify-content: left;
+}
+
+.nombre-autor {
+  font-size: 15px;
+  align-items: self-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+
+/* Adaptación para móviles */
+@media (max-width: 768px) {
+  .modal-dialog {
+    width: 90%;
+    max-width: none;
+    max-height: 80%;
+  }
+  .modal-body {
+    padding: 10px;
+    max-height: calc(70vh - 100px);
+  }
+  .modal-header {
+    font-size: 2rem;
+  }
+  button {
+    padding: 8px 15px;
+  }
+  .boton_cancelar, .boton_guardar {
+    font-size: 0.9rem; /* Reducir el tamaño de la fuente en pantallas pequeñas */
+    padding: 8px; /* Reducir el padding para que los botones sean más compactos */
+  }
+
+
+}
+
+@media (max-width: 480px) {
+  .modal-dialog {
+    max-width: 100%;
+    padding: 5px;
+    margin: 0 auto;
+    border-radius: 6px;
+  }
+
+  .modal-title {
+    font-size: 2rem;
+  }
+
+  .close {
+    font-size: 2rem;
+  }
+
+  .modal-body {
+    max-height: calc(80vh - 120px);
+  }
+
+  .boton_cancelar, .boton_guardar {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+
+}
+
