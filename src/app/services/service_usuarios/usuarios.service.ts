@@ -160,7 +160,7 @@ export class UsuariosService {
       const response = await lastValueFrom(
         this.httpClient.patch(
           `${REST_SERVER_URL}/usuarios/${userId}/agregar-libros-leer`,
-          librosIDs // Envía solo la lista de IDs
+          librosIDs
         )
       )
       console.log('IDs enviados exitosamente al backend', response)

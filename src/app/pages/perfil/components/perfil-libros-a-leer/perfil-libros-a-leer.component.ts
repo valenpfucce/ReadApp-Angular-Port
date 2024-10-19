@@ -86,28 +86,10 @@ export class PerfilLibrosALeerComponent implements OnInit {
   }
 
   async saveChanges() {
-    // // console.log('Libros recibidos:', this.librosRecibidos)
-    // try {
-    //   await this.userServiceUS.agregarLibrosALeer(
-    //     this.userIdSS,
-    //     this.librosRecibidos
-    //   )
-    //   console.log('Libros añadidos correctamente a la lista de libros por leer')
-    //   // this.cargarLibrosALeer()
-    //   this.reloadPage()
-    // } catch (error) {
-    //   console.error(
-    //     'Error al agregar los libros o al obtener la lista actualizada:',
-    //     error
-    //   )
-    //   if (error instanceof Error) {
-    //     console.error('Mensaje de error:', error.message)
-    //   }
-    // }
-    const librosIDs = this.librosRecibidos.map((libro) => libro.id) // Solo IDs
+    const librosIDs = this.librosRecibidos.map((libro) => libro.id)
 
     try {
-      await this.userServiceUS.agregarLibrosALeer(this.userIdSS, librosIDs) // Enviar solo los IDs
+      await this.userServiceUS.agregarLibrosALeer(this.userIdSS, librosIDs)
       console.log('Libros añadidos correctamente a la lista de libros por leer')
       // this.reloadPage()
     } catch (error) {
