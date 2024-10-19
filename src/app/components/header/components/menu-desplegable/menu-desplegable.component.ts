@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { HeaderComponent } from "../../header.component";
+
 import { Router } from '@angular/router'
 
 @Component({
   selector: 'readapp-menu-desplegable',
   standalone: true,
-  imports: [HeaderComponent],
+  imports: [],
   templateUrl: './menu-desplegable.component.html',
   styleUrl: './menu-desplegable.component.css'
 })
