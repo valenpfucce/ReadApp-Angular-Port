@@ -27,9 +27,12 @@ export class UsuariosService {
     this.validador = new sistemaValidacion()
   }
 
-
   async getUserById(userIdSS: number | null): Promise<Usuario> {
-    const usuarioJSON = await lastValueFrom(this.httpClient.get<UsuarioJSON>(`${REST_SERVER_URL}/usuarios/` + userIdSS))
+    const usuarioJSON = await lastValueFrom(
+      this.httpClient.get<UsuarioJSON>(
+        `${REST_SERVER_URL}/usuarios/` + userIdSS
+      )
+    )
 
     if (!usuarioJSON) {
       throw new Error('Usuario Invalido')
@@ -146,25 +149,26 @@ export class UsuariosService {
     )
   }
 
-  async agregarLibrosALeer(userId: number, libros: Libro[]): Promise<void> {
-    console.log('esto tengo que mandar', libros)
+  async agregarLibrosALeer(userId: number, librosIDs: number[]): Promise<void> {
+    console.log('IDs que se están enviando:', librosIDs)
+
     try {
-      console.log('Enviando los siguientes libros al backend:', libros)
+      console.log(
+        'Enviando los siguientes IDs de libros al backend:',
+        librosIDs
+      )
       const response = await lastValueFrom(
         this.httpClient.patch(
           `${REST_SERVER_URL}/usuarios/${userId}/agregar-libros-leer`,
-          libros
+          librosIDs // Envía solo la lista de IDs
         )
       )
-      console.log('Libros enviados exitosamente al backend', response)
+      console.log('IDs enviados exitosamente al backend', response)
     } catch (error) {
       console.error(
         'Error al agregar los libros o al obtener la lista actualizada:',
         error
       )
-      if (error instanceof Error) {
-        console.error('Mensaje de error:', error.message)
-      }
     }
   }
 }

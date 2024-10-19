@@ -61,7 +61,7 @@ export class PerfilLibrosALeerComponent implements OnInit {
   async cargarLibrosALeer(userIdSS: number) {
     this.userIdSS = userIdSS
     try {
-      const usuario = await this.userServiceUS.getUserId(userIdSS)
+      const usuario = await this.userServiceUS.getUserById(userIdSS)
       console.log('Datos originales del backend:', usuario.librosPorLeer)
       this.librosALeer = usuario.librosPorLeer.map((libroBackend: any) =>
         Libro.fromBackend(libroBackend)
@@ -104,6 +104,18 @@ export class PerfilLibrosALeerComponent implements OnInit {
     //     console.error('Mensaje de error:', error.message)
     //   }
     // }
+    const librosIDs = this.librosRecibidos.map((libro) => libro.id) // Solo IDs
+
+    try {
+      await this.userServiceUS.agregarLibrosALeer(this.userIdSS, librosIDs) // Enviar solo los IDs
+      console.log('Libros añadidos correctamente a la lista de libros por leer')
+      // this.reloadPage()
+    } catch (error) {
+      console.error(
+        'Error al agregar los libros o al obtener la lista actualizada:',
+        error
+      )
+    }
   }
 
   reloadPage() {
