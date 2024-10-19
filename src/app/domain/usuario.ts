@@ -52,7 +52,7 @@ export class Usuario {
     public mail: string = '',
     public fechaNacimiento?: Date,
     public vpromedio: number = 0,
-    public formaDeLeer: FormaDeLeer = this.insanciarFormaLeer("Promedio"),
+    public formaDeLeer: FormaDeLeer = Usuario.insanciarFormaLeer("Promedio"),
     public perfilLista: string[] = [], //es tipo de lectura, llega como objetos
     public librosLeidos: Libro[] = [],
     public librosPorLeer: Libro[] = [],
