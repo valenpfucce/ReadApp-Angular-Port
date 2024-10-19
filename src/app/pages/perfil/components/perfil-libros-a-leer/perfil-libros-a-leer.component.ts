@@ -37,10 +37,10 @@ export class PerfilLibrosALeerComponent implements OnInit {
   libros: Libro[] = []
   librosRecibidos: Libro[] = []
   librosALeer!: Libro[]
-  librosTotales: Libro[] = []
   modo!: 'detalle' | 'edicion'
   isModalOpen = false
   userIdSS!: number
+
   constructor(
     private librosService: LibrosService,
     private sessionStorage: UserSessionStorageService,
@@ -48,35 +48,28 @@ export class PerfilLibrosALeerComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    const userIdSS = this.sessionStorage.obtenerIDuserSS()
-    if (userIdSS != null) {
-      await this.userServiceUS
-        .getLibrosALeer(userIdSS)
-        .then((libros) => {
-          this.librosALeer = libros
-          console.log('Estos son los libros a leer:', this.librosALeer)
-        })
-        .catch((error) => {
-          console.error('Error obteniendo libros a leer:', error)
-        })
+    const user = this.sessionStorage.obtenerIDuserSS()
+    console.log(user)
+
+    if (user != null) {
+      this.cargarLibrosALeer(user)
     } else {
       console.error('El userId es nulo')
     }
-
-    await this.cargarLibrosALeer()
   }
 
-  async cargarLibrosALeer(): Promise<void> {
+  async cargarLibrosALeer(userIdSS: number) {
+    this.userIdSS = userIdSS
     try {
-      // Obtener la lista de libros por leer desde el backend
-      this.librosALeer = await this.userServiceUS.getLibrosALeer(this.userIdSS)
+      const usuario = await this.userServiceUS.getUserById(userIdSS)
+      console.log('Datos originales del backend:', usuario.librosPorLeer)
+      this.librosALeer = usuario.librosPorLeer.map((libroBackend: any) =>
+        Libro.fromBackend(libroBackend)
+      )
+      console.log('Libros transformados:', this.librosALeer)
     } catch (error) {
       console.error('Error al cargar la lista de libros por leer:', error)
     }
-  }
-
-  trackByFn(item: Libro) {
-    return item.id // Usamos el ID del libro para hacer tracking en el *ngFor
   }
 
   openModal() {
@@ -92,57 +85,31 @@ export class PerfilLibrosALeerComponent implements OnInit {
     this.librosRecibidos = libros
   }
 
-  // // Fusionamos las listas de libros (los actuales y los nuevos) eliminando duplicados.
-  // fusionarListasLibros(
-  //   librosActuales: Libro[],
-  //   librosRecibidos: Libro[]
-  // ): Libro[] {
-  //   const librosUnicos = new Map<number, Libro>()
+  quitarLibro(libro: Libro) {
+    const index = this.librosALeer.findIndex(l => l.id === libro.id);
 
-  //   // Agregamos los libros actuales al mapa (clave es el id del libro)
-  //   librosActuales.forEach((libro) => {
-  //     librosUnicos.set(libro.id, libro)
-  //   })
-
-  //   // Agregamos los nuevos libros, solo si no están ya en la lista
-  //   librosRecibidos.forEach((libro) => {
-  //     if (!librosUnicos.has(libro.id)) {
-  //       librosUnicos.set(libro.id, libro)
-  //     }
-  //   })
-
-  //   // Convertimos el mapa de vuelta en un array
-  //   return Array.from(librosUnicos.values())
-  // }
+    // Verifica que el libro existe en la lista antes de eliminarlo
+    if (index !== -1) {
+      this.librosALeer.splice(index, 1);
+    }
+  }
 
   async saveChanges() {
-    console.log('Libros recibidos:', this.librosRecibidos)
+    const librosIDs = this.librosRecibidos.map((libro) => libro.id)
 
     try {
-      await this.userServiceUS.agregarLibrosALeer(
-        this.userIdSS,
-        this.librosRecibidos
-      )
+      await this.userServiceUS.agregarLibrosALeer(this.userIdSS, librosIDs)
       console.log('Libros añadidos correctamente a la lista de libros por leer')
-
-      // Volver a cargar la lista de libros del usuario tras añadir los libros
-      this.librosALeer = await this.userServiceUS.getLibrosALeer(this.userIdSS)
-
-      // Limpiar la lista de libros recibidos
-      this.librosRecibidos = []
+      // this.reloadPage()
     } catch (error) {
       console.error(
         'Error al agregar los libros o al obtener la lista actualizada:',
         error
       )
-      if (error instanceof Error) {
-        console.error('Mensaje de error:', error.message)
-      }
     }
   }
 
   reloadPage() {
     window.location.reload()
-    console.log('soy un refresh')
   }
 }

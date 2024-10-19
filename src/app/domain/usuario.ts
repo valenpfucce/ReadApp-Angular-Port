@@ -1,16 +1,8 @@
-import { Entidad } from './entidad'
-import { Recomendacion } from './recomendacion'
-import { FORMATO_FECHA } from '../services/configuration'
+import {Recomendacion} from './recomendacion'
+import {FORMATO_FECHA} from '../services/configuration'
 import dayjs from 'dayjs'
-import { Libro } from './libro'
-import {
-  FormaDeLeer,
-  Promedio,
-  Ansioso,
-  Fanatico,
-  Recurrente,
-  Perfil
-} from './formaDeLeer'
+import {Libro} from './libro'
+import {Ansioso, Fanatico, FormaDeLeer, Promedio, Recurrente} from './formaDeLeer'
 
 export type AmigosJSON = {
   id: number
@@ -60,7 +52,7 @@ export class Usuario {
     public mail: string = '',
     public fechaNacimiento?: Date,
     public vpromedio: number = 0,
-    public formaDeLeer?: FormaDeLeer,
+    public formaDeLeer: FormaDeLeer = this.insanciarFormaLeer("Promedio"),
     public perfilLista: string[] = [], //es tipo de lectura, llega como objetos
     public librosLeidos: Libro[] = [],
     public librosPorLeer: Libro[] = [],
@@ -122,6 +114,10 @@ export class Usuario {
     return libro.cant_palabras_libro / this.vpromedio
   }
 
+  tiempoDeLectura(libro : Libro): number {
+      return this.formaDeLeer.tiempoDeLectura(libro, this)
+  }
+
   hasErrors(field: string): boolean {
     return this.errors.some((_) => _.field == field)
   }
@@ -131,10 +127,6 @@ export class Usuario {
       .filter((_) => _.field == field)
       .map((_) => _.message)
       .join('. ')
-  }
-
-  agregarRecomendacionAValorar(recomendacion: Recomendacion) {
-    this.recomendacionesAValorar?.push(recomendacion)
   }
 
   // fechaString(): string | undefined {

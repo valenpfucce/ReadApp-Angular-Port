@@ -86,7 +86,7 @@ export class PagRecomendacionComponent {
   }
 
   async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
-    const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
+    const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
     this.usuario = usuarioEnLinea
   }
 
@@ -128,6 +128,15 @@ export class PagRecomendacionComponent {
         this.guardarRecomendacion.lista_libros.push(libroNuevo);
       }
     })
+  }
+
+  quitarLibro(libro: Libro) {
+    const index = this.guardarRecomendacion.lista_libros.findIndex(l => l.id === libro.id);
+
+    // Verifica que el libro existe en la lista antes de eliminarlo
+    if (index !== -1) {
+      this.guardarRecomendacion.lista_libros.splice(index, 1);
+    }
   }
   //FIN EDICION <===
 

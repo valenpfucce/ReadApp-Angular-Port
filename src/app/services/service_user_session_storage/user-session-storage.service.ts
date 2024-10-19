@@ -57,7 +57,7 @@ export class UserSessionStorageService {
   }
 
   async obtenerDatosUsuario(userIdSS : number | null ){
-    const usuarioEnLinea = await this.userService.getUserId(userIdSS)
+    const usuarioEnLinea = await this.userService.getUserById(userIdSS)
     return usuarioEnLinea;
   }
 

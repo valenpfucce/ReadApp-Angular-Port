@@ -27,12 +27,13 @@ export class UsuariosService {
     this.validador = new sistemaValidacion()
   }
 
-  async getUserId(userIdSS: number | null): Promise<Usuario> {
-    //GetUserById
+  async getUserById(userIdSS: number | null): Promise<Usuario> {
+    const usuarioJSON = await lastValueFrom(
+      this.httpClient.get<UsuarioJSON>(
+        `${REST_SERVER_URL}/usuarios/` + userIdSS
+      )
+    )
 
-
-    const usuarioJSON = await lastValueFrom(this.httpClient.get<UsuarioJSON>(`${REST_SERVER_URL}/usuarios/` + userIdSS))
-  
     if (!usuarioJSON) {
       throw new Error('Usuario Invalido')
     }
@@ -66,14 +67,16 @@ export class UsuariosService {
       .pipe(map((response) => response?.id || null))
   }
 
-
-  async actualizarUsuario(usuarioBack: Usuario, usuarioEditable:Usuario): Promise<void> {
-
+  async actualizarUsuario(
+    usuarioBack: Usuario,
+    usuarioEditable: Usuario
+  ): Promise<void> {
     await lastValueFrom(
-      this.httpClient.put<void>(`${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id, usuarioEditable.toJSON())
+      this.httpClient.put<void>(
+        `${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id,
+        usuarioEditable.toJSON()
+      )
     )
-
-
   }
 
   navegarALogin() {
@@ -126,33 +129,26 @@ export class UsuariosService {
     )
   }
 
-  async getLibrosALeer(userId: number): Promise<Libro[]> {
-    const usuarioJSON = await lastValueFrom(
-      this.httpClient.get<UsuarioJSON>(`${REST_SERVER_URL}/usuarios/${userId}`)
-    )
-    // Convertir cada libro JSON en una instancia de la clase Libro
-    const libros = usuarioJSON.librosPorLeer.map((libroJson) =>
-      Libro.fromApiResponse(libroJson)
-    )
-    console.log('aca tenes tus libros', libros)
-    return libros
-  }
+  async agregarLibrosALeer(userId: number, librosIDs: number[]): Promise<void> {
+    console.log('IDs que se están enviando:', librosIDs)
 
-  async agregarLibrosALeer(userId: number, libros: Libro[]): Promise<void> {
     try {
-      console.log('Enviando los siguientes libros al backend:', libros)
-      const response = await this.httpClient
-        .post(`${REST_SERVER_URL}/usuarios/${userId}/librosALeer`, libros)
-        .toPromise()
-      console.log('Libros enviados exitosamente al backend', response)
+      console.log(
+        'Enviando los siguientes IDs de libros al backend:',
+        librosIDs
+      )
+      const response = await lastValueFrom(
+        this.httpClient.patch(
+          `${REST_SERVER_URL}/usuarios/${userId}/agregar-libros-leer`,
+          librosIDs
+        )
+      )
+      console.log('IDs enviados exitosamente al backend', response)
     } catch (error) {
       console.error(
         'Error al agregar los libros o al obtener la lista actualizada:',
         error
       )
-      if (error instanceof Error) {
-        console.error('Mensaje de error:', error.message)
-      }
     }
   }
 }

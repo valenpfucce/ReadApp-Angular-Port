@@ -3,9 +3,12 @@ import { LibrosService } from '../../services/service_libros/libros.service'
 import { Libro } from '../../domain/libro'
 import { CommonModule } from '@angular/common'
 import { CardLibroComponent } from '../card-libro/card-libro.component'
-import {BarraBusquedaComponent, BuscarEvento} from '../barra-busqueda/barra-busqueda.component'
-import { CardAmigoComponent } from '../card-amigo/card-amigo.component';
-import { Router } from '@angular/router';
+import {
+  BarraBusquedaComponent,
+  BuscarEvento
+} from '../barra-busqueda/barra-busqueda.component'
+import { CardAmigoComponent } from '../card-amigo/card-amigo.component'
+import { Router } from '@angular/router'
 import { Usuario } from '../../domain/usuario'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
@@ -36,7 +39,7 @@ export class ModalComponent implements OnInit {
   usuarioActual!: Usuario
 
 
-  @Input() isModalOpen: boolean = false // Aquí declaras la propiedad como Input
+  @Input() isModalOpen: boolean = false
   @Output() close = new EventEmitter<void>()
   @Output() librosEnviados = new EventEmitter<Libro[]>()
   @Input() recomendacionNum: number = 0
@@ -53,6 +56,7 @@ export class ModalComponent implements OnInit {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     this.obtenerDatosUsuario(userIdSS)
     await this.loadLibros() // Llama a la función para cargar los libros
+
     this.rutaActual = this.router.url
     await this.getUsuarios(userIdSS!)
     this.asignarTitulo()
@@ -87,20 +91,22 @@ export class ModalComponent implements OnInit {
 
   async loadLibros(): Promise<void> {
     try {
-      this.libros = await this.librosService.busquedaLibros(undefined) // Obtiene los libros del servicio
+      this.libros = await this.librosService.busquedaLibros(undefined)
     } catch (error) {
       console.error('Error al cargar los libros en front:', error)
     }
   }
-  
-  async buscar(evento: BuscarEvento): Promise<void> {
-    if(this.tituloModal == "Todos los usuarios"){
-      console.log(false)
-      this.amigos = await this.userServiceUS.getUsuariosCard(evento.palabraABuscar)
-    }
-    else {
-      this.libros = await this.librosService.busquedaLibros(evento.palabraABuscar)
 
+  async buscar(evento: BuscarEvento): Promise<void> {
+    if (this.tituloModal == 'Todos los usuarios') {
+      console.log(false)
+      this.amigos = await this.userServiceUS.getUsuariosCard(
+        evento.palabraABuscar
+      )
+    } else {
+      this.libros = await this.librosService.busquedaLibros(
+        evento.palabraABuscar
+      )
     }
   }
 
