@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, NgModule, Output } from '@angular/core';
-import { HeaderComponent } from "../header/header.component";
+
 import { FormsModule } from '@angular/forms';
 import {UserSessionStorageService} from "../../services/service_user_session_storage/user-session-storage.service";
 
@@ -12,7 +12,7 @@ export interface BuscarEvento {
 @Component({
   selector: 'readapp-barra-busqueda',
   standalone: true,
-  imports: [HeaderComponent, FormsModule],
+  imports: [ FormsModule],
   templateUrl: './barra-busqueda.component.html',
   styleUrl: './barra-busqueda.component.css'
 })
