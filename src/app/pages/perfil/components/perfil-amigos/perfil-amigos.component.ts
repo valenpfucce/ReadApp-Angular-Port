@@ -8,6 +8,7 @@ import {CardLibroMasComponent} from "../../../../components/card-libro-mas/card-
 import { CardAmigoComponent } from '../../../../components/card-amigo/card-amigo.component';
 import { ModalComponent } from '../../../../components/modal/modal.component';
 import { CommonModule } from '@angular/common';
+import { AmigosService } from '../../../../services/service_amigos/amigos.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './perfil-amigos.component.css'
 })
 export class PerfilAmigosComponent {
-  usuario! : Usuario
+  userActivate! : number
   listaAmigos! : Usuario[]
   isModalOpen = false
   
@@ -26,29 +27,36 @@ export class PerfilAmigosComponent {
   constructor(
     private router: Router,
     private userServiceUS: UsuariosService,
-    private sessionStorage: UserSessionStorageService
+    private sessionStorage: UserSessionStorageService,
+    private amigoService: AmigosService
+
   ) {}
 
   ngOnInit() {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     this.obtenerAmigos(userIdSS)
-    console.log("id usuario",userIdSS)
 
   }
 
   async obtenerAmigos(userIdSS : number | null ): Promise<Usuario[]>{
-    this.listaAmigos = await this.userServiceUS.getAmigosId(userIdSS)
-    console.log("lista amigos",this.listaAmigos)
+    this.listaAmigos = await this.amigoService.getAmigosId(userIdSS)
+    this.userActivate = userIdSS!
     return this.listaAmigos
   }
   
+  guardarCambios(){
+    this.amigoService.enviarNuevosAmigos(this.userActivate)
+    this.amigoService.eliminarAmigo(this.userActivate)
+    window.location.reload();
+
+  }
+
   openModal() {
-    console.log('Método openModal ejecutado') // Verificar si se ejecuta al hacer clic
-    this.isModalOpen = true // Cambiar el estado para abrir el modal
+    this.isModalOpen = true 
   }
    
   closeModal() {
-    this.isModalOpen = false // Cerrar el modal
+    this.isModalOpen = false 
   }
 
   navegarA(ruta : string) {

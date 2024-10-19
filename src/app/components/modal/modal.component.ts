@@ -12,6 +12,7 @@ import { Router } from '@angular/router'
 import { Usuario } from '../../domain/usuario'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
+import { AmigosService } from '../../services/service_amigos/amigos.service'
 
 @Component({
   selector: 'readapp-modal',
@@ -35,8 +36,8 @@ export class ModalComponent implements OnInit {
   amigos!: Usuario[]
   rutaActual: String = ''
   tituloModal = ''
+  usuarioActual!: Usuario
 
-  usuarioIdActual!: number
 
   @Input() isModalOpen: boolean = false
   @Output() close = new EventEmitter<void>()
@@ -47,17 +48,26 @@ export class ModalComponent implements OnInit {
     private librosService: LibrosService,
     private router: Router,
     private userServiceUS: UsuariosService,
-    private sessionStorage: UserSessionStorageService
+    private sessionStorage: UserSessionStorageService,
+    private amigoService: AmigosService
   ) {}
 
   async ngOnInit(): Promise<void> {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
-    this.usuarioIdActual = userIdSS!
-    await this.loadLibros()
+    this.obtenerDatosUsuario(userIdSS)
+    await this.loadLibros() // Llama a la función para cargar los libros
+
     this.rutaActual = this.router.url
     await this.getUsuarios(userIdSS!)
     this.asignarTitulo()
   }
+   
+  async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
+    const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
+    this.usuarioActual = usuarioEnLinea
+   
+  }
+
 
   asignarTitulo() {
     switch (this.rutaActual) {
@@ -102,9 +112,11 @@ export class ModalComponent implements OnInit {
 
   async getUsuarios(idActual: number) {
     const amigosTODOS = await this.userServiceUS.getUsuariosCard()
-    const amigosFiltro = amigosTODOS.filter((amigo) => amigo.id !== idActual)
+    const amigosFiltroSesion = amigosTODOS.filter((amigo) => amigo.id !== this.usuarioActual.id)
+    const amigosFiltro = amigosFiltroSesion.filter((amigo) => !this.usuarioActual.amigos.includes(amigo.id!))
     this.amigos = amigosFiltro
   }
+
 
   seleccionarLibro(libro: Libro) {
     const index = this.librosSeleccionados.indexOf(libro)
@@ -133,7 +145,7 @@ export class ModalComponent implements OnInit {
     los libros que seleccione se manden al back */
 
     this.librosSeleccionados.forEach((libro) =>
-      this.librosService.agregarALibrosLeidos(libro.id, this.usuarioIdActual)
+      this.librosService.agregarALibrosLeidos(libro.id, this.usuarioActual.id!)
     )
 
     this.librosSeleccionados = []
@@ -142,5 +154,7 @@ export class ModalComponent implements OnInit {
 
   cancel() {
     this.closeModal()
+    this.amigoService.stageAmigosPorGuardar.splice(0, this.amigoService.stageAmigosPorGuardar.length);
+
   }
 }

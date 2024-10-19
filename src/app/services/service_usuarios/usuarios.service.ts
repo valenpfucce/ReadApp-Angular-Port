@@ -52,31 +52,11 @@ export class UsuariosService {
     const amigosLista = usuarioAmigos.map((AmigosJSON) =>
       Usuario.fromJsonAmigos(AmigosJSON)
     )
+    console.log("todos los usuarios",amigosLista )
     return amigosLista
   }
 
-  async getAmigosId(userId: number | null): Promise<Usuario[]> {
-    const usuarioAmigos = await lastValueFrom(
-      this.httpClient.get<AmigosJSON[]>(
-        REST_SERVER_URL + '/usuarios/amigos/' + userId
-      )
-    )
-
-    const amigosLista = usuarioAmigos.map((AmigosJSON) =>
-      Usuario.fromJsonAmigos(AmigosJSON)
-    )
-    return amigosLista
-  }
-
-  async agregarAmigo(amigoId: number, userId: number) {
-    await lastValueFrom(
-      this.httpClient.patch(
-        `${REST_SERVER_URL}/usuarios/${userId}/agregar-amigo/${amigoId}`,
-        {}
-      )
-    )
-  }
-
+ 
   putVerificationUser(
     mailLogin: string,
     contraseniaLogin: string

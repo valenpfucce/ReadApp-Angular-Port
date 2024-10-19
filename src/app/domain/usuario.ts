@@ -23,9 +23,7 @@ export type UsuarioJSON = {
   formaDeLeer: FormaDeLeer
   perfilLista: string[]
   librosLeidos: Libro[]
-
   librosPorLeer: Libro[] //AGUS ES TUYO?
-
   autoresPreferidos: string[]
   cantVecesLeido: Map<Libro['id'], number>
   imgperfil: string
@@ -76,19 +74,10 @@ export class Usuario {
       perfilLista: Array.isArray(usuarioJSON.perfilLista)
         ? usuarioJSON.perfilLista.map((perfilLista: any) =>
             perfilLista.type.toString()
-          ) // Convierte a string
+          ) 
         : [(usuarioJSON.perfilLista as any).type.toString()], // Si es un único perfil, lo envuelve en un array
-      formaDeLeer:
-        usuarioJSON.formaDeLeer.type == 'Ansioso'
-          ? (usuarioJSON.formaDeLeer = new Ansioso())
-          : usuarioJSON.formaDeLeer.type == 'Promedio'
-            ? (usuarioJSON.formaDeLeer = new Promedio())
-            : usuarioJSON.formaDeLeer.type == 'Fanatico'
-              ? (usuarioJSON.formaDeLeer = new Fanatico())
-              : usuarioJSON.formaDeLeer.type == 'Recurrente'
-                ? (usuarioJSON.formaDeLeer = new Recurrente())
-                : undefined
-
+      formaDeLeer: this.insanciarFormaLeer(usuarioJSON.formaDeLeer.type)
+      
       // autoresPreferidos: Array.isArray(usuarioJSON.autoresPreferidos)
       // ? usuarioJSON.autoresPreferidos.map((autor:any) => autor.type.toString()) // Convierte a string
       // : [(usuarioJSON.autoresPreferidos as any).type.toString()],
@@ -96,45 +85,22 @@ export class Usuario {
     console.log('usertest', usertest)
     return usertest
   }
+  
 
   static fromJsonAmigos(AmigosJSON: AmigosJSON) {
     const nuevoAmigo = Object.assign(new Usuario(), AmigosJSON)
     return nuevoAmigo
   }
 
-
-  insanciarFormaLeer(formaleer: 'Promedio' | 'Ansioso' | 'Fanatico' | 'Recurrente') {
+  static insanciarFormaLeer(formaleer: 'Promedio' | 'Ansioso' | 'Fanatico' | 'Recurrente') {
     const formas = {
       Promedio: new Promedio(),
       Ansioso: new Ansioso(),
       Fanatico: new Fanatico(),
       Recurrente: new Recurrente()
-
     }
     return formas[formaleer]
   }
-
-
-  // asignarFormaLeer(usuarioJSON:UsuarioJSON){
-  //   let formaDeLeer: FormaDeLeer | undefined;
-  //   switch (usuarioJSON.formaDeLeer?.type) {
-  //     case 'promedio':
-  //       formaDeLeer = new Promedio();
-  //       break;
-  //     case 'ansioso':
-  //       formaDeLeer = new Ansioso();
-  //       break;
-  //     case 'fanatico':
-  //       formaDeLeer = new Fanatico();
-  //       break;
-  //     case 'recurrente':
-  //       formaDeLeer = new Recurrente();
-  //       break;
-  //     default:
-  //       formaDeLeer = undefined;
-  //   }
-  // }
-
 
   guardarDatos(): boolean {
     this.validador.validarDatos(this)
@@ -178,7 +144,7 @@ export class Usuario {
 
   toJSON() {
     return {
-      id: this.idUsuarioNotNull(),
+      id: this.id,                //this.idUsuarioNotNull(),
       nombre: this.nombre,
       apellido: this.apellido,
       username: this.username,
@@ -188,13 +154,18 @@ export class Usuario {
       formaDeLeer: this.formaDeLeer!,
       perfilLista: this.perfilLista,
       librosLeidos: this.librosLeidos,
-
-      //autoresPreferidos: this.autoresPreferidos,
-      // amigos: this.amigos,
-      // cantVecesLeido: this.cantVecesLeido,
-
       imgperfil: this.imgperfil
     }
+  }
+
+  toAmigoDTO() {
+    return {
+      id: this.id,
+      nombre: this.nombre,
+      apellido: this.apellido,
+      username: this.username,
+      imgperfil: this.imgperfil,
+    };
   }
 
 }
