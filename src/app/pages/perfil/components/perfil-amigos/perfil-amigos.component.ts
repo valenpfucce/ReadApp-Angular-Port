@@ -51,6 +51,11 @@ export class PerfilAmigosComponent {
 
   }
 
+  cancelarCambios(){
+    this.amigoService.stageAmigosPorGuardar.splice(0, this.amigoService.stageAmigosPorGuardar.length);
+    window.location.reload();
+  }
+
   openModal() {
     this.isModalOpen = true 
   }
