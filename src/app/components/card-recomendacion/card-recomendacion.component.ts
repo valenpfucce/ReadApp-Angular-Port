@@ -19,6 +19,7 @@ export class CardRecomendacionComponent {
   corazonCliqueado!: boolean
   userIdSS! : number
   puedeEditar! : boolean
+  advertenciaVisible = false
   constructor(
     private serviceRecomendaciones: RecomendacionesService,
     private userServiceUS: UsuariosService,
@@ -35,6 +36,23 @@ export class CardRecomendacionComponent {
     } else {
       this.puedeEditar = false
     }
+  }
+
+  mostrarAdvertencia() {
+    this.advertenciaVisible = true
+  }
+
+  async eliminarRecomendacion(){
+    await this.serviceRecomendaciones.eliminarRecomendacion(this.recomendacion.id)
+    window.location.reload()
+  }
+
+  cancelarEliminar(){
+    this.cerrarAdvertencia();
+  }
+
+  cerrarAdvertencia() {
+    this.advertenciaVisible = false;
   }
 
   async puedeEditarRecomendacion() {

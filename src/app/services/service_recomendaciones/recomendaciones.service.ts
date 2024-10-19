@@ -78,9 +78,14 @@ export class RecomendacionesService {
   }
 
 
-async puedeValorarRecomendacion(recomendacionId : number, usuarioId: number): Promise<boolean> {
-    return await lastValueFrom(
-      this.httpClient.get<boolean>(REST_SERVER_URL + `/recomendaciones/${recomendacionId}/puede/valorar/usuario/${usuarioId}`)
+  async puedeValorarRecomendacion(recomendacionId : number, usuarioId: number): Promise<boolean> {
+      return await lastValueFrom(
+        this.httpClient.get<boolean>(REST_SERVER_URL + `/recomendaciones/${recomendacionId}/puede/valorar/usuario/${usuarioId}`)
+      )
+  }
+
+  async eliminarRecomendacion(recomendacionId: number){
+    await lastValueFrom(this.httpClient.patch(`${REST_SERVER_URL}/recomendaciones/eliminar-recomendacion/${recomendacionId}`, {})
     )
   }
 }
