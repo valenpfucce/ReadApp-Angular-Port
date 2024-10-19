@@ -129,6 +129,15 @@ export class PagRecomendacionComponent {
       }
     })
   }
+
+  quitarLibro(libro: Libro) {
+    const index = this.guardarRecomendacion.lista_libros.findIndex(l => l.id === libro.id);
+
+    // Verifica que el libro existe en la lista antes de eliminarlo
+    if (index !== -1) {
+      this.guardarRecomendacion.lista_libros.splice(index, 1);
+    }
+  }
   //FIN EDICION <===
 
   //===> DETALLE

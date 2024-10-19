@@ -33,7 +33,7 @@
       }
       @if (esModoEdicion()){
         @for (libro of guardarRecomendacion.lista_libros; track libro; let i = $index) {
-          <readapp-card-libro [libro]="libro" [modo]=this.modo></readapp-card-libro>
+          <readapp-card-libro [libro]="libro" [modo]=this.modo (libroABorrar)="this.quitarLibro($event)"></readapp-card-libro>
         }
         <readapp-card-libro-mas [tamanio] = "'grande'" (openModalEvent)="openModal()"></readapp-card-libro-mas>
       }

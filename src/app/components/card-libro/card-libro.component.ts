@@ -16,6 +16,7 @@ export class CardLibroComponent {
   @Input() libro!: Libro
   @Input() modo!: 'detalle' | 'edicion'
   @Input() esModal: boolean = false
+  @Output() libroABorrar = new EventEmitter<Libro>()
 
   //PRUEBA PARA VER SI ME IMPRIME, ELIMINARLO
   ngOnInit() {}
@@ -32,5 +33,9 @@ export class CardLibroComponent {
   esBestSeller() {
     //Aca tendria que hacer el calculo de si es best seller, hacerlo en el front o back???
     return true
+  }
+
+  borrarLibro(){
+    this.libroABorrar.emit(this.libro)
   }
 }

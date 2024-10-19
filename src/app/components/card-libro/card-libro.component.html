@@ -2,10 +2,10 @@
     <div class="contenido-carta">
       @if (mostrarBotonBorrar()) {
         <div class="iconos-inferior-derecha iconos-animacion">
-          <img src="../imagenes/trash.svg" class="iconos" alt="borrar"/>
+          <img src="../imagenes/trash.svg" class="iconos" alt="borrar" (click)="borrarLibro()"/>
         </div>
       }
-      
+
       <div *ngIf="esModal" class="iconos-inferior-derecha ">
         <button>Agregar Botón</button>
       </div>

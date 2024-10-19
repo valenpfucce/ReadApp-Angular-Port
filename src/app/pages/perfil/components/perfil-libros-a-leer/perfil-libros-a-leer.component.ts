@@ -85,6 +85,15 @@ export class PerfilLibrosALeerComponent implements OnInit {
     this.librosRecibidos = libros
   }
 
+  quitarLibro(libro: Libro) {
+    const index = this.librosALeer.findIndex(l => l.id === libro.id);
+
+    // Verifica que el libro existe en la lista antes de eliminarlo
+    if (index !== -1) {
+      this.librosALeer.splice(index, 1);
+    }
+  }
+
   async saveChanges() {
     const librosIDs = this.librosRecibidos.map((libro) => libro.id)
 
