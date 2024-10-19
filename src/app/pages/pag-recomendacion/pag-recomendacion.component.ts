@@ -86,7 +86,7 @@ export class PagRecomendacionComponent {
   }
 
   async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
-    const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
+    const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
     this.usuario = usuarioEnLinea
   }
 

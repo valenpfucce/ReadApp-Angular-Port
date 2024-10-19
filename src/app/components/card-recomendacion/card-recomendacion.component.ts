@@ -31,6 +31,7 @@ export class CardRecomendacionComponent {
       this.userIdSS = userIdSSAChequear
       this.puedeEditar = await this.puedeEditarRecomendacion()
       this.corazonCliqueado = await this.estaEnRecomendacionesAValorar()
+      this.calculoTiempoLecturaRecomendacion(this.recomendacion)
     } else {
       this.puedeEditar = false
     }
@@ -52,6 +53,12 @@ export class CardRecomendacionComponent {
 
   async estaEnRecomendacionesAValorar(): Promise<boolean>{
     return await this.userServiceUS.estaEnRecomendacionesAValorar(this.recomendacion.id, this.userIdSS)
+  }
+
+  async calculoTiempoLecturaRecomendacion(recomendacion: Recomendacion){
+    const usuario = await this.userServiceUS.getUserById(this.userIdSS)
+    const tiemposDeLecturaPorLibro = recomendacion.lista_libros.map(libro => usuario.tiempoDeLectura(libro))
+    recomendacion.tiempoLectura = tiemposDeLecturaPorLibro.reduce((acumulador, valorActual) => acumulador + valorActual, 0)/60
   }
 
 }

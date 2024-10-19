@@ -27,14 +27,9 @@ export class UsuariosService {
     this.validador = new sistemaValidacion()
   }
 
-  async getUserId(userIdSS: number | null): Promise<Usuario> {
-    //GetUserById
 
-    const usuarioJSON = await lastValueFrom(
-      this.httpClient.get<UsuarioJSON>(
-        `${REST_SERVER_URL}/usuarios/` + userIdSS
-      )
-    )
+  async getUserById(userIdSS: number | null): Promise<Usuario> {
+    const usuarioJSON = await lastValueFrom(this.httpClient.get<UsuarioJSON>(`${REST_SERVER_URL}/usuarios/` + userIdSS))
 
     if (!usuarioJSON) {
       throw new Error('Usuario Invalido')

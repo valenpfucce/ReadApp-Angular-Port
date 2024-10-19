@@ -55,7 +55,7 @@ export class PerfilInfoComponent {
   }
 
   async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
-    const usuarioEnLinea = await this.userServiceUS.getUserId(userIdSS)
+    const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
     this.usuario = usuarioEnLinea
     this.usuarioEditable = usuarioEnLinea
     this.comprobarFormaDeLeer()
@@ -77,7 +77,7 @@ export class PerfilInfoComponent {
       this.esRecurrente = true;
     }
   }
-  
+
   cambioFormaLeerPUT(formaleer: string) {
     switch (formaleer) {
         case 'Promedio':
@@ -101,7 +101,7 @@ export class PerfilInfoComponent {
             break;
     }
 }
-  
+
 
 //ViweChild accede al elemnto del html con el #tipoPerfil, en este caso los checks
   @ViewChild('precavido', { static: false }) precavidoRef!: ElementRef;
@@ -163,7 +163,7 @@ export class PerfilInfoComponent {
    this.usuarioEditable.guardarDatos()
    this.llamarServerPutUS()
    window.location.reload();
-   
+
   }
 
   async llamarServerPutUS(){
@@ -177,12 +177,12 @@ export class PerfilInfoComponent {
         }, 5000);
       }
   }
-  
+
 
 
   cancelar() {
   this.obtenerDatosUsuario(this.usuario.id!)
-  
+
   }
 
   indicarGuardadoExitoso(){
