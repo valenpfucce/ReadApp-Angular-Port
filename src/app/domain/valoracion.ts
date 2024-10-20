@@ -13,3 +13,12 @@ export class Valoracion {
   ) {}
 
 }
+
+export class ValoracionDTO {
+  constructor(
+    public creadorId: number,
+    public valor: number,
+    public comentario: string,
+  ) {}
+
+}

@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http'
 import {firstValueFrom, lastValueFrom} from 'rxjs'
 import {Recomendacion, RecomendacionJSON} from '../../domain/recomendacion'
 import {RecomendacionUpdateDTO} from "../../dto/repositorioDTO";
+import {ValoracionDTO} from "../../domain/valoracion";
 
 @Injectable({
   providedIn: 'root'
@@ -82,6 +83,17 @@ export class RecomendacionesService {
       return await lastValueFrom(
         this.httpClient.get<boolean>(REST_SERVER_URL + `/recomendaciones/${recomendacionId}/puede/valorar/usuario/${usuarioId}`)
       )
+  }
+
+  async valorarRecomendacion(recomendacionId : number, valoracionDTO : ValoracionDTO){
+    try {
+      const response = await firstValueFrom(this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/` + recomendacionId + `/agregar/valoracion`, valoracionDTO))
+      console.log("Respuesta recibida:", response)
+      return response;
+    } catch (error) {
+      console.error("Error al enviar al back:", error)
+      throw error
+    }
   }
 
   async eliminarRecomendacion(recomendacionId: number){

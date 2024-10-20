@@ -23,7 +23,6 @@
   max-height: 85vh; /* Limitar la altura del modal al 80% de la pantalla */
   overflow: hidden; /* Ocultar cualquier contenido que se salga del modal */
   z-index: 1050; /* Asegura que esté por encima de otros elementos */
-  height: 100%;
 }
 /* Estilo para el header con el título y el botón de cerrar */
 .modal-header {
@@ -47,10 +46,13 @@
   color: var(--color-bordo)
 }
 
+.error-message p {
+  color: var(--color-bordo);
+  font-size: 2rem;
+}
+
 /* Estilos para el cuerpo del modal */
 .modal-body {
-  display: flex;
-  justify-content: center;
   overflow-y: auto; /* Scroll solo en el contenido */
   padding: 20px;
   flex: 1; /* Para que la modal-body ocupe el espacio disponible */
@@ -65,10 +67,15 @@
 .boton_container {
   display: flex;
   justify-content: center; /* Espacio entre los botones */
+  align-content: center;
   gap: 10px; /* Separar los botones entre sí */
   padding: 10px;
   width: 100%; /* Asegura que ocupe todo el ancho disponible */
   box-sizing: border-box; /* Asegura que el padding no sobrepase el ancho del contenedor */
+}
+
+.boton_container button{
+  margin: 0;
 }
 
 .boton_cancelar, .boton_guardar {
@@ -158,9 +165,9 @@
 }
 
 .textarea-auto-ajustable {
-  margin-bottom: 30px;
   width: 90%;
-  height: 25rem;
+  min-height: 20rem;
+  height: auto;
   padding: 0.5em;
   font-size: 1em;
   font-family:var(--fuente-default) ;
@@ -180,6 +187,10 @@
   color: red;
 }
 
+.cambio-botones-container{
+  margin-bottom: 2rem;
+  border-top: none;
+}
 
 /* Adaptación para móviles */
 @media (max-width: 768px) {
