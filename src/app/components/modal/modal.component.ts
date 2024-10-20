@@ -38,7 +38,6 @@ export class ModalComponent implements OnInit {
   tituloModal = ''
   usuarioActual!: Usuario
 
-
   @Input() isModalOpen: boolean = false
   @Output() close = new EventEmitter<void>()
   @Output() librosEnviados = new EventEmitter<Libro[]>()
@@ -61,13 +60,11 @@ export class ModalComponent implements OnInit {
     await this.getUsuarios(userIdSS!)
     this.asignarTitulo()
   }
-   
-  async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
+
+  async obtenerDatosUsuario(userIdSS: number | null): Promise<void> {
     const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
     this.usuarioActual = usuarioEnLinea
-   
   }
-
 
   asignarTitulo() {
     switch (this.rutaActual) {
@@ -112,11 +109,14 @@ export class ModalComponent implements OnInit {
 
   async getUsuarios(idActual: number) {
     const amigosTODOS = await this.userServiceUS.getUsuariosCard()
-    const amigosFiltroSesion = amigosTODOS.filter((amigo) => amigo.id !== this.usuarioActual.id)
-    const amigosFiltro = amigosFiltroSesion.filter((amigo) => !this.usuarioActual.amigos.includes(amigo.id!))
+    const amigosFiltroSesion = amigosTODOS.filter(
+      (amigo) => amigo.id !== this.usuarioActual.id
+    )
+    const amigosFiltro = amigosFiltroSesion.filter(
+      (amigo) => !this.usuarioActual.amigos.includes(amigo.id!)
+    )
     this.amigos = amigosFiltro
   }
-
 
   seleccionarLibro(libro: Libro) {
     const index = this.librosSeleccionados.indexOf(libro)
@@ -154,7 +154,9 @@ export class ModalComponent implements OnInit {
 
   cancel() {
     this.closeModal()
-    this.amigoService.stageAmigosPorGuardar.splice(0, this.amigoService.stageAmigosPorGuardar.length);
-
+    this.amigoService.stageAmigosPorGuardar.splice(
+      0,
+      this.amigoService.stageAmigosPorGuardar.length
+    )
   }
 }

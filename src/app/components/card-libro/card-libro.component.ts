@@ -3,6 +3,7 @@ import { JoinListaGuionPipe } from '../../pipes/join_lista_guion_pipe/join-lista
 import { CortarPalabraPipe } from '../../pipes/cortar-palabra-pipe/cortar-palabra.pipe'
 import { Libro } from '../../domain/libro'
 import { CommonModule } from '@angular/common'
+import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
 
 @Component({
   selector: 'readapp-card-libro',
@@ -13,10 +14,15 @@ import { CommonModule } from '@angular/common'
 })
 export class CardLibroComponent {
   librosSeleccionados: Libro[] = []
+  isActive: boolean = false
+  isActiveTrash: boolean = false
+
   @Input() libro!: Libro
   @Input() modo!: 'detalle' | 'edicion'
   @Input() esModal: boolean = false
   @Output() libroABorrar = new EventEmitter<Libro>()
+
+  constructor(private userServiceUS: UsuariosService) {}
 
   //PRUEBA PARA VER SI ME IMPRIME, ELIMINARLO
   ngOnInit() {}
@@ -35,7 +41,23 @@ export class CardLibroComponent {
     return true
   }
 
-  borrarLibro(){
+  borrarLibro() {
     this.libroABorrar.emit(this.libro)
+  }
+
+  toggleActive() {
+    this.isActive = !this.isActive
+  }
+
+  toggleActivateTrash() {
+    this.isActiveTrash = !this.isActiveTrash
+  }
+
+  async agregarLibroALeer(libro: Libro) {
+    this.userServiceUS.listaAgregarALeer.push(libro)
+  }
+
+  async eliminarLibrosALeer(libro: Libro) {
+    this.userServiceUS.listaEliminarALeer.push(libro)
   }
 }
