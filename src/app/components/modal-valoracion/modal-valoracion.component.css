@@ -46,6 +46,11 @@
   color: var(--color-bordo)
 }
 
+.error-message p {
+  color: var(--color-bordo);
+  font-size: 2rem;
+}
+
 /* Estilos para el cuerpo del modal */
 .modal-body {
   overflow-y: auto; /* Scroll solo en el contenido */

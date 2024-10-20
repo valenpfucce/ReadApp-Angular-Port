@@ -29,6 +29,9 @@
         <label class="asterisco" for="resenia">Descripcion</label>
         <div class="flex wrap">
           <textarea id="resenia" class="textarea-auto-ajustable" [(ngModel)]="this.descripcion">{{this.descripcion}}</textarea>
+          <div class="error-message" *ngIf="error">
+            <p>{{ error }}</p>
+          </div>
         </div>
       </div>
     </div>

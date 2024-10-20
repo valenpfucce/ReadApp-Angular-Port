@@ -70,7 +70,7 @@
           <readapp-card-valoracion [valoracion]="valoracion"></readapp-card-valoracion>
         }
         <!--@if (esModoDetalle() && puedeValorar){                ESTO HAY QUE AGREGARLO UNA VEZ LA MODAL ESTE HECHA Y EL LLAMADO AL BACK TAMBIEN-->
-        @if (esModoDetalle()){
+        @if (puedeValorar){
           <div class="mas mas-valoracion">
             <div class="circulo-mas" (click)="openModalValoracion()">
               <div class="icono-mas">+</div>
@@ -92,5 +92,5 @@
   <!-- Modal -->
   <readapp-modal *ngIf="isModalOpen" [isModalOpen]="isModalOpen" (close)="closeModal()" [recomendacionNum]="idRecomendacion" (librosEnviados)="this.recibirLibros($event)"></readapp-modal>
   <!--  Modal Valoracion-->
-  <readapp-moda-valoracion *ngIf="isModalValoracionOpen" [isModalValoracionOpen]="isModalValoracionOpen" (close)="closeModalValoracion()"></readapp-moda-valoracion>
+  <readapp-moda-valoracion *ngIf="isModalValoracionOpen" [isModalValoracionOpen]="isModalValoracionOpen" [recomendacionId]="recomendacion.id" (close)="closeModalValoracion()"></readapp-moda-valoracion>
 </main>
