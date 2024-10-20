@@ -89,6 +89,35 @@
     border-radius: 0.4em;
 }
 
+.advertencia {
+  font-size: 2rem;
+  color: black;
+}
+
+.botones-advertencia {
+  height: 5em;
+  padding-top: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+.boton{
+    border: none;
+    padding: 1rem;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 0.4em;
+}
+.eliminar {
+  background: var(--color-bordo);
+}
+.cancelar {
+  background: var(--color-clarito);
+  border: 1px solid var(--color-bordo);
+  color: black;
+}
+
 @media (max-width: 400px) {
 
     .card-recomendacion{
@@ -111,5 +140,10 @@
 
     .boton_container {
         top: 29.5em;
+    }
+
+    .botones-advertencia{
+      padding-top: 5em;
+      height: 9em;
     }
 }
