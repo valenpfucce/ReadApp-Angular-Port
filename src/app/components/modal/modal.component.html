@@ -31,7 +31,7 @@
         <readapp-card-libro
           *ngFor="let libro of libros"
           [libro]="libro"
-          [esModal]="true"       
+          [esModal]="true"
         >
         </readapp-card-libro>
       </div>
@@ -44,7 +44,7 @@
           [libro]="libro"
           [esModal]="true"
           (click)="seleccionarLibro(libro)"
-          
+
         >
         </readapp-card-libro>
       </div>
@@ -59,6 +59,9 @@
         </readapp-card-amigo>
 
       </div>
+      @if (noHay){
+        <h1 class="noHay">No se ha encontrado lo que busca</h1>
+      }
     </div>
 
   </div>

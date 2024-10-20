@@ -1,8 +1,8 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { CortarPalabraPipe } from '../../pipes/cortar-palabra-pipe/cortar-palabra.pipe';
-import { Router, RouterModule } from '@angular/router'
-import { Recomendacion } from '../../domain/recomendacion';
+import {CommonModule} from '@angular/common';
+import {Component, Input} from '@angular/core';
+import {CortarPalabraPipe} from '../../pipes/cortar-palabra-pipe/cortar-palabra.pipe';
+import {RouterModule} from '@angular/router'
+import {Recomendacion} from '../../domain/recomendacion';
 import {RecomendacionesService} from "../../services/service_recomendaciones/recomendaciones.service";
 import {UsuariosService} from "../../services/service_usuarios/usuarios.service";
 import {UserSessionStorageService} from "../../services/service_user_session_storage/user-session-storage.service";
@@ -20,6 +20,7 @@ export class CardRecomendacionComponent {
   userIdSS! : number
   puedeEditar! : boolean
   advertenciaVisible = false
+  puedeValorar !: boolean
   constructor(
     private serviceRecomendaciones: RecomendacionesService,
     private userServiceUS: UsuariosService,
@@ -32,7 +33,8 @@ export class CardRecomendacionComponent {
       this.userIdSS = userIdSSAChequear
       this.puedeEditar = await this.puedeEditarRecomendacion()
       this.corazonCliqueado = await this.estaEnRecomendacionesAValorar()
-      this.calculoTiempoLecturaRecomendacion(this.recomendacion)
+      await this.calculoTiempoLecturaRecomendacion(this.recomendacion)
+      this.puedeValorar = await this.puedeValorarLlamadaService()
     } else {
       this.puedeEditar = false
     }
@@ -67,6 +69,10 @@ export class CardRecomendacionComponent {
     }else {
       await this.userServiceUS.eliminarRecomendacionAValorar(this.recomendacion.id, this.userIdSS)
     }
+  }
+
+  async puedeValorarLlamadaService(){
+    return await this.serviceRecomendaciones.puedeValorarRecomendacion(this.recomendacion.id, this.userIdSS)
   }
 
   async estaEnRecomendacionesAValorar(): Promise<boolean>{

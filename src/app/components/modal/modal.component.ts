@@ -37,6 +37,7 @@ export class ModalComponent implements OnInit {
   rutaActual: String = ''
   tituloModal = ''
   usuarioActual!: Usuario
+  noHay = false
 
   @Input() isModalOpen: boolean = false
   @Output() close = new EventEmitter<void>()
@@ -95,15 +96,22 @@ export class ModalComponent implements OnInit {
   }
 
   async buscar(evento: BuscarEvento): Promise<void> {
+    this.noHay = false
     if (this.tituloModal == 'Todos los usuarios') {
       console.log(false)
       this.amigos = await this.userServiceUS.getUsuariosCard(
         evento.palabraABuscar
       )
+      if(this.amigos.length == 0){
+        this.noHay = true
+      }
     } else {
       this.libros = await this.librosService.busquedaLibros(
         evento.palabraABuscar
       )
+      if(this.libros.length == 0){
+        this.noHay = true
+      }
     }
   }
 
