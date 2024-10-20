@@ -111,9 +111,18 @@
 }
 
 .autor-valoracion {
+  margin-top: 1rem;
   display: flex;
+  flex-wrap: wrap;
   font-size: 1rem;
-  justify-content: left;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.usuario-val{
+  display: flex;
+  align-items: center;
+  width: auto;
 }
 
 .nombre-autor {
@@ -121,6 +130,54 @@
   align-items: self-start;
   flex-direction: column;
   flex-wrap: wrap;
+}
+
+.star-rating {
+  display: flex;
+  font-size: 2rem;
+  margin-left: 5rem;
+  margin-right: 3rem;
+  cursor: pointer;
+}
+
+.star-rating img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.2s;
+}
+.star-rating img:hover {
+  transform: scale(1.1);
+}
+
+.input-recomendacion{
+  margin-top: 30px;
+}
+
+.input-recomendacion label{
+  margin-left: 36px;
+}
+
+.textarea-auto-ajustable {
+  margin-bottom: 30px;
+  width: 90%;
+  height: 25rem;
+  padding: 0.5em;
+  font-size: 1em;
+  font-family:var(--fuente-default) ;
+  border: 2px solid var(--color-beige);
+  border-radius: 5px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+.textarea-auto-ajustable:focus {
+  border-color: var(--color-primario);
+  outline: none;
+}
+
+.asterisco::after {
+  content: '*';
+  color: red;
 }
 
 
@@ -142,7 +199,7 @@
     padding: 8px 15px;
   }
   .boton_cancelar, .boton_guardar {
-    font-size: 0.9rem; /* Reducir el tamaño de la fuente en pantallas pequeñas */
+    font-size: 1.5rem; /* Reducir el tamaño de la fuente en pantallas pequeñas */
     padding: 8px; /* Reducir el padding para que los botones sean más compactos */
   }
 
@@ -169,8 +226,22 @@
     max-height: calc(80vh - 120px);
   }
 
+  .star-rating {
+    margin-left: 10rem;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .input-recomendacion label{
+    margin-left: 1.5rem;
+  }
+
+  .textarea-auto-ajustable{
+    height: 23rem;
+  }
+
   .boton_cancelar, .boton_guardar {
-    font-size: 0.8rem;
+    font-size: 1.5rem;
     padding: 6px;
   }
 
