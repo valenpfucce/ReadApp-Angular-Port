@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HeaderComponent } from '../../../../components/header/header.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { CardAmigoComponent } from '../../../../components/card-amigo/card-amigo.component';
+
 import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service';
 import { UserSessionStorageService } from '../../../../services/service_user_session_storage/user-session-storage.service';
 
@@ -29,8 +29,8 @@ describe('PerfilInfoComponent', () => {
    
    
     await TestBed.configureTestingModule({
-      declarations: [HeaderComponent],
-      imports: [PerfilInfoComponent, Usuario, FormsModule, BrowserModule, HeaderComponent,CardAmigoComponent, UsuariosService, UserSessionStorageService],
+      declarations: [PerfilInfoComponent, HeaderComponent],
+      imports: [PerfilInfoComponent, Usuario, FormsModule, BrowserModule, HeaderComponent, UsuariosService, UserSessionStorageService],
       providers: [
         { provide: HttpClient, useValue: httpClientSpy },
         { provide: Router, useValue: routerSpy }
@@ -44,26 +44,27 @@ describe('PerfilInfoComponent', () => {
   });
 
   it('should create', () => {
+    component.ngOnInit();
     expect(component).toBeTruthy();
   });
 
 
 
-  // it('should receive a Usuario from the backend', fakeAsync(() => {
+  it('should receive a Usuario from the backend', fakeAsync(() => {
    
-  //   httpClientSpy.get
+    httpClientSpy.get
    
-  //   component.obtenerDatosUsuario(1);
-  //   tick();
+    component.obtenerDatosUsuario(1);
+    tick();
 
-  //    // Verificamos que el usuario cargado sea el esperado
-  //    expect(component.usuario).toEqual(usuarioAsignatario);
-  //    expect(component.usuarioEditable).toEqual(usuarioAsignatario);
+     // Verificamos que el usuario cargado sea el esperado
+     expect(component.usuario).toEqual(usuarioAsignatario);
+     expect(component.usuarioEditable).toEqual(usuarioAsignatario);
 
 
     
 
-  // }))
+  }))
 
   function getByTestId(testId: string) {
     const resultHtml = fixture.debugElement.nativeElement
