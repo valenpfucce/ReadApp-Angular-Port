@@ -1,13 +1,15 @@
-<article class="carta">
+<article class="carta" [ngClass]="{'trashActivate': isActiveTrash}">
     <div class="contenido-carta">
       @if (mostrarBotonBorrar()) {
         <div class="iconos-inferior-derecha iconos-animacion">
           <img src="../imagenes/trash.svg" class="iconos" alt="borrar" (click)="borrarLibro()"/>
         </div>
       }
-
+      <div class="iconos-inferior-derecha">
+        <button *ngIf="!esModal"  (click)="eliminarLibrosALeer(libro)"><img src="/imagenes/trash.svg"></button>
+      </div>
       <div *ngIf="esModal" class="iconos-inferior-derecha ">
-        <button>Agregar Botón</button>
+        <button (click)="agregarLibroALeer(libro)">Agregar Libro</button>
       </div>
       <div class="contenedor-imagen">
         <img src={{libro.imagen_libro_url}} alt="Imagen del Libro" class="imagen-libro" />
