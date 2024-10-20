@@ -79,6 +79,7 @@ export class ModalValoracionComponent implements OnInit {
     const valoracionAEnviar = new ValoracionDTO(this.userIdSS as number, this.rating, this.descripcion)
     await this.serviceRecomendacion.valorarRecomendacion(this.recomendacionId, valoracionAEnviar)
     this.closeModal()
+    window.location.reload()
   }
 
   cancel() {

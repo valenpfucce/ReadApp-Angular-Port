@@ -18,6 +18,8 @@ import {CardLibroMasComponent} from "../../../../components/card-libro-mas/card-
 })
 export class PerfilRecomendacionesAValorarComponent {
   recomendacionesAValorar!: Recomendacion[]
+  porSiElimina!:Recomendacion[]
+  userId!: number
   constructor(
     private userServiceUS: UsuariosService,
     private sessionStorage: UserSessionStorageService
@@ -26,12 +28,19 @@ export class PerfilRecomendacionesAValorarComponent {
   ngOnInit() {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     if(userIdSS != null)
-      this.getRecomendaciones(userIdSS)
+      this.userId = userIdSS
+      this.getRecomendaciones(this.userId)
   }
 
   async getRecomendaciones(userId: number):Promise<Recomendacion[]>{
     this.recomendacionesAValorar = await this.userServiceUS.getRecomendacionesAValorar(userId)
+    this.porSiElimina = [...this.recomendacionesAValorar]
     return this.recomendacionesAValorar
+  }
+
+  async cancelarCambios(){
+    this.porSiElimina.forEach((recomendacion) => this.userServiceUS.agregarRecomendacionAValorar(recomendacion.id, this.userId))
+    window.location.reload()
   }
 
   reloadPage(){
