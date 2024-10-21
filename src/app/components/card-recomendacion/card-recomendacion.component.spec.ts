@@ -1,15 +1,12 @@
-import {ComponentFixture, TestBed, fakeAsync, flush, tick} from '@angular/core/testing'
+import {ComponentFixture, TestBed} from '@angular/core/testing'
 import {getHttpClientSpy, recomendacion1} from '../../services/service_usuarios/httpClientSpy'
 import {HttpClient} from '@angular/common/http'
 import {ActivatedRoute, Router} from '@angular/router'
-import {firstValueFrom, of, throwError} from 'rxjs'
-import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
-import { ReactiveFormsModule, FormsModule } from '@angular/forms'
+import {of} from 'rxjs'
+import {UserSessionStorageService} from '../../services/service_user_session_storage/user-session-storage.service'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {CardRecomendacionComponent} from "./card-recomendacion.component";
 import {RecomendacionesService} from "../../services/service_recomendaciones/recomendaciones.service";
-import {Recomendacion} from "../../domain/recomendacion";
-import {Libro} from "../../domain/libro";
-import {Valoracion} from "../../domain/valoracion";
 
 describe('CardRecomendacionComponent', () => {
   let component: CardRecomendacionComponent
@@ -23,11 +20,14 @@ describe('CardRecomendacionComponent', () => {
   beforeEach(async () => {
     routerSpy = jasmine.createSpyObj('Router', ['navigate', 'navigateByUrl'])
     httpClientSpy = getHttpClientSpy()
+    userSessionStorageServiceSpy = jasmine.createSpyObj(
+      'UserSessionStorageService',
+      ['loginGetUsuarioIdToSS']
+    )
     recomendacionesServiceSpy = jasmine.createSpyObj(
       'RecomendacionesService',
       ['getRecomendacionById']
     )
-
     const activatedRouteStub = {
       paramMap: of({ get: (param: string) => 'home' })
     };
@@ -54,12 +54,12 @@ describe('CardRecomendacionComponent', () => {
   })
 
   it('should create', () => {
+    component.ngOnInit()
     expect(component).toBeTruthy()
   })
   it('debería inicializar la recomendación con datos simulados', async () => {
     // Configura el servicio para devolver la recomendación simulada
-    // @ts-ignore
-    recomendacionesServiceSpy.getRecomendacionById.and.returnValue(of(recomendacion1));
+    recomendacionesServiceSpy.getRecomendacionById.and.returnValue(Promise.resolve(recomendacion1));
     // Activa la detección de cambios para procesar los datos
     fixture.detectChanges();
 
