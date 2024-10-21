@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { NgClass } from '@angular/common'
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'readapp-card-libro-mas',
@@ -15,8 +16,14 @@ export class CardLibroMasComponent {
   @Input() tamanio!: 'chica' | 'mediana' | 'grande'
   @Output() openModalEvent = new EventEmitter<void>()
 
-  openModal() {
-    console.log('Evento openModalEvent emitido') // Para verificar si esto se ejecuta
-    this.openModalEvent.emit() // Emitir evento para abrir el modal
+  constructor( private router : Router) {
+  }
+
+  accionBoton() {
+    if(this.tamanio === 'mediana') {
+      this.router.navigate(['/recomendacion/nueva'])
+    }else{
+      this.openModalEvent.emit()
+    }
   }
 }
