@@ -25,6 +25,7 @@ export class RecomendacionesService {
     const recomendaciones = await lastValueFrom(
       this.httpClient.post<RecomendacionJSON[]>(REST_SERVER_URL + '/recomendaciones/busqueda/' + idUsuario, busqueda)
     )
+    console.info('Recuperando recomendaciones', recomendaciones, this.httpClient)
     return recomendaciones.map((recomendacionJSON) => Recomendacion.fromJson(recomendacionJSON)
     )
   }
