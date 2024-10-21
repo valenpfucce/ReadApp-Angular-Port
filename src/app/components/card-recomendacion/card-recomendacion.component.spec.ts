@@ -1,5 +1,5 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing'
-import {getHttpClientSpy, recomendacion1} from '../../services/service_usuarios/httpClientSpy'
+import {ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing'
+import {getHttpClientSpy} from '../../services/service_usuarios/httpClientSpy'
 import {HttpClient} from '@angular/common/http'
 import {ActivatedRoute, Router} from '@angular/router'
 import {of} from 'rxjs'
@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {CardRecomendacionComponent} from "./card-recomendacion.component";
 import {RecomendacionesService} from "../../services/service_recomendaciones/recomendaciones.service";
 import {UsuariosService} from "../../services/service_usuarios/usuarios.service";
+import {CortarPalabraPipe} from "../../pipes/cortar-palabra-pipe/cortar-palabra.pipe";
 
 describe('CardRecomendacionComponent', () => {
   let component: CardRecomendacionComponent
@@ -18,8 +19,7 @@ describe('CardRecomendacionComponent', () => {
   let usuariosServiceSpy: jasmine.SpyObj<UsuariosService>
   let userSessionStorageServiceSpy: jasmine.SpyObj<UserSessionStorageService>
   let recomendacionesServiceSpy: jasmine.SpyObj<RecomendacionesService>
-
-  beforeEach(async () => {
+  beforeEach(fakeAsync( () => {
     routerSpy = jasmine.createSpyObj('Router', ['navigate', 'navigateByUrl'])
     httpClientSpy = getHttpClientSpy()
     userSessionStorageServiceSpy = jasmine.createSpyObj(
@@ -38,8 +38,8 @@ describe('CardRecomendacionComponent', () => {
       paramMap: of({ get: (param: string) => 'home' })
     }
 
-    await TestBed.configureTestingModule({
-      imports: [CardRecomendacionComponent, ReactiveFormsModule, FormsModule],
+    TestBed.configureTestingModule({
+      imports: [CardRecomendacionComponent, ReactiveFormsModule, FormsModule, CortarPalabraPipe],
       providers: [
         { provide: HttpClient, useValue: httpClientSpy },
         { provide: Router, useValue: routerSpy },
@@ -55,13 +55,13 @@ describe('CardRecomendacionComponent', () => {
     component = fixture.componentInstance
     fixture.detectChanges()
 
-    await fixture.whenStable()
+    fixture.whenStable()
     fixture.detectChanges()
-  })
+  }))
 
-  it('should create', () => {
+  it('should create', fakeAsync( () => {
     expect(component).toBeTruthy()
-  })
+  }))
 
   // it('debería inicializar la recomendación con datos simulados', async () => {
   //   await component.ngOnInit()

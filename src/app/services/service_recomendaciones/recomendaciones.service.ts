@@ -12,16 +12,7 @@ import {ValoracionDTO} from "../../domain/valoracion";
 export class RecomendacionesService {
   constructor(private httpClient: HttpClient) {}
 
-  // async busquedaRecomendaciones(busqueda?: string) {
-  //   const recomendaciones = await lastValueFrom(
-  //     this.httpClient.post<RecomendacionJSON[]>(REST_SERVER_URL + '/recomendaciones/busqueda', busqueda)
-  //   )
-  //   return recomendaciones.map((recomendacionJSON) =>
-  //     Recomendacion.fromJson(recomendacionJSON)
-  //   )
-  // }
-
-  async busquedaRecomendaciones(busqueda?: string, idUsuario?: number) {
+  async busquedaRecomendaciones(busqueda?: string, idUsuario?: number): Promise<Recomendacion[]> {
     const recomendaciones = await lastValueFrom(
       this.httpClient.post<RecomendacionJSON[]>(REST_SERVER_URL + '/recomendaciones/busqueda/' + idUsuario, busqueda)
     )
