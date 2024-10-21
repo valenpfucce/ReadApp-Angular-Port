@@ -37,8 +37,7 @@ export class ModalComponent implements OnInit {
   rutaActual: String = ''
   tituloModal = ''
   usuarioActual!: Usuario
-  //amigoComponent: any;
-  //amigoComponentLoaded = false;
+  noHay = false
 
 
   @Input() isModalOpen: boolean = false
@@ -64,33 +63,12 @@ export class ModalComponent implements OnInit {
     await this.getUsuarios(userIdSS!)
     this.asignarTitulo()
   }
-   
-  async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
+
+  async obtenerDatosUsuario(userIdSS: number | null): Promise<void> {
     const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
     this.usuarioActual = usuarioEnLinea
-   
   }
   
-  // detectarRuta() {
-  //   this.router.events.subscribe(() => {
-  //     this.rutaActual = this.router.url;
-  //     if (this.rutaActual.includes('perfil/amigos') && !this.amigoComponentLoaded) {
-  //       this.loadCardAmigoComponent(); // Cargar el componente solo si aún no está cargado
-  //     }
-  //   });
-  // }
-
-  // async loadCardAmigoComponent() {
-  //   if (!this.amigoComponentLoaded) {
-  //     // Cargamos el componente CardAmigoComponent dinámicamente
-  //     const { CardAmigoComponent } = await import('../card-amigo/card-amigo.component');
-  //     this.amigoComponent = CardAmigoComponent;
-  //     this.amigoComponentLoaded = true;
-  //   }
-  // }
-
-
-
 
   asignarTitulo() {
     switch (this.rutaActual) {
@@ -121,25 +99,35 @@ export class ModalComponent implements OnInit {
   }
 
   async buscar(evento: BuscarEvento): Promise<void> {
+    this.noHay = false
     if (this.tituloModal == 'Todos los usuarios') {
       console.log(false)
       this.amigos = await this.userServiceUS.getUsuariosCard(
         evento.palabraABuscar
       )
+      if(this.amigos.length == 0){
+        this.noHay = true
+      }
     } else {
       this.libros = await this.librosService.busquedaLibros(
         evento.palabraABuscar
       )
+      if(this.libros.length == 0){
+        this.noHay = true
+      }
     }
   }
 
   async getUsuarios(idActual: number) {
     const amigosTODOS = await this.userServiceUS.getUsuariosCard()
-    const amigosFiltroSesion = amigosTODOS.filter((amigo) => amigo.id !== this.usuarioActual.id)
-    const amigosFiltro = amigosFiltroSesion.filter((amigo) => !this.usuarioActual.amigos.includes(amigo.id!))
+    const amigosFiltroSesion = amigosTODOS.filter(
+      (amigo) => amigo.id !== this.usuarioActual.id
+    )
+    const amigosFiltro = amigosFiltroSesion.filter(
+      (amigo) => !this.usuarioActual.amigos.includes(amigo.id!)
+    )
     this.amigos = amigosFiltro
   }
-
 
   seleccionarLibro(libro: Libro) {
     const index = this.librosSeleccionados.indexOf(libro)
@@ -177,7 +165,9 @@ export class ModalComponent implements OnInit {
 
   cancel() {
     this.closeModal()
-    this.amigoService.stageAmigosPorGuardar.splice(0, this.amigoService.stageAmigosPorGuardar.length);
-
+    this.amigoService.stageAmigosPorGuardar.splice(
+      0,
+      this.amigoService.stageAmigosPorGuardar.length
+    )
   }
 }

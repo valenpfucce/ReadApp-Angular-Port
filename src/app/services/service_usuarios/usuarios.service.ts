@@ -21,6 +21,8 @@ export class UsuariosService {
   validador!: sistemaValidacion
   router!: Router
   errors: String[] = []
+  listaAgregarALeer: Libro[] = []
+  listaEliminarALeer: Libro[] = []
   private readonly sessionKey = 'userSession'
 
   constructor(private httpClient: HttpClient) {
@@ -52,11 +54,10 @@ export class UsuariosService {
     const amigosLista = usuarioAmigos.map((AmigosJSON) =>
       Usuario.fromJsonAmigos(AmigosJSON)
     )
-    console.log("todos los usuarios",amigosLista )
+    console.log('todos los usuarios', amigosLista)
     return amigosLista
   }
 
- 
   putVerificationUser(
     mailLogin: string,
     contraseniaLogin: string
@@ -129,27 +130,35 @@ export class UsuariosService {
     )
   }
 
-  async agregarLibrosALeer(userId: number, librosIDs: number[]): Promise<void> {
-    console.log('IDs que se están enviando:', librosIDs)
-
+  async agregarLibrosALeer(userId: number) {
+    const librosEnviar = this.listaAgregarALeer.map((libro) => libro.id) // Cambia aquí para enviar solo IDs
+    console.log('Esto estoy enviando a agregar', librosEnviar)
     try {
-      console.log(
-        'Enviando los siguientes IDs de libros al backend:',
-        librosIDs
-      )
-      const response = await lastValueFrom(
+      await lastValueFrom(
         this.httpClient.patch(
           `${REST_SERVER_URL}/usuarios/${userId}/agregar-libros-leer`,
-          librosIDs
+          librosEnviar
         )
       )
-      console.log('IDs enviados exitosamente al backend', response)
+      this.listaAgregarALeer = []
+      console.log('IDs enviados exitosamente al backend', librosEnviar)
     } catch (error) {
-      console.error(
-        'Error al agregar los libros o al obtener la lista actualizada:',
-        error
-      )
+      console.error('Error al agregar libros a leer:', error)
     }
+  }
+
+  async eliminarLibrosALeer(userId: number) {
+    const librosEnviar = this.listaEliminarALeer.map((libro) => libro.id)
+    console.log('buenos libros para eliminar:', librosEnviar)
+
+    console.log('ESTO SE VA A ELIMINAR DEL USUARIO')
+    await lastValueFrom(
+      this.httpClient.patch(
+        `${REST_SERVER_URL}/usuarios/${userId}/eliminar-libros-leer`,
+        librosEnviar
+      )
+    )
+    this.listaEliminarALeer = []
   }
 }
 

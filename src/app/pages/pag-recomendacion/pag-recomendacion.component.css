@@ -240,4 +240,8 @@
   .barra-busqueda.edicion-rec input[type="checkbox"]{
     margin-top: 1rem;
   }
+
+  .boton_container {
+    margin-bottom: 8rem;
+  }
 }

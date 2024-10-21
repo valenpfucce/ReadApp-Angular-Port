@@ -31,6 +31,16 @@
     position: relative;
 }
 
+.carta.trashActivate{
+  background-color: rgb(168, 70, 70);
+  color: aliceblue;
+}
+
+.agregarLibro.active{
+  background-color: red(161, 209, 113);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  
+}
 .iconos-inferior-derecha {
     width: 3.12rem;
     height: 3.12rem;

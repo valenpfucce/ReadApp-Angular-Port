@@ -54,26 +54,22 @@ export class Libro {
       {}
     )
   }
-
-  // Nuevo método para transformar los datos del backend
   static fromBackend(libroBackend: any): Libro {
     const libroJSON: LibroJSON = {
       id: libroBackend.id,
-      titulo_libro: libroBackend.titulo, // Mapeo de 'titulo' a 'titulo_libro'
-      autor_nombre: libroBackend.autor?.nombre, // Mapeo de 'autor.nombre' a 'autor_nombre'
-      autor_apellido: libroBackend.autor?.apellido, // Mapeo de 'autor.apellido' a 'autor_apellido'
-      imagen_libro_url: libroBackend.imagen, // Mapeo de 'imagen' a 'imagen_libro_url'
-      cant_pags_libro: libroBackend.paginas, // Mapeo de 'paginas' a 'cant_pags_libro'
-      cant_palabras_libro: libroBackend.palabras, // Mapeo de 'palabras' a 'cant_palabras_libro'
-      idiomas_libro: libroBackend.traducciones, // Mapeo de 'traducciones' a 'idiomas_libro'
-      ventas_semanales: libroBackend.ventasSemanales, // Mapeo de 'ventasSemanales' a 'ventas_semanales'
-      esBestSeller: false, // Suponiendo que no está disponible en el backend
-      esDesafiante: libroBackend.complejo, // Mapeo de 'complejo' a 'esDesafiante'
-      esLargo: false, // No disponible en el backend, puedes ajustarlo según sea necesario
-      paginasLargo: libroBackend.paginasLargo // Mapeo directo de 'paginasLargo'
+      titulo_libro: libroBackend.titulo,
+      autor_nombre: libroBackend.autor?.nombre,
+      autor_apellido: libroBackend.autor?.apellido,
+      imagen_libro_url: libroBackend.imagen,
+      cant_pags_libro: libroBackend.paginas,
+      cant_palabras_libro: libroBackend.palabras,
+      idiomas_libro: libroBackend.traducciones,
+      ventas_semanales: libroBackend.ventasSemanales,
+      esBestSeller: false,
+      esDesafiante: libroBackend.complejo,
+      esLargo: false,
+      paginasLargo: libroBackend.paginasLargo
     }
-
-    // Llama al método `fromJson` para hacer la conversión
     return Libro.fromJson(libroJSON)
   }
 }

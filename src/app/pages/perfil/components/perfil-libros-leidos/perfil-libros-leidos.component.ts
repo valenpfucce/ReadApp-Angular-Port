@@ -34,7 +34,6 @@ export class PerfilLibrosLeidosComponent implements OnInit {
 
   libros: Libro[] = []
   librosRecibidos: Libro[] = []
-  palabraABuscar: string = ''
   usuario!: Usuario
   modo!: 'detalle' | 'edicion'
 

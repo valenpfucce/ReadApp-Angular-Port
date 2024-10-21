@@ -2,7 +2,6 @@
 <div
   class="modal-dialog"
   *ngIf="isModalOpen"
-  (click)="$event.stopPropagation()"
 >
   <div class="modal-content">
     <div class="modal-header">
@@ -22,7 +21,6 @@
           [libro]="libro"
           [esModal]="true"
           (click)="seleccionarLibro(libro)"
-    
         >
         </readapp-card-libro>
       </div>
@@ -34,8 +32,6 @@
           *ngFor="let libro of libros"
           [libro]="libro"
           [esModal]="true"
-          (click)="seleccionarLibro(libro)"
-         
         >
         </readapp-card-libro>
       </div>
@@ -48,7 +44,7 @@
           [libro]="libro"
           [esModal]="true"
           (click)="seleccionarLibro(libro)"
-          
+
         >
         </readapp-card-libro>
       </div>
@@ -71,8 +67,9 @@
 
       </div>
 
-
-
+      @if (noHay){
+        <h1 class="noHay">No se ha encontrado lo que busca</h1>
+      }
 
     </div>
 

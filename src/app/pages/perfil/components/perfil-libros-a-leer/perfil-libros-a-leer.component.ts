@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { HeaderComponent } from '../../../../components/header/header.component'
 import { SidebarPerfilComponent } from '../../sidebar-perfil.component'
 import { CardLibroComponent } from '../../../../components/card-libro/card-libro.component'
@@ -34,42 +34,48 @@ import { CommonModule } from '@angular/common'
 export class PerfilLibrosALeerComponent implements OnInit {
   palabraABuscar: string = ''
   usuario!: Usuario
-  libros: Libro[] = []
-  librosRecibidos: Libro[] = []
   librosALeer!: Libro[]
   modo!: 'detalle' | 'edicion'
-  isModalOpen = false
+
   userIdSS!: number
+  isModalOpen = false
+  userActive!: number
 
   constructor(
-    private librosService: LibrosService,
     private sessionStorage: UserSessionStorageService,
     private userServiceUS: UsuariosService
   ) {}
 
   async ngOnInit() {
-    const user = this.sessionStorage.obtenerIDuserSS()
-    console.log(user)
+    const userIdSS = this.sessionStorage.obtenerIDuserSS()
 
-    if (user != null) {
-      this.cargarLibrosALeer(user)
+    if (userIdSS != null) {
+      this.cargarLibrosALeer(userIdSS)
     } else {
       console.error('El userId es nulo')
     }
   }
 
-  async cargarLibrosALeer(userIdSS: number) {
-    this.userIdSS = userIdSS
-    try {
-      const usuario = await this.userServiceUS.getUserById(userIdSS)
-      console.log('Datos originales del backend:', usuario.librosPorLeer)
-      this.librosALeer = usuario.librosPorLeer.map((libroBackend: any) =>
-        Libro.fromBackend(libroBackend)
-      )
-      console.log('Libros transformados:', this.librosALeer)
-    } catch (error) {
-      console.error('Error al cargar la lista de libros por leer:', error)
-    }
+  async cargarLibrosALeer(userIdSS: number): Promise<Libro[]> {
+    this.userActive = userIdSS
+
+    const usuario = await this.userServiceUS.getUserById(userIdSS)
+
+    this.librosALeer = usuario.librosPorLeer.map((libroBackend: any) => {
+      return Libro.fromBackend(libroBackend)
+    })
+    return this.librosALeer
+  }
+
+  guardarCambios() {
+    this.userServiceUS.agregarLibrosALeer(this.userActive)
+    this.userServiceUS.eliminarLibrosALeer(this.userActive)
+    // this.reload()
+  }
+
+  cancelarCambios() {
+    this.userServiceUS.listaEliminarALeer = []
+    this.reload()
   }
 
   openModal() {
@@ -78,38 +84,9 @@ export class PerfilLibrosALeerComponent implements OnInit {
 
   closeModal() {
     this.isModalOpen = false
-    console.log('Libros Recibidossssssssssss:', this.librosRecibidos)
   }
 
-  recibirLibros(libros: Libro[]) {
-    this.librosRecibidos = libros
-  }
-
-  quitarLibro(libro: Libro) {
-    const index = this.librosALeer.findIndex(l => l.id === libro.id);
-
-    // Verifica que el libro existe en la lista antes de eliminarlo
-    if (index !== -1) {
-      this.librosALeer.splice(index, 1);
-    }
-  }
-
-  async saveChanges() {
-    const librosIDs = this.librosRecibidos.map((libro) => libro.id)
-
-    try {
-      await this.userServiceUS.agregarLibrosALeer(this.userIdSS, librosIDs)
-      console.log('Libros añadidos correctamente a la lista de libros por leer')
-      // this.reloadPage()
-    } catch (error) {
-      console.error(
-        'Error al agregar los libros o al obtener la lista actualizada:',
-        error
-      )
-    }
-  }
-
-  reloadPage() {
+  reload() {
     window.location.reload()
   }
 }
