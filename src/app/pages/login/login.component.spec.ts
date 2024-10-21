@@ -9,7 +9,6 @@ import { LoginComponent } from './login.component'
 import { getHttpClientSpy } from '../../services/service_usuarios/httpClientSpy'
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Router } from '@angular/router'
-import { throwError } from 'rxjs'
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 
@@ -70,23 +69,19 @@ describe('LoginComponent', () => {
   }))
 
   it('debería mostrar mensaje de error de conexión si el backend no responde', fakeAsync(() => {
-    // Simula un error de conexión (status 0)
     userSessionStorageServiceSpy.loginGetUsuarioIdToSS.and.returnValue(
       Promise.reject(new HttpErrorResponse({ status: 0 }))
     )
 
-    // Configura el formulario de login con valores válidos
     component.loginForm.setValue({
       mail: 'test@example.com',
       contrasenia: 'contraseñaCorrecta'
     })
 
-    // Llama a la función de login
     component.login()
-    tick(1000) // Simula el paso del tiempo
+    tick(1000)
     fixture.detectChanges()
 
-    // Verifica que se muestra el mensaje de error de conexión
     expect(component.showPasswordError).toBe(
       'Conexión no exitosa. Intente más tarde'
     )
@@ -139,10 +134,9 @@ describe('LoginComponent', () => {
     })
 
     component.login()
-    tick(1000) // Simula el paso del tiempo
+    tick(1000)
     fixture.detectChanges()
 
-    // Verifica que se muestra el mensaje correcto de error
     expect(component.showPasswordError).toBe('Contraseña incorrecta')
     flush()
   }))
