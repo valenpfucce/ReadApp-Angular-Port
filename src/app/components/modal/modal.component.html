@@ -30,8 +30,10 @@
       >
         <readapp-card-libro
           *ngFor="let libro of libros"
+          #cardLibro
           [libro]="libro"
           [esModal]="true"
+          (click)="llamarALibroAgregar(cardLibro, libro)"
         >
         </readapp-card-libro>
       </div>
@@ -64,7 +66,19 @@
         [amigo]="amigo"
         [esModal]="true">
         </readapp-card-amigo>
+      </div>
 
+      <div
+        class="contenedor-cartas"
+        *ngIf='rutaActual.includes("/recomendacion/nueva")'
+      >
+        <readapp-card-libro
+          *ngFor="let libro of libros"
+          [libro]="libro"
+          [esModal]="true"
+          (click)="seleccionarLibro(libro)"
+        >
+        </readapp-card-libro>
       </div>
 
       @if (noHay){

@@ -70,7 +70,7 @@ export class PerfilLibrosALeerComponent implements OnInit {
   guardarCambios() {
     this.userServiceUS.agregarLibrosALeer(this.userActive)
     this.userServiceUS.eliminarLibrosALeer(this.userActive)
-    // this.reload()
+    this.reload()
   }
 
   cancelarCambios() {

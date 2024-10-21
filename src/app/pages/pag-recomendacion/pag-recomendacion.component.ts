@@ -27,7 +27,7 @@ import {ModalValoracionComponent} from "../../components/modal-valoracion/modal-
   ]
 })
 export class PagRecomendacionComponent {
-  modo!: 'detalle' | 'edicion';
+  modo!: 'detalle' | 'edicion' | 'nueva';
   usuario!: Usuario
   userIdSS!: number
   idRecomendacion!: number
@@ -37,7 +37,6 @@ export class PagRecomendacionComponent {
   altRecomendacion!: String
   puedeEditar!: boolean
   puedeValorar!: boolean
-  guardarRecomendacion!: Recomendacion
   visibilidadPrivadaCheck!: Boolean
 
   constructor(
@@ -54,21 +53,24 @@ export class PagRecomendacionComponent {
     // ===== ROUTE PARAMETRO =====
     //Traer los parametros del routing
     this.route.params.subscribe(async params => {
-      this.idRecomendacion = +params['id'];
-      console.log('ID Recomendacion:', this.idRecomendacion);
-      const recomendacionEncontrada = await this.serviceRecomendacion.getRecomendacionById(this.idRecomendacion);
-      if (recomendacionEncontrada) {
-        this.recomendacion = recomendacionEncontrada;
-        console.log('Recomendación encontrada:', recomendacionEncontrada);
-      } else {
-        console.log('Recomendación no encontrada --> /home');
-        this.navegarA('/home');
-      }
       this.modo = this.route.snapshot.data['modo'];
-      this.setIconoRecomendacion(this.recomendacion.esPublica)
-      console.log("puede editar recomendacion?: " ,await this.puedeEditarLlamadaService())
+      if(this.esModoEdicion() || this.esModoDetalle()){
+        this.idRecomendacion = +params['id'];
+        console.log('ID Recomendacion:', this.idRecomendacion);
+        const recomendacionEncontrada = await this.serviceRecomendacion.getRecomendacionById(this.idRecomendacion);
+        if (recomendacionEncontrada) {
+          this.recomendacion = recomendacionEncontrada;
+          console.log('Recomendación encontrada:', recomendacionEncontrada);
+        } else {
+          console.log('Recomendación no encontrada --> /home');
+          this.navegarA('/home');
+        }
+        this.setIconoRecomendacion(this.recomendacion.esPublica)
+        await this.puedeEditarLlamadaService()
+      }
       if(this.esModoDetalle()){this.modoDetalle()}
       if(this.esModoEdicion()){this.modoEdicion()}
+      if(this.esModoNueva())  {this.modoNueva()}
     });
   }
 
@@ -102,41 +104,50 @@ export class PagRecomendacionComponent {
     }
   }
 
+  guardarCambios(){
+    if(this.esModoEdicion()){
+      this.guardarCambiosEdicion()
+    }
+    if(this.esModoNueva()){
+      this.guardarCambiosNueva()
+    }
+  }
+
   //===> EDICION
   esModoEdicion(){
     return (this.modo === 'edicion')
   }
   modoEdicion() {
     if(!this.puedeEditar){this.navegarA('/home')}
-    this.guardarRecomendacion = Object.assign({}, this.recomendacion);
 
   }
 
   guardarCambiosEdicion(){
     this.visibilidadPrivadaGuardar()
-    console.log(this.guardarRecomendacion);
-    this.serviceRecomendacion.editarRecomendacion(this.guardarRecomendacion, this.userIdSS)
+    console.log(this.recomendacion);
+    this.serviceRecomendacion.editarRecomendacion(this.recomendacion, this.userIdSS)
+    this.navegarA('/home')
   }
 
   visibilidadPrivadaGuardar(){
-    this.guardarRecomendacion.esPublica = !this.visibilidadPrivadaCheck;
+    this.recomendacion.esPublica = !this.visibilidadPrivadaCheck;
   }
 
   recibirLibros(libros: Libro[]){
     libros.forEach( libroNuevo => {
-      const existe = this.guardarRecomendacion.lista_libros.some((libro) => libro.id === libroNuevo.id);
+      const existe = this.recomendacion.lista_libros.some((libro) => libro.id === libroNuevo.id);
       if (!existe) {
-        this.guardarRecomendacion.lista_libros.push(libroNuevo);
+        this.recomendacion.lista_libros.push(libroNuevo);
       }
     })
   }
 
   quitarLibro(libro: Libro) {
-    const index = this.guardarRecomendacion.lista_libros.findIndex(l => l.id === libro.id);
+    const index = this.recomendacion.lista_libros.findIndex(l => l.id === libro.id);
 
     // Verifica que el libro existe en la lista antes de eliminarlo
     if (index !== -1) {
-      this.guardarRecomendacion.lista_libros.splice(index, 1);
+      this.recomendacion.lista_libros.splice(index, 1);
     }
   }
   //FIN EDICION <===
@@ -151,6 +162,25 @@ export class PagRecomendacionComponent {
   }
 
   //FIN DETALLE
+
+
+  //===> NUEVA
+  esModoNueva(){
+    return (this.modo === 'nueva')
+  }
+
+  modoNueva(){
+    this.recomendacion = new Recomendacion(-1, this.userIdSS, "", true,"", [],[])
+    console.log("hola\n", this.recomendacion)
+  }
+
+  async guardarCambiosNueva(){
+    console.log("hola\n", this.recomendacion)
+    await this.serviceRecomendacion.crearRecomendacion(this.recomendacion)
+    this.navegarA('/mis_recomendaciones')
+  }
+  //FIN NUEVA
+
 
   navegarA(ruta : string) {
     this.router.navigate([ruta])

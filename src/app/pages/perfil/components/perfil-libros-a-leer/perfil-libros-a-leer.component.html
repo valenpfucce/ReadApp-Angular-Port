@@ -2,13 +2,11 @@
     <h1>Libros a leer</h1>
     <section class="flex lista_perfil">
     <section class="contenedor-cartas">
-      <section class="grid-libros">
         @for (libro of librosALeer; track libro) {
-          <readapp-card-libro [libro]="libro" ></readapp-card-libro>
+          <readapp-card-libro [libro]="libro" [modo]="'edicion'" [esPerfil]="true" ></readapp-card-libro>
         }
 
         <readapp-card-libro-mas (openModalEvent) ="openModal()"></readapp-card-libro-mas>
-      </section>
     </section>
     </section>
 
