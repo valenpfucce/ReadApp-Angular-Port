@@ -1,6 +1,6 @@
 import {ComponentFixture, TestBed, fakeAsync, flush, tick} from '@angular/core/testing'
 import {getHttpClientSpy, recomendacion1} from '../../services/service_usuarios/httpClientSpy'
-import {HttpClient, HttpClientModule} from '@angular/common/http'
+import {HttpClient} from '@angular/common/http'
 import {ActivatedRoute, Router} from '@angular/router'
 import {firstValueFrom, of, throwError} from 'rxjs'
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'

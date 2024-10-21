@@ -41,6 +41,7 @@ export class BusquedaRecomendacionesComponent {
   }
 
   async buscar(evento: BuscarEvento) {
+    this.noHayRecomendaciones = false
     this.recomendaciones = await this.data.realizarBusqueda(
       this.serviceRecomendaciones,
       evento.palabraABuscar,
