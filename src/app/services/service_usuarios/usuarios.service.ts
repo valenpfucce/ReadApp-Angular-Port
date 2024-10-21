@@ -68,16 +68,18 @@ export class UsuariosService {
       .pipe(map((response) => response?.id || null))
   }
 
-  async actualizarUsuario(
-    usuarioBack: Usuario,
-    usuarioEditable: Usuario
-  ): Promise<void> {
-    await lastValueFrom(
-      this.httpClient.put<void>(
-        `${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id,
-        usuarioEditable.toJSON()
+  async actualizarUsuario(usuarioBack: Usuario,usuarioEditable: Usuario): Promise<void> {
+    try {
+      await lastValueFrom(
+        this.httpClient.put<void>(
+          `${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id,
+          usuarioEditable.toJSON()
+        )
       )
-    )
+    } catch(error){
+        throw error
+    }
+    
   }
 
   navegarALogin() {
@@ -144,6 +146,7 @@ export class UsuariosService {
       console.log('IDs enviados exitosamente al backend', librosEnviar)
     } catch (error) {
       console.error('Error al agregar libros a leer:', error)
+      throw error
     }
   }
 

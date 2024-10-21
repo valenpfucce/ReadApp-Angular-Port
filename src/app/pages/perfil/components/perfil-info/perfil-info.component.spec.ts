@@ -4,16 +4,19 @@ import {
   TestBed,
   fakeAsync,
   flush,
-  tick
+  tick,
+  waitForAsync
 } from '@angular/core/testing'
-import { getHttpClientSpy } from '../../../../services/service_usuarios/httpClientSpy'
+import { getHttpClientSpy, usuarioActualizado, usuarioAsignatario } from '../../../../services/service_usuarios/httpClientSpy'
 import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router'
-import { throwError } from 'rxjs'
+import { lastValueFrom, of, throwError } from 'rxjs'
 import { UserSessionStorageService } from '../../../../services/service_user_session_storage/user-session-storage.service'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { PerfilInfoComponent } from './perfil-info.component';
 import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service'
+import { Usuario } from '../../../../domain/usuario'
+import {ComponentFixtureAutoDetect} from '@angular/core/testing';
 
 describe('PerfilInfoComponent', () => {
   let component: PerfilInfoComponent;
@@ -28,16 +31,21 @@ describe('PerfilInfoComponent', () => {
     httpClientSpy = getHttpClientSpy() // Simulamos HttpClient como espía
     UsuariosServiceSpy = jasmine.createSpyObj(
       'UsuariosService',
-      ['getUserById' ]
+      ['getUserById','putVerificationUser']
+    )
+    userSessionStorageServiceSpy = jasmine.createSpyObj(
+      'UserSessionStorageService',
+      ['loginGetUsuarioIdToSS']
     )
 
 
     await TestBed.configureTestingModule({
       //declarations: [PerfilInfoComponent, HeaderComponent],
-      imports: [PerfilInfoComponent,ReactiveFormsModule, FormsModule],
+      imports: [PerfilInfoComponent,ReactiveFormsModule, FormsModule ],
       providers: [
         { provide: HttpClient, useValue: httpClientSpy },
         { provide: Router, useValue: routerSpy },
+        [{provide: ComponentFixtureAutoDetect, useValue: true}],
         {
           provide: UsuariosService,
           useValue: UsuariosServiceSpy
@@ -53,6 +61,7 @@ describe('PerfilInfoComponent', () => {
 
     await fixture.whenStable()
     fixture.detectChanges()
+
   });
 
   it('should create', () => {
@@ -60,26 +69,53 @@ describe('PerfilInfoComponent', () => {
     expect(component).toBeTruthy()
   })
 
-
-  // it('should receive a Usuario from the backend', fakeAsync(() => {
+  it('trae los datos del backend y los asigna al usuario', async () => {
    
-  //   httpClientSpy.get
+   inicializarUsuarioSpy()
+   await component.ngOnInit();
+   expect(component.usuario).toEqual(usuarioAsignatario);
    
-  //   component.obtenerDatosUsuario(1);
-  //   tick();
+  });
+  
+  
+  it('verifica que el input nombre este cargado con el valor correspondiente',  fakeAsync(   () => {
+    //const botonMenuInfo = fixture.debugElement.nativeElement.querySelector('button[data-testid="aPerfilTest"]')
+    //botonMenuInfo.click()
+    inicializarUsuarioSpy()
+    component.ngOnInit();
+    fixture.detectChanges()
+    tick(0);
+     
+    console.log("usertestes2", component.usuario)
+    fixture.whenStable()
+    fixture.detectChanges()
+   
+    const nombreInput = getByTestId('nombreTest') as HTMLInputElement
+    const apellidoInput = getByTestId('apellidoTest') as HTMLInputElement
+    
+    tick(0);
+   
+    expect(nombreInput.value).toBe('Carlitos')
+    expect(apellidoInput.value).toBe('ApelldioFalso')
+    expect(component.usuario.nombre).toBe('Carlitos')
+   
+    
+  }))
+  
 
-  //    // Verificamos que el usuario cargado sea el esperado
-  //    expect(component.usuario).toEqual(httpClientSpy.usuarioAsignatario);
-  //    expect(component.usuarioEditable).toEqual(httpClientSpy.usuarioAsignatario);
+  function inicializarUsuarioSpy(){
+    userSessionStorageServiceSpy.obtenerIDuserSS;
+    UsuariosServiceSpy.getUserById.and.returnValue(Promise.resolve(usuarioAsignatario));
 
-
-
-  // }))
+    //httpClientSpy.get.and.returnValue(of(usuarioAsignatario)) 
+  }  
 
   function getByTestId(testId: string) {
     const resultHtml = fixture.debugElement.nativeElement
-    return resultHtml.querySelector(`[data-testid="${testId}"]`)
+    return  resultHtml.querySelector(`[data-testid="${testId}"]`)
   }
 
 });
+
+
 

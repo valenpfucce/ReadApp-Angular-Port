@@ -7,11 +7,11 @@
     <section *ngIf="usuario" class="conteiner_datos">
 
       <label for="nombre">Nombre* 
-        <input type="text" name="nombre" required pattern=".*\S.*" required="true" [(ngModel)]="usuarioEditable.nombre">
+        <input type="text" name="nombre" required pattern=".*\S.*" required="true" data-testid="nombreTest" [(ngModel)]="usuarioEditable.nombre">
         <readapp-validacion-field [domainElement]="usuario" [field]="'nombre'"></readapp-validacion-field></label>
         
       <label>Apellido 
-        <input type="text" name="apellido" required pattern=".*\S.*" required="true" [(ngModel)]="usuarioEditable.apellido">
+        <input type="text" name="apellido" required pattern=".*\S.*" required="true"  data-testid="apellidoTest" [(ngModel)]="usuarioEditable.apellido">
         <readapp-validacion-field [domainElement]="usuario" [field]="'apellido'"></readapp-validacion-field></label>
         
       <label>Username 

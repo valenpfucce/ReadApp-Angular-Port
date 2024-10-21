@@ -5,7 +5,7 @@ import { SidebarPerfilComponent } from '../../sidebar-perfil.component';
 import { ValidacionFieldComponent } from "./validacion-field/validacion-field.component";
 import { CommonModule } from '@angular/common';
 import { UserSessionStorageService } from '../../../../services/service_user_session_storage/user-session-storage.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Usuario } from '../../../../domain/usuario';
 import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service';
 import {FormaDeLeer, Promedio, Ansioso, Fanatico,Recurrente} from '../../../../domain/formaDeLeer'
@@ -64,6 +64,7 @@ export class PerfilInfoComponent {
 
     } catch(error){
       this.mensajeError = 'Error en el servidor. Por favor, inténtelo de nuevo mas tarde'
+      
       setTimeout(() => {
         this.mensajeError = null;
       }, 3000);
@@ -71,16 +72,6 @@ export class PerfilInfoComponent {
     }
     
   }
-
-
-  // async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
-  //   const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
-  //   this.usuario = usuarioEnLinea
-  //   this.usuarioEditable = usuarioEnLinea
-  //   this.comprobarFormaDeLeer()
-  //   this.ngAfterViewInit()
-  // }
-
 
 
   cambioCalculador(){
@@ -134,10 +125,7 @@ export class PerfilInfoComponent {
   @ViewChild('experimentado', { static: false }) experimentadoRef!: ElementRef;
   @ViewChild('calculador', { static: false }) calculadorRef!: ElementRef;
 
-  // ngAfterViewInit(){ 
-  //   //console.log(this.leedorRef.nativeElement);
-  //   this.activarChecksCriterioPerfil(this.usuarioEditable);
-  // }
+
    
   ngAfterViewInit() {
     // Verificar si los datos están disponibles antes de ejecutar el método.
