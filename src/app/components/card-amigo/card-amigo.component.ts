@@ -1,17 +1,17 @@
+import { AmigosService } from '../../services/service_amigos/amigos.service';
+import { Usuario } from '../../domain/usuario';
 import { Component,Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CortarPalabraPipe } from '../../pipes/cortar-palabra-pipe/cortar-palabra.pipe';
 import { RouterModule } from '@angular/router'
-import { Usuario } from '../../domain/usuario';
-import { ModalComponent } from '../modal/modal.component';
+//import { ModalComponent } from '../modal/modal.component';
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service';
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service';
-import { AmigosService } from '../../services/service_amigos/amigos.service';
 
 @Component({
   selector: 'readapp-card-amigo',
   standalone: true,
-  imports: [CommonModule, CortarPalabraPipe, RouterModule,ModalComponent],
+  imports: [CommonModule, CortarPalabraPipe, RouterModule],
   templateUrl: './card-amigo.component.html',
   styleUrls: ['./card-amigo.component.css',]
   
@@ -21,6 +21,8 @@ import { AmigosService } from '../../services/service_amigos/amigos.service';
 export class CardAmigoComponent {
   @Input() amigo!: Usuario
   @Input() esModal: boolean = false;
+  
+  
   iduserActual: number = 0
   isActive: boolean = false;
   isActiveTrash: boolean = false;

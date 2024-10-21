@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { LibrosService } from '../../services/service_libros/libros.service'
 import { Libro } from '../../domain/libro'
-import { CommonModule } from '@angular/common'
+import { CommonModule, NgComponentOutlet, NgClass} from '@angular/common'
 import { CardLibroComponent } from '../card-libro/card-libro.component'
 import {
   BarraBusquedaComponent,
@@ -37,6 +37,8 @@ export class ModalComponent implements OnInit {
   rutaActual: String = ''
   tituloModal = ''
   usuarioActual!: Usuario
+  //amigoComponent: any;
+  //amigoComponentLoaded = false;
 
 
   @Input() isModalOpen: boolean = false
@@ -56,8 +58,9 @@ export class ModalComponent implements OnInit {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     this.obtenerDatosUsuario(userIdSS)
     await this.loadLibros() // Llama a la función para cargar los libros
-
+    
     this.rutaActual = this.router.url
+    //this.detectarRuta();
     await this.getUsuarios(userIdSS!)
     this.asignarTitulo()
   }
@@ -67,6 +70,26 @@ export class ModalComponent implements OnInit {
     this.usuarioActual = usuarioEnLinea
    
   }
+  
+  // detectarRuta() {
+  //   this.router.events.subscribe(() => {
+  //     this.rutaActual = this.router.url;
+  //     if (this.rutaActual.includes('perfil/amigos') && !this.amigoComponentLoaded) {
+  //       this.loadCardAmigoComponent(); // Cargar el componente solo si aún no está cargado
+  //     }
+  //   });
+  // }
+
+  // async loadCardAmigoComponent() {
+  //   if (!this.amigoComponentLoaded) {
+  //     // Cargamos el componente CardAmigoComponent dinámicamente
+  //     const { CardAmigoComponent } = await import('../card-amigo/card-amigo.component');
+  //     this.amigoComponent = CardAmigoComponent;
+  //     this.amigoComponentLoaded = true;
+  //   }
+  // }
+
+
 
 
   asignarTitulo() {

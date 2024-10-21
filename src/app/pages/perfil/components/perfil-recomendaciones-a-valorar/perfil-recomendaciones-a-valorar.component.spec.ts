@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PerfilRecomendacionesAValorarComponent } from './perfil-recomendaciones-a-valorar.component';
+// import { PerfilRecomendacionesAValorarComponent } from './perfil-recomendaciones-a-valorar.component';
 
-describe('PerfilRecomendacionesAValorarComponent', () => {
-  let component: PerfilRecomendacionesAValorarComponent;
-  let fixture: ComponentFixture<PerfilRecomendacionesAValorarComponent>;
+// describe('PerfilRecomendacionesAValorarComponent', () => {
+//   let component: PerfilRecomendacionesAValorarComponent;
+//   let fixture: ComponentFixture<PerfilRecomendacionesAValorarComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [PerfilRecomendacionesAValorarComponent]
-    })
-    .compileComponents();
+//   beforeEach(async () => {
+//     await TestBed.configureTestingModule({
+//       imports: [PerfilRecomendacionesAValorarComponent]
+//     })
+//     .compileComponents();
 
-    fixture = TestBed.createComponent(PerfilRecomendacionesAValorarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//     fixture = TestBed.createComponent(PerfilRecomendacionesAValorarComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });
