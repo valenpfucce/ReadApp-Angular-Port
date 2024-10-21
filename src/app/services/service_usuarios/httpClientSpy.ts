@@ -52,7 +52,7 @@ export const getHttpClientSpy = () => {
   httpClientSpy.put
     .withArgs(`${REST_SERVER_URL}/usuarios/actualizar/` + usuarioAsignatario.id, usuarioActualizado)
   httpClientSpy.get
-    .withArgs(`${REST_SERVER_URL}/recomendaciones/1`)
+    .withArgs(`${REST_SERVER_URL}/recomendaciones/` + recomendacion1.id)
     .and.returnValue(of(recomendacionesStub[0]))
 //    httpClientSpy.get
 //     .withArgs(`${REST_SERVER_URL}/usuarios`)
