@@ -23,6 +23,7 @@ export class BusquedaRecomendacionesComponent {
   data!: DataBusqueda
   recomendaciones!: Recomendacion[]
   recomendacionesFiltradas!: Recomendacion[]
+  noHayRecomendaciones = false
   constructor(
     private route : ActivatedRoute,
     private serviceRecomendaciones: RecomendacionesService,
@@ -46,6 +47,9 @@ export class BusquedaRecomendacionesComponent {
       evento.idUsuario
     )
     this.recomendacionesFiltradas = [...this.recomendaciones]
+    if(this.recomendacionesFiltradas.length == 0){
+      this.noHayRecomendaciones = true
+    }
   }
 
   filtrarRecomendacionesPrivadas(mostrarPrivadas: boolean) {

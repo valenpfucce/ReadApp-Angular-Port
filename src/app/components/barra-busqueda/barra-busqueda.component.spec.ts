@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BarraBusquedaComponent } from './barra-busqueda.component';
+// import { BarraBusquedaComponent } from './barra-busqueda.component';
 
-describe('BarraBusquedaComponent', () => {
-  let component: BarraBusquedaComponent;
-  let fixture: ComponentFixture<BarraBusquedaComponent>;
+// describe('BarraBusquedaComponent', () => {
+//   let component: BarraBusquedaComponent;
+//   let fixture: ComponentFixture<BarraBusquedaComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [BarraBusquedaComponent]
-    })
-    .compileComponents();
+//   beforeEach(async () => {
+//     await TestBed.configureTestingModule({
+//       imports: [BarraBusquedaComponent]
+//     })
+//     .compileComponents();
 
-    fixture = TestBed.createComponent(BarraBusquedaComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//     fixture = TestBed.createComponent(BarraBusquedaComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

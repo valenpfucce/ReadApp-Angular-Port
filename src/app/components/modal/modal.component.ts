@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core'
 import { LibrosService } from '../../services/service_libros/libros.service'
 import { Libro } from '../../domain/libro'
-import { CommonModule } from '@angular/common'
+import { CommonModule, NgComponentOutlet, NgClass} from '@angular/common'
 import { CardLibroComponent } from '../card-libro/card-libro.component'
 import {
   BarraBusquedaComponent,
@@ -37,6 +37,8 @@ export class ModalComponent implements OnInit {
   rutaActual: String = ''
   tituloModal = ''
   usuarioActual!: Usuario
+  noHay = false
+
 
   @Input() isModalOpen: boolean = false
   @Output() close = new EventEmitter<void>()
@@ -65,6 +67,7 @@ export class ModalComponent implements OnInit {
     const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
     this.usuarioActual = usuarioEnLinea
   }
+  
 
   asignarTitulo() {
     switch (this.rutaActual) {
@@ -100,15 +103,22 @@ export class ModalComponent implements OnInit {
   }
 
   async buscar(evento: BuscarEvento): Promise<void> {
+    this.noHay = false
     if (this.tituloModal == 'Todos los usuarios') {
       console.log(false)
       this.amigos = await this.userServiceUS.getUsuariosCard(
         evento.palabraABuscar
       )
+      if(this.amigos.length == 0){
+        this.noHay = true
+      }
     } else {
       this.libros = await this.librosService.busquedaLibros(
         evento.palabraABuscar
       )
+      if(this.libros.length == 0){
+        this.noHay = true
+      }
     }
   }
 
