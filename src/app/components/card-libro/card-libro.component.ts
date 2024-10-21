@@ -18,17 +18,19 @@ export class CardLibroComponent {
   isActiveTrash: boolean = false
 
   @Input() libro!: Libro
-  @Input() modo!: 'detalle' | 'edicion'
+  @Input() modo!: 'detalle' | 'edicion' | 'nueva'
   @Input() esModal: boolean = false
   @Output() libroABorrar = new EventEmitter<Libro>()
 
   constructor(private userServiceUS: UsuariosService) {}
 
   //PRUEBA PARA VER SI ME IMPRIME, ELIMINARLO
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   mostrarBotonBorrar() {
-    return this.modo === 'edicion'
+    return this.modo === 'edicion' || this.modo === 'nueva'
   }
 
   esTrending() {

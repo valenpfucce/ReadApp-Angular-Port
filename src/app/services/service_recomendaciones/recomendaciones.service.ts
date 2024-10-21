@@ -66,14 +66,11 @@ export class RecomendacionesService {
   }
 
   async editarRecomendacion(recomendacion: Recomendacion, userId: number): Promise<any> {
-    console.log("Enviando al back...\n",recomendacion)
     try {
-      console.log("JSON enviado al backend:", JSON.stringify(RecomendacionUpdateDTO.toJson(recomendacion)));
-      const response = await firstValueFrom(this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/editar/por/` + userId, (RecomendacionUpdateDTO.toJson(recomendacion))))
-      console.log("Respuesta recibida:", response)
+      const response = await firstValueFrom(this.httpClient.patch(`${REST_SERVER_URL}/recomendaciones/editar/por/` + userId, (RecomendacionUpdateDTO.toJson(recomendacion))))
       return response;
     } catch (error) {
-      console.error("Error al enviar al back:", error)
+        console.error("Error al enviar al back:", error)
       throw error
     }
   }
@@ -100,4 +97,15 @@ export class RecomendacionesService {
     await lastValueFrom(this.httpClient.patch(`${REST_SERVER_URL}/recomendaciones/eliminar-recomendacion/${recomendacionId}`, {})
     )
   }
+
+  async crearRecomendacion(recomendacion: Recomendacion){
+    try {
+      const response = await firstValueFrom(this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/crear`, (RecomendacionUpdateDTO.toJson(recomendacion))))
+      return response;
+    } catch (error) {
+      console.error("Error al enviar al back:", error)
+      throw error
+    }
+  }
+
 }

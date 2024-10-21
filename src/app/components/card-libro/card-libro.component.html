@@ -5,11 +5,8 @@
           <img src="../imagenes/trash.svg" class="iconos" alt="borrar" (click)="borrarLibro()"/>
         </div>
       }
-      <div class="iconos-inferior-derecha">
-        <button *ngIf="!esModal"  (click)="eliminarLibrosALeer(libro)"><img src="/imagenes/trash.svg"></button>
-      </div>
       <div *ngIf="esModal" class="iconos-inferior-derecha ">
-        <button (click)="agregarLibroALeer(libro)">Agregar Libro</button>
+        <button>Agregar Botón</button>
       </div>
       <div class="contenedor-imagen">
         <img src={{libro.imagen_libro_url}} alt="Imagen del Libro" class="imagen-libro" />
