@@ -97,5 +97,87 @@ describe('CardRecomendacionComponent', () => {
   //   expect(component.corazonCliqueado).toBeFalse();
   // });
 
+  // it('debería mostrar el corazón si el usuario puede valorar ', () => {
+  //   component.recomendacion = new Recomendacion(1, 1, "Recomendación 1", true, "Descripción", [], [], 4, 9);
+  //
+  //   // Caso 1: El usuario puede valorar
+  //   component.puedeValorar = true
+  //   fixture.detectChanges()
+  //
+  //   const corazon = fixture.debugElement.nativeElement.querySelector('button[data-testid="corazon"]');
+  //   expect(corazon).toBeTruthy()
+  //
+  //   // Caso 2: El usuario no puede valorar
+  //   component.puedeValorar = false
+  //   fixture.detectChanges()
+  //
+  //   expect(corazon).toBeFalsy()
+  // })
+
+  // it('debería mostrar el lapiz y el tacho si el usuario puede editar ', () => {
+  //   component.recomendacion = new Recomendacion(1, 1, "Recomendación 1", true, "Descripción", [], [], 4, 9)
+  //
+  //   // Caso 1: El usuario puede editar
+  //   component.puedeEditar = true
+  //   fixture.detectChanges()
+  //
+  //   const lapiz = fixture.debugElement.nativeElement.querySelector('button[data-testid="lapiz"]')
+  //   const tacho = fixture.debugElement.nativeElement.querySelector('button[data-testid="tacho"]')
+  //
+  //   expect(lapiz).toBeTruthy()
+  //   expect(tacho).toBeTruthy()
+  //
+  //   // Caso 2: El usuario no puede editar
+  //   component.puedeEditar = false
+  //   fixture.detectChanges()
+  //
+  //   expect(lapiz).toBeFalsy()
+  //   expect(tacho).toBeFalsy()
+  // })
+
+  // it('debería aparecer un mensaje de advertencia si se cliquea el tacho ', () => {
+  //   component.recomendacion = new Recomendacion(1, 1, "Recomendación 1", true, "Descripción", [], [], 4, 9)
+  //
+  //   component.puedeEditar = true
+  //   fixture.detectChanges()
+
+  //   const tacho = fixture.debugElement.nativeElement.querySelector('button[data-testid="tacho"]')
+  //   tacho.click()
+  //   fixture.detectChanges()
+  //
+  //   expect(component.advertenciaVisible).toBeTrue()
+  // })
+
+  // it('se debería eliminar la recomendacion si se cliquea 'Eliminar' ', () => {
+  //   component.recomendacion = new Recomendacion(1, 1, "Recomendación 1", true, "Descripción", [], [], 4, 9)
+  //
+  //   component.puedeEditar = true
+  //   fixture.detectChanges()
+
+  //   const tacho = fixture.debugElement.nativeElement.querySelector('button[data-testid="tacho"]')
+  //   tacho.click()
+  //   fixture.detectChanges()
+  //
+  //   const eliminarRec = fixture.debugElement.nativeElement.querySelector('button[data-testid="eliminarRec"]')
+  //   eliminarRec.click()
+  //   fixture.detectChanges()
+
+  //   expect(component.recomendacion).toBeFalsy()
+  // })
+
+  // it('debería enrutarse a la página de detalle de la recomendación al hacer clic en "Ver más"', async () => {
+  //   component.recomendacion = new Recomendacion(1, 1, "Recomendación 1", true, "Descripción", [], [], 4, 9)
+  //   fixture.detectChanges()
+
+  //   const botonVerMas = fixture.debugElement.nativeElement.querySelector(data-testid ="verMas")
+  //   botonVerMas.click()
+  //
+  //   await fixture.whenStable()
+  //   fixture.detectChanges()
+  //
+  //   expect(router.url).toBe(`/recomendacion/${component.recomendacion.id}/detalle`);
+  // });
+
+
 })
 
