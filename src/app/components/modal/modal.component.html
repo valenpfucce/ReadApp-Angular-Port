@@ -49,19 +49,28 @@
         </readapp-card-libro>
       </div>
 
-      <div
-        class="contenedor-cartas"
-        *ngIf="rutaActual.includes('perfil/amigos')"
-      >
+      <!-- <div class="contenedor-cartas" *ngIf="rutaActual.includes('perfil/amigos')">
+         Aquí cargamos el componente de amigos dinámicamente 
+        <ng-container *ngIf="amigoComponentLoaded">
+          <ng-container *ngFor="let amigo of amigos">
+            <ng-container *ngComponentOutlet="amigoComponent"></ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+     </div> -->
+      
+      <div class="contenedor-cartas"  *ngIf="rutaActual.includes('perfil/amigos')">
         <readapp-card-amigo *ngFor="let amigo of amigos"
         [amigo]="amigo"
         [esModal]="true">
         </readapp-card-amigo>
 
       </div>
+
       @if (noHay){
         <h1 class="noHay">No se ha encontrado lo que busca</h1>
       }
+
     </div>
 
   </div>

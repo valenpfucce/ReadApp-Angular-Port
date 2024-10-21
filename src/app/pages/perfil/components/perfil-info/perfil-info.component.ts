@@ -40,7 +40,6 @@ export class PerfilInfoComponent {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private userServiceUS: UsuariosService,
     private sessionStorage: UserSessionStorageService
 
@@ -55,12 +54,34 @@ export class PerfilInfoComponent {
   }
 
   async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
-    const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
-    this.usuario = usuarioEnLinea
-    this.usuarioEditable = usuarioEnLinea
-    this.comprobarFormaDeLeer()
-    this.ngAfterViewInit()
+    
+    try {
+      const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
+      this.usuario = usuarioEnLinea
+      this.usuarioEditable = usuarioEnLinea
+      this.comprobarFormaDeLeer()
+      this.ngAfterViewInit()
+
+    } catch(error){
+      this.mensajeError = 'Error en el servidor. Por favor, inténtelo de nuevo mas tarde'
+      setTimeout(() => {
+        this.mensajeError = null;
+      }, 3000);
+
+    }
+    
   }
+
+
+  // async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
+  //   const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
+  //   this.usuario = usuarioEnLinea
+  //   this.usuarioEditable = usuarioEnLinea
+  //   this.comprobarFormaDeLeer()
+  //   this.ngAfterViewInit()
+  // }
+
+
 
   cambioCalculador(){
     this.esCalculador = !this.esCalculador
@@ -103,7 +124,7 @@ export class PerfilInfoComponent {
 }
 
 
-//ViweChild accede al elemnto del html con el #tipoPerfil, en este caso los checks
+ //ViweChild accede al elemnto del html con el #tipoPerfil, en este caso los checks
   @ViewChild('precavido', { static: false }) precavidoRef!: ElementRef;
   @ViewChild('demandante', { static: false }) demandanteRef!: ElementRef;
   @ViewChild('cambiante', { static: false }) cambianteRef!: ElementRef;
@@ -113,10 +134,18 @@ export class PerfilInfoComponent {
   @ViewChild('experimentado', { static: false }) experimentadoRef!: ElementRef;
   @ViewChild('calculador', { static: false }) calculadorRef!: ElementRef;
 
-  ngAfterViewInit(){
-    console.log(this.leedorRef.nativeElement);
-    this.activarChecksCriterioPerfil(this.usuarioEditable);
+  // ngAfterViewInit(){ 
+  //   //console.log(this.leedorRef.nativeElement);
+  //   this.activarChecksCriterioPerfil(this.usuarioEditable);
+  // }
+   
+  ngAfterViewInit() {
+    // Verificar si los datos están disponibles antes de ejecutar el método.
+    if (this.usuario?.perfilLista) {
+      this.activarChecksCriterioPerfil(this.usuarioEditable);
+    }
   }
+
 
   activarChecksCriterioPerfil(usuario: Usuario) {
     const tipoPerfil = usuario.perfilLista

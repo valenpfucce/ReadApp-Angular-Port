@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { LibrosService } from '../../services/service_libros/libros.service'
 import { Libro } from '../../domain/libro'
-import { CommonModule } from '@angular/common'
+import { CommonModule, NgComponentOutlet, NgClass} from '@angular/common'
 import { CardLibroComponent } from '../card-libro/card-libro.component'
 import {
   BarraBusquedaComponent,
@@ -39,6 +39,7 @@ export class ModalComponent implements OnInit {
   usuarioActual!: Usuario
   noHay = false
 
+
   @Input() isModalOpen: boolean = false
   @Output() close = new EventEmitter<void>()
   @Output() librosEnviados = new EventEmitter<Libro[]>()
@@ -56,8 +57,9 @@ export class ModalComponent implements OnInit {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     this.obtenerDatosUsuario(userIdSS)
     await this.loadLibros() // Llama a la función para cargar los libros
-
+    
     this.rutaActual = this.router.url
+    //this.detectarRuta();
     await this.getUsuarios(userIdSS!)
     this.asignarTitulo()
   }
@@ -66,6 +68,7 @@ export class ModalComponent implements OnInit {
     const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
     this.usuarioActual = usuarioEnLinea
   }
+  
 
   asignarTitulo() {
     switch (this.rutaActual) {

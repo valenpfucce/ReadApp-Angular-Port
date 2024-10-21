@@ -4,7 +4,7 @@
     <h1> Información</h1>
     <h2> General </h2>
   
-    <section class="conteiner_datos">
+    <section *ngIf="usuario" class="conteiner_datos">
 
       <label for="nombre">Nombre* 
         <input type="text" name="nombre" required pattern=".*\S.*" required="true" [(ngModel)]="usuarioEditable.nombre">
@@ -33,7 +33,7 @@
     </section>
 
     <h2>Forma de lectura</h2>
-    <div class="tipos_lectura">
+    <div *ngIf="usuario" class="tipos_lectura">
       <label><input type="radio"  (click)="cambioFormaLeerPUT('Promedio')"    [checked]="esPromedio" value="promedio" name="lectura" />Promedio</label>
       <label><input type="radio"  (click)="cambioFormaLeerPUT('Ansioso')"    [checked]="esAnsioso" value="ansioso" name="lectura" />Ansioso</label>
       <label><input type="radio" (click)="cambioFormaLeerPUT('Fanatico')"     [checked]="esFanatico" value="fanatico" name="lectura" />Fanatico</label>
@@ -42,13 +42,13 @@
     </div>
     <h2>Criterio de busqueda</h2>
     <div class="criterio_conteiner">
-      <label><input type="checkbox" #precavido value="precavido" (change)="onCheckboxChange('precavido', $event)" >Precavido</label>
-      <label><input type="checkbox" #demandante value="demandante" (change)="onCheckboxChange('demandante', $event)" >Demandante</label>
-      <label><input type="checkbox" #cambiante value="cambiante" (change)="onCheckboxChange('cambiante', $event)" >Cambiante</label>
-      <label><input type="checkbox" #leedor value="leedor" (change)="onCheckboxChange('leedor', $event)" >Leedor</label>
-      <label><input type="checkbox" #nativista value="nativista" (change)="onCheckboxChange('nativista', $event)"  >Nativista</label>
-      <label><input type="checkbox" #poliglota value="poliglota"(change)="onCheckboxChange('poliglota', $event)"  >Poliglota</label>
-      <label><input type="checkbox" #experimentado value="experimentado" (change)="onCheckboxChange('experimentado', $event)" >Experimentado</label>
+      <label><input type="checkbox"  #precavido value="precavido" (change)="onCheckboxChange('precavido', $event)" >Precavido</label>
+      <label><input type="checkbox"  #demandante value="demandante" (change)="onCheckboxChange('demandante', $event)" >Demandante</label>
+      <label><input type="checkbox"  #cambiante value="cambiante" (change)="onCheckboxChange('cambiante', $event)" >Cambiante</label>
+      <label><input type="checkbox"  #leedor value="leedor" (change)="onCheckboxChange('leedor', $event)" >Leedor</label>
+      <label><input type="checkbox"  #nativista value="nativista" (change)="onCheckboxChange('nativista', $event)"  >Nativista</label>
+      <label><input type="checkbox"   #poliglota value="poliglota"(change)="onCheckboxChange('poliglota', $event)"  >Poliglota</label>
+      <label><input type="checkbox"   #experimentado value="experimentado" (change)="onCheckboxChange('experimentado', $event)" >Experimentado</label>
       <label><input (change)="cambioCalculador()" type="checkbox" #calculador value="calculador" (change)="onCheckboxChange('calculador', $event)">Calculador</label>
 
       
