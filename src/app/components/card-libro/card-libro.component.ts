@@ -20,6 +20,7 @@ export class CardLibroComponent {
   @Input() libro!: Libro
   @Input() modo!: 'detalle' | 'edicion' | 'nueva'
   @Input() esModal: boolean = false
+  @Input() esPerfil: boolean = false
   @Output() libroABorrar = new EventEmitter<Libro>()
 
   constructor(private userServiceUS: UsuariosService) {}

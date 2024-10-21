@@ -30,8 +30,10 @@
       >
         <readapp-card-libro
           *ngFor="let libro of libros"
+          #cardLibro
           [libro]="libro"
           [esModal]="true"
+          (click)="llamarALibroAgregar(cardLibro, libro)"
         >
         </readapp-card-libro>
       </div>
