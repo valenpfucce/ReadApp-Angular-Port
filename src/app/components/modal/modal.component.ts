@@ -67,7 +67,7 @@ export class ModalComponent implements OnInit {
     const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
     this.usuarioActual = usuarioEnLinea
   }
-  
+
 
   asignarTitulo() {
     switch (this.rutaActual) {
@@ -82,11 +82,13 @@ export class ModalComponent implements OnInit {
         break
       case '/recomendacion/' + this.recomendacionNum + '/edicion':
         this.tituloModal = 'Agregar Libros a Recomendación'
+        const librosUserxId = this.usuarioActual.librosLeidos.map(libro => libro.id)
+        this.libros = this.libros.filter( libro => librosUserxId.includes(libro.id) )
         break
       case '/recomendacion/nueva':
         this.tituloModal = 'Agregar Libros a Recomendación'
-        const librosUserxId = this.usuarioActual.librosLeidos.map(libro => libro.id)
-        this.libros = this.libros.filter( libro => librosUserxId.includes(libro.id) )
+        const librosUserxIdN = this.usuarioActual.librosLeidos.map(libro => libro.id)
+        this.libros = this.libros.filter( libro => librosUserxIdN.includes(libro.id) )
         break
       default:
         this.tituloModal = 'Ventana modal'
