@@ -182,8 +182,9 @@ export class PerfilInfoComponent {
       this.fechaNacimiento === ''
         ? undefined
         : dayjs(this.fechaNacimiento).toDate()
-    this.usuarioEditable.guardarDatos()
-    this.llamarServerPutUS()
+    let okCampos = this.usuarioEditable.guardarDatos()
+    if(okCampos){ this.llamarServerPutUS()}
+      
   }
 
   async llamarServerPutUS() {

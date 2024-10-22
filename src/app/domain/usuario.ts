@@ -105,6 +105,7 @@ export class Usuario {
   guardarDatos(): boolean {
     this.validador.validarDatos(this)
     if (this.errors.length > 0) {
+      console.log("errors", this.errors)
       return false
     }
     return true
@@ -173,6 +174,7 @@ export class Usuario {
 export class sistemaValidacion {
   validarDatos(usuario: Usuario): void {
     usuario.errors.length = 0
+    usuario.vpromedio = Number(usuario.vpromedio)
 
     if (this.stringVacio(usuario.nombre!)) {
       this.addError(usuario, 'nombre', 'El campo no puede estar vacio')
@@ -191,7 +193,7 @@ export class sistemaValidacion {
     }
 
     if (this.numberVacio(usuario.vpromedio!)) {
-      this.addError(usuario, 'tiempoLectura?', 'El campo no puede estar vacio')
+      this.addError(usuario, 'vpromedio', 'El campo no puede estar vacio')
     }
 
     if (this.validarFecha(usuario.fechaNacimiento!)) {
