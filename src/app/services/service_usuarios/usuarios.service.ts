@@ -25,17 +25,25 @@ export class UsuariosService {
   }
 
   async getUserById(userIdSS: number | null): Promise<Usuario> {
-    const usuarioJSON = await lastValueFrom(
-      this.httpClient.get<UsuarioJSON>(
-        `${REST_SERVER_URL}/usuarios/` + userIdSS
+    try{
+      const usuarioJSON = await lastValueFrom(
+        this.httpClient.get<UsuarioJSON>(
+          `${REST_SERVER_URL}/usuarios/` + userIdSS
+        )
       )
-    )
-
-    if (!usuarioJSON) {
-      throw new Error('Usuario Invalido')
+  
+      if (!usuarioJSON) {
+        throw new Error('Usuario Invalido')
+      }
+      const usuarioTipoUsuario = await Usuario.fromJson(usuarioJSON)
+      return usuarioTipoUsuario
+    
+    }catch(error){
+      this.router.navigate(['**'])
+      throw error
+        
     }
-    const usuarioTipoUsuario = await Usuario.fromJson(usuarioJSON)
-    return usuarioTipoUsuario
+    
   }
 
   async getUsuariosCard(busqueda: string=""): Promise<Usuario[]> {
@@ -50,7 +58,7 @@ export class UsuariosService {
     const amigosLista = usuarioAmigos.map((AmigosJSON) =>
       Usuario.fromJsonAmigos(AmigosJSON)
     )
-    console.log('todos los usuarios', amigosLista)
+   
     return amigosLista
   }
 
@@ -64,16 +72,18 @@ export class UsuariosService {
       .pipe(map((response) => response?.id || null))
   }
 
-  async actualizarUsuario(
-    usuarioBack: Usuario,
-    usuarioEditable: Usuario
-  ): Promise<void> {
-    await lastValueFrom(
-      this.httpClient.put<void>(
-        `${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id,
-        usuarioEditable.toJSON()
+  async actualizarUsuario(usuarioBack: Usuario,usuarioEditable: Usuario): Promise<void> {
+    try {
+      await lastValueFrom(
+        this.httpClient.put<void>(
+          `${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id,
+          usuarioEditable.toJSON()
+        )
       )
-    )
+    } catch(error){
+        throw error
+    }
+    
   }
 
   navegarALogin() {
@@ -139,6 +149,7 @@ export class UsuariosService {
       console.log('IDs enviados exitosamente al backend', librosEnviar)
     } catch (error) {
       console.error('Error al agregar libros a leer:', error)
+      throw error
     }
   }
 

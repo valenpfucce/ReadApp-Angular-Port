@@ -22,7 +22,7 @@ export class NotfoundComponent {
     //Si no esta loggeado --> Al login
     const usuarioSession = sessionStorage.getItem('userSession')
     if (!usuarioSession) this.navegarA('/login')
-    this.navegarA('/home')
+    this.navegarA('/login')
   }
   navegarA(ruta: string) {
     this.router.navigate([ruta])

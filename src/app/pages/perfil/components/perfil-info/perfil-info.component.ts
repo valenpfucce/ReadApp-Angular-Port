@@ -1,20 +1,16 @@
 import { Component, ElementRef, ViewChild } from '@angular/core'
 import dayjs from 'dayjs'
-import { FormsModule } from '@angular/forms'
-import { SidebarPerfilComponent } from '../../sidebar-perfil.component'
-import { ValidacionFieldComponent } from './validacion-field/validacion-field.component'
-import { CommonModule } from '@angular/common'
-import { UserSessionStorageService } from '../../../../services/service_user_session_storage/user-session-storage.service'
-import { Router } from '@angular/router'
-import { Usuario } from '../../../../domain/usuario'
-import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service'
-import {
-  FormaDeLeer,
-  Promedio,
-  Ansioso,
-  Fanatico,
-  Recurrente
-} from '../../../../domain/formaDeLeer'
+import { FormsModule } from '@angular/forms';
+import { SidebarPerfilComponent } from '../../sidebar-perfil.component';
+import { ValidacionFieldComponent } from "./validacion-field/validacion-field.component";
+import { CommonModule } from '@angular/common';
+import { UserSessionStorageService } from '../../../../services/service_user_session_storage/user-session-storage.service';
+import { Router } from '@angular/router';
+import { Usuario } from '../../../../domain/usuario';
+import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service';
+import {FormaDeLeer, Promedio, Ansioso, Fanatico,Recurrente} from '../../../../domain/formaDeLeer'
+
+
 
 @Component({
   selector: 'readapp-perfil-info',
@@ -60,24 +56,21 @@ export class PerfilInfoComponent {
       this.usuarioEditable = usuarioEnLinea
       this.comprobarFormaDeLeer()
       this.ngAfterViewInit()
-    } catch (error) {
-      this.mensajeError =
-        'Error en el servidor. Por favor, inténtelo de nuevo mas tarde'
+
+    } catch(error){
+      this.mensajeError = 'Error en el servidor. Por favor, inténtelo de nuevo mas tarde'
+      
+
       setTimeout(() => {
         this.mensajeError = null
       }, 3000)
     }
   }
 
-  // async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
-  //   const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
-  //   this.usuario = usuarioEnLinea
-  //   this.usuarioEditable = usuarioEnLinea
-  //   this.comprobarFormaDeLeer()
-  //   this.ngAfterViewInit()
-  // }
 
-  cambioCalculador() {
+
+  cambioCalculador(){
+
     this.esCalculador = !this.esCalculador
   }
 
@@ -116,6 +109,8 @@ export class PerfilInfoComponent {
         break
     }
   }
+
+
 
   //ViweChild accede al elemnto del html con el #tipoPerfil, en este caso los checks
   @ViewChild('precavido', { static: false }) precavidoRef!: ElementRef
@@ -182,8 +177,9 @@ export class PerfilInfoComponent {
       this.fechaNacimiento === ''
         ? undefined
         : dayjs(this.fechaNacimiento).toDate()
-    this.usuarioEditable.guardarDatos()
-    this.llamarServerPutUS()
+    let okCampos = this.usuarioEditable.guardarDatos()
+    if(okCampos){ this.llamarServerPutUS()}
+      
   }
 
   async llamarServerPutUS() {
