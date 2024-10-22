@@ -7,23 +7,23 @@
     <section *ngIf="usuario" class="conteiner_datos">
 
       <label for="nombre">Nombre* 
-        <input type="text" name="nombre" required pattern=".*\S.*" required="true" data-testid="nombreTest" [(ngModel)]="usuarioEditable.nombre">
-        <readapp-validacion-field [domainElement]="usuario" [field]="'nombre'"></readapp-validacion-field></label>
+        <input type="text" name="nombre"  data-testid="nombreTest" [(ngModel)]="usuarioEditable.nombre">
+        <readapp-validacion-field data-testid="validacionCampos" [domainElement]="usuario" [field]="'nombre'"></readapp-validacion-field></label>
         
       <label>Apellido 
-        <input type="text" name="apellido" required pattern=".*\S.*" required="true"  data-testid="apellidoTest" [(ngModel)]="usuarioEditable.apellido">
+        <input type="text" name="apellido"  data-testid="apellidoTest" [(ngModel)]="usuarioEditable.apellido">
         <readapp-validacion-field [domainElement]="usuario" [field]="'apellido'"></readapp-validacion-field></label>
         
       <label>Username 
-        <input type="text" name="username" required pattern=".*\S.*" [(ngModel)]="usuarioEditable.username">
+        <input type="text" name="username" [(ngModel)]="usuarioEditable.username">
         <readapp-validacion-field [domainElement]="usuario" [field]="'username'"></readapp-validacion-field></label>
         
       <label>Fecha de nacimiento 
-        <input type="date" name="fechaNacimiento" required pattern=".*\S.*" [(ngModel)]="fechaNacimiento"> 
+        <input type="date" name="fechaNacimiento" [(ngModel)]="fechaNacimiento"> 
         <readapp-validacion-field [domainElement]="usuario" [field]="'fecha'"></readapp-validacion-field></label>
       
       <label>Mail 
-        <input type="text" name="mail" required pattern=".*\S.*" [(ngModel)]="usuarioEditable.mail">
+        <input type="text" name="mail"  [(ngModel)]="usuarioEditable.mail">
         <readapp-validacion-field [domainElement]="usuario" [field]="'mail'"></readapp-validacion-field></label>
         
       <label>Tiempo de lectura promedio 

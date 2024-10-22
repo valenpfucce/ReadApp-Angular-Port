@@ -10,14 +10,15 @@ import {
 import { getHttpClientSpy, usuarioActualizado, usuarioAsignatario } from '../../../../services/service_usuarios/httpClientSpy'
 import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router'
-import { lastValueFrom, of, throwError } from 'rxjs'
 import { UserSessionStorageService } from '../../../../services/service_user_session_storage/user-session-storage.service'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { PerfilInfoComponent } from './perfil-info.component';
 import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service'
-import { Usuario } from '../../../../domain/usuario'
 import {ComponentFixtureAutoDetect} from '@angular/core/testing';
 import { REST_SERVER_URL } from '../../../../services/configuration'
+import { By } from '@angular/platform-browser'
+import { sistemaValidacion } from '../../../../domain/usuario'
+import { ValidacionFieldComponent } from './validacion-field/validacion-field.component'
 
 describe('PerfilInfoComponent', () => {
   let component: PerfilInfoComponent;
@@ -26,10 +27,12 @@ describe('PerfilInfoComponent', () => {
   let httpClientSpy: jasmine.SpyObj<HttpClient>
   let userSessionStorageServiceSpy: jasmine.SpyObj<UserSessionStorageService>
   let UsuariosServiceSpy: jasmine.SpyObj<UsuariosService>
+  let sistemaValidacionSpy: jasmine.SpyObj<sistemaValidacion>
 
   beforeEach(async () => {
     routerSpy = jasmine.createSpyObj('Router', ['navigate', 'navigateByUrl'])
     httpClientSpy = getHttpClientSpy() // Simulamos HttpClient como espía
+    sistemaValidacionSpy = jasmine.createSpyObj('sistemaValidacion', ['validarDatos'])
     UsuariosServiceSpy = jasmine.createSpyObj(
       'UsuariosService',
       ['getUserById','putVerificationUser', 'actualizarUsuario']
@@ -42,15 +45,13 @@ describe('PerfilInfoComponent', () => {
 
     await TestBed.configureTestingModule({
       //declarations: [PerfilInfoComponent, HeaderComponent],
-      imports: [PerfilInfoComponent,ReactiveFormsModule, FormsModule ],
+      imports: [PerfilInfoComponent,ReactiveFormsModule, FormsModule, ValidacionFieldComponent ],
       providers: [
         { provide: HttpClient, useValue: httpClientSpy },
         { provide: Router, useValue: routerSpy },
         [{provide: ComponentFixtureAutoDetect, useValue: true}],
-        {
-          provide: UsuariosService,
-          useValue: UsuariosServiceSpy
-        }
+        {provide: UsuariosService,useValue: UsuariosServiceSpy},
+        {provide:sistemaValidacion, useValue: sistemaValidacionSpy  }
         
       ]
     })
@@ -75,6 +76,8 @@ describe('PerfilInfoComponent', () => {
    inicializarUsuarioSpy()
    await component.ngOnInit();
    expect(component.usuario).toEqual(usuarioAsignatario);
+
+   
    
   });
   
@@ -101,8 +104,34 @@ describe('PerfilInfoComponent', () => {
     expect(component.usuario.nombre).toBe('Carlitos')
    
     
+    
   }))
+
+
+  it('verifica que se muestre un mensaje de error cuando el campo nombre esta vacío y se hace clic en el botón Guardar cambios', fakeAsync(  () => {
+    
+    inicializarUsuarioSpy()
+    component.ngOnInit()
+    tick(0);
+    fixture.detectChanges()
   
+    
+    spyOn(component.usuario, 'guardarDatos').and.callThrough(); //espia el metodo y ejecuta las llamadas originales 
+    component.usuarioEditable.nombre = '';
+    getByTestId('guardarBoton').click()
+    
+    expect(component.usuario.guardarDatos).toHaveBeenCalled();
+    
+    fixture.whenStable();
+    fixture.detectChanges();
+    
+    const errorMessageElement = getByTestId("validacionCampos")   
+  
+   expect(errorMessageElement).not.toBeNull();
+   expect(errorMessageElement.textContent).toContain('El campo no puede estar vacio');
+   
+  }))
+
   // fit('verifica que se haga el click y se llama el service ActualizarUsuario (put)', fakeAsync(() => {
   //   // Simular la llamada al servicio y el retorno de usuario
    
@@ -129,18 +158,6 @@ describe('PerfilInfoComponent', () => {
   //   // Asegúrate de que se llame al método actualizarUsuario del servicio
   //   //expect(UsuariosServiceSpy.actualizarUsuario).toHaveBeenCalledWith(usuarioAsignatario, usuarioActualizado);
   // }))
-
-
-
-  
-
-     
-    
- 
-
-
-
-
 
 
 
