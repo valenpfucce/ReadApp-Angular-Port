@@ -67,9 +67,9 @@ export class PerfilLibrosALeerComponent implements OnInit {
     return this.librosALeer
   }
 
-  guardarCambios() {
-    this.userServiceUS.agregarLibrosALeer(this.userActive)
-    this.userServiceUS.eliminarLibrosALeer(this.userActive)
+  async guardarCambios() {
+    await this.userServiceUS.agregarLibrosALeer(this.userActive)
+    await this.userServiceUS.eliminarLibrosALeer(this.userActive)
     this.reload()
   }
 

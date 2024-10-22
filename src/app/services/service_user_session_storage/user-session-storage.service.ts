@@ -22,7 +22,7 @@ export class UserSessionStorageService {
     contrasenia: string
   ): Promise<number | null> {
     try {
-      // Usamos firstValueFrom para convertir el observable en una promesa
+      //Usamos firstValueFrom para convertir el observable en una promesa
       const response = await firstValueFrom(
         this.userService.putVerificationUser(mail, contrasenia)
       )

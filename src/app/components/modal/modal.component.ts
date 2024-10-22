@@ -1,18 +1,15 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core'
-import { LibrosService } from '../../services/service_libros/libros.service'
-import { Libro } from '../../domain/libro'
-import { CommonModule, NgComponentOutlet, NgClass} from '@angular/common'
-import { CardLibroComponent } from '../card-libro/card-libro.component'
-import {
-  BarraBusquedaComponent,
-  BuscarEvento
-} from '../barra-busqueda/barra-busqueda.component'
-import { CardAmigoComponent } from '../card-amigo/card-amigo.component'
-import { Router } from '@angular/router'
-import { Usuario } from '../../domain/usuario'
-import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
-import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
-import { AmigosService } from '../../services/service_amigos/amigos.service'
+import {LibrosService} from '../../services/service_libros/libros.service'
+import {Libro} from '../../domain/libro'
+import {CommonModule} from '@angular/common'
+import {CardLibroComponent} from '../card-libro/card-libro.component'
+import {BarraBusquedaComponent, BuscarEvento} from '../barra-busqueda/barra-busqueda.component'
+import {CardAmigoComponent} from '../card-amigo/card-amigo.component'
+import {Router} from '@angular/router'
+import {Usuario} from '../../domain/usuario'
+import {UsuariosService} from '../../services/service_usuarios/usuarios.service'
+import {UserSessionStorageService} from '../../services/service_user_session_storage/user-session-storage.service'
+import {AmigosService} from '../../services/service_amigos/amigos.service'
 
 @Component({
   selector: 'readapp-modal',
@@ -58,7 +55,7 @@ export class ModalComponent implements OnInit {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     this.obtenerDatosUsuario(userIdSS)
     this.rutaActual = this.router.url
-    await this.loadLibros() // Llama a la función para cargar los libros
+    await this.loadLibros()
     await this.getUsuarios(userIdSS!)
     this.asignarTitulo()
   }
@@ -156,10 +153,6 @@ export class ModalComponent implements OnInit {
     this.librosGuardados = this.librosSeleccionados
     this.librosEnviados.emit(this.librosGuardados)
 
-    /* tengo que hacer la logica de que cuando aprieto guardar cambios del modal
-    las cards seleccionadas se muestren en el perfil libros leidos.
-    y cuando aprieto guardar cambios del perfil el boton guardar cambios del perfil,
-    los libros que seleccione se manden al back */
 
     this.librosSeleccionados.forEach((libro) =>
       this.librosService.agregarALibrosLeidos(libro.id, this.usuarioActual.id!)

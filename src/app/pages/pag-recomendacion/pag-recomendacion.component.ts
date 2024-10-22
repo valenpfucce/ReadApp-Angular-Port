@@ -54,9 +54,6 @@ export class PagRecomendacionComponent {
     if (userIdSSAChequear != null) {
       this.userIdSS = userIdSSAChequear
     }
-    // ===== ROUTE PARAMETRO =====
-    //Traer los parametros del routing
-    // this.route.params.subscribe(async params => {
     this.modo = this.route.snapshot.data['modo'];
     if (this.esModoEdicion() || this.esModoDetalle()) {
       this.idRecomendacion = Number(this.route.snapshot.paramMap.get('id'))
@@ -78,7 +75,6 @@ export class PagRecomendacionComponent {
     if (this.esModoNueva()) {
       this.modoNueva()
     }
-    // });
   }
 
 
@@ -93,11 +89,6 @@ export class PagRecomendacionComponent {
     const puedeEditarSR = await this.serviceRecomendacion.puedeEditarRecomendacion(this.recomendacion.id, this.userIdSS)
     this.puedeEditar = puedeEditarSR
     return puedeEditarSR;
-  }
-
-  async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
-    const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
-    this.usuario = usuarioEnLinea
   }
 
   setIconoRecomendacion(newPublicaBoolean : Boolean) {
@@ -171,8 +162,6 @@ export class PagRecomendacionComponent {
 
   quitarLibro(libro: Libro) {
     const index = this.recomendacion.lista_libros.findIndex(l => l.id === libro.id);
-
-    // Verifica que el libro existe en la lista antes de eliminarlo
     if (index !== -1) {
       this.recomendacion.lista_libros.splice(index, 1);
     }
@@ -224,25 +213,19 @@ export class PagRecomendacionComponent {
     this.router.navigate([ruta])
   }
 
-  trackByFn(index: number, item: Libro) {
-    return item.id // Usamos el ID del libro para hacer tracking en el *ngFor
-  }
-
   isModalOpen = false
 
   openModal() {
-    console.log('Método openModal ejecutado') // Verificar si se ejecuta al hacer clic
-    this.isModalOpen = true // Cambiar el estado para abrir el modal
+    this.isModalOpen = true
   }
 
   closeModal() {
-    this.isModalOpen = false // Cerrar el modal
+    this.isModalOpen = false
   }
 
   isModalValoracionOpen = false
 
   openModalValoracion() {
-    console.log('Método openModal ejecutado') // Verificar si se ejecuta al hacer clic
     this.isModalValoracionOpen = true
   }
 

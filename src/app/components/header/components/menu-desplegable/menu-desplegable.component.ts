@@ -16,15 +16,14 @@ export class MenuDesplegableComponent {
   constructor(private router: Router) {}
 
   navegar(opcion: string) {
-    console.log(`Navegando a: ${opcion}`);
     this.router.navigate([opcion]);
-    this.menuVisible = false; 
+    this.menuVisible = false;
   }
-  
+
   navegarOut() {
     sessionStorage.clear()
     this.navegar("/login")
   }
 
-  
+
 }

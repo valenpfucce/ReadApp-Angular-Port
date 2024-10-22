@@ -13,52 +13,33 @@ import { UsuariosService } from '../../services/service_usuarios/usuarios.servic
   styleUrl: '../../estilos_generales/cartas_libros.css'
 })
 export class CardLibroComponent {
-  librosSeleccionados: Libro[] = []
-  isActive: boolean = false
-  isActiveTrash: boolean = false
-
   @Input() libro!: Libro
   @Input() modo!: 'detalle' | 'edicion' | 'nueva'
   @Input() esModal: boolean = false
   @Input() esPerfil: boolean = false
-  @Input() tipoPerfil!: 'aLeer' | "leidos"
+  @Input() tipoPerfil!: 'aleer' | "leidos"
   @Output() libroABorrar = new EventEmitter<Libro>()
 
   constructor(private userServiceUS: UsuariosService) {}
-
-  //PRUEBA PARA VER SI ME IMPRIME, ELIMINARLO
-  ngOnInit() {
-
-  }
 
   mostrarBotonBorrar() {
     return this.modo === 'edicion' || this.modo === 'nueva'
   }
 
   esTrending() {
-    //Aca tendria que hacer el calculo con las ventas semanales, hacerlo en el front o back???
-    return true
+    return this.libro.esDesafiante
   }
 
   esBestSeller() {
-    //Aca tendria que hacer el calculo de si es best seller, hacerlo en el front o back???
-    return true
+    return this.libro.esBestSeller
   }
 
   borrarLibro() {
     this.libroABorrar.emit(this.libro)
   }
 
-  toggleActive() {
-    this.isActive = !this.isActive
-  }
-
-  toggleActivateTrash() {
-    this.isActiveTrash = !this.isActiveTrash
-  }
-
   agregarLibro(libro : Libro) {
-    if(this.tipoPerfil === 'aLeer'){
+    if(this.tipoPerfil == 'aleer'){
       this.agregarLibroALeer(libro)
     }else{
       this.agregarLibrosLeidos(libro)
@@ -66,7 +47,7 @@ export class CardLibroComponent {
   }
 
   eliminarLibro(libro : Libro) {
-    if(this.tipoPerfil === 'aLeer'){
+    if(this.tipoPerfil == 'aleer'){
       this.eliminarLibrosALeer(libro)
     }else{
       this.eliminarLibrosLeidos(libro)

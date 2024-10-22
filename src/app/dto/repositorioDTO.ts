@@ -1,4 +1,3 @@
-import {Valoracion} from "../domain/valoracion";
 import {Recomendacion} from "../domain/recomendacion";
 
 export class RecomendacionUpdateDTO{

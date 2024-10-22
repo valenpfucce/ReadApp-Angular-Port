@@ -8,7 +8,7 @@ import { UserSessionStorageService } from '../../../../services/service_user_ses
 import { Router } from '@angular/router';
 import { Usuario } from '../../../../domain/usuario';
 import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service';
-import {FormaDeLeer, Promedio, Ansioso, Fanatico,Recurrente} from '../../../../domain/formaDeLeer'
+import { Promedio, Ansioso, Fanatico,Recurrente } from '../../../../domain/formaDeLeer'
 
 
 
@@ -59,8 +59,6 @@ export class PerfilInfoComponent {
 
     } catch(error){
       this.mensajeError = 'Error en el servidor. Por favor, inténtelo de nuevo mas tarde'
-      
-
       setTimeout(() => {
         this.mensajeError = null
       }, 3000)
@@ -105,7 +103,6 @@ export class PerfilInfoComponent {
         this.usuarioEditable.formaDeLeer = new Recurrente()
         break
       default:
-        console.log('Forma de leer no reconocida: ', formaleer)
         break
     }
   }
@@ -122,13 +119,7 @@ export class PerfilInfoComponent {
   @ViewChild('experimentado', { static: false }) experimentadoRef!: ElementRef
   @ViewChild('calculador', { static: false }) calculadorRef!: ElementRef
 
-  // ngAfterViewInit(){
-  //   //console.log(this.leedorRef.nativeElement);
-  //   this.activarChecksCriterioPerfil(this.usuarioEditable);
-  // }
-
   ngAfterViewInit() {
-    // Verificar si los datos están disponibles antes de ejecutar el método.
     if (this.usuario?.perfilLista) {
       this.activarChecksCriterioPerfil(this.usuarioEditable)
     }
@@ -159,12 +150,10 @@ export class PerfilInfoComponent {
     const isChecked = (event.target as HTMLInputElement).checked
 
     if (isChecked) {
-      // Si el checkbox se selecciona, agrega el criterio a la lista de UsuarioEditable
       if (!this.usuarioEditable.perfilLista.includes(criterio)) {
         this.usuarioEditable.perfilLista.push(criterio)
       }
     } else {
-      // Si se deselecciona, lo eliminamos de la lista
       const index = this.usuarioEditable.perfilLista.indexOf(criterio)
       if (index > -1) {
         this.usuarioEditable.perfilLista.splice(index, 1)
@@ -179,7 +168,7 @@ export class PerfilInfoComponent {
         : dayjs(this.fechaNacimiento).toDate()
     let okCampos = this.usuarioEditable.guardarDatos()
     if(okCampos){ this.llamarServerPutUS()}
-      
+
   }
 
   async llamarServerPutUS() {
