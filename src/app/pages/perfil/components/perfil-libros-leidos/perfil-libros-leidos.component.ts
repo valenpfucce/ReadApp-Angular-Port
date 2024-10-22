@@ -32,10 +32,15 @@ import { CommonModule } from '@angular/common'
 })
 export class PerfilLibrosLeidosComponent implements OnInit {
 
+  palabraABuscar: string = ''  
   libros: Libro[] = []
-  librosRecibidos: Libro[] = []
+  
   usuario!: Usuario
   modo!: 'detalle' | 'edicion'
+  
+  userIdSS!: number
+  isModalOpen = false
+  userActive!: number
 
 
   constructor(
@@ -49,6 +54,7 @@ export class PerfilLibrosLeidosComponent implements OnInit {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     this.obtenerDatosUsuario(userIdSS)
     this.modo = 'detalle'
+    this.cargarLibros()
   }
 
   async obtenerDatosUsuario(userIdSS: number | null): Promise<void> {
@@ -63,7 +69,7 @@ export class PerfilLibrosLeidosComponent implements OnInit {
       const userId = this.sessionStorage.obtenerIDuserSS()
 
       if (userId != null) {
-        this.libros = await this.librosService.busquedaLibros()
+        this.libros = await this.userServiceUS.traerLibrosLeidosdelBack(userId)
       } else {
         console.error('No se encontro el ID del usuario')
       }
@@ -73,31 +79,39 @@ export class PerfilLibrosLeidosComponent implements OnInit {
   }
 
   recibirLibros(libros: Libro[]){
-    this.librosRecibidos = libros
-    console.log(this.librosRecibidos)
+    this.libros = libros
+    console.log(this.libros)
   }
 
 
   listaLibrosLeidos() {
-    this.libros = this.usuario.librosLeidos.map((libro: LibroJSON) =>
+    return this.usuario.librosLeidos.map((libro: LibroJSON) =>
       Libro.fromJson(libro)
     )
 
-    console.log('Libros leídos:', this.libros)
   }
 
   trackByFn(index: number, item: Libro) {
     return item.id // Usamos el ID del libro para hacer tracking en el *ngFor
   }
 
-  isModalOpen = false
 
   openModal() {
-    console.log('Método openModal ejecutado') // Verificar si se ejecuta al hacer clic
-    this.isModalOpen = true // Cambiar el estado para abrir el modal
+    this.isModalOpen = true 
+  }
+
+  saveChanges(){
+    //this.userServiceUS.agregarListaLibrosLeidos(this.userActive)
+    //this.userServiceUS.eliminarLibrosLeidos(this.userActive)
+    this.reload()
+
   }
 
   closeModal() {
-    this.isModalOpen = false // Cerrar el modal
+    this.isModalOpen = false 
+  }
+
+  reload() {
+    window.location.reload()
   }
 }

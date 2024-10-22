@@ -160,6 +160,24 @@ export class UsuariosService {
     )
     this.listaEliminarALeer = []
   }
+
+  async agregarListaLibrosLeidos(userId: number, librosLeidosIds: number[]): Promise<void> {
+    const url = `${REST_SERVER_URL}/usuarios/${userId}/libros-leidos`;
+    try {
+      await lastValueFrom(this.httpClient.patch(url, librosLeidosIds));
+      console.log('Libros leídos agregados exitosamente:', librosLeidosIds);
+    } catch (error) {
+      console.error('Error al agregar libros leídos:', error);
+    }
+  }
+
+  async traerLibrosLeidosdelBack(userId: number){
+    return lastValueFrom(
+      this.httpClient.get<Libro[]>(
+        `${REST_SERVER_URL}/${userId}/libros-leidos`,{}
+      )
+    )
+  }
 }
 
 class UsuarioLogin {

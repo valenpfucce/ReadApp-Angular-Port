@@ -26,12 +26,15 @@ export class LibrosService {
 
   async agregarALibrosLeidos(libroId: number, userId: number) {
     await lastValueFrom(
-      this.httpClient.post(
+      this.httpClient.patch(
         `${REST_SERVER_URL}/${userId}/agregar-libro/${libroId}`,
         {}
       )
     )
   }
+
+  
+
   async agregarLibrosPorLeer(
     userId: number,
     librosIds: number[]
