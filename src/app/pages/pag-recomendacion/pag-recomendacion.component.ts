@@ -120,14 +120,28 @@ export class PagRecomendacionComponent {
       this.error = 'Se necesita que la recomendación tenga al menos un libro'
       return
     }
-
-    try {
       if (this.esModoEdicion()) {
         this.guardarCambiosEdicion()
       }
       if (this.esModoNueva()) {
         this.guardarCambiosNueva()
       }
+  }
+
+  //===> EDICION
+  esModoEdicion(){
+    return (this.modo === 'edicion')
+  }
+  modoEdicion() {
+    if(!this.puedeEditar){this.navegarA('/home')}
+    this.visibilidadPrivadaCheck = !this.recomendacion.esPublica
+  }
+
+  async guardarCambiosEdicion(){
+    this.visibilidadPrivadaGuardar()
+    try{
+      await this.serviceRecomendacion.editarRecomendacion(this.recomendacion, this.userIdSS)
+      this.navegarA('/home')
     } catch (error: unknown) {
       if (error instanceof HttpErrorResponse) {
         if (error.status === 0) {
@@ -140,22 +154,6 @@ export class PagRecomendacionComponent {
         this.error = 'Ocurrió un error inesperado.'
       }
     }
-  }
-
-  //===> EDICION
-  esModoEdicion(){
-    return (this.modo === 'edicion')
-  }
-  modoEdicion() {
-    if(!this.puedeEditar){this.navegarA('/home')}
-
-  }
-
-  guardarCambiosEdicion(){
-    this.visibilidadPrivadaGuardar()
-    console.log(this.recomendacion);
-    this.serviceRecomendacion.editarRecomendacion(this.recomendacion, this.userIdSS)
-    this.navegarA('/home')
   }
 
   visibilidadPrivadaGuardar(){
@@ -200,13 +198,24 @@ export class PagRecomendacionComponent {
 
   modoNueva(){
     this.recomendacion = new Recomendacion(-1, this.userIdSS, "", true,"", [],[])
-    console.log("hola\n", this.recomendacion)
   }
 
   async guardarCambiosNueva(){
-    console.log("hola\n", this.recomendacion)
-    await this.serviceRecomendacion.crearRecomendacion(this.recomendacion)
-    this.navegarA('/mis_recomendaciones')
+    try{
+      await this.serviceRecomendacion.crearRecomendacion(this.recomendacion)
+      this.navegarA('/mis_recomendaciones')
+    } catch (error: unknown) {
+      if (error instanceof HttpErrorResponse) {
+        if (error.status === 0) {
+          this.error = 'Conexión no exitosa. Intente más tarde'
+        } else {
+          this.error =
+            error.error?.message || 'Ocurrió un error inesperado.'
+        }
+      } else {
+        this.error = 'Ocurrió un error inesperado.'
+      }
+    }
   }
   //FIN NUEVA
 

@@ -84,7 +84,7 @@ export class ModalValoracionComponent implements OnInit {
     } catch (error: unknown)  {
       if (error instanceof HttpErrorResponse) {
         if (error.status === 0) {
-          this.error = 'Conexión no exitosa. Intente más tarde'
+          this.error = 'Error al conectarse con el servidor. Intentelo más tarde'
         } else {
           this.error =
             error.error?.message || 'Ocurrió un error inesperado.'

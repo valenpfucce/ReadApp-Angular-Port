@@ -15,7 +15,7 @@
               <input type="text" placeholder="{{recomendacion.titulo}}" [(ngModel)]="recomendacion.titulo"/>
               <div class="barra-busqueda edicion-rec ">
                 <label>
-                  <input type="checkbox" [(ngModel)]="visibilidadPrivadaCheck">
+                  <input type="checkbox"  [(ngModel)]="visibilidadPrivadaCheck">
                   Visibilidad privada
                 </label>
               </div>
@@ -79,10 +79,10 @@
         }
       </section>
     }
-    <div class="boton_container btn_cont_derecha">
       <div class="error-message mensaje-error-recomendacion" *ngIf="error">
         <p>{{ error }}</p>
       </div>
+    <div class="boton_container btn_cont_derecha">
       @if (esModoDetalle()){
         <button class="boton_guardar" type="submit" (click)="navegarA('/home')" >Volver</button>
       }
