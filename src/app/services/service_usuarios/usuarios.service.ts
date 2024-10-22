@@ -1,17 +1,12 @@
-import { Injectable } from '@angular/core'
-import {
-  AmigosJSON,
-  sistemaValidacion,
-  Usuario,
-  UsuarioJSON
-} from '../../domain/usuario'
-import { Router } from '@angular/router'
-import { HttpClient } from '@angular/common/http'
-import { lastValueFrom, Observable, of } from 'rxjs'
-import { catchError, map } from 'rxjs/operators'
-import { REST_SERVER_URL } from '../configuration'
-import { Recomendacion, RecomendacionJSON } from '../../domain/recomendacion'
-import { Libro } from '../../domain/libro'
+import {Injectable} from '@angular/core'
+import {AmigosJSON, sistemaValidacion, Usuario, UsuarioJSON} from '../../domain/usuario'
+import {Router} from '@angular/router'
+import {HttpClient, HttpParams} from '@angular/common/http'
+import {lastValueFrom, Observable} from 'rxjs'
+import {map} from 'rxjs/operators'
+import {REST_SERVER_URL} from '../configuration'
+import {Recomendacion, RecomendacionJSON} from '../../domain/recomendacion'
+import {Libro} from '../../domain/libro'
 
 @Injectable({
   providedIn: 'root'
@@ -32,31 +27,40 @@ export class UsuariosService {
   }
 
   async getUserById(userIdSS: number | null): Promise<Usuario> {
-    const usuarioJSON = await lastValueFrom(
-      this.httpClient.get<UsuarioJSON>(
-        `${REST_SERVER_URL}/usuarios/` + userIdSS
+    try{
+      const usuarioJSON = await lastValueFrom(
+        this.httpClient.get<UsuarioJSON>(
+          `${REST_SERVER_URL}/usuarios/` + userIdSS
+        )
       )
-    )
-
-    if (!usuarioJSON) {
-      throw new Error('Usuario Invalido')
+  
+      if (!usuarioJSON) {
+        throw new Error('Usuario Invalido')
+      }
+      const usuarioTipoUsuario = await Usuario.fromJson(usuarioJSON)
+      return usuarioTipoUsuario
+    
+    }catch(error){
+      this.router.navigate(['**'])
+      throw error
+        
     }
-    const usuarioTipoUsuario = await Usuario.fromJson(usuarioJSON)
-    return usuarioTipoUsuario
+    
   }
 
-  async getUsuariosCard(busqueda?: string): Promise<Usuario[]> {
+  async getUsuariosCard(busqueda: string=""): Promise<Usuario[]> {
+    let params = new HttpParams().append('busqueda', busqueda)
     const usuarioAmigos = await lastValueFrom(
-      this.httpClient.post<AmigosJSON[]>(
+      this.httpClient.get<AmigosJSON[]>(
         REST_SERVER_URL + '/usuarios/busqueda',
-        busqueda
+        {params}
       )
     )
 
     const amigosLista = usuarioAmigos.map((AmigosJSON) =>
       Usuario.fromJsonAmigos(AmigosJSON)
     )
-    console.log('todos los usuarios', amigosLista)
+   
     return amigosLista
   }
 
@@ -70,16 +74,18 @@ export class UsuariosService {
       .pipe(map((response) => response?.id || null))
   }
 
-  async actualizarUsuario(
-    usuarioBack: Usuario,
-    usuarioEditable: Usuario
-  ): Promise<void> {
-    await lastValueFrom(
-      this.httpClient.put<void>(
-        `${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id,
-        usuarioEditable.toJSON()
+  async actualizarUsuario(usuarioBack: Usuario,usuarioEditable: Usuario): Promise<void> {
+    try {
+      await lastValueFrom(
+        this.httpClient.put<void>(
+          `${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id,
+          usuarioEditable.toJSON()
+        )
       )
-    )
+    } catch(error){
+        throw error
+    }
+    
   }
 
   navegarALogin() {
@@ -96,10 +102,9 @@ export class UsuariosService {
         REST_SERVER_URL + '/usuarios/recomendaciones-a-valorar/' + userId
       )
     )
-    const recomendacionLista = recomendaciones.map((recomendacionJSON) =>
+    return recomendaciones.map((recomendacionJSON) =>
       Recomendacion.fromJson(recomendacionJSON)
     )
-    return recomendacionLista
   }
 
   async agregarRecomendacionAValorar(recomendacionId: number, userId: number) {
@@ -146,6 +151,7 @@ export class UsuariosService {
       console.log('IDs enviados exitosamente al backend', librosEnviar)
     } catch (error) {
       console.error('Error al agregar libros a leer:', error)
+      throw error
     }
   }
 

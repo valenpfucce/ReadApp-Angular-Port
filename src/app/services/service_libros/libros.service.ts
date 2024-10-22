@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Libro, LibroJSON } from '../../domain/libro'
-import { HttpClient } from '@angular/common/http'
+import {HttpClient, HttpParams} from '@angular/common/http'
 import { lastValueFrom, Observable } from 'rxjs'
 import { REST_SERVER_URL } from '../configuration'
 
@@ -10,12 +10,13 @@ import { REST_SERVER_URL } from '../configuration'
 export class LibrosService {
   constructor(private httpClient: HttpClient) {}
 
-  async busquedaLibros(busqueda?: string): Promise<Libro[]> {
+  async busquedaLibros(busqueda: string = ""): Promise<Libro[]> {
     try {
+      let params = new HttpParams().append('busqueda', busqueda)
       const librosJSON = await lastValueFrom(
-        this.httpClient.post<LibroJSON[]>(
+        this.httpClient.get<LibroJSON[]>(
           `${REST_SERVER_URL}/libros/busqueda`,
-          busqueda
+          {params}
         )
       )
       return librosJSON.map((libroJSON) => Libro.fromJson(libroJSON))
@@ -32,6 +33,7 @@ export class LibrosService {
       )
     )
   }
+
 
   
 
@@ -51,4 +53,5 @@ export class LibrosService {
       throw error // Puedes lanzar el error o manejarlo de acuerdo a tus necesidades
     }
   }
+
 }

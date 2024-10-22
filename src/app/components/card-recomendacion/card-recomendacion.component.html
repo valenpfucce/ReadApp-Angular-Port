@@ -4,7 +4,7 @@
         ¿Esta seguro que desea eliminarla?
         No podrá deshacer esta acción.
         <section class="botones-advertencia">
-          <button (click)="eliminarRecomendacion()" class="boton eliminar">Eliminar</button>
+          <button (click)="eliminarRecomendacion()" class="boton eliminar" data-testid="eliminarRec">Eliminar</button>
           <button (click)="cancelarEliminar()" class="boton cancelar">Cancelar</button>
         </section>
       </div>
@@ -14,16 +14,16 @@
         <h3> {{recomendacion.titulo | cortarPalabra: 23}} </h3>
           <div class="flex">
             @if(puedeValorar){
-              <button (click)="aValorar()"  class="boton-rec">
+              <button (click)="aValorar()"  class="boton-rec" data-testid="corazon">
                 @if(corazonCliqueado){ <img src="/imagenes/heart-fill.svg"  alt=""/> }
                 @else { <img src="/imagenes/heart.svg"  alt=""/> }
               </button>
             }
             @if(puedeEditar){
-                <button [routerLink]="['/recomendacion', recomendacion.id,'edicion']" class="boton-rec">
+                <button [routerLink]="['/recomendacion', recomendacion.id,'edicion']" class="boton-rec" data-testid="edicion">
                   <img src="/imagenes/pencil-simple.svg"  alt=""/>
                 </button>
-                <button (click)="mostrarAdvertencia()" class="boton-rec">
+                <button (click)="mostrarAdvertencia()" class="boton-rec" data-testid="tacho">
                   <img src="/imagenes/trash.svg" width="20px" height="18px"  alt=""/>
                 </button>
             }
@@ -57,7 +57,7 @@
         </section>
       </section>
       <div class="boton_container">
-        <button [routerLink]="['/recomendacion', recomendacion.id,'detalle']" class="boton_guardar"> Ver más </button>
+        <button [routerLink]="['/recomendacion', recomendacion.id,'detalle']" class="boton_guardar" data-test="verMas"> Ver más </button>
       </div>
     }
   </article>

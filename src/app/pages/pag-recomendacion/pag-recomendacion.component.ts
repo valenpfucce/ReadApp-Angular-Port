@@ -14,6 +14,7 @@ import {ModalComponent} from "../../components/modal/modal.component";
 import {CommonModule, NgIf} from "@angular/common";
 import {Libro} from "../../domain/libro";
 import {ModalValoracionComponent} from "../../components/modal-valoracion/modal-valoracion.component";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-pag-recomendacion',
@@ -37,7 +38,8 @@ export class PagRecomendacionComponent {
   altRecomendacion!: String
   puedeEditar!: boolean
   puedeValorar!: boolean
-  visibilidadPrivadaCheck!: Boolean
+  visibilidadPrivadaCheck!: boolean
+  error: string = ''
 
   constructor(
     private router : Router,
@@ -47,31 +49,36 @@ export class PagRecomendacionComponent {
     private sessionStorage: UserSessionStorageService
   ){}
 
-  ngOnInit() {
+  async ngOnInit() {
     const userIdSSAChequear = this.sessionStorage.obtenerIDuserSS()
-    if (userIdSSAChequear != null) { this.userIdSS = userIdSSAChequear }
+    if (userIdSSAChequear != null) {
+      this.userIdSS = userIdSSAChequear
+    }
     // ===== ROUTE PARAMETRO =====
     //Traer los parametros del routing
-    this.route.params.subscribe(async params => {
-      this.modo = this.route.snapshot.data['modo'];
-      if(this.esModoEdicion() || this.esModoDetalle()){
-        this.idRecomendacion = +params['id'];
-        console.log('ID Recomendacion:', this.idRecomendacion);
-        const recomendacionEncontrada = await this.serviceRecomendacion.getRecomendacionById(this.idRecomendacion);
-        if (recomendacionEncontrada) {
-          this.recomendacion = recomendacionEncontrada;
-          console.log('Recomendación encontrada:', recomendacionEncontrada);
-        } else {
-          console.log('Recomendación no encontrada --> /home');
-          this.navegarA('/home');
-        }
-        this.setIconoRecomendacion(this.recomendacion.esPublica)
-        await this.puedeEditarLlamadaService()
+    // this.route.params.subscribe(async params => {
+    this.modo = this.route.snapshot.data['modo'];
+    if (this.esModoEdicion() || this.esModoDetalle()) {
+      this.idRecomendacion = Number(this.route.snapshot.paramMap.get('id'))
+      const recomendacionEncontrada = await this.serviceRecomendacion.getRecomendacionById(this.idRecomendacion);
+      if (recomendacionEncontrada) {
+        this.recomendacion = recomendacionEncontrada;
+      } else {
+        this.navegarA('/home');
       }
-      if(this.esModoDetalle()){this.modoDetalle()}
-      if(this.esModoEdicion()){this.modoEdicion()}
-      if(this.esModoNueva())  {this.modoNueva()}
-    });
+      this.setIconoRecomendacion(this.recomendacion.esPublica)
+      await this.puedeEditarLlamadaService()
+    }
+    if (this.esModoDetalle()) {
+      this.modoDetalle()
+    }
+    if (this.esModoEdicion()) {
+      this.modoEdicion()
+    }
+    if (this.esModoNueva()) {
+      this.modoNueva()
+    }
+    // });
   }
 
 
@@ -105,12 +112,20 @@ export class PagRecomendacionComponent {
   }
 
   guardarCambios(){
-    if(this.esModoEdicion()){
-      this.guardarCambiosEdicion()
+    if(this.recomendacion.titulo === "" || this.recomendacion.descripcion === ""){
+      this.error = 'Debe completar todos los campos con (*)'
+      return
     }
-    if(this.esModoNueva()){
-      this.guardarCambiosNueva()
+    if(this.recomendacion.lista_libros.length === 0){
+      this.error = 'Se necesita que la recomendación tenga al menos un libro'
+      return
     }
+      if (this.esModoEdicion()) {
+        this.guardarCambiosEdicion()
+      }
+      if (this.esModoNueva()) {
+        this.guardarCambiosNueva()
+      }
   }
 
   //===> EDICION
@@ -119,14 +134,26 @@ export class PagRecomendacionComponent {
   }
   modoEdicion() {
     if(!this.puedeEditar){this.navegarA('/home')}
-
+    this.visibilidadPrivadaCheck = this.recomendacion.esPublica
   }
 
-  guardarCambiosEdicion(){
+  async guardarCambiosEdicion(){
     this.visibilidadPrivadaGuardar()
-    console.log(this.recomendacion);
-    this.serviceRecomendacion.editarRecomendacion(this.recomendacion, this.userIdSS)
-    this.navegarA('/home')
+    try{
+      await this.serviceRecomendacion.editarRecomendacion(this.recomendacion, this.userIdSS)
+      this.navegarA('/home')
+    } catch (error: unknown) {
+      if (error instanceof HttpErrorResponse) {
+        if (error.status === 0) {
+          this.error = 'Conexión no exitosa. Intente más tarde'
+        } else {
+          this.error =
+            error.error?.message || 'Ocurrió un error inesperado.'
+        }
+      } else {
+        this.error = 'Ocurrió un error inesperado.'
+      }
+    }
   }
 
   visibilidadPrivadaGuardar(){
@@ -171,13 +198,24 @@ export class PagRecomendacionComponent {
 
   modoNueva(){
     this.recomendacion = new Recomendacion(-1, this.userIdSS, "", true,"", [],[])
-    console.log("hola\n", this.recomendacion)
   }
 
   async guardarCambiosNueva(){
-    console.log("hola\n", this.recomendacion)
-    await this.serviceRecomendacion.crearRecomendacion(this.recomendacion)
-    this.navegarA('/mis_recomendaciones')
+    try{
+      await this.serviceRecomendacion.crearRecomendacion(this.recomendacion)
+      this.navegarA('/mis_recomendaciones')
+    } catch (error: unknown) {
+      if (error instanceof HttpErrorResponse) {
+        if (error.status === 0) {
+          this.error = 'Conexión no exitosa. Intente más tarde'
+        } else {
+          this.error =
+            error.error?.message || 'Ocurrió un error inesperado.'
+        }
+      } else {
+        this.error = 'Ocurrió un error inesperado.'
+      }
+    }
   }
   //FIN NUEVA
 

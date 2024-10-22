@@ -10,6 +10,7 @@ import { Usuario } from '../../domain/usuario';
 import {BarraBusquedaComponent, BuscarEvento} from '../../components/barra-busqueda/barra-busqueda.component';
 import { CardLibroMasComponent } from "../../components/card-libro-mas/card-libro-mas.component";
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service';
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'readapp-busqueda-recomendaciones',
@@ -24,6 +25,7 @@ export class BusquedaRecomendacionesComponent {
   recomendaciones!: Recomendacion[]
   recomendacionesFiltradas!: Recomendacion[]
   noHayRecomendaciones = false
+  showError!: string
   constructor(
     private route : ActivatedRoute,
     private serviceRecomendaciones: RecomendacionesService,
@@ -41,14 +43,29 @@ export class BusquedaRecomendacionesComponent {
   }
 
   async buscar(evento: BuscarEvento) {
-    this.recomendaciones = await this.data.realizarBusqueda(
-      this.serviceRecomendaciones,
-      evento.palabraABuscar,
-      evento.idUsuario
-    )
-    this.recomendacionesFiltradas = [...this.recomendaciones]
-    if(this.recomendacionesFiltradas.length == 0){
-      this.noHayRecomendaciones = true
+    try {
+      this.noHayRecomendaciones = false
+      this.showError = ""
+      this.recomendaciones = await this.data.realizarBusqueda(
+        this.serviceRecomendaciones,
+        evento.palabraABuscar,
+        evento.idUsuario
+      )
+      this.recomendacionesFiltradas = [...this.recomendaciones]
+      if(evento.palabraABuscar == "" && this.recomendacionesFiltradas.length == 0){
+        this.noHayRecomendaciones = true
+      }
+    } catch(error:unknown){
+      if (error instanceof HttpErrorResponse) {
+        if (error.status === 0) {
+          this.showError = 'Conexión no exitosa. Intente más tarde'
+        } else {
+          this.showError =
+            error.error?.message || 'Ocurrió un error inesperado.'
+        }
+      } else {
+        this.showError = 'Ocurrió un error inesperado.'
+      }
     }
   }
 

@@ -1,12 +1,9 @@
-import { Component } from '@angular/core';
-import { CardRecomendacionComponent } from '../../../../components/card-recomendacion/card-recomendacion.component';
-import { Usuario } from '../../../../domain/usuario';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router'
-import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service'
-import {
-  UserSessionStorageService
-} from '../../../../services/service_user_session_storage/user-session-storage.service'
-import { Recomendacion } from '../../../../domain/recomendacion'
+import {Component} from '@angular/core';
+import {CardRecomendacionComponent} from '../../../../components/card-recomendacion/card-recomendacion.component';
+import {RouterLink} from '@angular/router'
+import {UsuariosService} from '../../../../services/service_usuarios/usuarios.service'
+import {UserSessionStorageService} from '../../../../services/service_user_session_storage/user-session-storage.service'
+import {Recomendacion} from '../../../../domain/recomendacion'
 import {CardLibroMasComponent} from "../../../../components/card-libro-mas/card-libro-mas.component";
 
 @Component({

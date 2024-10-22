@@ -11,8 +11,8 @@ export type RecomendacionJSON = {
   descripcion: string,
   lista_libros: Libro[],
   valoraciones: Valoracion[],
-  tiempoLectura: number,
-  avgValoraciones: number
+  avgValoraciones?: number
+  tiempoLectura?: number,
 }
 
 
@@ -62,6 +62,20 @@ export class Recomendacion implements Entidad {
 
       return new Recomendacion(data.id, data.creadorId, data.titulo, data.esPublica, data.descripcion, libros, valoraciones, isNaN(data.avgValoraciones) ? 0 : data.avgValoraciones);
     }
+
+  toJSON(): RecomendacionJSON {
+    return {
+      id: this.id,
+      creadorId : this.creadorId,
+      titulo: this.titulo,
+      esPublica: this.esPublica,
+      descripcion: this.descripcion,
+      lista_libros: this.lista_libros,
+      valoraciones: this.valoraciones,
+      avgValoraciones: this.avgValoraciones,
+      tiempoLectura: this.tiempoLectura
+    }
+  }
 }
 
 

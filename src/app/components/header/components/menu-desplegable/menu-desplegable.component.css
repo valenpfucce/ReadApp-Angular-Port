@@ -39,13 +39,9 @@
 
 
   @media (max-width: 400px) {
-
-
     .menu {
       position: fixed;
-      top:58.35%;
-;
+      top: auto;
+      transform: translateY(-100%);
     }
-
-
 }
