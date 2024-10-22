@@ -1,24 +1,18 @@
-      <div class="flex perfil_container">
-        <h1>Libros leídos</h1>
-        <section class="flex lista_perfil">
-          <section class="contenedor-cartas">
-              <section class="grid-libros">
-                @for (libro of libros; track libro; let i = $index) {
-                  <readapp-card-libro (librosEnviados)="recibirLibros(libros)" [libro]="libro" [modo]="modo"></readapp-card-libro>
-                }
-                  <readapp-card-libro-mas (click) ="openModal()"></readapp-card-libro-mas>
-              </section>
-          </section>
-        </section>
-        <div class="boton_container">
-            <button class="boton_cancelar" type="submit">Cancelar</button>
-            <button class="boton_guardar" type="submit">Guardar cambios</button>
-        </div>
+<div class="flex perfil_container">
+  <h1>Libros a leer</h1>
+  <section class="flex lista_perfil">
+    <section class="contenedor-cartas">
+      @for (libro of this.librosLeidos; track libro) {
+        <readapp-card-libro [libro]="libro" [modo]="'edicion'" [esPerfil]="true" ></readapp-card-libro>
+      }
+      <readapp-card-libro-mas (openModalEvent) ="this.openModal()"></readapp-card-libro-mas>
+    </section>
+  </section>
 
-        <!-- Modal -->
-        <readapp-modal *ngIf="isModalOpen" 
-          [isModalOpen]="isModalOpen" 
-          (close)="closeModal()"
-          (librosEnviados)="recibirLibros($event)"          >
-        </readapp-modal>
-      </div>
+  <div class="boton_container">
+    <button (click)="this.cancelarCambios()" class="boton_cancelar" type="submit">Cancelar</button>
+    <button (click)="this.guardarCambios()" class="boton_guardar" type="submit">Guardar cambios</button>
+  </div>
+
+  <readapp-modal *ngIf="this.isModalOpen" [isModalOpen]="this.isModalOpen" (close)="this.closeModal()"></readapp-modal>
+</div>
