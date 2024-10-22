@@ -1,8 +1,7 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component } from '@angular/core';
 import { SidebarPerfilComponent } from '../../sidebar-perfil.component';
 import { Usuario } from '../../../../domain/usuario';
 import { Router } from '@angular/router';
-import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service';
 import { UserSessionStorageService } from '../../../../services/service_user_session_storage/user-session-storage.service';
 import {CardLibroMasComponent} from "../../../../components/card-libro-mas/card-libro-mas.component";
 import { CardAmigoComponent } from '../../../../components/card-amigo/card-amigo.component';
@@ -22,11 +21,10 @@ export class PerfilAmigosComponent {
   userActivate! : number
   listaAmigos! : Usuario[]
   isModalOpen = false
-  
+
 
   constructor(
     private router: Router,
-    private userServiceUS: UsuariosService,
     private sessionStorage: UserSessionStorageService,
     private amigoService: AmigosService
 
@@ -43,7 +41,7 @@ export class PerfilAmigosComponent {
     this.userActivate = userIdSS!
     return this.listaAmigos
   }
-  
+
   guardarCambios(){
     this.amigoService.enviarNuevosAmigos(this.userActivate)
     this.amigoService.eliminarAmigo(this.userActivate)
@@ -57,16 +55,13 @@ export class PerfilAmigosComponent {
   }
 
   openModal() {
-    this.isModalOpen = true 
-  }
-   
-  closeModal() {
-    this.isModalOpen = false 
+    this.isModalOpen = true
   }
 
-  navegarA(ruta : string) {
-    this.router.navigate([ruta])
+  closeModal() {
+    this.isModalOpen = false
   }
+
 }
 
 

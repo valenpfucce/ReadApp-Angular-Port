@@ -39,10 +39,7 @@ export class SidebarPerfilComponent {
       const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS);
       this.usuario = usuarioEnLinea;
     } catch (error) {
-      console.error('Error al obtener datos del usuario:', error);
-      
         this.router.navigate(['**'])
-      
     }
   }
 

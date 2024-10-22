@@ -23,8 +23,8 @@ export class Recomendacion implements Entidad {
     public titulo: string,
     public esPublica: boolean,
     public descripcion: string,
-    public lista_libros: Libro[],  // Ya no es un string, sino un arreglo de Libro
-    public valoraciones: Valoracion[],  // Ya no es un string, sino un arreglo de Valoracion
+    public lista_libros: Libro[],
+    public valoraciones: Valoracion[],
     public avgValoraciones?: number,
     public tiempoLectura?: number
   ) {}

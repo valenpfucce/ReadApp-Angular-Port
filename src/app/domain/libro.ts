@@ -1,4 +1,4 @@
-import { Entidad } from './entidad'
+
 
 export type LibroJSON = {
   id: number

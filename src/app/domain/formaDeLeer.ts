@@ -8,24 +8,24 @@ export interface FormaDeLeer {
 
 export class Promedio implements FormaDeLeer {
     type: any;
-    
+
     constructor() {
-        this.type = 'Promedio'; // Inicializa el tipo en el constructor
+        this.type = 'Promedio'
     }
-    
+
     tiempoDeLectura(libro: Libro, usuario: Usuario): number {
         return usuario.tiempoDeLecturaPromedio(libro);
     }
 }
 
-// Clase Ansioso
+
 export class Ansioso implements FormaDeLeer {
     type: any;
-    
+
     constructor() {
-        this.type = 'Ansioso'; // Inicializa el tipo en el constructor
+        this.type = 'Ansioso'
     }
-    
+
     tiempoDeLectura(libro: Libro, usuario: Usuario): number {
         return libro.esBestSeller
             ? usuario.tiempoDeLecturaPromedio(libro) * 0.5
@@ -33,14 +33,13 @@ export class Ansioso implements FormaDeLeer {
     }
 }
 
-// Clase Fanatico
 export class Fanatico implements FormaDeLeer {
     type: any;
-    
+
     constructor() {
-        this.type = 'Fanatico'; // Inicializa el tipo en el constructor
+        this.type = 'Fanatico'
     }
-    
+
 
     tiempoDeLectura(libro: Libro, usuario: Usuario): number {
         return this.validacionFanatico(libro, usuario)
@@ -51,7 +50,7 @@ export class Fanatico implements FormaDeLeer {
     private validacionFanatico(libro: Libro, usuario: Usuario): boolean {
         return (
             !usuario.librosLeidos.includes(libro) &&
-            usuario.autoresPreferidos.includes(libro.autor_apellido) //REVISAR get usuario -> obj.autor y necesito una listas de
+            usuario.autoresPreferidos.includes(libro.autor_apellido)
         );
     }
 
@@ -64,15 +63,15 @@ export class Fanatico implements FormaDeLeer {
     }
 }
 
-// Clase Recurrente
+
 
 export class Recurrente implements FormaDeLeer {
     type: any;
-    
+
     constructor() {
-        this.type = 'Recurrente'; // Inicializa el tipo en el constructor
+        this.type = 'Recurrente'
     }
-    
+
     private valorRecurrente(libro: Libro, usuario: Usuario): number {
         const vecesLeido = usuario.cantVecesLeido.get(libro.id) || 0;
         return vecesLeido <= 5
@@ -81,7 +80,7 @@ export class Recurrente implements FormaDeLeer {
     }
 
     private calculoPorcentaje(libro: Libro, usuario: Usuario): number {
-        const vecesLeido = usuario.cantVecesLeido.get(libro.id) || 0;   //REVISAR, map de libro.id , number
+        const vecesLeido = usuario.cantVecesLeido.get(libro.id) || 0
         return (
             usuario.tiempoDeLecturaPromedio(libro) -
             (vecesLeido / 100) * usuario.tiempoDeLecturaPromedio(libro)
@@ -93,12 +92,4 @@ export class Recurrente implements FormaDeLeer {
             ? this.valorRecurrente(libro, usuario)
             : usuario.tiempoDeLecturaPromedio(libro);
     }
-}
-
-export class Perfil  {
-    // type: any;
-    // constructor() {
-    //     this.type = 'Recurrente'; // Inicializa el tipo en el constructor
-    // }
-   
 }

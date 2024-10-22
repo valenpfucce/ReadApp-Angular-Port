@@ -13,10 +13,6 @@ import { UsuariosService } from '../../services/service_usuarios/usuarios.servic
   styleUrl: '../../estilos_generales/cartas_libros.css'
 })
 export class CardLibroComponent {
-  librosSeleccionados: Libro[] = []
-  isActive: boolean = false
-  isActiveTrash: boolean = false
-
   @Input() libro!: Libro
   @Input() modo!: 'detalle' | 'edicion' | 'nueva'
   @Input() esModal: boolean = false
@@ -42,32 +38,18 @@ export class CardLibroComponent {
     this.libroABorrar.emit(this.libro)
   }
 
-  toggleActive() {
-    this.isActive = !this.isActive
-  }
-
-  toggleActivateTrash() {
-    this.isActiveTrash = !this.isActiveTrash
-  }
-
   agregarLibro(libro : Libro) {
-    console.log("tipoPerfil", this.tipoPerfil)
     if(this.tipoPerfil == 'aleer'){
-      console.log("Entro a agregar L a leer", libro)
       this.agregarLibroALeer(libro)
     }else{
-      console.log("Entro a agregar L leido",libro)
       this.agregarLibrosLeidos(libro)
     }
   }
 
   eliminarLibro(libro : Libro) {
-    console.log("tipoPerfil", this.tipoPerfil)
     if(this.tipoPerfil == 'aleer'){
-      console.log("Entro a eliminar L a leer")
       this.eliminarLibrosALeer(libro)
     }else{
-      console.log("Entro a eliminar L leidos")
       this.eliminarLibrosLeidos(libro)
     }
   }

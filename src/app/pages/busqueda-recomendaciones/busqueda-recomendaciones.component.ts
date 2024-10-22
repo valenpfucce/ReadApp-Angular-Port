@@ -1,15 +1,13 @@
-import { Component } from '@angular/core';
-import { HeaderComponent } from '../../components/header/header.component';
-import { CardRecomendacionComponent } from '../../components/card-recomendacion/card-recomendacion.component';
-import { ActivatedRoute, Router } from '@angular/router';
-import { RecomendacionesService } from '../../services/service_recomendaciones/recomendaciones.service';
-import { Recomendacion } from '../../domain/recomendacion';
-import { DataBusqueda } from '../../app.routes';
-import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service';
-import { Usuario } from '../../domain/usuario';
+import {Component} from '@angular/core';
+import {HeaderComponent} from '../../components/header/header.component';
+import {CardRecomendacionComponent} from '../../components/card-recomendacion/card-recomendacion.component';
+import {ActivatedRoute} from '@angular/router';
+import {RecomendacionesService} from '../../services/service_recomendaciones/recomendaciones.service';
+import {Recomendacion} from '../../domain/recomendacion';
+import {DataBusqueda} from '../../app.routes';
+import {UserSessionStorageService} from '../../services/service_user_session_storage/user-session-storage.service';
 import {BarraBusquedaComponent, BuscarEvento} from '../../components/barra-busqueda/barra-busqueda.component';
-import { CardLibroMasComponent } from "../../components/card-libro-mas/card-libro-mas.component";
-import { UsuariosService } from '../../services/service_usuarios/usuarios.service';
+import {CardLibroMasComponent} from "../../components/card-libro-mas/card-libro-mas.component";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({

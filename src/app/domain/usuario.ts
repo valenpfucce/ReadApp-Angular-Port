@@ -23,7 +23,7 @@ export type UsuarioJSON = {
   formaDeLeer: FormaDeLeer
   perfilLista: string[]
   librosLeidos: Libro[]
-  librosPorLeer: Libro[] //AGUS ES TUYO?
+  librosPorLeer: Libro[]
   autoresPreferidos: string[]
   cantVecesLeido: Map<Libro['id'], number>
   imgperfil: string
@@ -53,7 +53,7 @@ export class Usuario {
     public fechaNacimiento?: Date,
     public vpromedio: number = 0,
     public formaDeLeer: FormaDeLeer = Usuario.insanciarFormaLeer("Promedio"),
-    public perfilLista: string[] = [], //es tipo de lectura, llega como objetos
+    public perfilLista: string[] = [],
     public librosLeidos: Libro[] = [],
     public librosPorLeer: Libro[] = [],
     public autoresPreferidos: string[] = [],
@@ -74,10 +74,10 @@ export class Usuario {
       perfilLista: Array.isArray(usuarioJSON.perfilLista)
         ? usuarioJSON.perfilLista.map((perfilLista: any) =>
             perfilLista.type.toString()
-          ) 
-        : [(usuarioJSON.perfilLista as any).type.toString()], // Si es un único perfil, lo envuelve en un array
+          )
+        : [(usuarioJSON.perfilLista as any).type.toString()],
       formaDeLeer: this.insanciarFormaLeer(usuarioJSON.formaDeLeer.type)
-      
+
       // autoresPreferidos: Array.isArray(usuarioJSON.autoresPreferidos)
       // ? usuarioJSON.autoresPreferidos.map((autor:any) => autor.type.toString()) // Convierte a string
       // : [(usuarioJSON.autoresPreferidos as any).type.toString()],
@@ -85,7 +85,7 @@ export class Usuario {
     console.log('usertest', usertest)
     return usertest
   }
-  
+
 
   static fromJsonAmigos(AmigosJSON: AmigosJSON) {
     const nuevoAmigo = Object.assign(new Usuario(), AmigosJSON)
@@ -208,14 +208,11 @@ export class sistemaValidacion {
   }
 
   validarFecha(fecha: string | Date | null | undefined): boolean {
-    if (!fecha) return false // Si está vacío o nulo, no es válido
-
-    // Si es una cadena, verificamos que no esté vacía y tenga el formato correcto
+    if (!fecha) return false
     if (typeof fecha === 'string') {
       return fecha.trim() !== '' && /^\d{4}-\d{2}-\d{2}$/.test(fecha)
     }
-
-    return false // Si no es ni string ni Date, no es válida
+    return false
   }
 
   numberVacio(numero: number | null | undefined | any): Boolean {
