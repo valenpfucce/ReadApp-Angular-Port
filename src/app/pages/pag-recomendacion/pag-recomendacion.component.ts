@@ -38,7 +38,7 @@ export class PagRecomendacionComponent {
   altRecomendacion!: String
   puedeEditar!: boolean
   puedeValorar!: boolean
-  visibilidadPrivadaCheck!: Boolean
+  visibilidadPrivadaCheck!: boolean
   error: string = ''
 
   constructor(
@@ -134,7 +134,7 @@ export class PagRecomendacionComponent {
   }
   modoEdicion() {
     if(!this.puedeEditar){this.navegarA('/home')}
-    this.visibilidadPrivadaCheck = !this.recomendacion.esPublica
+    this.visibilidadPrivadaCheck = this.recomendacion.esPublica
   }
 
   async guardarCambiosEdicion(){

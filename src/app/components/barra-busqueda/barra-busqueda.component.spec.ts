@@ -47,6 +47,19 @@ describe('BarraBusquedaComponent', () => {
     expect(component.palabraABuscar).toBe('Libro')
   }))
 
+  it('debería renderizar el botón en pantalla', () => {
+    const button = fixture.nativeElement.querySelector('button');
+    expect(button).toBeTruthy();
+  })
+
+  it('debería emitir el evento de busqueda si se cliquea el botón', () => {
+    spyOn(component.buscarPalabra, 'emit')
+    const button = fixture.debugElement.query(By.css('button'))
+    button.triggerEventHandler('click', null)
+
+    expect(component.buscarPalabra.emit).toHaveBeenCalled();
+  });
+
   // it('debería mostrar el checkbox en la ruta "mis-recomendaciones"', () => {
   //   component.ngOnInit()
   //   fixture.detectChanges()
