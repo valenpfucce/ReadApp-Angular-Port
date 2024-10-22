@@ -17,6 +17,7 @@ import { PerfilInfoComponent } from './perfil-info.component';
 import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service'
 import { Usuario } from '../../../../domain/usuario'
 import {ComponentFixtureAutoDetect} from '@angular/core/testing';
+import { REST_SERVER_URL } from '../../../../services/configuration'
 
 describe('PerfilInfoComponent', () => {
   let component: PerfilInfoComponent;
@@ -31,7 +32,7 @@ describe('PerfilInfoComponent', () => {
     httpClientSpy = getHttpClientSpy() // Simulamos HttpClient como espía
     UsuariosServiceSpy = jasmine.createSpyObj(
       'UsuariosService',
-      ['getUserById','putVerificationUser']
+      ['getUserById','putVerificationUser', 'actualizarUsuario']
     )
     userSessionStorageServiceSpy = jasmine.createSpyObj(
       'UserSessionStorageService',
@@ -102,6 +103,46 @@ describe('PerfilInfoComponent', () => {
     
   }))
   
+  // fit('verifica que se haga el click y se llama el service ActualizarUsuario (put)', fakeAsync(() => {
+  //   // Simular la llamada al servicio y el retorno de usuario
+   
+  //   component.ngOnInit();
+  //   fixture.detectChanges()
+  //   tick(0);
+
+  //   const guardarButton = getByTestId('guardarBoton')
+  //   guardarButton.click();
+  //   fixture.detectChanges()
+  //   tick(0);
+  //   //UsuariosServiceSpy.actualizarUsuario.and.returnValue(Promise.resolve()); // Simula el éxito del método
+  //   // expect(UsuariosServiceSpy.actualizarUsuario).toHaveBeenCalledWith(usuarioAsignatario, usuarioActualizado);
+  //   // httpClientSpy.put
+    
+  //   //const { usuarioActualizable} =httpClientSpy.put.calls.mostRecent().args[0]
+  //   //expect(id).toBe(1)
+  //   expect(usuarioActualizable).toBe(usuarioActualizado)
+    
+  //   component.ngOnInit();
+  //   fixture.detectChanges();
+  //   fixture.whenStable()
+  //   tick(9000)
+  //   // Asegúrate de que se llame al método actualizarUsuario del servicio
+  //   //expect(UsuariosServiceSpy.actualizarUsuario).toHaveBeenCalledWith(usuarioAsignatario, usuarioActualizado);
+  // }))
+
+
+
+  
+
+     
+    
+ 
+
+
+
+
+
+
 
   function inicializarUsuarioSpy(){
     userSessionStorageServiceSpy.obtenerIDuserSS;

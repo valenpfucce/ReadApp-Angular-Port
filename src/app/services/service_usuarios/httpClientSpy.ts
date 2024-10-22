@@ -29,9 +29,11 @@ export const getHttpClientSpy = () => {
   httpClientSpy.get
     .withArgs(`${REST_SERVER_URL}/usuarios/` + usuarioAsignatario.id)
     .and.returnValue(of(usuarioAsignatario))
+  
   httpClientSpy.put
-    .withArgs(`${REST_SERVER_URL}/usuarios/actualizar/` + usuarioAsignatario.id, usuarioActualizado.toJSON())
-    .and.returnValue(of(usuarioActualizado))
+    .withArgs(`${REST_SERVER_URL}/usuarios/actualizar/` + usuarioAsignatario.id,
+    usuarioActualizado)
+    .and.returnValue(Promise.resolve())
   
 
     

@@ -30,17 +30,25 @@ export class UsuariosService {
   }
 
   async getUserById(userIdSS: number | null): Promise<Usuario> {
-    const usuarioJSON = await lastValueFrom(
-      this.httpClient.get<UsuarioJSON>(
-        `${REST_SERVER_URL}/usuarios/` + userIdSS
+    try{
+      const usuarioJSON = await lastValueFrom(
+        this.httpClient.get<UsuarioJSON>(
+          `${REST_SERVER_URL}/usuarios/` + userIdSS
+        )
       )
-    )
-
-    if (!usuarioJSON) {
-      throw new Error('Usuario Invalido')
+  
+      if (!usuarioJSON) {
+        throw new Error('Usuario Invalido')
+      }
+      const usuarioTipoUsuario = await Usuario.fromJson(usuarioJSON)
+      return usuarioTipoUsuario
+    
+    }catch(error){
+      this.router.navigate(['**'])
+      throw error
+        
     }
-    const usuarioTipoUsuario = await Usuario.fromJson(usuarioJSON)
-    return usuarioTipoUsuario
+    
   }
 
   async getUsuariosCard(busqueda?: string): Promise<Usuario[]> {
@@ -54,7 +62,7 @@ export class UsuariosService {
     const amigosLista = usuarioAmigos.map((AmigosJSON) =>
       Usuario.fromJsonAmigos(AmigosJSON)
     )
-    console.log('todos los usuarios', amigosLista)
+   
     return amigosLista
   }
 
