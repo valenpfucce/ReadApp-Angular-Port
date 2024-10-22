@@ -54,6 +54,7 @@ export class PerfilInfoComponent {
       const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
       this.usuario = usuarioEnLinea
       this.usuarioEditable = usuarioEnLinea
+      this.fechaNacimiento = dayjs(this.usuarioEditable.fechaNacimiento).format('YYYY-MM-DD');
       this.comprobarFormaDeLeer()
       this.ngAfterViewInit()
 
