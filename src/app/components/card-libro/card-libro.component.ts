@@ -21,28 +21,21 @@ export class CardLibroComponent {
   @Input() modo!: 'detalle' | 'edicion' | 'nueva'
   @Input() esModal: boolean = false
   @Input() esPerfil: boolean = false
-  @Input() tipoPerfil!: 'aLeer' | "leidos"
+  @Input() tipoPerfil!: 'aleer' | "leidos"
   @Output() libroABorrar = new EventEmitter<Libro>()
 
   constructor(private userServiceUS: UsuariosService) {}
-
-  //PRUEBA PARA VER SI ME IMPRIME, ELIMINARLO
-  ngOnInit() {
-
-  }
 
   mostrarBotonBorrar() {
     return this.modo === 'edicion' || this.modo === 'nueva'
   }
 
   esTrending() {
-    //Aca tendria que hacer el calculo con las ventas semanales, hacerlo en el front o back???
-    return true
+    return this.libro.esDesafiante
   }
 
   esBestSeller() {
-    //Aca tendria que hacer el calculo de si es best seller, hacerlo en el front o back???
-    return true
+    return this.libro.esBestSeller
   }
 
   borrarLibro() {
@@ -58,17 +51,23 @@ export class CardLibroComponent {
   }
 
   agregarLibro(libro : Libro) {
-    if(this.tipoPerfil === 'aLeer'){
+    console.log("tipoPerfil", this.tipoPerfil)
+    if(this.tipoPerfil == 'aleer'){
+      console.log("Entro a agregar L a leer", libro)
       this.agregarLibroALeer(libro)
     }else{
+      console.log("Entro a agregar L leido",libro)
       this.agregarLibrosLeidos(libro)
     }
   }
 
   eliminarLibro(libro : Libro) {
-    if(this.tipoPerfil === 'aLeer'){
+    console.log("tipoPerfil", this.tipoPerfil)
+    if(this.tipoPerfil == 'aleer'){
+      console.log("Entro a eliminar L a leer")
       this.eliminarLibrosALeer(libro)
     }else{
+      console.log("Entro a eliminar L leidos")
       this.eliminarLibrosLeidos(libro)
     }
   }

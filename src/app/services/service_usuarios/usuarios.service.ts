@@ -33,19 +33,19 @@ export class UsuariosService {
           `${REST_SERVER_URL}/usuarios/` + userIdSS
         )
       )
-  
+
       if (!usuarioJSON) {
         throw new Error('Usuario Invalido')
       }
       const usuarioTipoUsuario = await Usuario.fromJson(usuarioJSON)
       return usuarioTipoUsuario
-    
+
     }catch(error){
       this.router.navigate(['**'])
       throw error
-        
+
     }
-    
+
   }
 
   async getUsuariosCard(busqueda: string=""): Promise<Usuario[]> {
@@ -60,7 +60,7 @@ export class UsuariosService {
     const amigosLista = usuarioAmigos.map((AmigosJSON) =>
       Usuario.fromJsonAmigos(AmigosJSON)
     )
-   
+
     return amigosLista
   }
 
@@ -85,7 +85,7 @@ export class UsuariosService {
     } catch(error){
         throw error
     }
-    
+
   }
 
   navegarALogin() {
@@ -170,7 +170,7 @@ export class UsuariosService {
   }
 
   async agregarLibrosLeidos(userId: number) {
-    const librosEnviar = this.listaAgregarLeidos.map((libro) => libro.id) // Cambia aquí para enviar solo IDs
+    const librosEnviar = this.listaAgregarLeidos.map((libro) => libro.id)
     console.log('Esto estoy enviando a agregar', librosEnviar)
     try {
       await lastValueFrom(
@@ -188,9 +188,6 @@ export class UsuariosService {
 
   async eliminarLibrosLeidos(userId: number) {
     const librosEnviar = this.listaEliminarLeidos.map((libro) => libro.id)
-    console.log('buenos libros para eliminar:', librosEnviar)
-
-    console.log('ESTO SE VA A ELIMINAR DEL USUARIO')
     await lastValueFrom(
       this.httpClient.patch(
         `${REST_SERVER_URL}/usuarios/${userId}/eliminar-libros-leidos`,

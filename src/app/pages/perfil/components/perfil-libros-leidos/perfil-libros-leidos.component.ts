@@ -55,15 +55,14 @@ export class PerfilLibrosLeidosComponent implements OnInit {
     }
   }
 
-  async cargarLibrosLeidos(userIdSS: number): Promise<Libro[]> {
+  async cargarLibrosLeidos(userIdSS: number) {
     this.userActive = userIdSS
 
     const usuario = await this.userServiceUS.getUserById(userIdSS)
 
-    this.librosLeidos = usuario.librosLeidos.map((libroBackend: any) => {
-      return Libro.fromBackend(libroBackend)
+    this.librosLeidos = usuario.librosLeidos.map(libro => {
+      return Libro.fromBackend(libro)
     })
-    return this.librosLeidos
   }
 
   guardarCambios() {
