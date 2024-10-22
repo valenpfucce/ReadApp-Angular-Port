@@ -20,7 +20,10 @@ export class CardLibroMasComponent {
   }
 
   accionBoton() {
-    if(this.tamanio === 'mediana') {
+    if(this.tamanio == 'mediana' && this.router.url == '/perfil/recomendacionesAValorar'){
+      this.router.navigate(['/home'])
+    }
+    else if(this.tamanio === 'mediana') {
       this.router.navigate(['/recomendacion/nueva'])
     }else{
       this.openModalEvent.emit()

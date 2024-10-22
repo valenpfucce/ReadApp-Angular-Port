@@ -6,14 +6,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CortarPalabraPipe implements PipeTransform {
 
-  transform(libro: string, limite: number): string {
-    if(!libro) return '';
+  transform(string: string, limite: number): string {
+    if(!string) return '';
 
-    if(libro.length > limite) {
-      return libro.substring(0,limite-3) + '...';
+    if(string.length > limite) {
+      return string.substring(0,limite-3) + '...';
     }
 
-    return libro;
+    return string;
   }
 
 }
