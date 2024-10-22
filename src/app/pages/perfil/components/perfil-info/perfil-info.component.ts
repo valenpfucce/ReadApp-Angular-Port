@@ -11,6 +11,7 @@ import { UsuariosService } from '../../../../services/service_usuarios/usuarios.
 import {FormaDeLeer, Promedio, Ansioso, Fanatico,Recurrente} from '../../../../domain/formaDeLeer'
 
 
+
 @Component({
   selector: 'readapp-perfil-info',
   standalone: true,
@@ -18,17 +19,16 @@ import {FormaDeLeer, Promedio, Ansioso, Fanatico,Recurrente} from '../../../../d
     SidebarPerfilComponent,
     FormsModule,
     ValidacionFieldComponent,
-    CommonModule,
+    CommonModule
   ],
 
   templateUrl: './perfil-info.component.html',
   styleUrl: './perfil-info.component.css'
 })
-
 export class PerfilInfoComponent {
-  usuario!: Usuario;
-  usuarioEditable!: Usuario;
-  fechaNacimiento= ''
+  usuario!: Usuario
+  usuarioEditable!: Usuario
+  fechaNacimiento = ''
   saveOK = false
   esCalculador = false
   esPromedio: boolean = false
@@ -37,24 +37,19 @@ export class PerfilInfoComponent {
   esRecurrente: boolean = false
   mensajeError: string | null = null
 
-
   constructor(
     private router: Router,
     private userServiceUS: UsuariosService,
     private sessionStorage: UserSessionStorageService
-
   ) {}
-
 
   ngOnInit() {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
-    console.log("userIdSS", userIdSS)
+    console.log('userIdSS', userIdSS)
     this.obtenerDatosUsuario(userIdSS)
-
   }
 
-  async obtenerDatosUsuario(userIdSS : number | null ): Promise<void>{
-    
+  async obtenerDatosUsuario(userIdSS: number | null): Promise<void> {
     try {
       const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
       this.usuario = usuarioEnLinea
@@ -65,153 +60,157 @@ export class PerfilInfoComponent {
     } catch(error){
       this.mensajeError = 'Error en el servidor. Por favor, inténtelo de nuevo mas tarde'
       
-      setTimeout(() => {
-        this.mensajeError = null;
-      }, 3000);
 
+      setTimeout(() => {
+        this.mensajeError = null
+      }, 3000)
     }
-    
   }
 
 
+
   cambioCalculador(){
+
     this.esCalculador = !this.esCalculador
   }
 
   comprobarFormaDeLeer() {
     if (this.usuarioEditable.formaDeLeer instanceof Promedio) {
-      this.esPromedio = true;
+      this.esPromedio = true
     } else if (this.usuarioEditable.formaDeLeer instanceof Ansioso) {
-      this.esAnsioso = true;
+      this.esAnsioso = true
     } else if (this.usuarioEditable.formaDeLeer instanceof Fanatico) {
-      this.esFanatico = true;
+      this.esFanatico = true
     } else if (this.usuarioEditable.formaDeLeer instanceof Recurrente) {
-      this.esRecurrente = true;
+      this.esRecurrente = true
     }
   }
 
   cambioFormaLeerPUT(formaleer: string) {
     switch (formaleer) {
-        case 'Promedio':
-            this.esPromedio;
-            this.usuarioEditable.formaDeLeer = new Promedio();
-            break;
-        case 'Ansioso':
-            this.esAnsioso;
-            this.usuarioEditable.formaDeLeer = new Ansioso();
-            break;
-        case 'Fanatico':
-            this.esFanatico;
-            this.usuarioEditable.formaDeLeer = new Fanatico();
-            break;
-        case 'Recurrente':
-            this.esRecurrente;
-            this.usuarioEditable.formaDeLeer = new Recurrente();
-            break;
-        default:
-            console.log("Forma de leer no reconocida: ", formaleer);
-            break;
-    }
-}
-
-
- //ViweChild accede al elemnto del html con el #tipoPerfil, en este caso los checks
-  @ViewChild('precavido', { static: false }) precavidoRef!: ElementRef;
-  @ViewChild('demandante', { static: false }) demandanteRef!: ElementRef;
-  @ViewChild('cambiante', { static: false }) cambianteRef!: ElementRef;
-  @ViewChild('leedor', { static: false}, ) leedorRef!: ElementRef;
-  @ViewChild('nativista', { static: false }) nativistaRef!: ElementRef;
-  @ViewChild('poliglota', { static: false }) poliglotaRef!: ElementRef;
-  @ViewChild('experimentado', { static: false }) experimentadoRef!: ElementRef;
-  @ViewChild('calculador', { static: false }) calculadorRef!: ElementRef;
-
-
-   
-  ngAfterViewInit() {
-    // Verificar si los datos están disponibles antes de ejecutar el método.
-    if (this.usuario?.perfilLista) {
-      this.activarChecksCriterioPerfil(this.usuarioEditable);
+      case 'Promedio':
+        this.esPromedio
+        this.usuarioEditable.formaDeLeer = new Promedio()
+        break
+      case 'Ansioso':
+        this.esAnsioso
+        this.usuarioEditable.formaDeLeer = new Ansioso()
+        break
+      case 'Fanatico':
+        this.esFanatico
+        this.usuarioEditable.formaDeLeer = new Fanatico()
+        break
+      case 'Recurrente':
+        this.esRecurrente
+        this.usuarioEditable.formaDeLeer = new Recurrente()
+        break
+      default:
+        console.log('Forma de leer no reconocida: ', formaleer)
+        break
     }
   }
 
+
+
+  //ViweChild accede al elemnto del html con el #tipoPerfil, en este caso los checks
+  @ViewChild('precavido', { static: false }) precavidoRef!: ElementRef
+  @ViewChild('demandante', { static: false }) demandanteRef!: ElementRef
+  @ViewChild('cambiante', { static: false }) cambianteRef!: ElementRef
+  @ViewChild('leedor', { static: false }) leedorRef!: ElementRef
+  @ViewChild('nativista', { static: false }) nativistaRef!: ElementRef
+  @ViewChild('poliglota', { static: false }) poliglotaRef!: ElementRef
+  @ViewChild('experimentado', { static: false }) experimentadoRef!: ElementRef
+  @ViewChild('calculador', { static: false }) calculadorRef!: ElementRef
+
+  // ngAfterViewInit(){
+  //   //console.log(this.leedorRef.nativeElement);
+  //   this.activarChecksCriterioPerfil(this.usuarioEditable);
+  // }
+
+  ngAfterViewInit() {
+    // Verificar si los datos están disponibles antes de ejecutar el método.
+    if (this.usuario?.perfilLista) {
+      this.activarChecksCriterioPerfil(this.usuarioEditable)
+    }
+  }
 
   activarChecksCriterioPerfil(usuario: Usuario) {
     const tipoPerfil = usuario.perfilLista
 
     const checkboxes: { [key: string]: ElementRef } = {
-      'precavido': this.precavidoRef,
-      'demandante': this.demandanteRef,
-      'cambiante': this.cambianteRef,
-      'leedor': this.leedorRef,
-      'nativista': this.nativistaRef,
-      'poliglota': this.poliglotaRef,
-      'experimentado': this.experimentadoRef,
-      'calculador': this.calculadorRef
-    };
+      precavido: this.precavidoRef,
+      demandante: this.demandanteRef,
+      cambiante: this.cambianteRef,
+      leedor: this.leedorRef,
+      nativista: this.nativistaRef,
+      poliglota: this.poliglotaRef,
+      experimentado: this.experimentadoRef,
+      calculador: this.calculadorRef
+    }
 
-
-    tipoPerfil.forEach(perfil => {
+    tipoPerfil.forEach((perfil) => {
       if (checkboxes[perfil]) {
-        checkboxes[perfil].nativeElement.checked = true;
+        checkboxes[perfil].nativeElement.checked = true
       }
     })
   }
 
   onCheckboxChange(criterio: string, event: Event) {
-    const isChecked = (event.target as HTMLInputElement).checked;
+    const isChecked = (event.target as HTMLInputElement).checked
 
     if (isChecked) {
-        // Si el checkbox se selecciona, agrega el criterio a la lista de UsuarioEditable
-        if (!this.usuarioEditable.perfilLista.includes(criterio)) {
-            this.usuarioEditable.perfilLista.push(criterio);
-        }
+      // Si el checkbox se selecciona, agrega el criterio a la lista de UsuarioEditable
+      if (!this.usuarioEditable.perfilLista.includes(criterio)) {
+        this.usuarioEditable.perfilLista.push(criterio)
+      }
     } else {
-        // Si se deselecciona, lo eliminamos de la lista
-        const index = this.usuarioEditable.perfilLista.indexOf(criterio);
-        if (index > -1) {
-            this.usuarioEditable.perfilLista.splice(index, 1);
-        }
+      // Si se deselecciona, lo eliminamos de la lista
+      const index = this.usuarioEditable.perfilLista.indexOf(criterio)
+      if (index > -1) {
+        this.usuarioEditable.perfilLista.splice(index, 1)
+      }
     }
   }
 
-
   guardar() {
-    this.usuarioEditable.fechaNacimiento = this.fechaNacimiento === '' ? undefined : dayjs(this.fechaNacimiento).toDate()
-   this.usuarioEditable.guardarDatos()
-   this.llamarServerPutUS()
+    this.usuarioEditable.fechaNacimiento =
+      this.fechaNacimiento === ''
+        ? undefined
+        : dayjs(this.fechaNacimiento).toDate()
+    let okCampos = this.usuarioEditable.guardarDatos()
+    if(okCampos){ this.llamarServerPutUS()}
+      
   }
 
-  async llamarServerPutUS(){
-        try {
-        await this.userServiceUS.actualizarUsuario(this.usuario,this.usuarioEditable)
-        this.indicarGuardadoExitoso()
-      } catch (error) {
-        this.mensajeError = 'Error en el servidor. Por favor, inténtelo de nuevo mas tarde'
-        setTimeout(() => {
-          this.mensajeError = null;
-        }, 5000);
-      }
+  async llamarServerPutUS() {
+    try {
+      await this.userServiceUS.actualizarUsuario(
+        this.usuario,
+        this.usuarioEditable
+      )
+      this.indicarGuardadoExitoso()
+    } catch (error) {
+      this.mensajeError =
+        'Error en el servidor. Por favor, inténtelo de nuevo mas tarde'
+      setTimeout(() => {
+        this.mensajeError = null
+      }, 5000)
+    }
   }
-
 
   cancelar() {
-  this.obtenerDatosUsuario(this.usuario.id!)
-
+    this.obtenerDatosUsuario(this.usuario.id!)
   }
 
-  indicarGuardadoExitoso(){
+  indicarGuardadoExitoso() {
     this.saveOK = true
     setTimeout(() => {
-    this.saveOK = false;
-    window.location.reload();
+      this.saveOK = false
+      window.location.reload()
     }, 3000)
-
   }
 
-  navegarA(ruta : string) {
+  navegarA(ruta: string) {
     this.router.navigate([ruta])
   }
-
 }
-
-

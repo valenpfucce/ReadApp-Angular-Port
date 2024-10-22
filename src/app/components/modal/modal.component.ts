@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core'
 import { LibrosService } from '../../services/service_libros/libros.service'
 import { Libro } from '../../domain/libro'
 import { CommonModule, NgComponentOutlet, NgClass} from '@angular/common'
@@ -44,6 +44,7 @@ export class ModalComponent implements OnInit {
   @Output() close = new EventEmitter<void>()
   @Output() librosEnviados = new EventEmitter<Libro[]>()
   @Input() recomendacionNum: number = 0
+  @ViewChild('cardLibro') cardLibro! : CardLibroComponent
 
   constructor(
     private librosService: LibrosService,
@@ -56,10 +57,8 @@ export class ModalComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     this.obtenerDatosUsuario(userIdSS)
-    await this.loadLibros() // Llama a la función para cargar los libros
-    
     this.rutaActual = this.router.url
-    //this.detectarRuta();
+    await this.loadLibros() // Llama a la función para cargar los libros
     await this.getUsuarios(userIdSS!)
     this.asignarTitulo()
   }
@@ -68,7 +67,7 @@ export class ModalComponent implements OnInit {
     const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
     this.usuarioActual = usuarioEnLinea
   }
-  
+
 
   asignarTitulo() {
     switch (this.rutaActual) {
@@ -83,6 +82,13 @@ export class ModalComponent implements OnInit {
         break
       case '/recomendacion/' + this.recomendacionNum + '/edicion':
         this.tituloModal = 'Agregar Libros a Recomendación'
+        const librosUserxId = this.usuarioActual.librosLeidos.map(libro => libro.id)
+        this.libros = this.libros.filter( libro => librosUserxId.includes(libro.id) )
+        break
+      case '/recomendacion/nueva':
+        this.tituloModal = 'Agregar Libros a Recomendación'
+        const librosUserxIdN = this.usuarioActual.librosLeidos.map(libro => libro.id)
+        this.libros = this.libros.filter( libro => librosUserxIdN.includes(libro.id) )
         break
       default:
         this.tituloModal = 'Ventana modal'
@@ -170,4 +176,9 @@ export class ModalComponent implements OnInit {
       this.amigoService.stageAmigosPorGuardar.length
     )
   }
+
+  llamarALibroAgregar(cardLibro : CardLibroComponent, libro : Libro) {
+    this.cardLibro.agregarLibroALeer(libro)
+  }
+
 }
