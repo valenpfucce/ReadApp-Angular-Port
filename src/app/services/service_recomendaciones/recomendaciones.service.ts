@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core'
 import {REST_SERVER_URL} from '../configuration'
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpParams} from '@angular/common/http'
 import {firstValueFrom, lastValueFrom} from 'rxjs'
 import {Recomendacion, RecomendacionJSON} from '../../domain/recomendacion'
 import {RecomendacionUpdateDTO} from "../../dto/repositorioDTO";
@@ -12,18 +12,11 @@ import {ValoracionDTO} from "../../domain/valoracion";
 export class RecomendacionesService {
   constructor(private httpClient: HttpClient) {}
 
-  // async busquedaRecomendaciones(busqueda?: string) {
-  //   const recomendaciones = await lastValueFrom(
-  //     this.httpClient.post<RecomendacionJSON[]>(REST_SERVER_URL + '/recomendaciones/busqueda', busqueda)
-  //   )
-  //   return recomendaciones.map((recomendacionJSON) =>
-  //     Recomendacion.fromJson(recomendacionJSON)
-  //   )
-  // }
+  async busquedaRecomendaciones(busqueda: string = "", idUsuario?: number) {
+    let params = new HttpParams().append('busqueda', busqueda)
 
-  async busquedaRecomendaciones(busqueda?: string, idUsuario?: number) {
     const recomendaciones = await lastValueFrom(
-      this.httpClient.post<RecomendacionJSON[]>(REST_SERVER_URL + '/recomendaciones/busqueda/' + idUsuario, busqueda)
+      this.httpClient.get<RecomendacionJSON[]>(`${REST_SERVER_URL}/recomendaciones/busqueda/${idUsuario}`, {params})
     )
     return recomendaciones.map((recomendacionJSON) => Recomendacion.fromJson(recomendacionJSON)
     )
@@ -49,14 +42,14 @@ export class RecomendacionesService {
     return await this.getRecomendacionesEditables(idUsuario, palabraABuscar)
   }
 
-  async getRecomendacionesEditables(userId?: number, busqueda?: string) {
+  async getRecomendacionesEditables(userId?: number, busqueda: string="") {
+    let params = new HttpParams().append('busqueda', busqueda)
     const recomendaciones = await lastValueFrom(
-      this.httpClient.post<RecomendacionJSON[]>(REST_SERVER_URL + '/recomendaciones/permiso/editar/usuario/' + userId, busqueda)
+      this.httpClient.get<RecomendacionJSON[]>(`${REST_SERVER_URL}/recomendaciones/permiso/editar/usuario/${userId}`, {params})
     )
-    const recomendacionLista = recomendaciones.map((recomendacionJSON) =>
+    return recomendaciones.map((recomendacionJSON) =>
       Recomendacion.fromJson(recomendacionJSON)
     )
-    return recomendacionLista
   }
 
   async puedeEditarRecomendacion(recomendacionId : number, usuarioId: number): Promise<boolean> {
@@ -67,8 +60,7 @@ export class RecomendacionesService {
 
   async editarRecomendacion(recomendacion: Recomendacion, userId: number): Promise<any> {
     try {
-      const response = await firstValueFrom(this.httpClient.patch(`${REST_SERVER_URL}/recomendaciones/editar/por/` + userId, (RecomendacionUpdateDTO.toJson(recomendacion))))
-      return response;
+      return await firstValueFrom(this.httpClient.patch(`${REST_SERVER_URL}/recomendaciones/editar/por/` + userId, (RecomendacionUpdateDTO.toJson(recomendacion))));
     } catch (error) {
         console.error("Error al enviar al back:", error)
       throw error
@@ -84,9 +76,7 @@ export class RecomendacionesService {
 
   async valorarRecomendacion(recomendacionId : number, valoracionDTO : ValoracionDTO){
     try {
-      const response = await firstValueFrom(this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/` + recomendacionId + `/agregar/valoracion`, valoracionDTO))
-      console.log("Respuesta recibida:", response)
-      return response;
+      return await firstValueFrom(this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/` + recomendacionId + `/agregar/valoracion`, valoracionDTO));
     } catch (error) {
       console.error("Error al enviar al back:", error)
       throw error

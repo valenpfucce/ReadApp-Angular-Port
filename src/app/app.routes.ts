@@ -50,7 +50,7 @@ export const routes: Routes = [
     { path: 'home', title: 'Home', component:BusquedaRecomendacionesComponent, data: dataBusquedaHome},
     { path: 'recomendacion/:id/detalle', title:'Detalle de Recomendación', component:PagRecomendacionComponent, data: { modo: 'detalle' } },
     { path: 'recomendacion/:id/edicion', title:'Edición de Recomendación', component:PagRecomendacionComponent, data: { modo: 'edicion' } },
-    { path: 'recomendacion/nueva', title:'´Nueva Recomendación', component:PagRecomendacionComponent, data: { modo: 'nueva' } },
+    { path: 'recomendacion/nueva', title:'Nueva Recomendación', component:PagRecomendacionComponent, data: { modo: 'nueva' } },
     { path: 'barra_busqueda', component:BarraBusquedaComponent},
     { path: 'mis_recomendaciones', title: 'Mis Recomendaciones', component:BusquedaRecomendacionesComponent, data: dataBusquedaMisRecomendaciones},
     { path: 'perfil', component:SidebarPerfilComponent, children:[

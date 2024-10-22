@@ -1,17 +1,12 @@
-import { Injectable } from '@angular/core'
-import {
-  AmigosJSON,
-  sistemaValidacion,
-  Usuario,
-  UsuarioJSON
-} from '../../domain/usuario'
-import { Router } from '@angular/router'
-import { HttpClient } from '@angular/common/http'
-import { lastValueFrom, Observable, of } from 'rxjs'
-import { catchError, map } from 'rxjs/operators'
-import { REST_SERVER_URL } from '../configuration'
-import { Recomendacion, RecomendacionJSON } from '../../domain/recomendacion'
-import { Libro } from '../../domain/libro'
+import {Injectable} from '@angular/core'
+import {AmigosJSON, sistemaValidacion, Usuario, UsuarioJSON} from '../../domain/usuario'
+import {Router} from '@angular/router'
+import {HttpClient, HttpParams} from '@angular/common/http'
+import {lastValueFrom, Observable} from 'rxjs'
+import {map} from 'rxjs/operators'
+import {REST_SERVER_URL} from '../configuration'
+import {Recomendacion, RecomendacionJSON} from '../../domain/recomendacion'
+import {Libro} from '../../domain/libro'
 
 @Injectable({
   providedIn: 'root'
@@ -51,11 +46,12 @@ export class UsuariosService {
     
   }
 
-  async getUsuariosCard(busqueda?: string): Promise<Usuario[]> {
+  async getUsuariosCard(busqueda: string=""): Promise<Usuario[]> {
+    let params = new HttpParams().append('busqueda', busqueda)
     const usuarioAmigos = await lastValueFrom(
-      this.httpClient.post<AmigosJSON[]>(
+      this.httpClient.get<AmigosJSON[]>(
         REST_SERVER_URL + '/usuarios/busqueda',
-        busqueda
+        {params}
       )
     )
 
@@ -104,10 +100,9 @@ export class UsuariosService {
         REST_SERVER_URL + '/usuarios/recomendaciones-a-valorar/' + userId
       )
     )
-    const recomendacionLista = recomendaciones.map((recomendacionJSON) =>
+    return recomendaciones.map((recomendacionJSON) =>
       Recomendacion.fromJson(recomendacionJSON)
     )
-    return recomendacionLista
   }
 
   async agregarRecomendacionAValorar(recomendacionId: number, userId: number) {
