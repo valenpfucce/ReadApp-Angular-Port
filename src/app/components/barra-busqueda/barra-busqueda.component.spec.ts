@@ -10,7 +10,6 @@ describe('BarraBusquedaComponent', () => {
   let component: BarraBusquedaComponent
   let fixture: ComponentFixture<BarraBusquedaComponent>
   let routerSpy: jasmine.SpyObj<Router>
-  let routeSpy: jasmine.SpyObj<ActivatedRoute>
   let httpClientSpy: jasmine.SpyObj<HttpClient>
 
   beforeEach(fakeAsync(() => {
