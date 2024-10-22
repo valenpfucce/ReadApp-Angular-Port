@@ -45,7 +45,6 @@ export class PerfilInfoComponent {
 
   ngOnInit() {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
-    console.log('userIdSS', userIdSS)
     this.obtenerDatosUsuario(userIdSS)
   }
 

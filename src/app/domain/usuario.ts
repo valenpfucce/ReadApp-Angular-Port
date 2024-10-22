@@ -65,7 +65,7 @@ export class Usuario {
   }
 
   static fromJson(usuarioJSON: UsuarioJSON): Usuario {
-    console.log('antes de transformar', usuarioJSON)
+    //console.log('antes de transformar', usuarioJSON)
 
     const usertest = Object.assign(new Usuario(), usuarioJSON, {
       fechaNacimiento: usuarioJSON.fechaNacimiento
@@ -82,7 +82,7 @@ export class Usuario {
       // ? usuarioJSON.autoresPreferidos.map((autor:any) => autor.type.toString()) // Convierte a string
       // : [(usuarioJSON.autoresPreferidos as any).type.toString()],
     })
-    console.log('usertest', usertest)
+    //console.log('usertest', usertest)
     return usertest
   }
   
