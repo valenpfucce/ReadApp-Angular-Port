@@ -33,4 +33,25 @@ export class LibrosService {
       )
     )
   }
+
+
+  
+
+  async agregarLibrosPorLeer(
+    userId: number,
+    librosIds: number[]
+  ): Promise<any> {
+    const url = `${REST_SERVER_URL}/libros/${userId}/agregar-libros`
+
+    try {
+      const response = await lastValueFrom(
+        this.httpClient.patch(url, librosIds)
+      )
+      return response
+    } catch (error) {
+      console.error('Error al agregar libros:', error)
+      throw error // Puedes lanzar el error o manejarlo de acuerdo a tus necesidades
+    }
+  }
+
 }

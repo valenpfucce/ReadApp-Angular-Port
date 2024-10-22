@@ -18,6 +18,8 @@ export class UsuariosService {
   errors: String[] = []
   listaAgregarALeer: Libro[] = []
   listaEliminarALeer: Libro[] = []
+  listaAgregarLeidos: Libro[] = []
+  listaEliminarLeidos: Libro[] = []
   private readonly sessionKey = 'userSession'
 
   constructor(private httpClient: HttpClient) {
@@ -165,6 +167,37 @@ export class UsuariosService {
       )
     )
     this.listaEliminarALeer = []
+  }
+
+  async agregarLibrosLeidos(userId: number) {
+    const librosEnviar = this.listaAgregarLeidos.map((libro) => libro.id) // Cambia aquí para enviar solo IDs
+    console.log('Esto estoy enviando a agregar', librosEnviar)
+    try {
+      await lastValueFrom(
+        this.httpClient.patch(
+          `${REST_SERVER_URL}/usuarios/${userId}/agregar-leidos`,
+          librosEnviar
+        )
+      )
+      this.listaAgregarLeidos = []
+      console.log('IDs enviados exitosamente al backend', librosEnviar)
+    } catch (error) {
+      console.error('Error al agregar libros a leer:', error)
+    }
+  }
+
+  async eliminarLibrosLeidos(userId: number) {
+    const librosEnviar = this.listaEliminarLeidos.map((libro) => libro.id)
+    console.log('buenos libros para eliminar:', librosEnviar)
+
+    console.log('ESTO SE VA A ELIMINAR DEL USUARIO')
+    await lastValueFrom(
+      this.httpClient.patch(
+        `${REST_SERVER_URL}/usuarios/${userId}/eliminar-libros-leidos`,
+        librosEnviar
+      )
+    )
+    this.listaEliminarLeidos = []
   }
 }
 

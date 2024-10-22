@@ -178,7 +178,7 @@ export class ModalComponent implements OnInit {
   }
 
   llamarALibroAgregar(cardLibro : CardLibroComponent, libro : Libro) {
-    this.cardLibro.agregarLibroALeer(libro)
+    this.cardLibro.agregarLibro(libro)
   }
 
 }

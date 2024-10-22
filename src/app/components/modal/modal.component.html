@@ -18,9 +18,11 @@
       >
         <readapp-card-libro
           *ngFor="let libro of libros"
+          #cardLibro
           [libro]="libro"
           [esModal]="true"
-          (click)="seleccionarLibro(libro)"
+          (click)="llamarALibroAgregar(cardLibro, libro)"
+          [tipoPerfil]="'leidos'"
         >
         </readapp-card-libro>
       </div>
@@ -34,6 +36,7 @@
           [libro]="libro"
           [esModal]="true"
           (click)="llamarALibroAgregar(cardLibro, libro)"
+          [tipoPerfil]="'aLeer'"
         >
         </readapp-card-libro>
       </div>
@@ -52,7 +55,7 @@
       </div>
 
       <!-- <div class="contenedor-cartas" *ngIf="rutaActual.includes('perfil/amigos')">
-         Aquí cargamos el componente de amigos dinámicamente 
+         Aquí cargamos el componente de amigos dinámicamente
         <ng-container *ngIf="amigoComponentLoaded">
           <ng-container *ngFor="let amigo of amigos">
             <ng-container *ngComponentOutlet="amigoComponent"></ng-container>
@@ -60,7 +63,7 @@
         </ng-container>
       </div>
      </div> -->
-      
+
       <div class="contenedor-cartas"  *ngIf="rutaActual.includes('perfil/amigos')">
         <readapp-card-amigo *ngFor="let amigo of amigos"
         [amigo]="amigo"

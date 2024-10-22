@@ -21,6 +21,7 @@ export class CardLibroComponent {
   @Input() modo!: 'detalle' | 'edicion' | 'nueva'
   @Input() esModal: boolean = false
   @Input() esPerfil: boolean = false
+  @Input() tipoPerfil!: 'aLeer' | "leidos"
   @Output() libroABorrar = new EventEmitter<Libro>()
 
   constructor(private userServiceUS: UsuariosService) {}
@@ -56,11 +57,35 @@ export class CardLibroComponent {
     this.isActiveTrash = !this.isActiveTrash
   }
 
+  agregarLibro(libro : Libro) {
+    if(this.tipoPerfil === 'aLeer'){
+      this.agregarLibroALeer(libro)
+    }else{
+      this.agregarLibrosLeidos(libro)
+    }
+  }
+
+  eliminarLibro(libro : Libro) {
+    if(this.tipoPerfil === 'aLeer'){
+      this.eliminarLibrosALeer(libro)
+    }else{
+      this.eliminarLibrosLeidos(libro)
+    }
+  }
+
   async agregarLibroALeer(libro: Libro) {
     this.userServiceUS.listaAgregarALeer.push(libro)
   }
 
   async eliminarLibrosALeer(libro: Libro) {
     this.userServiceUS.listaEliminarALeer.push(libro)
+  }
+
+  async agregarLibrosLeidos(libro: Libro) {
+    this.userServiceUS.listaAgregarLeidos.push(libro)
+  }
+
+  async eliminarLibrosLeidos(libro: Libro) {
+    this.userServiceUS.listaEliminarLeidos.push(libro)
   }
 }
