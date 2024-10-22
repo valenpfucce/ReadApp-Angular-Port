@@ -47,31 +47,36 @@ export class PagRecomendacionComponent {
     private sessionStorage: UserSessionStorageService
   ){}
 
-  ngOnInit() {
+  async ngOnInit() {
     const userIdSSAChequear = this.sessionStorage.obtenerIDuserSS()
-    if (userIdSSAChequear != null) { this.userIdSS = userIdSSAChequear }
+    if (userIdSSAChequear != null) {
+      this.userIdSS = userIdSSAChequear
+    }
     // ===== ROUTE PARAMETRO =====
     //Traer los parametros del routing
-    this.route.params.subscribe(async params => {
-      this.modo = this.route.snapshot.data['modo'];
-      if(this.esModoEdicion() || this.esModoDetalle()){
-        this.idRecomendacion = +params['id'];
-        console.log('ID Recomendacion:', this.idRecomendacion);
-        const recomendacionEncontrada = await this.serviceRecomendacion.getRecomendacionById(this.idRecomendacion);
-        if (recomendacionEncontrada) {
-          this.recomendacion = recomendacionEncontrada;
-          console.log('Recomendación encontrada:', recomendacionEncontrada);
-        } else {
-          console.log('Recomendación no encontrada --> /home');
-          this.navegarA('/home');
-        }
-        this.setIconoRecomendacion(this.recomendacion.esPublica)
-        await this.puedeEditarLlamadaService()
+    // this.route.params.subscribe(async params => {
+    this.modo = this.route.snapshot.data['modo'];
+    if (this.esModoEdicion() || this.esModoDetalle()) {
+      this.idRecomendacion = Number(this.route.snapshot.paramMap.get('id'))
+      const recomendacionEncontrada = await this.serviceRecomendacion.getRecomendacionById(this.idRecomendacion);
+      if (recomendacionEncontrada) {
+        this.recomendacion = recomendacionEncontrada;
+      } else {
+        this.navegarA('/home');
       }
-      if(this.esModoDetalle()){this.modoDetalle()}
-      if(this.esModoEdicion()){this.modoEdicion()}
-      if(this.esModoNueva())  {this.modoNueva()}
-    });
+      this.setIconoRecomendacion(this.recomendacion.esPublica)
+      await this.puedeEditarLlamadaService()
+    }
+    if (this.esModoDetalle()) {
+      this.modoDetalle()
+    }
+    if (this.esModoEdicion()) {
+      this.modoEdicion()
+    }
+    if (this.esModoNueva()) {
+      this.modoNueva()
+    }
+    // });
   }
 
 
