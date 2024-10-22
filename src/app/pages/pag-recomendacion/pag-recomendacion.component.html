@@ -80,6 +80,9 @@
       </section>
     }
     <div class="boton_container btn_cont_derecha">
+      <div class="error-message mensaje-error-recomendacion" *ngIf="error">
+        <p>{{ error }}</p>
+      </div>
       @if (esModoDetalle()){
         <button class="boton_guardar" type="submit" (click)="navegarA('/home')" >Volver</button>
       }

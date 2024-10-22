@@ -14,6 +14,7 @@ import {ModalComponent} from "../../components/modal/modal.component";
 import {CommonModule, NgIf} from "@angular/common";
 import {Libro} from "../../domain/libro";
 import {ModalValoracionComponent} from "../../components/modal-valoracion/modal-valoracion.component";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-pag-recomendacion',
@@ -38,6 +39,7 @@ export class PagRecomendacionComponent {
   puedeEditar!: boolean
   puedeValorar!: boolean
   visibilidadPrivadaCheck!: Boolean
+  error: string = ''
 
   constructor(
     private router : Router,
@@ -110,11 +112,33 @@ export class PagRecomendacionComponent {
   }
 
   guardarCambios(){
-    if(this.esModoEdicion()){
-      this.guardarCambiosEdicion()
+    if(this.recomendacion.titulo === "" || this.recomendacion.descripcion === ""){
+      this.error = 'Debe completar todos los campos con (*)'
+      return
     }
-    if(this.esModoNueva()){
-      this.guardarCambiosNueva()
+    if(this.recomendacion.lista_libros.length === 0){
+      this.error = 'Se necesita que la recomendación tenga al menos un libro'
+      return
+    }
+
+    try {
+      if (this.esModoEdicion()) {
+        this.guardarCambiosEdicion()
+      }
+      if (this.esModoNueva()) {
+        this.guardarCambiosNueva()
+      }
+    } catch (error: unknown) {
+      if (error instanceof HttpErrorResponse) {
+        if (error.status === 0) {
+          this.error = 'Conexión no exitosa. Intente más tarde'
+        } else {
+          this.error =
+            error.error?.message || 'Ocurrió un error inesperado.'
+        }
+      } else {
+        this.error = 'Ocurrió un error inesperado.'
+      }
     }
   }
 
