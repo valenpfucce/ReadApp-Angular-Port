@@ -1,7 +1,8 @@
 import { of } from 'rxjs'
-//import { Tarea } from 'domain/tarea'
+
 import { Usuario } from '../../domain/usuario'
 import { REST_SERVER_URL } from '../configuration'
+import {Recomendacion} from "../../domain/recomendacion";
 
 export const usuarioAsignatario = new Usuario(1, "Carlitos", "ApelldioFalso", "SoyCarlitos", "SoyCarlitos@gmail.com")
 
@@ -50,7 +51,9 @@ export const getHttpClientSpy = () => {
     .and.returnValue(of(usuarioAsignatario))
   httpClientSpy.put
     .withArgs(`${REST_SERVER_URL}/usuarios/actualizar/` + usuarioAsignatario.id, usuarioActualizado)
-  
+  httpClientSpy.get
+    .withArgs(`${REST_SERVER_URL}/recomendaciones/` + recomendacion1.id)
+    .and.returnValue(of(recomendacionesStub[0]))
 //    httpClientSpy.get
 //     .withArgs(`${REST_SERVER_URL}/usuarios`)
 //     .and.returnValue(of(usuariosStub))
@@ -59,6 +62,12 @@ export const getHttpClientSpy = () => {
 //   httpClientSpy.post.and.callFake((_url: string, body: any) =>
 //     of({ ...body, id: 3 })
 //   )
-  
+
   return httpClientSpy
 }
+
+export const recomendacion1 = new Recomendacion(1, 1, "Recomendacion 1", true, "Descripción", [], [], 4, 9)
+const recomendacionesStub = [
+  recomendacion1,
+  new Recomendacion(2, 2, "Ejemplo", true, "Descripción", [], [], 4, 9)
+].map((recomendacion) => recomendacion.toJSON)

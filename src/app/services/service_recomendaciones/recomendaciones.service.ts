@@ -14,6 +14,7 @@ export class RecomendacionesService {
 
   async busquedaRecomendaciones(busqueda: string = "", idUsuario?: number) {
     let params = new HttpParams().append('busqueda', busqueda)
+
     const recomendaciones = await lastValueFrom(
       this.httpClient.get<RecomendacionJSON[]>(`${REST_SERVER_URL}/recomendaciones/busqueda/${idUsuario}`, {params})
     )
