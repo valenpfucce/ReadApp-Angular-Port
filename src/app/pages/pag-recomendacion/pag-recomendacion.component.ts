@@ -33,12 +33,8 @@ export class PagRecomendacionComponent {
   userIdSS!: number
   idRecomendacion!: number
   recomendacion!: Recomendacion
-  esPublica!: Boolean
-  iconoRecomendacion!: String
-  altRecomendacion!: String
   puedeEditar!: boolean
   puedeValorar!: boolean
-  visibilidadPrivadaCheck!: boolean
   error: string = ''
 
   constructor(
@@ -63,7 +59,6 @@ export class PagRecomendacionComponent {
       } else {
         this.navegarA('/home');
       }
-      this.setIconoRecomendacion(this.recomendacion.esPublica)
       await this.puedeEditarLlamadaService()
     }
     if (this.esModoDetalle()) {
@@ -91,15 +86,24 @@ export class PagRecomendacionComponent {
     return puedeEditarSR;
   }
 
-  setIconoRecomendacion(newPublicaBoolean : Boolean) {
-    this.esPublica = newPublicaBoolean
-    if (this.esPublica) {
-      this.iconoRecomendacion = '/imagenes/globe-simple.svg';
-      this.altRecomendacion = 'Publica';
-    } else {
-      this.iconoRecomendacion = '/imagenes/globe-x.svg';
-      this.altRecomendacion = 'Privada';
-    }
+  //Use getters para evitar la variable
+  get iconoPublicaPrivada(): string {
+    return this.recomendacion.esPublica
+      ? '/imagenes/globe-simple.svg'
+      : '/imagenes/globe-x.svg'
+  }
+  get textoAlt(): string {
+    return this.recomendacion.esPublica
+      ? 'Publica'
+      : 'Privada'
+  }
+
+  //Tuve que hacer un getter y un setter pq no se puede poner un binding bidireccional con un negado antes
+  get esPrivada(): boolean {
+    return !this.recomendacion.esPublica
+  }
+  set esPrivada(valor: boolean) {
+    this.recomendacion.esPublica = !valor
   }
 
   guardarCambios(){
@@ -125,11 +129,10 @@ export class PagRecomendacionComponent {
   }
   modoEdicion() {
     if(!this.puedeEditar){this.navegarA('/home')}
-    this.visibilidadPrivadaCheck = this.recomendacion.esPublica
   }
 
   async guardarCambiosEdicion(){
-    this.visibilidadPrivadaGuardar()
+  //guardar visibilidad privada?
     try{
       await this.serviceRecomendacion.editarRecomendacion(this.recomendacion, this.userIdSS)
       this.navegarA('/home')
@@ -147,9 +150,6 @@ export class PagRecomendacionComponent {
     }
   }
 
-  visibilidadPrivadaGuardar(){
-    this.recomendacion.esPublica = !this.visibilidadPrivadaCheck;
-  }
 
   recibirLibros(libros: Libro[]){
     libros.forEach( libroNuevo => {
