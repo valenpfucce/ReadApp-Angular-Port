@@ -34,6 +34,19 @@ export class RecomendacionesService {
     return Recomendacion.fromJson(recomendacionJSON)
   }
 
+  async getRecomendacionByIdWithUser(idReco: number, idUser : number) {
+    let params = new HttpParams().append('idUser', idUser)
+    const recomendacionJSON = await lastValueFrom(
+      this.httpClient.get<RecomendacionJSON>(
+        `${REST_SERVER_URL}/recomendaciones/` + idReco, {params}
+      )
+    )
+    if (!recomendacionJSON) {
+      throw new Error('Recomendacion no encontrada')
+    }
+    return Recomendacion.fromJson(recomendacionJSON)
+  }
+
   async busquedaGeneral(palabraABuscar?: string, idUsuario?: number) {
     return await this.busquedaRecomendaciones(palabraABuscar, idUsuario)
   }

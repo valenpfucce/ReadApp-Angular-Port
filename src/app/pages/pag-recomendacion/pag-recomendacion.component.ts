@@ -33,8 +33,6 @@ export class PagRecomendacionComponent {
   userIdSS!: number
   idRecomendacion!: number
   recomendacion!: Recomendacion
-  puedeEditar!: boolean
-  puedeValorar!: boolean
   error: string = ''
 
   constructor(
@@ -59,32 +57,20 @@ export class PagRecomendacionComponent {
       } else {
         this.navegarA('/home');
       }
-      await this.puedeEditarLlamadaService()
     }
-    if (this.esModoDetalle()) {
-      this.modoDetalle()
-    }
-    if (this.esModoEdicion()) {
-      this.modoEdicion()
-    }
-    if (this.esModoNueva()) {
-      this.modoNueva()
-    }
+    if (this.esModoDetalle()) { this.modoDetalle() }
+    if (this.esModoEdicion()) { this.modoEdicion() }
+    if (this.esModoNueva()) { this.modoNueva() }
   }
 
-
-
   async puedeValorarLlamadaService(){
-    const puedeValorarSR = await this.serviceRecomendacion.puedeValorarRecomendacion(this.recomendacion.id, this.userIdSS)
-    this.puedeValorar = puedeValorarSR
-    return puedeValorarSR
+    return await this.serviceRecomendacion.puedeValorarRecomendacion(this.recomendacion.id, this.userIdSS)
   }
 
   async puedeEditarLlamadaService(){
-    const puedeEditarSR = await this.serviceRecomendacion.puedeEditarRecomendacion(this.recomendacion.id, this.userIdSS)
-    this.puedeEditar = puedeEditarSR
-    return puedeEditarSR;
+    return await this.serviceRecomendacion.puedeEditarRecomendacion(this.recomendacion.id, this.userIdSS)
   }
+
 
   //Use getters para evitar la variable
   get iconoPublicaPrivada(): string {
@@ -128,7 +114,7 @@ export class PagRecomendacionComponent {
     return (this.modo === 'edicion')
   }
   modoEdicion() {
-    if(!this.puedeEditar){this.navegarA('/home')}
+    if(!this.recomendacion.puedeEditar){this.navegarA('/home')}
   }
 
   async guardarCambiosEdicion(){
@@ -174,7 +160,6 @@ export class PagRecomendacionComponent {
   }
 
   modoDetalle(){
-    this.puedeValorarLlamadaService()
   }
 
   //FIN DETALLE
