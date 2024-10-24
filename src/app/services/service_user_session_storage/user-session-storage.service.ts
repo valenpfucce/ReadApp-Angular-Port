@@ -24,7 +24,7 @@ export class UserSessionStorageService {
     const response = await this.userService.putVerificationUser(
       mail,
       contrasenia
-    ) //modificar que devuelva una promesa
+    ) //modificar que devuelva una promesa LISTO
     sessionStorage.setItem(this.sessionKey, response!.toString())
     const usuarioEncontrado: Usuario = await this.obtenerDatosUsuario(response)
     sessionStorage.setItem('user_name', usuarioEncontrado.nombre)
