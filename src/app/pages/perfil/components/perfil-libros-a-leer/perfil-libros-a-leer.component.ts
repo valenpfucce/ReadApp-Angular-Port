@@ -67,12 +67,6 @@ export class PerfilLibrosALeerComponent implements OnInit {
     return this.librosALeer
   }
 
-  async guardarCambios() {
-    await this.userServiceUS.agregarLibrosALeer(this.userActive)
-    await this.userServiceUS.eliminarLibrosALeer(this.userActive)
-    this.reload()
-  }
-
   cancelarCambios() {
     this.userServiceUS.listaEliminarALeer = []
     this.reload()
@@ -84,6 +78,7 @@ export class PerfilLibrosALeerComponent implements OnInit {
 
   closeModal() {
     this.isModalOpen = false
+    this.cargarLibrosALeer
   }
 
   reload() {

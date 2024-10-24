@@ -4,6 +4,7 @@ import { CortarPalabraPipe } from '../../pipes/cortar-palabra-pipe/cortar-palabr
 import { Libro } from '../../domain/libro'
 import { CommonModule } from '@angular/common'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
+import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
 
 @Component({
   selector: 'readapp-card-libro',
@@ -17,10 +18,13 @@ export class CardLibroComponent {
   @Input() modo!: 'detalle' | 'edicion' | 'nueva'
   @Input() esModal: boolean = false
   @Input() esPerfil: boolean = false
-  @Input() tipoPerfil!: 'aleer' | "leidos"
+  @Input() tipoPerfil!: 'aleer' | 'leidos'
   @Output() libroABorrar = new EventEmitter<Libro>()
 
-  constructor(private userServiceUS: UsuariosService) {}
+  constructor(
+    private sessionStorage: UserSessionStorageService,
+    private userServiceUS: UsuariosService
+  ) {}
 
   mostrarBotonBorrar() {
     return this.modo === 'edicion' || this.modo === 'nueva'
@@ -38,18 +42,18 @@ export class CardLibroComponent {
     this.libroABorrar.emit(this.libro)
   }
 
-  agregarLibro(libro : Libro) {
-    if(this.tipoPerfil == 'aleer'){
+  agregarLibro(libro: Libro) {
+    if (this.tipoPerfil == 'aleer') {
       this.agregarLibroALeer(libro)
-    }else{
+    } else {
       this.agregarLibrosLeidos(libro)
     }
   }
 
-  eliminarLibro(libro : Libro) {
-    if(this.tipoPerfil == 'aleer'){
+  eliminarLibro(libro: Libro) {
+    if (this.tipoPerfil == 'aleer') {
       this.eliminarLibrosALeer(libro)
-    }else{
+    } else {
       this.eliminarLibrosLeidos(libro)
     }
   }
@@ -59,7 +63,12 @@ export class CardLibroComponent {
   }
 
   async eliminarLibrosALeer(libro: Libro) {
-    this.userServiceUS.listaEliminarALeer.push(libro)
+    const userIdSS = this.sessionStorage.obtenerIDuserSS()
+    if (userIdSS != null) {
+      this.userServiceUS.listaEliminarALeer.push(libro)
+      await this.userServiceUS.actualizarLibrosALeer(userIdSS)
+      window.location.reload()
+    }
   }
 
   async agregarLibrosLeidos(libro: Libro) {

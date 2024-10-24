@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { NgClass } from '@angular/common'
-import {Router} from "@angular/router";
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'readapp-card-libro-mas',
@@ -13,19 +13,20 @@ import {Router} from "@angular/router";
   ]
 })
 export class CardLibroMasComponent {
-  @Input() tamanio!: 'chica' | 'mediana' | 'grande'
+  @Input() tamanio: 'chica' | 'mediana' | 'grande' = 'grande'
   @Output() openModalEvent = new EventEmitter<void>()
 
-  constructor( private router : Router) {
-  }
+  constructor(private router: Router) {}
 
   accionBoton() {
-    if(this.tamanio == 'mediana' && this.router.url == '/perfil/recomendacionesAValorar'){
+    if (
+      this.tamanio == 'mediana' &&
+      this.router.url == '/perfil/recomendacionesAValorar'
+    ) {
       this.router.navigate(['/home'])
-    }
-    else if(this.tamanio === 'mediana') {
+    } else if (this.tamanio === 'mediana') {
       this.router.navigate(['/recomendacion/nueva'])
-    }else{
+    } else {
       this.openModalEvent.emit()
     }
   }

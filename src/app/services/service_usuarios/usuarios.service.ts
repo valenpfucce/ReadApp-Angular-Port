@@ -1,12 +1,17 @@
-import {Injectable} from '@angular/core'
-import {AmigosJSON, sistemaValidacion, Usuario, UsuarioJSON} from '../../domain/usuario'
-import {Router} from '@angular/router'
-import {HttpClient, HttpParams} from '@angular/common/http'
-import {lastValueFrom, Observable} from 'rxjs'
-import {map} from 'rxjs/operators'
-import {REST_SERVER_URL} from '../configuration'
-import {Recomendacion, RecomendacionJSON} from '../../domain/recomendacion'
-import {Libro} from '../../domain/libro'
+import { Injectable } from '@angular/core'
+import {
+  AmigosJSON,
+  sistemaValidacion,
+  Usuario,
+  UsuarioJSON
+} from '../../domain/usuario'
+import { Router } from '@angular/router'
+import { HttpClient, HttpParams } from '@angular/common/http'
+import { lastValueFrom, Observable } from 'rxjs'
+import { last, map } from 'rxjs/operators'
+import { REST_SERVER_URL } from '../configuration'
+import { Recomendacion, RecomendacionJSON } from '../../domain/recomendacion'
+import { Libro } from '../../domain/libro'
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +32,7 @@ export class UsuariosService {
   }
 
   async getUserById(userIdSS: number | null): Promise<Usuario> {
-    try{
+    try {
       const usuarioJSON = await lastValueFrom(
         this.httpClient.get<UsuarioJSON>(
           `${REST_SERVER_URL}/usuarios/` + userIdSS
@@ -39,21 +44,18 @@ export class UsuariosService {
       }
       const usuarioTipoUsuario = await Usuario.fromJson(usuarioJSON)
       return usuarioTipoUsuario
-
-    }catch(error){
+    } catch (error) {
       this.router.navigate(['**'])
       throw error
-
     }
-
   }
 
-  async getUsuariosCard(busqueda: string=""): Promise<Usuario[]> {
+  async getUsuariosCard(busqueda: string = ''): Promise<Usuario[]> {
     let params = new HttpParams().append('busqueda', busqueda)
     const usuarioAmigos = await lastValueFrom(
       this.httpClient.get<AmigosJSON[]>(
         REST_SERVER_URL + '/usuarios/busqueda',
-        {params}
+        { params }
       )
     )
 
@@ -74,7 +76,10 @@ export class UsuariosService {
       .pipe(map((response) => response?.id || null))
   }
 
-  async actualizarUsuario(usuarioBack: Usuario,usuarioEditable: Usuario): Promise<void> {
+  async actualizarUsuario(
+    usuarioBack: Usuario,
+    usuarioEditable: Usuario
+  ): Promise<void> {
     try {
       await lastValueFrom(
         this.httpClient.put<void>(
@@ -82,10 +87,9 @@ export class UsuariosService {
           usuarioEditable.toJSON()
         )
       )
-    } catch(error){
-        throw error
+    } catch (error) {
+      throw error
     }
-
   }
 
   navegarALogin() {
@@ -137,36 +141,29 @@ export class UsuariosService {
     )
   }
 
-  async agregarLibrosALeer(userId: number) {
-    const librosEnviar = this.listaAgregarALeer.map((libro) => libro.id) // Cambia aquí para enviar solo IDs
-    console.log('Esto estoy enviando a agregar', librosEnviar)
+  async actualizarLibrosALeer(userId: number) {
+    const librosALeer = this.listaAgregarALeer.map((libro) => libro.id)
+    const librosAEliminar = this.listaEliminarALeer.map((libro) => libro.id)
+
+    const listaActualizar = {
+      librosPorLeer: librosALeer,
+      librosAEliminar: librosAEliminar
+    }
+
     try {
       await lastValueFrom(
         this.httpClient.patch(
-          `${REST_SERVER_URL}/usuarios/${userId}/agregar-libros-leer`,
-          librosEnviar
+          `${REST_SERVER_URL}/usuarios/${userId}/actualizar-libros-leer`,
+          listaActualizar
         )
       )
       this.listaAgregarALeer = []
-      console.log('IDs enviados exitosamente al backend', librosEnviar)
+      this.listaEliminarALeer = []
+      console.log('libros actualizados correctamente')
     } catch (error) {
-      console.error('Error al agregar libros a leer:', error)
+      console.error('Error al actualizar libros', error)
       throw error
     }
-  }
-
-  async eliminarLibrosALeer(userId: number) {
-    const librosEnviar = this.listaEliminarALeer.map((libro) => libro.id)
-    console.log('buenos libros para eliminar:', librosEnviar)
-
-    console.log('ESTO SE VA A ELIMINAR DEL USUARIO')
-    await lastValueFrom(
-      this.httpClient.patch(
-        `${REST_SERVER_URL}/usuarios/${userId}/eliminar-libros-leer`,
-        librosEnviar
-      )
-    )
-    this.listaEliminarALeer = []
   }
 
   async agregarLibrosLeidos(userId: number) {
