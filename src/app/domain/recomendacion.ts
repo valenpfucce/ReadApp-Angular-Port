@@ -1,22 +1,21 @@
-import { Entidad } from "./entidad";
+import { Entidad } from './entidad'
 import { Libro } from './libro'
 import { Valoracion } from './valoracion'
 
-
 export type RecomendacionJSON = {
-  id: number,
-  creadorId: number,
-  titulo: string,
-  esPublica: boolean,
-  descripcion: string,
-  lista_libros: Libro[],
-  valoraciones: Valoracion[],
+  id: number
+  creadorId: number
+  titulo: string
+  esPublica: boolean
+  descripcion: string
+  lista_libros: Libro[]
+  valoraciones: Valoracion[]
   avgValoraciones?: number
-  tiempoLectura?: number,
+  tiempoLectura?: number
 }
 
-
 export class Recomendacion implements Entidad {
+  //props: RecomendacionJSON
   constructor(
     public id: number,
     public creadorId: number,
@@ -30,7 +29,8 @@ export class Recomendacion implements Entidad {
   ) {}
 
   static fromJson(data: any): Recomendacion {
-      const libros = data.libros.map((libroData: any) =>
+    const libros = data.libros.map(
+      (libroData: any) =>
         new Libro(
           libroData.id,
           libroData.titulo_libro,
@@ -45,28 +45,37 @@ export class Recomendacion implements Entidad {
           libroData.esDesafiante,
           libroData.esLargo,
           libroData.paginasLargo
-
         )
-      );
+    )
 
-    const valoraciones = data.valoraciones.map((valoracionData: any) =>
-      new Valoracion(
-        valoracionData.creador_nombre,
-        valoracionData.creador_apellido,
-        valoracionData.img_perfil,
-        valoracionData.valor,
-        valoracionData.comentario,
-        valoracionData.fecha
-      )
-    );
+    const valoraciones = data.valoraciones.map(
+      (valoracionData: any) =>
+        new Valoracion(
+          valoracionData.creador_nombre,
+          valoracionData.creador_apellido,
+          valoracionData.img_perfil,
+          valoracionData.valor,
+          valoracionData.comentario,
+          valoracionData.fecha
+        )
+    )
 
-      return new Recomendacion(data.id, data.creadorId, data.titulo, data.esPublica, data.descripcion, libros, valoraciones, isNaN(data.avgValoraciones) ? 0 : data.avgValoraciones);
-    }
+    return new Recomendacion(
+      data.id,
+      data.creadorId,
+      data.titulo,
+      data.esPublica,
+      data.descripcion,
+      libros,
+      valoraciones,
+      isNaN(data.avgValoraciones) ? 0 : data.avgValoraciones
+    )
+  }
 
   toJSON(): RecomendacionJSON {
     return {
       id: this.id,
-      creadorId : this.creadorId,
+      creadorId: this.creadorId,
       titulo: this.titulo,
       esPublica: this.esPublica,
       descripcion: this.descripcion,
@@ -77,5 +86,3 @@ export class Recomendacion implements Entidad {
     }
   }
 }
-
-
