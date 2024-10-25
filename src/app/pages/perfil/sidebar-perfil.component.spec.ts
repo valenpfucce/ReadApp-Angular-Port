@@ -33,13 +33,13 @@
 //   let httpClientSpy: jasmine.SpyObj<HttpClient>
 //   let userSessionStorageServiceSpy: jasmine.SpyObj<UserSessionStorageService>
 //   let UsuariosServiceSpy: jasmine.SpyObj<UsuariosService>
-// //   let RouterModuleSpy: jasmine.SpyObj<RouterModule>
-// //   let RouterLinkSpy: jasmine.SpyObj<RouterLink>
+//    let RouterModuleSpy: jasmine.SpyObj<RouterModule>
+//   let RouterLinkSpy: jasmine.SpyObj<RouterLink>
 
 
 //   beforeEach(async () => {
 //     routerSpy = jasmine.createSpyObj('Router', ['navigate', 'navigateByUrl'])
-//     // RouterModuleSpy= jasmine.createSpyObj('RouterModule', ['RuterLink', 'navigateByUrl'])
+//     RouterModuleSpy= jasmine.createSpyObj('RouterModule', ['RuterLink', 'navigateByUrl'])
 //     httpClientSpy = getHttpClientSpy() 
 //     UsuariosServiceSpy = jasmine.createSpyObj('UsuariosService', [
 //       'getUserById',
@@ -66,8 +66,8 @@
 //         { provide: Router, useValue: routerSpy },
 //         [{ provide: ComponentFixtureAutoDetect, useValue: true }],
 //         { provide: UsuariosService, useValue: UsuariosServiceSpy },
-//         // {provide: RouterModule, useValue: RouterModuleSpy},
-//         // {provide: RouterLink, useValue: RouterLinkSpy}
+//          {provide: RouterModule, useValue: RouterModuleSpy},
+//          {provide: RouterLink, useValue: RouterLinkSpy}
         
         
 //      ]

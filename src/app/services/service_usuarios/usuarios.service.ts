@@ -1,17 +1,16 @@
-import { Injectable } from '@angular/core'
-import {
-  AmigosJSON,
-  sistemaValidacion,
-  Usuario,
-  UsuarioJSON
-} from '../../domain/usuario'
-import { Router } from '@angular/router'
-import { HttpClient, HttpParams } from '@angular/common/http'
-import { firstValueFrom, lastValueFrom, Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
-import { REST_SERVER_URL } from '../configuration'
-import { Recomendacion, RecomendacionJSON } from '../../domain/recomendacion'
-import { Libro } from '../../domain/libro'
+
+import {Injectable} from '@angular/core'
+import {AmigosJSON, sistemaValidacion, Usuario, UsuarioJSON} from '../../domain/usuario'
+import {Router} from '@angular/router'
+import {HttpClient, HttpParams} from '@angular/common/http'
+import {firstValueFrom, lastValueFrom, Observable} from 'rxjs'
+import {map} from 'rxjs/operators'
+import {REST_SERVER_URL} from '../configuration'
+import {Recomendacion, RecomendacionJSON} from '../../domain/recomendacion'
+import {Libro} from '../../domain/libro'
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -32,22 +31,18 @@ export class UsuariosService {
   }
 
   async getUserById(userIdSS: number | null): Promise<Usuario> {
-    try {
+
       const usuarioJSON = await lastValueFrom(
         this.httpClient.get<UsuarioJSON>(
           `${REST_SERVER_URL}/usuarios/` + userIdSS
         )
-      )
+      ) 
 
       if (!usuarioJSON) {
-        throw new Error('Usuario Invalido')
+        throw new Error("No se pudo obtener el usuario. Intente nuevamente.")
       }
       const usuarioTipoUsuario = await Usuario.fromJson(usuarioJSON)
       return usuarioTipoUsuario
-    } catch (error) {
-      this.router.navigate(['**'])
-      throw error
-    }
   }
 
   async getUsuariosCard(busqueda: string = ''): Promise<Usuario[]> {
@@ -58,6 +53,10 @@ export class UsuariosService {
         { params }
       )
     )
+
+    if (!usuarioAmigos) {
+      throw new Error("No se pudo obtener la informacion, intentelo mas tarde.")
+    }
 
     const amigosLista = usuarioAmigos.map((AmigosJSON) =>
       Usuario.fromJsonAmigos(AmigosJSON)
@@ -81,21 +80,13 @@ export class UsuariosService {
     )
   }
 
-  async actualizarUsuario(
-    usuarioBack: Usuario,
-    usuarioEditable: Usuario
-  ): Promise<void> {
-    try {
-      await lastValueFrom(
-        this.httpClient.put<void>(
-          `${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id,
-          usuarioEditable.toJSON()
-        )
-      )
-    } catch (error) {
-      throw error
-    }
-  }
+
+  
+  async actualizarUsuario( usuarioBack: Usuario,usuarioEditable: Usuario): Promise<void> {
+    
+      await lastValueFrom(this.httpClient.put<void>(`${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id,usuarioEditable.toJSON() ))
+   
+}
 
   navegarALogin() {
     this.router.navigate(['/login'])
@@ -220,3 +211,6 @@ class UsuarioLogin {
 export type UsuarioLoginJSON = {
   id: number
 }
+
+
+

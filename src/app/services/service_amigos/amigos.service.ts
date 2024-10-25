@@ -29,7 +29,7 @@ export class AmigosService {
         REST_SERVER_URL + '/usuarios/amigos/' + userId
       )
     )
-
+    
     const amigosLista = usuarioAmigos.map((AmigosJSON) =>
       Usuario.fromJsonAmigos(AmigosJSON)
     )
