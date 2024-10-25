@@ -6,7 +6,7 @@
       <header class="contenido-pagina-header">
         @if(esModoDetalle()){
           <h2>{{recomendacion.titulo}}</h2>
-          <img src="{{this.iconoRecomendacion}}" alt="{{this.altRecomendacion}}" class="icono-superior-derecha-recomendacion" />
+          <img src="{{this.iconoPublicaPrivada}}" alt="{{textoAlt}}" class="icono-superior-derecha-recomendacion" />
         }
         @if(esModoEdicion() || esModoNueva()){
           <section class="input-recomendacion">
@@ -15,7 +15,7 @@
               <input type="text" placeholder="{{recomendacion.titulo}}" [(ngModel)]="recomendacion.titulo"/>
               <div class="barra-busqueda edicion-rec ">
                 <label>
-                  <input type="checkbox"  [(ngModel)]="visibilidadPrivadaCheck">
+                  <input type="checkbox"  [(ngModel)]="esPrivada">
                   Visibilidad privada
                 </label>
               </div>
@@ -69,8 +69,7 @@
         ) {
           <readapp-card-valoracion [valoracion]="valoracion"></readapp-card-valoracion>
         }
-        <!--@if (esModoDetalle() && puedeValorar){                ESTO HAY QUE AGREGARLO UNA VEZ LA MODAL ESTE HECHA Y EL LLAMADO AL BACK TAMBIEN-->
-        @if (puedeValorar){
+        @if (recomendacion.puedeValorar){
           <div class="mas mas-valoracion">
             <div class="circulo-mas" (click)="openModalValoracion()">
               <div class="icono-mas">+</div>

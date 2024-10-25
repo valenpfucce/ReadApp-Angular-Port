@@ -29,16 +29,9 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class PagRecomendacionComponent {
   modo!: 'detalle' | 'edicion' | 'nueva';
-  usuario!: Usuario
   userIdSS!: number
   idRecomendacion!: number
   recomendacion!: Recomendacion
-  esPublica!: Boolean
-  iconoRecomendacion!: String
-  altRecomendacion!: String
-  puedeEditar!: boolean
-  puedeValorar!: boolean
-  visibilidadPrivadaCheck!: boolean
   error: string = ''
 
   constructor(
@@ -51,55 +44,46 @@ export class PagRecomendacionComponent {
 
   async ngOnInit() {
     const userIdSSAChequear = this.sessionStorage.obtenerIDuserSS()
-    if (userIdSSAChequear != null) {
-      this.userIdSS = userIdSSAChequear
-    }
+    if (userIdSSAChequear != null) { this.userIdSS = userIdSSAChequear }
     this.modo = this.route.snapshot.data['modo'];
-    if (this.esModoEdicion() || this.esModoDetalle()) {
-      this.idRecomendacion = Number(this.route.snapshot.paramMap.get('id'))
-      const recomendacionEncontrada = await this.serviceRecomendacion.getRecomendacionById(this.idRecomendacion);
-      if (recomendacionEncontrada) {
-        this.recomendacion = recomendacionEncontrada;
-      } else {
-        this.navegarA('/home');
-      }
-      this.setIconoRecomendacion(this.recomendacion.esPublica)
-      await this.puedeEditarLlamadaService()
-    }
-    if (this.esModoDetalle()) {
-      this.modoDetalle()
-    }
-    if (this.esModoEdicion()) {
-      this.modoEdicion()
-    }
-    if (this.esModoNueva()) {
-      this.modoNueva()
-    }
+    if (this.esModoDetalle()) { await this.modoDetalle() }
+    if (this.esModoEdicion()) { await this.modoEdicion() }
+    if (this.esModoNueva()) { this.modoNueva() }
   }
 
-
+  async buscarRecomenandacion() {
+      this.idRecomendacion = Number(this.route.snapshot.paramMap.get('id'))
+      const recomendacionEncontrada = await this.serviceRecomendacion.getRecomendacionByIdWithUser(this.idRecomendacion, this.userIdSS)
+      recomendacionEncontrada ? (this.recomendacion = recomendacionEncontrada) : this.navegarA('/home')
+  }
 
   async puedeValorarLlamadaService(){
-    const puedeValorarSR = await this.serviceRecomendacion.puedeValorarRecomendacion(this.recomendacion.id, this.userIdSS)
-    this.puedeValorar = puedeValorarSR
-    return puedeValorarSR
+    return await this.serviceRecomendacion.puedeValorarRecomendacion(this.recomendacion.id, this.userIdSS)
   }
 
   async puedeEditarLlamadaService(){
-    const puedeEditarSR = await this.serviceRecomendacion.puedeEditarRecomendacion(this.recomendacion.id, this.userIdSS)
-    this.puedeEditar = puedeEditarSR
-    return puedeEditarSR;
+    return await this.serviceRecomendacion.puedeEditarRecomendacion(this.recomendacion.id, this.userIdSS)
   }
 
-  setIconoRecomendacion(newPublicaBoolean : Boolean) {
-    this.esPublica = newPublicaBoolean
-    if (this.esPublica) {
-      this.iconoRecomendacion = '/imagenes/globe-simple.svg';
-      this.altRecomendacion = 'Publica';
-    } else {
-      this.iconoRecomendacion = '/imagenes/globe-x.svg';
-      this.altRecomendacion = 'Privada';
-    }
+
+  //Use getters para evitar la variable
+  get iconoPublicaPrivada(): string {
+    return this.recomendacion.esPublica
+      ? '/imagenes/globe-simple.svg'
+      : '/imagenes/globe-x.svg'
+  }
+  get textoAlt(): string {
+    return this.recomendacion.esPublica
+      ? 'Publica'
+      : 'Privada'
+  }
+
+  //Tuve que hacer un getter y un setter pq no se puede poner en un binding bidireccional (en el html) con un negado antes
+  get esPrivada(): boolean {
+    return !this.recomendacion.esPublica
+  }
+  set esPrivada(valor: boolean) {
+    this.recomendacion.esPublica = !valor
   }
 
   guardarCambios(){
@@ -123,13 +107,14 @@ export class PagRecomendacionComponent {
   esModoEdicion(){
     return (this.modo === 'edicion')
   }
-  modoEdicion() {
-    if(!this.puedeEditar){this.navegarA('/home')}
-    this.visibilidadPrivadaCheck = this.recomendacion.esPublica
+  async modoEdicion() {
+    await this.buscarRecomenandacion()
+    console.log(this.recomendacion.puedeEditar)
+    if (!this.recomendacion.puedeEditar) { this.navegarA('/home') }
   }
 
   async guardarCambiosEdicion(){
-    this.visibilidadPrivadaGuardar()
+  //guardar visibilidad privada?
     try{
       await this.serviceRecomendacion.editarRecomendacion(this.recomendacion, this.userIdSS)
       this.navegarA('/home')
@@ -147,9 +132,6 @@ export class PagRecomendacionComponent {
     }
   }
 
-  visibilidadPrivadaGuardar(){
-    this.recomendacion.esPublica = !this.visibilidadPrivadaCheck;
-  }
 
   recibirLibros(libros: Libro[]){
     libros.forEach( libroNuevo => {
@@ -173,8 +155,8 @@ export class PagRecomendacionComponent {
     return (this.modo === 'detalle')
   }
 
-  modoDetalle(){
-    this.puedeValorarLlamadaService()
+  async modoDetalle(){
+    await this.buscarRecomenandacion()
   }
 
   //FIN DETALLE
