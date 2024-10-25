@@ -39,7 +39,7 @@
         @if(rutaActual.includes("/recomendacion/" + this.recomendacionNum + "/edicion")){
           <div class="contenedor-cartas">
             <readapp-card-libro
-              *ngFor="let libro of librosLeidos"
+              *ngFor="let libro of libros"
               [libro]="libro"
               [esModal]="true"
               (click)="seleccionarLibro(libro)"

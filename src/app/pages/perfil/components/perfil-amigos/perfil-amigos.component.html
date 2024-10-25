@@ -9,13 +9,7 @@
 
           <readapp-card-libro-mas (openModalEvent)="openModal()" [tamanio] = "'chica'"></readapp-card-libro-mas>
 
-        </section>
-
-        <div class="boton_container">
-          <button class="boton_cancelar" (click)="cancelarCambios()"  type="submit">Cancelar</button>
-          <button class="boton_guardar" (click)="guardarCambios()" type="submit">Guardar cambios</button>
-        </div>
-        
+        </section>        
         <!-- Modal Amigos -->
         <readapp-modal *ngIf="isModalOpen" [isModalOpen]="isModalOpen" (close)="closeModal()"></readapp-modal>
     </div>

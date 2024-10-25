@@ -40,9 +40,10 @@ export class LibrosService {
 
   async obtenerTodosLosLibros() {
     //LLAMADA AL BACK PARA OBTENER TODOS LOS LIBROS
-    // const todosLosLibros = await lastValueFrom(
-    //   this.httpClient.get<Libro[]>(`${REST_SERVER_URL}/todos)`)
-    // )
+    console.log('PRUEBA')
+    return lastValueFrom(
+      this.httpClient.get<Libro[]>(`${REST_SERVER_URL}/libros/todos`)
+    )
     // console.log('los libros todos', todosLosLibros)
     // return todosLosLibros
   }

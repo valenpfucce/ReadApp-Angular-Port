@@ -38,7 +38,6 @@ import { AmigosService } from '../../services/service_amigos/amigos.service'
 })
 export class ModalComponent implements OnInit {
   libros!: Libro[]
-  // librosTodos!: Libro[]
   librosALeer!: Libro[]
   librosLeidos!: Libro[]
   librosSeleccionados: Libro[] = []
@@ -70,16 +69,13 @@ export class ModalComponent implements OnInit {
     this.rutaActual = this.router.url
 
     // Llama a la función dependiendo de la ruta
-    if (
-      this.rutaActual.includes('perfil/libros_leidos') ||
-      this.rutaActual.includes(
-        '/recomendacion/' + this.recomendacionNum + '/edicion'
-      )
-    ) {
+    if (this.rutaActual.includes('perfil/libros_leidos')) {
       await this.loadLibrosLeidos()
     } else if (this.rutaActual.includes('perfil/libros_a_leer')) {
       await this.loadLibrosALeer()
     } else if (this.rutaActual.includes('/recomendacion/nueva')) {
+      await this.loadTodosLosLibros()
+    } else {
       await this.loadTodosLosLibros()
     }
     await this.getUsuarios(userIdSS!)
@@ -104,13 +100,18 @@ export class ModalComponent implements OnInit {
         break
       case '/recomendacion/' + this.recomendacionNum + '/edicion':
         this.tituloModal = 'Agregar Libros a Recomendación'
+        const librosUserxId = this.usuarioActual.librosLeidos.map(
+          (libro) => libro.id
+        )
+        this.libros = this.libros.filter((libro) =>
+          librosUserxId.includes(libro.id)
+        )
         break
       case '/recomendacion/nueva':
         this.tituloModal = 'Agregar Libros a Recomendación'
         const librosUserxIdN = this.usuarioActual.librosLeidos.map(
           (libro) => libro.id
         )
-        //eseta variable es de todos los libros, no haria falta filtrar
         this.libros = this.libros.filter((libro) =>
           librosUserxIdN.includes(libro.id)
         )
@@ -122,13 +123,9 @@ export class ModalComponent implements OnInit {
   }
 
   /* START PERFIL LIBROS LEIDOS Y A LEER */
-  // VER DE NO REPETIR LÓGICA LLAMANDO AL SESION STORAGE
   async loadTodosLosLibros(): Promise<void> {
-    //ACÁ DEBERÍA TRAER TODOS LOS LIBROS PARA USARLO EN OTRA PÁGINA
-    //QUE SE NECESITE
-    //EJEMPLO LA DE AGREGAR LIBROS A UNA RECOMENDACIÓN
-    //PARA VER CON EMI DECUZZI
-    // this.librosTodos = await this.librosService.obtenerTodosLosLibros()
+    this.libros = await this.librosService.obtenerTodosLosLibros()
+    console.log('Estos son todos los libros', this.libros)
   }
 
   async loadLibrosALeer(): Promise<void> {
@@ -205,21 +202,31 @@ export class ModalComponent implements OnInit {
     //VER DE NO VOLVER A REPETIR EL PEDIDO EN EL SESION STORAGE
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
 
-    if (userIdSS != null) {
-      try {
-        if (this.rutaActual.includes('libros_leidos')) {
-          await this.librosService.agregarLibrosLeidos(userIdSS)
-          console.log('Libros leídos actualizados')
-        } else if (this.rutaActual.includes('libros_a_leer')) {
-          await this.librosService.agregarLibrosALeer(userIdSS)
-          console.log('Libros a leer actualizados')
-        }
-      } catch (error) {
-        console.error('error al actualizar los libros', error)
+    try {
+      if (this.rutaActual.includes('libros_leidos')) {
+        await this.librosService.agregarLibrosLeidos(userIdSS!)
+        window.location.reload() //CAMBIAR A QUE SE CARGUE EL NGONINIT DEL COMPONENTE
+        console.log('Libros leídos actualizados')
+      } else if (this.rutaActual.includes('libros_a_leer')) {
+        await this.librosService.agregarLibrosALeer(userIdSS!)
+        window.location.reload() //CAMBIAR A QUE SE CARGUE EL NGONINIT DEL COMPONENTE
+        console.log('Libros a leer actualizados')
+      } else if (this.rutaActual.includes('/recomendacion/nueva')) {
+        this.librosEnviados.emit(this.libros)
+      } else if (
+        this.rutaActual.includes(
+          '/recomendacion/' + this.recomendacionNum + '/edicion'
+        )
+      ) {
+        this.librosEnviados.emit(this.libros)
+      } else if (this.rutaActual.includes('/perfil/amigos')) {
+        await this.amigoService.enviarNuevosAmigos(userIdSS!)
+        window.location.reload() //CAMBIAR A QUE SE CARGUE EL NGONINIT DEL COMPONENTE
       }
+    } catch (error) {
+      console.error('error al actualizar los libros', error)
     }
     this.closeModal()
-    window.location.reload()
   }
 
   cancel() {
