@@ -38,6 +38,7 @@ import { AmigosService } from '../../services/service_amigos/amigos.service'
 })
 export class ModalComponent implements OnInit {
   libros!: Libro[]
+  // librosTodos!: Libro[]
   librosALeer!: Libro[]
   librosLeidos!: Libro[]
   librosSeleccionados: Libro[] = []
@@ -69,10 +70,17 @@ export class ModalComponent implements OnInit {
     this.rutaActual = this.router.url
 
     // Llama a la función dependiendo de la ruta
-    if (this.rutaActual.includes('perfil/libros_leidos')) {
+    if (
+      this.rutaActual.includes('perfil/libros_leidos') ||
+      this.rutaActual.includes(
+        '/recomendacion/' + this.recomendacionNum + '/edicion'
+      )
+    ) {
       await this.loadLibrosLeidos()
     } else if (this.rutaActual.includes('perfil/libros_a_leer')) {
       await this.loadLibrosALeer()
+    } else if (this.rutaActual.includes('/recomendacion/nueva')) {
+      await this.loadTodosLosLibros()
     }
     await this.getUsuarios(userIdSS!)
     this.asignarTitulo()
@@ -96,18 +104,13 @@ export class ModalComponent implements OnInit {
         break
       case '/recomendacion/' + this.recomendacionNum + '/edicion':
         this.tituloModal = 'Agregar Libros a Recomendación'
-        const librosUserxId = this.usuarioActual.librosLeidos.map(
-          (libro) => libro.id
-        )
-        this.libros = this.libros.filter((libro) =>
-          librosUserxId.includes(libro.id)
-        )
         break
       case '/recomendacion/nueva':
         this.tituloModal = 'Agregar Libros a Recomendación'
         const librosUserxIdN = this.usuarioActual.librosLeidos.map(
           (libro) => libro.id
         )
+        //eseta variable es de todos los libros, no haria falta filtrar
         this.libros = this.libros.filter((libro) =>
           librosUserxIdN.includes(libro.id)
         )
@@ -120,11 +123,12 @@ export class ModalComponent implements OnInit {
 
   /* START PERFIL LIBROS LEIDOS Y A LEER */
   // VER DE NO REPETIR LÓGICA LLAMANDO AL SESION STORAGE
-  async todosLosLibros(): Promise<void> {
+  async loadTodosLosLibros(): Promise<void> {
     //ACÁ DEBERÍA TRAER TODOS LOS LIBROS PARA USARLO EN OTRA PÁGINA
     //QUE SE NECESITE
     //EJEMPLO LA DE AGREGAR LIBROS A UNA RECOMENDACIÓN
     //PARA VER CON EMI DECUZZI
+    // this.librosTodos = await this.librosService.obtenerTodosLosLibros()
   }
 
   async loadLibrosALeer(): Promise<void> {

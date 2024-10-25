@@ -8,6 +8,7 @@
           <readapp-card-libro-mas (openModalEvent) ="openModal()"></readapp-card-libro-mas>
       </section>
     </section>
-
-    <readapp-modal *ngIf="isModalOpen" [isModalOpen]="isModalOpen" (close)="closeModal()"></readapp-modal>
+    @if(this.isModalOpen){
+      <readapp-modal [isModalOpen]="isModalOpen" (close)="closeModal()"></readapp-modal>
+    }
 </div>

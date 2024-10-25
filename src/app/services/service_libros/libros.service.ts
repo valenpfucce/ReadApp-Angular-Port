@@ -40,6 +40,11 @@ export class LibrosService {
 
   async obtenerTodosLosLibros() {
     //LLAMADA AL BACK PARA OBTENER TODOS LOS LIBROS
+    // const todosLosLibros = await lastValueFrom(
+    //   this.httpClient.get<Libro[]>(`${REST_SERVER_URL}/todos)`)
+    // )
+    // console.log('los libros todos', todosLosLibros)
+    // return todosLosLibros
   }
 
   /* PERFIL LIBROS A LEER Y LEIDOS*/
