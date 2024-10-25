@@ -1,15 +1,26 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core'
-import {LibrosService} from '../../services/service_libros/libros.service'
-import {Libro} from '../../domain/libro'
-import {CommonModule} from '@angular/common'
-import {CardLibroComponent} from '../card-libro/card-libro.component'
-import {BarraBusquedaComponent, BuscarEvento} from '../barra-busqueda/barra-busqueda.component'
-import {CardAmigoComponent} from '../card-amigo/card-amigo.component'
-import {Router} from '@angular/router'
-import {Usuario} from '../../domain/usuario'
-import {UsuariosService} from '../../services/service_usuarios/usuarios.service'
-import {UserSessionStorageService} from '../../services/service_user_session_storage/user-session-storage.service'
-import {AmigosService} from '../../services/service_amigos/amigos.service'
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core'
+import { LibrosService } from '../../services/service_libros/libros.service'
+import { Libro } from '../../domain/libro'
+import { CommonModule } from '@angular/common'
+import { CardLibroComponent } from '../card-libro/card-libro.component'
+import {
+  BarraBusquedaComponent,
+  BuscarEvento
+} from '../barra-busqueda/barra-busqueda.component'
+import { CardAmigoComponent } from '../card-amigo/card-amigo.component'
+import { Router } from '@angular/router'
+import { Usuario } from '../../domain/usuario'
+import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
+import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
+import { AmigosService } from '../../services/service_amigos/amigos.service'
+import { HttpErrorResponse } from '@angular/common/http'
 
 @Component({
   selector: 'readapp-modal',
@@ -35,13 +46,13 @@ export class ModalComponent implements OnInit {
   tituloModal = ''
   usuarioActual!: Usuario
   noHay = false
-
+  mensajeError: string | null = null
 
   @Input() isModalOpen: boolean = false
   @Output() close = new EventEmitter<void>()
   @Output() librosEnviados = new EventEmitter<Libro[]>()
   @Input() recomendacionNum: number = 0
-  @ViewChild('cardLibro') cardLibro! : CardLibroComponent
+  @ViewChild('cardLibro') cardLibro!: CardLibroComponent
 
   constructor(
     private librosService: LibrosService,
@@ -65,7 +76,6 @@ export class ModalComponent implements OnInit {
     this.usuarioActual = usuarioEnLinea
   }
 
-
   asignarTitulo() {
     switch (this.rutaActual) {
       case '/perfil/libros_leidos':
@@ -79,13 +89,21 @@ export class ModalComponent implements OnInit {
         break
       case '/recomendacion/' + this.recomendacionNum + '/edicion':
         this.tituloModal = 'Agregar Libros a Recomendación'
-        const librosUserxId = this.usuarioActual.librosLeidos.map(libro => libro.id)
-        this.libros = this.libros.filter( libro => librosUserxId.includes(libro.id) )
+        const librosUserxId = this.usuarioActual.librosLeidos.map(
+          (libro) => libro.id
+        )
+        this.libros = this.libros.filter((libro) =>
+          librosUserxId.includes(libro.id)
+        )
         break
       case '/recomendacion/nueva':
         this.tituloModal = 'Agregar Libros a Recomendación'
-        const librosUserxIdN = this.usuarioActual.librosLeidos.map(libro => libro.id)
-        this.libros = this.libros.filter( libro => librosUserxIdN.includes(libro.id) )
+        const librosUserxIdN = this.usuarioActual.librosLeidos.map(
+          (libro) => libro.id
+        )
+        this.libros = this.libros.filter((libro) =>
+          librosUserxIdN.includes(libro.id)
+        )
         break
       default:
         this.tituloModal = 'Ventana modal'
@@ -103,33 +121,48 @@ export class ModalComponent implements OnInit {
 
   async buscar(evento: BuscarEvento): Promise<void> {
     this.noHay = false
+
     if (this.tituloModal == 'Todos los usuarios') {
       console.log(false)
       this.amigos = await this.userServiceUS.getUsuariosCard(
         evento.palabraABuscar
       )
-      if(this.amigos.length == 0){
+      if (this.amigos.length == 0) {
         this.noHay = true
       }
     } else {
       this.libros = await this.librosService.busquedaLibros(
         evento.palabraABuscar
       )
-      if(this.libros.length == 0){
+      if (this.libros.length == 0) {
         this.noHay = true
       }
     }
   }
 
   async getUsuarios(idActual: number) {
-    const amigosTODOS = await this.userServiceUS.getUsuariosCard()
-    const amigosFiltroSesion = amigosTODOS.filter(
-      (amigo) => amigo.id !== this.usuarioActual.id
-    )
-    const amigosFiltro = amigosFiltroSesion.filter(
-      (amigo) => !this.usuarioActual.amigos.includes(amigo.id!)
-    )
-    this.amigos = amigosFiltro
+    try {
+      const amigosTODOS = await this.userServiceUS.getUsuariosCard()
+      const amigosFiltroSesion = amigosTODOS.filter(
+        (amigo) => amigo.id !== this.usuarioActual.id
+      )
+      const amigosFiltro = amigosFiltroSesion.filter(
+        (amigo) => !this.usuarioActual.amigos.includes(amigo.id!)
+      )
+      this.amigos = amigosFiltro
+    } catch (error: unknown) {
+      if (error instanceof HttpErrorResponse) {
+        if (error.status === 0) {
+          this.mensajeError =
+            'Error en el servidor. Por favor, inténtelo de nuevo mas tarde'
+        } else {
+          this.mensajeError =
+            error.error?.message || 'Ocurrió un error inesperado.'
+        }
+      } else {
+        this.mensajeError = 'Ocurrió un error inesperado.'
+      }
+    }
   }
 
   seleccionarLibro(libro: Libro) {
@@ -153,7 +186,6 @@ export class ModalComponent implements OnInit {
     this.librosGuardados = this.librosSeleccionados
     this.librosEnviados.emit(this.librosGuardados)
 
-
     this.librosSeleccionados.forEach((libro) =>
       this.librosService.agregarALibrosLeidos(libro.id, this.usuarioActual.id!)
     )
@@ -170,8 +202,7 @@ export class ModalComponent implements OnInit {
     )
   }
 
-  llamarALibroAgregar(cardLibro : CardLibroComponent, libro : Libro) {
+  llamarALibroAgregar(cardLibro: CardLibroComponent, libro: Libro) {
     this.cardLibro.agregarLibro(libro)
   }
-
 }
