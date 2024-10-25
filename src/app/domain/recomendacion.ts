@@ -9,12 +9,12 @@ export type RecomendacionJSON = {
   titulo: string,
   esPublica: boolean,
   descripcion: string,
-  lista_libros: LibroJSON[],
+  lista_libros: Libro[],
   valoraciones: Valoracion[],
   puedeEditar?: Boolean,
   puedeValorar?: Boolean,
-  avgValoraciones?: number
-  tiempoLectura?: number,
+  avgValoraciones?: number,
+  tiempoLectura?: number
 }
 
 
@@ -34,9 +34,7 @@ export class Recomendacion implements Entidad {
   ) {}
 
   static fromJson(recomendacionJSON: RecomendacionJSON): Recomendacion {
-    return Object.assign(new Recomendacion(), recomendacionJSON, {
-      lista_libros: recomendacionJSON.lista_libros.map(libroJSON => Libro.fromJson(libroJSON))
-    })
+    return Object.assign(new Recomendacion(), recomendacionJSON, {})
   }
 
   // static fromJson(data: any): Recomendacion {

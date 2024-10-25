@@ -29,7 +29,6 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class PagRecomendacionComponent {
   modo!: 'detalle' | 'edicion' | 'nueva';
-  usuario!: Usuario
   userIdSS!: number
   idRecomendacion!: number
   recomendacion!: Recomendacion
@@ -45,22 +44,17 @@ export class PagRecomendacionComponent {
 
   async ngOnInit() {
     const userIdSSAChequear = this.sessionStorage.obtenerIDuserSS()
-    if (userIdSSAChequear != null) {
-      this.userIdSS = userIdSSAChequear
-    }
+    if (userIdSSAChequear != null) { this.userIdSS = userIdSSAChequear }
     this.modo = this.route.snapshot.data['modo'];
-    if (this.esModoEdicion() || this.esModoDetalle()) {
-      this.idRecomendacion = Number(this.route.snapshot.paramMap.get('id'))
-      const recomendacionEncontrada = await this.serviceRecomendacion.getRecomendacionById(this.idRecomendacion);
-      if (recomendacionEncontrada) {
-        this.recomendacion = recomendacionEncontrada;
-      } else {
-        this.navegarA('/home');
-      }
-    }
-    if (this.esModoDetalle()) { this.modoDetalle() }
-    if (this.esModoEdicion()) { this.modoEdicion() }
+    if (this.esModoDetalle()) { await this.modoDetalle() }
+    if (this.esModoEdicion()) { await this.modoEdicion() }
     if (this.esModoNueva()) { this.modoNueva() }
+  }
+
+  async buscarRecomenandacion() {
+      this.idRecomendacion = Number(this.route.snapshot.paramMap.get('id'))
+      const recomendacionEncontrada = await this.serviceRecomendacion.getRecomendacionByIdWithUser(this.idRecomendacion, this.userIdSS)
+      recomendacionEncontrada ? (this.recomendacion = recomendacionEncontrada) : this.navegarA('/home')
   }
 
   async puedeValorarLlamadaService(){
@@ -84,7 +78,7 @@ export class PagRecomendacionComponent {
       : 'Privada'
   }
 
-  //Tuve que hacer un getter y un setter pq no se puede poner un binding bidireccional con un negado antes
+  //Tuve que hacer un getter y un setter pq no se puede poner en un binding bidireccional (en el html) con un negado antes
   get esPrivada(): boolean {
     return !this.recomendacion.esPublica
   }
@@ -113,8 +107,10 @@ export class PagRecomendacionComponent {
   esModoEdicion(){
     return (this.modo === 'edicion')
   }
-  modoEdicion() {
-    if(!this.recomendacion.puedeEditar){this.navegarA('/home')}
+  async modoEdicion() {
+    await this.buscarRecomenandacion()
+    console.log(this.recomendacion.puedeEditar)
+    if (!this.recomendacion.puedeEditar) { this.navegarA('/home') }
   }
 
   async guardarCambiosEdicion(){
@@ -159,7 +155,8 @@ export class PagRecomendacionComponent {
     return (this.modo === 'detalle')
   }
 
-  modoDetalle(){
+  async modoDetalle(){
+    await this.buscarRecomenandacion()
   }
 
   //FIN DETALLE
