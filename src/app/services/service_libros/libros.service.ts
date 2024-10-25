@@ -38,6 +38,10 @@ export class LibrosService {
     )
   }
 
+  async obtenerTodosLosLibros() {
+    //LLAMADA AL BACK PARA OBTENER TODOS LOS LIBROS
+  }
+
   /* PERFIL LIBROS A LEER Y LEIDOS*/
   getLibrosALeer(userId: number): Promise<Libro[]> {
     return lastValueFrom(
