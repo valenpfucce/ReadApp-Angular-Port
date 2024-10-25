@@ -33,10 +33,10 @@ export class UsuariosService {
         this.httpClient.get<UsuarioJSON>(
           `${REST_SERVER_URL}/usuarios/` + userIdSS
         )
-      )
+      ) 
 
       if (!usuarioJSON) {
-        throw new Error('Usuario Invalido')
+        throw new Error("No se pudo obtener el usuario. Intente nuevamente.")
       }
       const usuarioTipoUsuario = await Usuario.fromJson(usuarioJSON)
       return usuarioTipoUsuario
@@ -53,6 +53,10 @@ export class UsuariosService {
         {params}
       )
     )
+
+    if (!usuarioAmigos) {
+      throw new Error("No se pudo obtener la informacion, intentelo mas tarde.")
+    }
 
     const amigosLista = usuarioAmigos.map((AmigosJSON) =>
       Usuario.fromJsonAmigos(AmigosJSON)
@@ -209,3 +213,6 @@ class UsuarioLogin {
 export type UsuarioLoginJSON = {
   id: number
 }
+
+
+
