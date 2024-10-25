@@ -1,4 +1,3 @@
-
 import {Injectable} from '@angular/core'
 import {AmigosJSON, sistemaValidacion, Usuario, UsuarioJSON} from '../../domain/usuario'
 import {Router} from '@angular/router'
@@ -10,7 +9,6 @@ import {Recomendacion, RecomendacionJSON} from '../../domain/recomendacion'
 import {Libro} from '../../domain/libro'
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +29,6 @@ export class UsuariosService {
   }
 
   async getUserById(userIdSS: number | null): Promise<Usuario> {
-
       const usuarioJSON = await lastValueFrom(
         this.httpClient.get<UsuarioJSON>(
           `${REST_SERVER_URL}/usuarios/` + userIdSS
@@ -135,66 +132,6 @@ export class UsuariosService {
         {}
       )
     )
-  }
-
-  async agregarLibrosALeer(userId: number) {
-    const librosEnviar = this.listaAgregarALeer.map((libro) => libro.id) // Cambia aquí para enviar solo IDs
-    console.log('Esto estoy enviando a agregar', librosEnviar)
-    try {
-      await lastValueFrom(
-        this.httpClient.patch(
-          `${REST_SERVER_URL}/usuarios/${userId}/agregar-libros-leer`,
-          librosEnviar
-        )
-      )
-      this.listaAgregarALeer = []
-      console.log('IDs enviados exitosamente al backend', librosEnviar)
-    } catch (error) {
-      console.error('Error al agregar libros a leer:', error)
-      throw error
-    }
-  }
-
-  async eliminarLibrosALeer(userId: number) {
-    const librosEnviar = this.listaEliminarALeer.map((libro) => libro.id)
-    console.log('buenos libros para eliminar:', librosEnviar)
-
-    console.log('ESTO SE VA A ELIMINAR DEL USUARIO')
-    await lastValueFrom(
-      this.httpClient.patch(
-        `${REST_SERVER_URL}/usuarios/${userId}/eliminar-libros-leer`,
-        librosEnviar
-      )
-    )
-    this.listaEliminarALeer = []
-  }
-
-  async agregarLibrosLeidos(userId: number) {
-    const librosEnviar = this.listaAgregarLeidos.map((libro) => libro.id)
-    console.log('Esto estoy enviando a agregar', librosEnviar)
-    try {
-      await lastValueFrom(
-        this.httpClient.patch(
-          `${REST_SERVER_URL}/usuarios/${userId}/agregar-leidos`,
-          librosEnviar
-        )
-      )
-      this.listaAgregarLeidos = []
-      console.log('IDs enviados exitosamente al backend', librosEnviar)
-    } catch (error) {
-      console.error('Error al agregar libros a leer:', error)
-    }
-  }
-
-  async eliminarLibrosLeidos(userId: number) {
-    const librosEnviar = this.listaEliminarLeidos.map((libro) => libro.id)
-    await lastValueFrom(
-      this.httpClient.patch(
-        `${REST_SERVER_URL}/usuarios/${userId}/eliminar-libros-leidos`,
-        librosEnviar
-      )
-    )
-    this.listaEliminarLeidos = []
   }
 }
 

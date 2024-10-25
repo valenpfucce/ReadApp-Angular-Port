@@ -13,7 +13,8 @@ import { Router } from '@angular/router'
   ]
 })
 export class CardLibroMasComponent {
-  @Input() tamanio: 'chica' | 'mediana' | 'grande' = 'chica'
+  @Input() tamanio: 'chica' | 'mediana' | 'grande' = 'grande'
+
   @Output() openModalEvent = new EventEmitter<void>()
 
   constructor(private router: Router) {}

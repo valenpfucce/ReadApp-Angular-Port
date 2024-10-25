@@ -2,10 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { HeaderComponent } from '../../../../components/header/header.component'
 import { SidebarPerfilComponent } from '../../sidebar-perfil.component'
 import { CardLibroComponent } from '../../../../components/card-libro/card-libro.component'
-import { Libro, LibroJSON } from '../../../../domain/libro'
-import { LibrosService } from '../../../../services/service_libros/libros.service'
+import { Libro } from '../../../../domain/libro'
 import { UserSessionStorageService } from '../../../../services/service_user_session_storage/user-session-storage.service'
-import { Usuario } from '../../../../domain/usuario'
 import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service'
 import { CardLibroMasComponent } from '../../../../components/card-libro-mas/card-libro-mas.component'
 import { ModalComponent } from '../../../../components/modal/modal.component'
@@ -33,10 +31,8 @@ import { CommonModule } from '@angular/common'
 })
 export class PerfilLibrosALeerComponent implements OnInit {
   palabraABuscar: string = ''
-  usuario!: Usuario
   librosALeer!: Libro[]
   modo!: 'detalle' | 'edicion'
-
   userIdSS!: number
   isModalOpen = false
   userActive!: number
@@ -48,11 +44,8 @@ export class PerfilLibrosALeerComponent implements OnInit {
 
   async ngOnInit() {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
-
     if (userIdSS != null) {
       this.cargarLibrosALeer(userIdSS)
-    } else {
-      console.error('El userId es nulo')
     }
   }
 
@@ -67,23 +60,13 @@ export class PerfilLibrosALeerComponent implements OnInit {
     return this.librosALeer
   }
 
-  async guardarCambios() {
-    await this.userServiceUS.agregarLibrosALeer(this.userActive)
-    await this.userServiceUS.eliminarLibrosALeer(this.userActive)
-    this.reload()
-  }
-
-  cancelarCambios() {
-    this.userServiceUS.listaEliminarALeer = []
-    this.reload()
-  }
-
   openModal() {
     this.isModalOpen = true
   }
 
   closeModal() {
     this.isModalOpen = false
+    this.cargarLibrosALeer
   }
 
   reload() {

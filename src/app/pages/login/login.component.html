@@ -28,19 +28,22 @@
           />
           <i class="fa-solid fa-eye ver_contrasenia"></i>
         </div>
-        <div
-          class="obligatorio-input"
-          *ngIf="
-            !showPasswordError 
-          "
-          >
-          <small *ngIf="loginForm.get('contrasenia')?.errors?.['required'] && loginForm.get('contrasenia')?.touched"
-            >La contraseña es requerida.</small
-          >
-        </div>
-        <div *ngIf="showPasswordError" class="error-message">
-          {{showPasswordError}}
-         </div>
+        @if (!showPasswordError){
+          <div
+            class="obligatorio-input"
+            >
+            @if (loginForm.get('contrasenia')?.errors?.['required'] && loginForm.get('contrasenia')?.touched){
+              <small
+                >La contraseña es requerida.</small
+              >
+            }  
+          </div>
+        }
+        @if(showPasswordError){
+          <div class="error-message">
+            {{showPasswordError}}
+          </div>
+        }
       </div>
       <div class="boton_container">
         <button (click)="login()" class="boton_guardar" type="submit">
