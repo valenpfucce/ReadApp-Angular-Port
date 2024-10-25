@@ -12,7 +12,6 @@ import { CommonModule } from '@angular/common'
 import { HttpErrorResponse } from '@angular/common/http'
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
 
-
 @Component({
   selector: 'readapp-login',
   standalone: true,
@@ -60,22 +59,21 @@ export class LoginComponent {
     const { mail, contrasenia } = this.loginForm.value
 
     try {
-      const idUsuario = await this.userSesionStorageService.loginGetUsuarioIdToSS(
-        mail,
-        contrasenia
-      )
+      const idUsuario =
+        await this.userSesionStorageService.loginGetUsuarioIdToSS(
+          mail,
+          contrasenia
+        )
 
       if (idUsuario) {
         this.router.navigate(['/home'])
       }
-
     } catch (error: unknown) {
       if (error instanceof HttpErrorResponse) {
         if (error.status === 0) {
           this.showPasswordError = 'Conexión no exitosa. Intente más tarde'
         } else {
-          this.showPasswordError =
-            error.error?.message || 'Ocurrió un error inesperado.'
+          this.showPasswordError = error.error?.message
         }
       } else {
         this.showPasswordError = 'Ocurrió un error inesperado.'
@@ -83,4 +81,3 @@ export class LoginComponent {
     }
   }
 }
-
