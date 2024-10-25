@@ -66,15 +66,15 @@ export class UsuariosService {
     return amigosLista
   }
 
-  putVerificationUser(
-    mailLogin: string,
-    contraseniaLogin: string
-  ): Observable<number | null> {
-    const usuarioLogin = new UsuarioLogin(mailLogin, contraseniaLogin)
-    return this.httpClient
-      .post<UsuarioLoginJSON>(`${REST_SERVER_URL}/usuarios/login`, usuarioLogin)
-      .pipe(map((response) => response?.id || null))
-  }
+  // putVerificationUser(
+  //   mailLogin: string,
+  //   contraseniaLogin: string
+  // ): Observable<number | null> {
+  //   const usuarioLogin = new UsuarioLogin(mailLogin, contraseniaLogin)
+  //   return this.httpClient
+  //     .post<UsuarioLoginJSON>(`${REST_SERVER_URL}/usuarios/login`, usuarioLogin)
+  //     .pipe(map((response) => response?.id || null))
+  // }
 
   async actualizarUsuario(
     usuarioBack: Usuario,

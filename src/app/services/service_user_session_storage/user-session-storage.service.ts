@@ -17,27 +17,22 @@ export class UserSessionStorageService {
   ) {}
   // ===== SESSION STORAGE ===== //
 
-  async loginGetUsuarioIdToSS(
-    mail: string,
-    contrasenia: string
-  ): Promise<number | null> {
-    try {
-      //Usamos firstValueFrom para convertir el observable en una promesa
-      const response = await firstValueFrom(
-        this.userService.putVerificationUser(mail, contrasenia)
-      )
-      sessionStorage.setItem(this.sessionKey, response!.toString())
-      const usuarioEncontrado: Usuario =
-        await this.obtenerDatosUsuario(response)
-      sessionStorage.setItem('user_name', usuarioEncontrado.nombre)
-      sessionStorage.setItem('user_lastname', usuarioEncontrado.apellido)
-      sessionStorage.setItem('user_img', usuarioEncontrado.imgperfil)
-      return response
-    } catch (error) {
-      console.error('Error en el login:', error)
-      throw error
-    }
-  }
+  // async loginGetUsuarioIdToSS(
+  //   mail: string,
+  //   contrasenia: string
+  // ): Promise<number | null> {
+  //   //Usamos firstValueFrom para convertir el observable en una promesa
+  //   const response = await firstValueFrom(
+  //     this.userService.putVerificationUser(mail, contrasenia)
+  //   )
+  //   sessionStorage.setItem(this.sessionKey, response!.toString())
+  //   // const usuarioEncontrado: Usuario =
+  //   //   await this.obtenerDatosUsuario(response)
+  //   // sessionStorage.setItem('user_name', usuarioEncontrado.nombre)
+  //   // sessionStorage.setItem('user_lastname', usuarioEncontrado.apellido)
+  //   // sessionStorage.setItem('user_img', usuarioEncontrado.imgperfil)
+  //   return response
+  // }
 
   obtenerIDuserSS(): number | null {
     const idUser = sessionStorage.getItem(this.sessionKey)
