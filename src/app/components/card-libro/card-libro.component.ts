@@ -5,6 +5,7 @@ import { Libro } from '../../domain/libro'
 import { CommonModule } from '@angular/common'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
+import { LibrosService } from '../../services/service_libros/libros.service'
 
 @Component({
   selector: 'readapp-card-libro',
@@ -22,6 +23,7 @@ export class CardLibroComponent {
   @Output() libroABorrar = new EventEmitter<Libro>()
 
   constructor(
+    private librosService: LibrosService,
     private sessionStorage: UserSessionStorageService,
     private userServiceUS: UsuariosService
   ) {}
@@ -53,29 +55,33 @@ export class CardLibroComponent {
   eliminarLibro(libro: Libro) {
     if (this.tipoPerfil == 'aleer') {
       this.eliminarLibrosALeer(libro)
+      console.log('SOY LIBRO A LEER')
     } else {
       this.eliminarLibrosLeidos(libro)
+      console.log('SOY LIBRO LEIDO')
     }
   }
 
   async agregarLibroALeer(libro: Libro) {
-    this.userServiceUS.listaAgregarALeer.push(libro)
+    this.librosService.listaAgregarALeer.push(libro)
   }
 
   async eliminarLibrosALeer(libro: Libro) {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
-    if (userIdSS != null) {
-      this.userServiceUS.listaEliminarALeer.push(libro)
-      await this.userServiceUS.actualizarLibrosALeer(userIdSS)
-      window.location.reload()
-    }
+
+    this.librosService.listaEliminarALeer.push(libro)
+    await this.librosService.eliminarLibrosALeer(userIdSS!)
+    window.location.reload()
   }
 
   async agregarLibrosLeidos(libro: Libro) {
-    this.userServiceUS.listaAgregarLeidos.push(libro)
+    this.librosService.listaAgregarLeidos.push(libro)
   }
 
   async eliminarLibrosLeidos(libro: Libro) {
-    this.userServiceUS.listaEliminarLeidos.push(libro)
+    const userIdSS = this.sessionStorage.obtenerIDuserSS()
+    this.librosService.listaEliminarLeidos.push(libro)
+    await this.librosService.eliminarLibrosLeidos(userIdSS!)
+    window.location.reload()
   }
 }

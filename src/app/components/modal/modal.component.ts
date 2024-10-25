@@ -38,6 +38,8 @@ import { AmigosService } from '../../services/service_amigos/amigos.service'
 })
 export class ModalComponent implements OnInit {
   libros!: Libro[]
+  librosALeer!: Libro[]
+  librosLeidos!: Libro[]
   librosSeleccionados: Libro[] = []
   librosGuardados: Libro[] = []
   amigos!: Usuario[]
@@ -45,6 +47,7 @@ export class ModalComponent implements OnInit {
   tituloModal = ''
   usuarioActual!: Usuario
   noHay = false
+  userIdSS = ''
 
   @Input() isModalOpen: boolean = false
   @Output() close = new EventEmitter<void>()
@@ -64,7 +67,13 @@ export class ModalComponent implements OnInit {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     this.obtenerDatosUsuario(userIdSS)
     this.rutaActual = this.router.url
-    await this.loadLibros()
+
+    // Llama a la función dependiendo de la ruta
+    if (this.rutaActual.includes('perfil/libros_leidos')) {
+      await this.loadLibrosLeidos()
+    } else if (this.rutaActual.includes('perfil/libros_a_leer')) {
+      await this.loadLibrosALeer()
+    }
     await this.getUsuarios(userIdSS!)
     this.asignarTitulo()
   }
@@ -109,13 +118,35 @@ export class ModalComponent implements OnInit {
     }
   }
 
-  async loadLibros(): Promise<void> {
+  /* START PERFIL LIBROS LEIDOS Y A LEER */
+  // VER DE NO REPETIR LÓGICA LLAMANDO AL SESION STORAGE
+  async todosLosLibros(): Promise<void> {
+    //ACÁ DEBERÍA TRAER TODOS LOS LIBROS PARA USARLO EN OTRA PÁGINA
+    //QUE SE NECESITE
+    //EJEMPLO LA DE AGREGAR LIBROS A UNA RECOMENDACIÓN
+    //PARA VER CON EMI DECUZZI
+  }
+
+  async loadLibrosALeer(): Promise<void> {
+    const userIdSS = this.sessionStorage.obtenerIDuserSS()
     try {
-      this.libros = await this.librosService.busquedaLibros(undefined)
+      this.librosALeer = await this.librosService.getLibrosALeer(userIdSS!)
     } catch (error) {
       console.error('Error al cargar los libros en front:', error)
     }
   }
+
+  async loadLibrosLeidos(): Promise<void> {
+    const userIdSS = this.sessionStorage.obtenerIDuserSS()
+    try {
+      this.librosLeidos = await this.librosService.getLibrosLeidosMenosTodos(
+        userIdSS!
+      )
+    } catch (error) {
+      console.error('Error al cargar los libros en front:', error)
+    }
+  }
+  /* END PERFIL LIBROS LEIDOS Y A LEER */
 
   async buscar(evento: BuscarEvento): Promise<void> {
     this.noHay = false
@@ -166,11 +197,19 @@ export class ModalComponent implements OnInit {
   }
 
   async saveChanges() {
+    //SUMAR LÓGICA PARA MANDAR LOS AMIGOS AL BACK SI ESTÁ EN LA RUTA DE AMIGOS
+    //VER DE NO VOLVER A REPETIR EL PEDIDO EN EL SESION STORAGE
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
 
     if (userIdSS != null) {
       try {
-        await this.userServiceUS.actualizarLibrosALeer(userIdSS)
+        if (this.rutaActual.includes('libros_leidos')) {
+          await this.librosService.agregarLibrosLeidos(userIdSS)
+          console.log('Libros leídos actualizados')
+        } else if (this.rutaActual.includes('libros_a_leer')) {
+          await this.librosService.agregarLibrosALeer(userIdSS)
+          console.log('Libros a leer actualizados')
+        }
       } catch (error) {
         console.error('error al actualizar los libros', error)
       }

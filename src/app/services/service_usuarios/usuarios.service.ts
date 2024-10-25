@@ -140,59 +140,6 @@ export class UsuariosService {
       )
     )
   }
-
-  async actualizarLibrosALeer(userId: number) {
-    const librosALeer = this.listaAgregarALeer.map((libro) => libro.id)
-    const librosAEliminar = this.listaEliminarALeer.map((libro) => libro.id)
-
-    const listaActualizar = {
-      librosPorLeer: librosALeer,
-      librosAEliminar: librosAEliminar
-    }
-
-    try {
-      await lastValueFrom(
-        this.httpClient.patch(
-          `${REST_SERVER_URL}/usuarios/${userId}/actualizar-libros-leer`,
-          listaActualizar
-        )
-      )
-      this.listaAgregarALeer = []
-      this.listaEliminarALeer = []
-      console.log('libros actualizados correctamente')
-    } catch (error) {
-      console.error('Error al actualizar libros', error)
-      throw error
-    }
-  }
-
-  async agregarLibrosLeidos(userId: number) {
-    const librosEnviar = this.listaAgregarLeidos.map((libro) => libro.id)
-    console.log('Esto estoy enviando a agregar', librosEnviar)
-    try {
-      await lastValueFrom(
-        this.httpClient.patch(
-          `${REST_SERVER_URL}/usuarios/${userId}/agregar-leidos`,
-          librosEnviar
-        )
-      )
-      this.listaAgregarLeidos = []
-      console.log('IDs enviados exitosamente al backend', librosEnviar)
-    } catch (error) {
-      console.error('Error al agregar libros a leer:', error)
-    }
-  }
-
-  async eliminarLibrosLeidos(userId: number) {
-    const librosEnviar = this.listaEliminarLeidos.map((libro) => libro.id)
-    await lastValueFrom(
-      this.httpClient.patch(
-        `${REST_SERVER_URL}/usuarios/${userId}/eliminar-libros-leidos`,
-        librosEnviar
-      )
-    )
-    this.listaEliminarLeidos = []
-  }
 }
 
 class UsuarioLogin {

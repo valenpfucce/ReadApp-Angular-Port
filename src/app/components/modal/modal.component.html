@@ -17,7 +17,7 @@
         *ngIf="rutaActual.includes('perfil/libros_leidos')"
       >
         <readapp-card-libro
-          *ngFor="let libro of libros"
+          *ngFor="let libro of librosLeidos"
           #cardLibro
           [libro]="libro"
           [esModal]="true"
@@ -31,7 +31,7 @@
         *ngIf="rutaActual.includes('perfil/libros_a_leer')"
       >
         <readapp-card-libro
-          *ngFor="let libro of libros"
+          *ngFor="let libro of librosALeer"
           #cardLibro
           [libro]="libro"
           [esModal]="true"
