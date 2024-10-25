@@ -76,17 +76,14 @@ export class UsuariosService {
   }
 
   async actualizarUsuario(usuarioBack: Usuario,usuarioEditable: Usuario): Promise<void> {
-    try {
+  
       await lastValueFrom(
         this.httpClient.put<void>(
           `${REST_SERVER_URL}/usuarios/actualizar/` + usuarioBack.id,
           usuarioEditable.toJSON()
         )
       )
-    } catch(error){
-      console.log("No se ha podido actualizar el usuario")
-       
-    }
+   
 
   }
 
