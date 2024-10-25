@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { Usuario } from '../../../../domain/usuario';
 import { UsuariosService } from '../../../../services/service_usuarios/usuarios.service';
 import { Promedio, Ansioso, Fanatico,Recurrente } from '../../../../domain/formaDeLeer'
+import { HttpErrorResponse } from '@angular/common/http'
 
 
 
@@ -57,11 +58,23 @@ export class PerfilInfoComponent {
       this.comprobarFormaDeLeer()
       this.ngAfterViewInit()
 
-    } catch(error){
-      this.mensajeError = 'Error en el servidor. Por favor, inténtelo de nuevo mas tarde'
+    } catch(error: unknown){
+      if (error instanceof HttpErrorResponse) {
+        if (error.status === 0) {
+          this.mensajeError = 'Error en el servidor. Por favor, inténtelo de nuevo mas tarde'
+        } else {
+          this.mensajeError =
+            error.error?.message || 'Ocurrió un error inesperado.'
+        }
+      } else {
+        this.mensajeError = 'Ocurrió un error inesperado.'
+      }
       setTimeout(() => {
         this.mensajeError = null
       }, 3000)
+      this.router.navigate(['**'])
+      
+      
     }
   }
 

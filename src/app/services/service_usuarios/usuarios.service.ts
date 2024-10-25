@@ -7,6 +7,8 @@ import {map} from 'rxjs/operators'
 import {REST_SERVER_URL} from '../configuration'
 import {Recomendacion, RecomendacionJSON} from '../../domain/recomendacion'
 import {Libro} from '../../domain/libro'
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +29,6 @@ export class UsuariosService {
   }
 
   async getUserById(userIdSS: number | null): Promise<Usuario> {
-    try{
       const usuarioJSON = await lastValueFrom(
         this.httpClient.get<UsuarioJSON>(
           `${REST_SERVER_URL}/usuarios/` + userIdSS
@@ -40,11 +41,7 @@ export class UsuariosService {
       const usuarioTipoUsuario = await Usuario.fromJson(usuarioJSON)
       return usuarioTipoUsuario
 
-    }catch(error){
-      this.router.navigate(['**'])
-      throw error
-
-    }
+   
 
   }
 
@@ -83,7 +80,8 @@ export class UsuariosService {
         )
       )
     } catch(error){
-        throw error
+      console.log("No se ha podido actualizar el usuario")
+       
     }
 
   }

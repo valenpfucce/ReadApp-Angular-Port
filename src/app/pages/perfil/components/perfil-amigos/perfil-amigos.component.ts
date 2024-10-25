@@ -43,10 +43,13 @@ export class PerfilAmigosComponent {
   }
 
   guardarCambios(){
-    this.amigoService.enviarNuevosAmigos(this.userActivate)
-    this.amigoService.eliminarAmigo(this.userActivate)
-    window.location.reload();
-
+    try { this.amigoService.enviarNuevosAmigos(this.userActivate)
+      this.amigoService.eliminarAmigo(this.userActivate)
+      window.location.reload()
+    }catch(error){
+     throw error
+    }
+    
   }
 
   cancelarCambios(){
