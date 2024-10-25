@@ -21,6 +21,7 @@ export class UserSessionStorageService {
     mail: string,
     contrasenia: string
   ): Promise<number | null> {
+
     
       //Usamos firstValueFrom para convertir el observable en una promesa
       const response = await firstValueFrom(
@@ -34,6 +35,7 @@ export class UserSessionStorageService {
       // sessionStorage.setItem('user_img', usuarioEncontrado.imgperfil)
       return response
     
+
   }
 
   obtenerIDuserSS(): number | null {
