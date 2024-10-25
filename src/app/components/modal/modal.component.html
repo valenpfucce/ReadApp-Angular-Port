@@ -80,6 +80,27 @@
           }
         }
       </div>
+      <div
+        class="contenedor-cartas"
+        *ngIf='rutaActual.includes("/recomendacion/nueva")'
+      >
+        <readapp-card-libro
+          *ngFor="let libro of libros"
+          [libro]="libro"
+          [esModal]="true"
+          (click)="seleccionarLibro(libro)"
+        >
+        </readapp-card-libro>
+      </div>
+
+      <div *ngIf="mensajeError" class="mensajeError">
+        {{ mensajeError }}
+      </div> 
+
+      @if (noHay){
+        <h1 class="noHay">No se ha encontrado lo que busca</h1>
+      }
+
 
     </div>
     <div class="boton_container">

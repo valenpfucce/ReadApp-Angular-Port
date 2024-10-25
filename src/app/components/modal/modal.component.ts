@@ -20,6 +20,8 @@ import { Usuario } from '../../domain/usuario'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
 import { AmigosService } from '../../services/service_amigos/amigos.service'
+import { HttpErrorResponse } from '@angular/common/http'
+
 
 @Component({
   selector: 'readapp-modal',
@@ -48,6 +50,7 @@ export class ModalComponent implements OnInit {
   usuarioActual!: Usuario
   noHay = false
   userIdSS = ''
+  mensajeError: string | null = null
 
   @Input() isModalOpen: boolean = false
   @Output() close = new EventEmitter<void>()
@@ -151,6 +154,7 @@ export class ModalComponent implements OnInit {
 
   async buscar(evento: BuscarEvento): Promise<void> {
     this.noHay = false
+
     if (this.tituloModal == 'Todos los usuarios') {
       console.log(false)
       this.amigos = await this.userServiceUS.getUsuariosCard(
@@ -170,14 +174,28 @@ export class ModalComponent implements OnInit {
   }
 
   async getUsuarios(idActual: number) {
-    const amigosTODOS = await this.userServiceUS.getUsuariosCard()
-    const amigosFiltroSesion = amigosTODOS.filter(
-      (amigo) => amigo.id !== this.usuarioActual.id
-    )
-    const amigosFiltro = amigosFiltroSesion.filter(
-      (amigo) => !this.usuarioActual.amigos.includes(amigo.id!)
-    )
-    this.amigos = amigosFiltro
+    try {
+      const amigosTODOS = await this.userServiceUS.getUsuariosCard()
+      const amigosFiltroSesion = amigosTODOS.filter(
+        (amigo) => amigo.id !== this.usuarioActual.id
+      )
+      const amigosFiltro = amigosFiltroSesion.filter(
+        (amigo) => !this.usuarioActual.amigos.includes(amigo.id!)
+      )
+      this.amigos = amigosFiltro
+    } catch (error: unknown) {
+      if (error instanceof HttpErrorResponse) {
+        if (error.status === 0) {
+          this.mensajeError =
+            'Error en el servidor. Por favor, inténtelo de nuevo mas tarde'
+        } else {
+          this.mensajeError =
+            error.error?.message || 'Ocurrió un error inesperado.'
+        }
+      } else {
+        this.mensajeError = 'Ocurrió un error inesperado.'
+      }
+    }
   }
 
   seleccionarLibro(libro: Libro) {
