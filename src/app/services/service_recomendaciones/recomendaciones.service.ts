@@ -65,12 +65,6 @@ export class RecomendacionesService {
     )
   }
 
-  async puedeEditarRecomendacion(recomendacionId : number, usuarioId: number): Promise<boolean> {
-    return await lastValueFrom(
-      this.httpClient.get<boolean>(REST_SERVER_URL + `/recomendaciones/${recomendacionId}/puede/editar/usuario/${usuarioId}`)
-    )
-  }
-
   async editarRecomendacion(recomendacion: Recomendacion, userId: number): Promise<any> {
     try {
       return await firstValueFrom(this.httpClient.patch(`${REST_SERVER_URL}/recomendaciones/editar/por/` + userId, (RecomendacionUpdateDTO.toJson(recomendacion))));

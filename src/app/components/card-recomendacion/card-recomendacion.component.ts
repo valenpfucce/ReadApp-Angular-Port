@@ -18,9 +18,7 @@ export class CardRecomendacionComponent {
   @Input() recomendacion!: Recomendacion
   corazonCliqueado!: boolean
   userIdSS! : number
-  puedeEditar! : boolean
   advertenciaVisible = false
-  puedeValorar !: boolean
   constructor(
     private serviceRecomendaciones: RecomendacionesService,
     private userServiceUS: UsuariosService,
@@ -31,12 +29,8 @@ export class CardRecomendacionComponent {
     const userIdSSAChequear = this.sessionStorage.obtenerIDuserSS()
     if (userIdSSAChequear != null) {
       this.userIdSS = userIdSSAChequear
-      this.puedeEditar = await this.puedeEditarRecomendacion()
       this.corazonCliqueado = await this.estaEnRecomendacionesAValorar()
       await this.calculoTiempoLecturaRecomendacion(this.recomendacion)
-      this.puedeValorar = await this.puedeValorarLlamadaService()
-    } else {
-      this.puedeEditar = false
     }
   }
 
@@ -57,12 +51,10 @@ export class CardRecomendacionComponent {
     this.advertenciaVisible = false;
   }
 
-  async puedeEditarRecomendacion() {
-    return await this.serviceRecomendaciones.puedeEditarRecomendacion(this.recomendacion.id, this.userIdSS)
-  }
-
-
   async aValorar(){
+    if (!await this.puedeValorarLlamadaService()){
+      return
+    }
     this.corazonCliqueado = !this.corazonCliqueado
     if(this.corazonCliqueado) {
       await this.userServiceUS.agregarRecomendacionAValorar(this.recomendacion.id, this.userIdSS)
