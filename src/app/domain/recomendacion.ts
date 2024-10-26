@@ -26,8 +26,8 @@ export class Recomendacion implements Entidad {
     public descripcion: string = "",
     public lista_libros: Libro[] = [],
     public valoraciones: Valoracion[] = [],
-    public puedeEditar?: Boolean,
-    public puedeValorar?: Boolean,
+    public puedeEditar: boolean = false,
+    public puedeValorar: boolean = false,
     public avgValoraciones?: number,
     public tiempoLectura?: number
   ) {}

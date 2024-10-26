@@ -13,13 +13,13 @@
       <header class="flex">
         <h3> {{recomendacion.titulo | cortarPalabra: 23}} </h3>
           <div class="flex">
-            @if(puedeValorar){
+            @if(recomendacion.puedeValorar){
               <button (click)="aValorar()"  class="boton-rec" data-testid="corazon">
                 @if(corazonCliqueado){ <img src="/imagenes/heart-fill.svg"  alt=""/> }
                 @else { <img src="/imagenes/heart.svg"  alt=""/> }
               </button>
             }
-            @if(puedeEditar){
+            @if(recomendacion.puedeEditar){
                 <button [routerLink]="['/recomendacion', recomendacion.id,'edicion']" class="boton-rec" data-testid="edicion">
                   <img src="/imagenes/pencil-simple.svg"  alt=""/>
                 </button>

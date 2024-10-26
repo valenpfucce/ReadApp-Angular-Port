@@ -37,7 +37,7 @@ export class PerfilRecomendacionesAValorarComponent {
 
   async cancelarCambios(){
     this.porSiElimina.forEach((recomendacion) => this.userServiceUS.agregarRecomendacionAValorar(recomendacion.id, this.userId))
-    window.location.reload()
+    this.reloadPage()
   }
 
   reloadPage(){

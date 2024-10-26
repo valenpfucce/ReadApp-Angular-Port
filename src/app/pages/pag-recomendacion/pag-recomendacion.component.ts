@@ -57,15 +57,6 @@ export class PagRecomendacionComponent {
       recomendacionEncontrada ? (this.recomendacion = recomendacionEncontrada) : this.navegarA('/home')
   }
 
-  async puedeValorarLlamadaService(){
-    return await this.serviceRecomendacion.puedeValorarRecomendacion(this.recomendacion.id, this.userIdSS)
-  }
-
-  async puedeEditarLlamadaService(){
-    return await this.serviceRecomendacion.puedeEditarRecomendacion(this.recomendacion.id, this.userIdSS)
-  }
-
-
   //Use getters para evitar la variable
   get iconoPublicaPrivada(): string {
     return this.recomendacion.esPublica
