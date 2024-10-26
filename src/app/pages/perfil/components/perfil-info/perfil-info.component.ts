@@ -59,21 +59,12 @@ export class PerfilInfoComponent {
       this.ngAfterViewInit()
 
     } catch(error: unknown){
-      if (error instanceof HttpErrorResponse) {
-        if (error.status === 0) {
-          this.mensajeError = 'Error en el servidor. Por favor, inténtelo de nuevo mas tarde'
-        } else {
-          this.mensajeError =
-            error.error?.message || 'Ocurrió un error inesperado.'
-        }
-      } else {
-        this.mensajeError = 'Ocurrió un error inesperado.'
-      }
+     
+      this.mostrarError(error)
       setTimeout(() => {
         this.mensajeError = null
       }, 3000)
       this.router.navigate(['**'])
-      
       
     }
   }
@@ -192,8 +183,7 @@ export class PerfilInfoComponent {
       )
       this.indicarGuardadoExitoso()
     } catch (error) {
-      this.mensajeError =
-        'Error en el servidor. Por favor, inténtelo de nuevo mas tarde'
+      this.mostrarError(error)
       setTimeout(() => {
         this.mensajeError = null
       }, 5000)
@@ -208,11 +198,26 @@ export class PerfilInfoComponent {
     this.saveOK = true
     setTimeout(() => {
       this.saveOK = false
-      window.location.reload()
+      this.obtenerDatosUsuario(this.usuario.id!)
     }, 3000)
   }
 
   navegarA(ruta: string) {
     this.router.navigate([ruta])
+  }
+
+
+  mostrarError(error: unknown){
+    if (error instanceof HttpErrorResponse) {
+      if (error.status === 0) {
+        this.mensajeError =
+          'Error en el servidor. Por favor, inténtelo de nuevo mas tarde.'
+      } else {
+        this.mensajeError =
+          error.error?.message || 'Ocurrió un error inesperado.'
+      }
+    } else {
+      this.mensajeError = 'Ocurrió un error inesperado.'
+    }
   }
 }

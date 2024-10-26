@@ -15,7 +15,7 @@ export class AmigosService {
   router!: Router
   errors: String[] = []
   stageAmigosPorGuardar: Usuario[] = []
-  stageAmigosPorEliminar: Usuario[] = []
+
 
 
   constructor(private httpClient: HttpClient) {
@@ -46,12 +46,11 @@ export class AmigosService {
     this.stageAmigosPorGuardar.splice(0, this.stageAmigosPorGuardar.length);
   }
 
-  async eliminarAmigo(userId: number) {
-    const amigosDTO = this.stageAmigosPorEliminar.map(amigo => amigo.toAmigoDTO());
+  async eliminarAmigo(userId: number, idDelete: number) {
     await lastValueFrom(
-      this.httpClient.patch(`${REST_SERVER_URL}/usuarios/${userId}/eliminar-amigo`, amigosDTO)
+      this.httpClient.patch(`${REST_SERVER_URL}/usuarios/${userId}/eliminar-amigo`, idDelete)
     )
-    this.stageAmigosPorEliminar.splice(0, this.stageAmigosPorEliminar.length);
+
   }
 
 }

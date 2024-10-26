@@ -34,7 +34,11 @@ export class Recomendacion implements Entidad {
 
 
   static fromJson(recomendacionJSON: RecomendacionJSON): Recomendacion {
-    return Object.assign(new Recomendacion(), recomendacionJSON, {})
+    return Object.assign(new Recomendacion(), recomendacionJSON, {
+      avgValoraciones: recomendacionJSON.avgValoraciones && !isNaN(recomendacionJSON.avgValoraciones)
+        ? recomendacionJSON.avgValoraciones
+        : 0
+    })
   }
 
   toJSON(): RecomendacionJSON {

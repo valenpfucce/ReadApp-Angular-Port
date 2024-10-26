@@ -46,8 +46,9 @@ export class CardAmigoComponent {
   }
 
   async eliminarAmigo(amigo: Usuario) {
-    this.amigoService.stageAmigosPorEliminar.push(amigo)
-    await this.amigoService.eliminarAmigo(this.iduserActual)
+    await this.amigoService.eliminarAmigo(this.iduserActual, amigo.id!)
     window.location.reload()
   }
+
+
 }

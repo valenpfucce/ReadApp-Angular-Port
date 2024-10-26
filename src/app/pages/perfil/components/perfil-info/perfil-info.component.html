@@ -64,9 +64,9 @@
       <p>¡Los datos se guardaron correctamente!</p> 
     </div> 
     
-    <div *ngIf="mensajeError" class="mensajeError">
-      {{ mensajeError }}
-    </div> 
+    @if (mensajeError){
+      <h1 class="mensajeError"> {{ mensajeError }} </h1>
+    }
    
     
     <div class="boton_container">

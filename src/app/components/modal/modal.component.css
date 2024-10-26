@@ -107,6 +107,16 @@
   margin-top: 2em;
 }
 
+.mensajeError{
+  color: rgb(159, 28, 28);
+  font-size: 1.8em;
+  height: 32px;
+  display: flex;
+  padding: 0.5em;
+  align-items: center;
+  justify-content: center; 
+}
+
 
 /* Adaptación para móviles */
 @media (min-width: 401px) and (max-width: 768px) {
