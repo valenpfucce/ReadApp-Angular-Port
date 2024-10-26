@@ -66,7 +66,7 @@ export class PerfilLibrosALeerComponent implements OnInit {
 
   closeModal() {
     this.isModalOpen = false
-    this.cargarLibrosALeer
+    this.cargarLibrosALeer(this.userActive)
   }
 
   reload() {

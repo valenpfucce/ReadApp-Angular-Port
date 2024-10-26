@@ -22,23 +22,20 @@ export class UserSessionStorageService {
     mail: string,
     contrasenia: string
   ): Promise<number | null> {
-
-    
+   
       //Usamos firstValueFrom para convertir el observable en una promesa
       const response = await firstValueFrom(
         this.userService.putVerificationUser(mail, contrasenia)
       )
       sessionStorage.setItem(this.sessionKey, response!.toString())
-      // const usuarioEncontrado: Usuario =
-      //   await this.obtenerDatosUsuario(response)
-      // sessionStorage.setItem('user_name', usuarioEncontrado.nombre)
-      // sessionStorage.setItem('user_lastname', usuarioEncontrado.apellido)
-      // sessionStorage.setItem('user_img', usuarioEncontrado.imgperfil)
+    
       return response
     
-
   }
-
+  
+  
+  
+  
   obtenerIDuserSS(): number | null {
     const idUser = sessionStorage.getItem(this.sessionKey)
     return idUser ? parseInt(idUser, 10) : null
@@ -54,10 +51,6 @@ export class UserSessionStorageService {
     return sessionStorage.getItem('user_img')
   }
 
-  // async obtenerDatosUsuario(userIdSS: number | null) {
-  //   const usuarioEnLinea = await this.userService.getUserById(userIdSS)
-  //   return usuarioEnLinea
-  // }
 
   addError(mensajeError: string) {
     this.errors.push(mensajeError)

@@ -12,9 +12,9 @@
         </section>        
 
 
-        <div *ngIf="mensajeError" class="mensajeError">
-          {{ mensajeError }}
-        </div> 
+        @if (mensajeError){
+          <h1 class="mensajeError"> {{ mensajeError }} </h1>
+        } 
 
         <!-- Modal Amigos -->
         <readapp-modal *ngIf="isModalOpen" [isModalOpen]="isModalOpen" (close)="closeModal()"></readapp-modal>

@@ -61,15 +61,6 @@ export class PerfilAmigosComponent {
     }
   }
 
-  guardarCambios() {
-    try {
-      this.amigoService.enviarNuevosAmigos(this.userActivate)
-      this.amigoService.eliminarAmigo(this.userActivate)
-      window.location.reload()
-    } catch (error) {
-      throw error
-    }
-  }
 
   cancelarCambios() {
     this.amigoService.stageAmigosPorGuardar.splice(
@@ -85,5 +76,6 @@ export class PerfilAmigosComponent {
 
   closeModal() {
     this.isModalOpen = false
+    this.obtenerAmigos(this.userActivate)
   }
 }

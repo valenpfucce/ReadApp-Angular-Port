@@ -68,6 +68,7 @@ export class PerfilLibrosLeidosComponent implements OnInit {
 
   closeModal() {
     this.isModalOpen = false
+    this.cargarLibrosLeidos(this.userActive)
   }
 
   reload() {
