@@ -15,7 +15,7 @@ export class LibrosService {
 
   constructor(private httpClient: HttpClient) {}
 
-  async busquedaLibros(busqueda: string = ''): Promise<Libro[]> {
+  async busquedaLibros(busqueda: string = ''): Promise<Libro[]> {   //ELIMINAR TRY CATCH
     try {
       let params = new HttpParams().append('busqueda', busqueda)
       const librosJSON = await lastValueFrom(
@@ -65,7 +65,7 @@ export class LibrosService {
     )
   }
 
-  async agregarLibrosLeidos(userId: number) {
+  async agregarLibrosLeidos(userId: number) {   //ELIMINAR TRY CATCH
     const librosEnviar = this.listaAgregarLeidos.map((libro) => libro.id)
     console.log('Esto estoy enviando a agregar', librosEnviar)
     try {
@@ -94,7 +94,7 @@ export class LibrosService {
     this.listaEliminarLeidos = []
   }
 
-  async agregarLibrosALeer(userId: number) {
+  async agregarLibrosALeer(userId: number) {   //ELIMINAR TRY CATCH
     const librosEnviar = this.listaAgregarALeer.map((libro) => libro.id)
     console.log('Esto estoy enviando a agregar', librosEnviar)
     try {
@@ -111,7 +111,7 @@ export class LibrosService {
     }
   }
 
-  async eliminarLibrosALeer(userId: number) {
+  async eliminarLibrosALeer(userId: number) {  //ELIMINAR TRY CATCH
     const librosEnviar = this.listaEliminarALeer.map((libro) => libro.id)
     console.log('Este quiero eliminar', librosEnviar)
     try {

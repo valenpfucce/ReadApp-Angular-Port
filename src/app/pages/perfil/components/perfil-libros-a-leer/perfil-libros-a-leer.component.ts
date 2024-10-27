@@ -51,7 +51,6 @@ export class PerfilLibrosALeerComponent implements OnInit {
 
   async cargarLibrosALeer(userIdSS: number): Promise<Libro[]> {
     this.userActive = userIdSS
-
     const usuario = await this.userServiceUS.getUserById(userIdSS)
 
     this.librosALeer = usuario.librosPorLeer.map((libroBackend: any) => {

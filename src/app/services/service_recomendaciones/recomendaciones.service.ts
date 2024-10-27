@@ -65,7 +65,7 @@ export class RecomendacionesService {
     )
   }
 
-  async editarRecomendacion(recomendacion: Recomendacion, userId: number): Promise<any> {
+  async editarRecomendacion(recomendacion: Recomendacion, userId: number): Promise<any> {    //ELIMINAR TRY CATCH
     try {
       return await firstValueFrom(this.httpClient.patch(`${REST_SERVER_URL}/recomendaciones/editar/por/` + userId, (RecomendacionUpdateDTO.toJson(recomendacion))));
     } catch (error) {
@@ -81,7 +81,7 @@ export class RecomendacionesService {
       )
   }
 
-  async valorarRecomendacion(recomendacionId : number, valoracionDTO : ValoracionDTO){
+  async valorarRecomendacion(recomendacionId : number, valoracionDTO : ValoracionDTO){   //ELIMINAR TRY CATCH
     try {
       return await firstValueFrom(this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/` + recomendacionId + `/agregar/valoracion`, valoracionDTO));
     } catch (error) {
@@ -95,7 +95,7 @@ export class RecomendacionesService {
     )
   }
 
-  async crearRecomendacion(recomendacion: Recomendacion){
+  async crearRecomendacion(recomendacion: Recomendacion){   //ELIMINAR TRY CATCH
     try {
       const response = await firstValueFrom(this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/crear`, (RecomendacionUpdateDTO.toJson(recomendacion))))
       return response;

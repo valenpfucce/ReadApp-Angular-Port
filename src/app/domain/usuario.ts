@@ -78,9 +78,7 @@ export class Usuario {
         : [(usuarioJSON.perfilLista as any).type.toString()],
       formaDeLeer: this.insanciarFormaLeer(usuarioJSON.formaDeLeer.type)
 
-      // autoresPreferidos: Array.isArray(usuarioJSON.autoresPreferidos)
-      // ? usuarioJSON.autoresPreferidos.map((autor:any) => autor.type.toString()) // Convierte a string
-      // : [(usuarioJSON.autoresPreferidos as any).type.toString()],
+     
     })
     //console.log('usertest', usertest)
     return usertest
@@ -130,9 +128,6 @@ export class Usuario {
       .join('. ')
   }
 
-  // fechaString(): string | undefined {
-  //   return !this.fechaNacimiento ? '' : DateTime.fromJSDate(this.fechaNacimiento).toUTC().toFormat(FORMATO_FECHA)
-  // }
 
   idUsuarioNotNull(): number {
     const idUsuarioAct = sessionStorage.getItem('userSession')
