@@ -91,7 +91,7 @@ export class RecomendacionesService {
   }
 
   async eliminarRecomendacion(recomendacionId: number){
-    await lastValueFrom(this.httpClient.patch(`${REST_SERVER_URL}/recomendaciones/eliminar-recomendacion/${recomendacionId}`, {})
+    await lastValueFrom(this.httpClient.delete(`${REST_SERVER_URL}/recomendaciones/eliminar-recomendacion/${recomendacionId}`, {})
     )
   }
 
