@@ -42,12 +42,12 @@
               *ngFor="let libro of libros"
               [libro]="libro"
               [esModal]="true"
-              (click)="seleccionarLibro(libro)"
+              (libroClicked)="seleccionarLibro($event)"
             >
             </readapp-card-libro>
           </div>
-        } 
-    
+        }
+
         @if(rutaActual.includes('perfil/amigos')){
           <div class="contenedor-cartas">
             <readapp-card-amigo *ngFor="let amigo of amigos"
@@ -62,11 +62,11 @@
               *ngFor="let libro of libros"
               [libro]="libro"
               [esModal]="true"
-              (click)="seleccionarLibro(libro)"
+              (libroClicked)="seleccionarLibro($event)"
             >
             </readapp-card-libro>
           </div>
-        
+
           @if (noHay){
             <h1 class="noHay">No se ha encontrado lo que busca</h1>
           }
@@ -80,15 +80,15 @@
           *ngFor="let libro of libros"
           [libro]="libro"
           [esModal]="true"
-          (click)="seleccionarLibro(libro)"
+          (libroClicked)="seleccionarLibro($event)"
         >
         </readapp-card-libro>
       </div>
-      
+
       @if (mensajeError){
         <h1 class="mensajeError"> {{ mensajeError }} </h1>
       }
-      
+
       @if (noHay){
         <h1 class="noHay">No se ha encontrado lo que busca</h1>
       }
