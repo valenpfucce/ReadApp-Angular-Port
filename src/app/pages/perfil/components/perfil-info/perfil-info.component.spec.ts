@@ -61,11 +61,12 @@ describe('PerfilInfoComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    await fixture.whenStable()
-    fixture.detectChanges()
+    // await fixture.whenStable()
+    // fixture.detectChanges()
 
   });
 
+  
   it('should create', () => {
     component.ngOnInit()
     expect(component).toBeTruthy()
@@ -77,45 +78,46 @@ describe('PerfilInfoComponent', () => {
    await component.ngOnInit();
    expect(component.usuario).toEqual(usuarioAsignatario);
 
-   
-   
   });
   
   
   it('verifica que el input nombre este cargado con el valor correspondiente',  fakeAsync(   () => {
-    //const botonMenuInfo = fixture.debugElement.nativeElement.querySelector('button[data-testid="aPerfilTest"]')
-    //botonMenuInfo.click()
-    inicializarUsuarioSpy()
+    //inicializarUsuarioSpy()
+
+    userSessionStorageServiceSpy.obtenerIDuserSS;
+    UsuariosServiceSpy.getUserById.and.returnValue(Promise.resolve(usuarioAsignatario));
+    tick(0)
+    fixture.detectChanges();
+    console.log("inicializarUsuarioSpy",usuarioAsignatario )
+    
     component.ngOnInit();
-    fixture.detectChanges()
     tick(0);
-     
-    console.log("usertestes2", component.usuario)
     fixture.whenStable()
     fixture.detectChanges()
-   
+     
+    console.log("usertestes2", component.usuario)
     const nombreInput = getByTestId('nombreTest') as HTMLInputElement
     const apellidoInput = getByTestId('apellidoTest') as HTMLInputElement
-    
     tick(0);
+    fixture.whenStable()
+    fixture.detectChanges()
+    
    
     expect(nombreInput.value).toBe('Carlitos')
     expect(apellidoInput.value).toBe('ApelldioFalso')
     expect(component.usuario.nombre).toBe('Carlitos')
    
     
-    
   }))
 
 
   it('verifica que se muestre un mensaje de error cuando el campo nombre esta vacío y se hace clic en el botón Guardar cambios', fakeAsync(  () => {
-    
+
     inicializarUsuarioSpy()
     component.ngOnInit()
     tick(0);
     fixture.detectChanges()
   
-    
     spyOn(component.usuario, 'guardarDatos').and.callThrough(); //espia el metodo y ejecuta las llamadas originales 
     component.usuarioEditable.nombre = '';
     getByTestId('guardarBoton').click()
@@ -132,40 +134,15 @@ describe('PerfilInfoComponent', () => {
    
   }))
 
-  // fit('verifica que se haga el click y se llama el service ActualizarUsuario (put)', fakeAsync(() => {
-  //   // Simular la llamada al servicio y el retorno de usuario
-   
-  //   component.ngOnInit();
-  //   fixture.detectChanges()
-  //   tick(0);
 
-  //   const guardarButton = getByTestId('guardarBoton')
-  //   guardarButton.click();
-  //   fixture.detectChanges()
-  //   tick(0);
-  //   //UsuariosServiceSpy.actualizarUsuario.and.returnValue(Promise.resolve()); // Simula el éxito del método
-  //   // expect(UsuariosServiceSpy.actualizarUsuario).toHaveBeenCalledWith(usuarioAsignatario, usuarioActualizado);
-  //   // httpClientSpy.put
+
+  async function inicializarUsuarioSpy(){
+     userSessionStorageServiceSpy.obtenerIDuserSS;
+     UsuariosServiceSpy.getUserById.and.returnValue(Promise.resolve(usuarioAsignatario));
+     tick(0)
+     fixture.detectChanges();
+     console.log("inicializarUsuarioSpy",usuarioAsignatario )
     
-  //   //const { usuarioActualizable} =httpClientSpy.put.calls.mostRecent().args[0]
-  //   //expect(id).toBe(1)
-  //   expect(usuarioActualizable).toBe(usuarioActualizado)
-    
-  //   component.ngOnInit();
-  //   fixture.detectChanges();
-  //   fixture.whenStable()
-  //   tick(9000)
-  //   // Asegúrate de que se llame al método actualizarUsuario del servicio
-  //   //expect(UsuariosServiceSpy.actualizarUsuario).toHaveBeenCalledWith(usuarioAsignatario, usuarioActualizado);
-  // }))
-
-
-
-  function inicializarUsuarioSpy(){
-    userSessionStorageServiceSpy.obtenerIDuserSS;
-    UsuariosServiceSpy.getUserById.and.returnValue(Promise.resolve(usuarioAsignatario));
-
-    //httpClientSpy.get.and.returnValue(of(usuarioAsignatario)) 
   }  
 
   function getByTestId(testId: string) {

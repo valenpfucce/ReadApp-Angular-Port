@@ -106,9 +106,7 @@ export class ModalComponent implements OnInit {
         break
       case '/perfil/amigos':
         this.tituloModal = 'Todos los usuarios'
-       
         await this.getUsuariosModal()
-       
         break
       case '/recomendacion/' + this.recomendacionNum + '/edicion':
         this.tituloModal = 'Agregar Libros a Recomendación'
