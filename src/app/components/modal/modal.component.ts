@@ -73,48 +73,46 @@ export class ModalComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
-    this.obtenerDatosUsuario(userIdSS)
     this.rutaActual = this.router.url
-
-    // Llama a la función dependiendo de la ruta
-    if (this.rutaActual.includes('perfil/libros_leidos')) {
-      //await this.loadLibrosLeidos()
-    } else if (this.rutaActual.includes('perfil/libros_a_leer')) {
-      await this.loadLibrosALeer()
-    } else if (this.rutaActual.includes('/recomendacion/nueva')) {
-      await this.loadTodosLosLibros()
-    } else {
-      await this.loadTodosLosLibros()
-    }
+    this.obtenerDatosUsuario(userIdSS)
     
-    this.asignarTitulo()
   }
 
   async obtenerDatosUsuario(userIdSS: number | null): Promise<void> {
     try{ const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
       this.usuarioActual = usuarioEnLinea
       this.idActual = usuarioEnLinea.id!
+      
+      if (this.usuarioActual) {
+       
+        await this.asignarTitulo();
+      }
+     
     }catch (error: unknown) {
       this.mostrarError(error)
     }
   
   }
 
-  asignarTitulo() {
+  async asignarTitulo() {
     switch (this.rutaActual) {
       case '/perfil/libros_leidos':
         this.tituloModal = 'Libros Leidos'
-        this.loadLibrosLeidos()
+        await this.loadLibrosLeidos()
         break
       case '/perfil/libros_a_leer':
         this.tituloModal = 'Libros a leer'
+        await this.loadLibrosALeer()
         break
       case '/perfil/amigos':
         this.tituloModal = 'Todos los usuarios'
-        this.getUsuarios(this.idActual!)
+       
+        await this.getUsuariosModal()
+       
         break
       case '/recomendacion/' + this.recomendacionNum + '/edicion':
         this.tituloModal = 'Agregar Libros a Recomendación'
+        await this.loadTodosLosLibros()
         const librosUserxId = this.usuarioActual.librosLeidos.map(
           (libro) => libro.id
         )
@@ -124,6 +122,7 @@ export class ModalComponent implements OnInit {
         break
       case '/recomendacion/nueva':
         this.tituloModal = 'Agregar Libros a Recomendación'
+        await this.loadTodosLosLibros()
         const librosUserxIdN = this.usuarioActual.librosLeidos.map(
           (libro) => libro.id
         )
@@ -185,7 +184,7 @@ export class ModalComponent implements OnInit {
     }
   }
 
-  async getUsuarios(idActual:number) {
+  async getUsuariosModal() {
     try {
       const amigosTODOS = await this.userServiceUS.getUsuariosCard()
       const amigosFiltroSesion = amigosTODOS.filter(

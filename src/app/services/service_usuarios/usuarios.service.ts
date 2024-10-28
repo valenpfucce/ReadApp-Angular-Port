@@ -38,6 +38,7 @@ export class UsuariosService {
       throw new Error("No se pudo obtener el usuario. Intente nuevamente.")
     }
     const usuarioTipoUsuario = await Usuario.fromJson(usuarioJSON)
+    console.log("entra en getbyuser")
     return usuarioTipoUsuario
   }
 
