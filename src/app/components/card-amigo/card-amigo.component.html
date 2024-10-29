@@ -5,12 +5,17 @@
       <h3>{{amigo.username}}</h3>
     </div>
     
-    <button *ngIf="!esModal" (click)="eliminarAmigo(amigo);toggleActivateTrash()"><img src="/imagenes/trash.svg"></button>
-    <button *ngIf="esModal"  >
-      <div   class="circulo-mas" (click)="agregarAmigo(amigo);toggleActive()" [ngClass]="{'active': isActive}">
-        <div class="icono-mas">+</div>
-      </div>
-    </button>
-   
+    @if (!esModal ){
+      <button (click)="eliminarAmigo(amigo);toggleActivateTrash()"><img src="/imagenes/trash.svg"></button>
+    }
+    
+    @if (esModal) {
+      <button *ngIf="esModal"  >
+        <div   class="circulo-mas" (click)="agregarAmigo(amigo);toggleActive()" [ngClass]="{'active': isActive}">
+          <div class="icono-mas">+</div>
+        </div>
+      </button>
+    }
+    
   
   </article>

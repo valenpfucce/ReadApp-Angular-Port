@@ -67,18 +67,23 @@ describe('PerfilInfoComponent', () => {
   });
 
   
-  it('should create', () => {
+  it('should create', fakeAsync(   () => {
     component.ngOnInit()
     expect(component).toBeTruthy()
-  })
+    flush()
+  }))
 
-  it('trae los datos del backend y los asigna al usuario', async () => {
+  it('trae los datos del backend y los asigna al usuario', fakeAsync(   () => {
    
    inicializarUsuarioSpy()
-   await component.ngOnInit();
-   expect(component.usuario).toEqual(usuarioAsignatario);
+   component.ngOnInit();
+   tick(0);
+   fixture.detectChanges()
 
-  });
+   expect(component.usuario).toEqual(usuarioAsignatario);
+   flush()
+
+  }))
   
   
   it('verifica que el input nombre este cargado con el valor correspondiente',  fakeAsync(   () => {
@@ -106,6 +111,7 @@ describe('PerfilInfoComponent', () => {
     expect(nombreInput.value).toBe('Carlitos')
     expect(apellidoInput.value).toBe('ApelldioFalso')
     expect(component.usuario.nombre).toBe('Carlitos')
+    flush()
    
     
   }))
@@ -131,6 +137,7 @@ describe('PerfilInfoComponent', () => {
   
    expect(errorMessageElement).not.toBeNull();
    expect(errorMessageElement.textContent).toContain('El campo no puede estar vacio');
+   flush()
    
   }))
 
