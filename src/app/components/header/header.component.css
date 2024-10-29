@@ -35,19 +35,19 @@
 .user-profile {
     display: flex;
     align-items: center;
-    background-color: #cdb9a0;
+    background-color: var(--color-marron);
     border-radius: 8px;
-    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3); */
     transition: transform 0.1s ease;
     cursor: pointer;
 }
 
-.user-profile:active {
+/* .user-profile:active {
     /*background-color: #e7dbdb;*/
     transform: scale(0.98);
 
 
-}
+} */
 
 .user-profile span {
     margin-right: 1rem;
