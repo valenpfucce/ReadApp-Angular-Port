@@ -42,13 +42,6 @@
     cursor: pointer;
 }
 
-/* .user-profile:active {
-    /*background-color: #e7dbdb;*/
-    transform: scale(0.98);
-
-
-} */
-
 .user-profile span {
     margin-right: 1rem;
     font-size: 1.5rem;
