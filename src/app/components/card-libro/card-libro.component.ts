@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
 import { LibrosService } from '../../services/service_libros/libros.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'readapp-card-libro',
@@ -25,7 +26,8 @@ export class CardLibroComponent {
   constructor(
     private librosService: LibrosService,
     private sessionStorage: UserSessionStorageService,
-    private userServiceUS: UsuariosService
+    private userServiceUS: UsuariosService,
+    private router: Router
   ) {}
 
   mostrarBotonBorrar() {
@@ -55,10 +57,8 @@ export class CardLibroComponent {
   eliminarLibro(libro: Libro) {
     if (this.tipoPerfil == 'aleer') {
       this.eliminarLibrosALeer(libro)
-      console.log('SOY LIBRO A LEER')
     } else {
       this.eliminarLibrosLeidos(libro)
-      console.log('SOY LIBRO LEIDO')
     }
   }
 
@@ -70,8 +70,14 @@ export class CardLibroComponent {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
 
     this.librosService.listaEliminarALeer.push(libro)
-    await this.librosService.eliminarLibrosALeer(userIdSS!)
-    window.location.reload()
+    try {
+      await this.librosService.eliminarLibrosALeer(userIdSS!)
+      window.location.reload()
+    } catch {
+      alert("No se pudo completar la operación.")
+      this.router.navigate(['/**'])
+    }
+    
   }
 
   async agregarLibrosLeidos(libro: Libro) {
@@ -81,7 +87,13 @@ export class CardLibroComponent {
   async eliminarLibrosLeidos(libro: Libro) {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     this.librosService.listaEliminarLeidos.push(libro)
-    await this.librosService.eliminarLibrosLeidos(userIdSS!)
+    try {
+      await this.librosService.eliminarLibrosLeidos(userIdSS!)
     window.location.reload()
+    } catch {
+      alert("No se pudo completar la operación.")
+      this.router.navigate(['/**'])
+    }
+    
   }
 }
