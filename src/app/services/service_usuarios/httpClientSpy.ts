@@ -34,9 +34,9 @@ export const getHttpClientSpy = () => {
     .withArgs(`${REST_SERVER_URL}/usuarios/actualizar/` + usuarioAsignatario.id,
     usuarioActualizado)
     .and.returnValue(Promise.resolve())
-  httpClientSpy.get
-    .withArgs(`${REST_SERVER_URL}/recomendaciones/` + recomendacion1.id)
-    .and.returnValue(of(recomendacionesStub[0]))
+  // httpClientSpy.get
+  //   .withArgs(`${REST_SERVER_URL}/recomendaciones/` + recomendacion1.id)
+  //   .and.returnValue(of(recomendacionesStub[0]))
 
     
 //    httpClientSpy.get
@@ -52,8 +52,8 @@ export const getHttpClientSpy = () => {
 }
 
 
-export const recomendacion1 = new Recomendacion(1, 1, "Recomendacion 1", true, "Descripción", [], [], 4, 9)
-const recomendacionesStub = [
-  recomendacion1,
-  new Recomendacion(2, 2, "Ejemplo", true, "Descripción", [], [], 4, 9)
-].map((recomendacion) => recomendacion.toJSON)
+// export const recomendacion1 = new Recomendacion(1, 1, "Recomendacion 1", true, "Descripción", [], [], 4, 9)
+// const recomendacionesStub = [
+//   recomendacion1,
+//   new Recomendacion(2, 2, "Ejemplo", true, "Descripción", [], [], 4, 9)
+// ].map((recomendacion) => recomendacion.toJSON)
