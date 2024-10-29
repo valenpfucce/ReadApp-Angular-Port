@@ -221,10 +221,22 @@ export class ModalComponent implements OnInit {
   
     const actions: { [key: string]: any } = {
       libros_leidos: async () => {
-        await this.librosService.agregarLibrosLeidos(this.idActual); 
+        try{
+          await this.librosService.agregarLibrosLeidos(this.idActual); 
+        } catch  {
+          //error si el back esta caido
+          alert("No se pudo completar la operación.")
+          this.router.navigate(['/**'])
+        }
       },
       libros_a_leer: async () => {
-        await this.librosService.agregarLibrosALeer(this.idActual);
+        try {
+          await this.librosService.agregarLibrosALeer(this.idActual);
+        } catch  {
+          //error si el back esta caido
+          alert("No se pudo completar la operación.")
+          this.router.navigate(['/**'])
+        } 
       },
       recomendacion_nueva: () => {
         this.librosEnviados.emit(this.libros);
