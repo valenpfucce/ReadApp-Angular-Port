@@ -50,7 +50,7 @@ export class BusquedaRecomendacionesComponent {
         evento.idUsuario
       )
       this.recomendacionesFiltradas = [...this.recomendaciones]
-      if(evento.palabraABuscar == "" && this.recomendacionesFiltradas.length == 0){
+      if(this.recomendacionesFiltradas.length == 0){
         this.noHayRecomendaciones = true
       }
     } catch(error:unknown){

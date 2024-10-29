@@ -22,18 +22,6 @@ export class RecomendacionesService {
     )
   }
 
-  async getRecomendacionById(id: number) {
-    const recomendacionJSON = await lastValueFrom(
-      this.httpClient.get<RecomendacionJSON>(
-        `${REST_SERVER_URL}/recomendaciones/` + id
-      )
-    )
-    if (!recomendacionJSON) {
-      throw new Error('Recomendacion no encontrada')
-    }
-    return Recomendacion.fromJson(recomendacionJSON)
-  }
-
   async getRecomendacionByIdWithUser(idReco: number, idUser : number) {
     let params = new HttpParams().append('idUser', idUser)
     const recomendacionJSON = await lastValueFrom(
@@ -65,13 +53,8 @@ export class RecomendacionesService {
     )
   }
 
-  async editarRecomendacion(recomendacion: Recomendacion, userId: number): Promise<any> {    //ELIMINAR TRY CATCH
-    try {
+  async editarRecomendacion(recomendacion: Recomendacion, userId: number): Promise<any> {
       return await firstValueFrom(this.httpClient.patch(`${REST_SERVER_URL}/recomendaciones/editar/por/` + userId, (RecomendacionUpdateDTO.toJson(recomendacion))));
-    } catch (error) {
-        console.error("Error al enviar al back:", error)
-      throw error
-    }
   }
 
 
@@ -81,13 +64,9 @@ export class RecomendacionesService {
       )
   }
 
-  async valorarRecomendacion(recomendacionId : number, valoracionDTO : ValoracionDTO){   //ELIMINAR TRY CATCH
-    try {
+  async valorarRecomendacion(recomendacionId : number, valoracionDTO : ValoracionDTO){
       return await firstValueFrom(this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/` + recomendacionId + `/agregar/valoracion`, valoracionDTO));
-    } catch (error) {
-      console.error("Error al enviar al back:", error)
-      throw error
-    }
+
   }
 
   async eliminarRecomendacion(recomendacionId: number){
@@ -95,14 +74,8 @@ export class RecomendacionesService {
     )
   }
 
-  async crearRecomendacion(recomendacion: Recomendacion){   //ELIMINAR TRY CATCH
-    try {
-      const response = await firstValueFrom(this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/crear`, (RecomendacionUpdateDTO.toJson(recomendacion))))
-      return response;
-    } catch (error) {
-      console.error("Error al enviar al back:", error)
-      throw error
-    }
+  async crearRecomendacion(recomendacion: Recomendacion){
+    return await firstValueFrom(this.httpClient.post(`${REST_SERVER_URL}/recomendaciones/crear`, (RecomendacionUpdateDTO.toJson(recomendacion))));
   }
 
 }

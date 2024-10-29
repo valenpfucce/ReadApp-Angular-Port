@@ -66,20 +66,15 @@
             >
             </readapp-card-libro>
           </div>
+        }
+        @if (mensajeError){
+          <h1 class="mensajeError"> {{ mensajeError }} </h1>
+        }
 
-          @if (noHay){
-            <h1 class="noHay">No se ha encontrado lo que busca</h1>
-          }
+        @if (noHay){
+          <h1 class="noHay">No se ha encontrado lo que busca</h1>
         }
       </div>
-      @if (mensajeError){
-        <h1 class="mensajeError"> {{ mensajeError }} </h1>
-      }
-
-      @if (noHay){
-        <h1 class="noHay">No se ha encontrado lo que busca</h1>
-      }
-
 
     </div>
     <div class="boton_container">

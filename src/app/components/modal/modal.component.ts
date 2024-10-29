@@ -172,7 +172,23 @@ export class ModalComponent implements OnInit {
       if (this.amigos.length == 0) {
         this.noHay = true
       }
-    } else {
+    }
+    if (this.tituloModal == 'Libros Leidos'){
+      this.librosLeidos = await this.librosService.busquedaLibros(
+        evento.palabraABuscar
+      )
+      if (this.librosLeidos.length == 0) {
+        this.noHay = true
+      }
+    }
+    if (this.tituloModal == 'Libros a leer'){
+      this.librosLeidos = await this.librosService.busquedaLibros(
+        evento.palabraABuscar
+      )
+      if (this.librosLeidos.length == 0) {
+        this.noHay = true
+      }
+    }else {
       this.libros = await this.librosService.busquedaLibros(
         evento.palabraABuscar
       )
@@ -223,7 +239,7 @@ export class ModalComponent implements OnInit {
     const actions: { [key: string]: any } = {
       libros_leidos: async () => {
         try{
-          await this.librosService.agregarLibrosLeidos(this.idActual); 
+          await this.librosService.agregarLibrosLeidos(this.idActual);
         } catch  {
           //error si el back esta caido
           alert("No se pudo completar la operación.")
@@ -237,7 +253,7 @@ export class ModalComponent implements OnInit {
           //error si el back esta caido
           alert("No se pudo completar la operación.")
           this.router.navigate(['/**'])
-        } 
+        }
       },
       recomendacion_nueva: () => {
         this.librosEnviados.emit(this.librosSeleccionados);
