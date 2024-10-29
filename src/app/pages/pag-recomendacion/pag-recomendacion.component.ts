@@ -159,7 +159,7 @@ export class PagRecomendacionComponent {
   }
 
   modoNueva(){
-    this.recomendacion = new Recomendacion(-1, this.userIdSS, "", true,"", [],[])
+    this.recomendacion = new Recomendacion({creadorId: this.userIdSS})
   }
 
   async guardarCambiosNueva(){
