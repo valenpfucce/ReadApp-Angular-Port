@@ -65,7 +65,7 @@ export class Usuario {
   }
 
   static fromJson(usuarioJSON: UsuarioJSON): Usuario {
-    //console.log('antes de transformar', usuarioJSON)
+    
 
     const usertest = Object.assign(new Usuario(), usuarioJSON, {
       fechaNacimiento: usuarioJSON.fechaNacimiento
@@ -80,7 +80,7 @@ export class Usuario {
 
      
     })
-    //console.log('usertest', usertest)
+   
     return usertest
   }
 
@@ -140,7 +140,7 @@ export class Usuario {
 
   toJSON() {
     return {
-      id: this.id,                //this.idUsuarioNotNull(),
+      id: this.id,               
       nombre: this.nombre,
       apellido: this.apellido,
       username: this.username,
