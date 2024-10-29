@@ -135,7 +135,6 @@ describe('PerfilInfoComponent', () => {
   }))
 
 
-
   async function inicializarUsuarioSpy(){
      userSessionStorageServiceSpy.obtenerIDuserSS;
      UsuariosServiceSpy.getUserById.and.returnValue(Promise.resolve(usuarioAsignatario));
