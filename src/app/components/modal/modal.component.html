@@ -72,19 +72,6 @@
           }
         }
       </div>
-      <div
-        class="contenedor-cartas"
-        *ngIf='rutaActual.includes("/recomendacion/nueva")'
-      >
-        <readapp-card-libro
-          *ngFor="let libro of libros"
-          [libro]="libro"
-          [esModal]="true"
-          (libroClicked)="seleccionarLibro($event)"
-        >
-        </readapp-card-libro>
-      </div>
-
       @if (mensajeError){
         <h1 class="mensajeError"> {{ mensajeError }} </h1>
       }

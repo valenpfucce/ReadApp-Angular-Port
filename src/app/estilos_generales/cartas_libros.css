@@ -37,6 +37,10 @@
   background-color: var(--color-beige-mas-claro);
 }
 
+.carta-seleccionada-pointer{
+  cursor: pointer;
+}
+
 
 .carta.trashActivate{
   background-color: rgb(168, 70, 70);

@@ -37,7 +37,11 @@ export class CardLibroComponent {
   }
 
   get outputClassCard(): string {
-    return this.selectedCard ? "carta carta-seleccionada" : "carta";
+    if(this.esModal){
+      return this.selectedCard ? "carta carta-seleccionada carta-seleccionada-pointer" : "carta carta-seleccionada-pointer";
+    } else {
+      return "carta"
+    }
   }
 
   mostrarBotonBorrar() {
