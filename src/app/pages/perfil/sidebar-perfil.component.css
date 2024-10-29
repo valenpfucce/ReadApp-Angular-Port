@@ -1,13 +1,13 @@
 .main{
     display: flex;
     min-height: 100%;
-    gap: 1.5rem; 
-    margin-top: 10rem;  
+    gap: 1.5rem;
+    margin-top: 10rem;
 }
- 
+
 .info_usuario{
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     max-width: 100%;
     margin-top: 3rem;
 }
@@ -20,15 +20,22 @@
     width: 100%;
 }
 
+.fotoPerfil img{
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  border: 0.2rem solid var(--color-marron);
+}
+
 .fotoPerfil label{
     margin-top: 3rem;
-    font-size: 2.5em;  
+    font-size: 2.5em;
     text-align: center;
     font-weight: bold;
 }
 
 .imagen_perfil{
-    max-width: 15rem; 
+    max-width: 15rem;
     max-height: 15rem;
     border-radius: 100%;
 }
@@ -39,7 +46,7 @@
     margin-bottom: 5px;
     font-size: 1.8em;
     padding: 1.5rem;
-    
+
 }
 
 .submenu_perfil li{
@@ -69,13 +76,13 @@
     font-size: 1.9rem;
     text-decoration: none;
     color: black;
-    
+
 }
 
 .boton_menu a:hover {
     font-weight: bold;
     color: var(--color-marron);
-    
+
 }
 
 .link_activo{
@@ -93,14 +100,14 @@
         gap: 0rem;
         justify-content: start;
     }
-    
+
     .info_usuario{
         display: flex;
         max-width: 100%;
         align-items: flex-start ;
         margin: 2rem;
     }
-   
+
     .fotoPerfil{
         display: flex;
         flex-direction: row;
@@ -109,15 +116,15 @@
         width: 100%;
         margin: 0rem 2rem 0rem 2rem;
     }
-    
+
     .fotoPerfil label{
         margin-top: 0px;
         margin-left: 2.5rem;
-        font-size: 2.5em;  
+        font-size: 2.5em;
         text-align: center;
         font-weight: bold;
     }
-   
+
 
     .boton_menu {
         display: flex;
@@ -128,8 +135,8 @@
         padding-top: 8px;
         line-height: 1;
     }
-    
-    
+
+
     .submenu_perfil{
        justify-content: center;
        width: 98%;
@@ -168,12 +175,12 @@
         gap: 0rem;
         margin-top: 2rem;
     }
-    
+
     .info_usuario{
         max-width: 100%;
         margin-top: 0;
     }
-    
+
     .submenu_perfil{
        justify-content: center;
        margin: 1rem;
@@ -201,7 +208,7 @@
         width: 25%;
         height: 4rem;
         margin: 1.5rem;
- 
+
     }
 
 

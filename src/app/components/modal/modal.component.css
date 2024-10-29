@@ -4,28 +4,28 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
-  z-index: 1040; /* Asegura que esté por debajo del modal */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1040;
 }
 
 .modal-dialog {
-  position: fixed; /* Fijar el modal en la pantalla */
-  top: 50%; /* Centrar verticalmente */
-  left: 50%; /* Centrar horizontalmente */
-  transform: translate(-50%, -50%); /* Ajustar la posición para centrarlo completamente */
-  max-width: 90%; /* Ancho máximo del modal en pantallas grandes */
-  width: 100%; /* Que ocupe el ancho disponible en pantallas pequeñas */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90%;
+  width: 100%;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  max-height: 85vh; /* Limitar la altura del modal al 80% de la pantalla */
-  overflow: hidden; /* Ocultar cualquier contenido que se salga del modal */
-  z-index: 1050; /* Asegura que esté por encima de otros elementos */
+  max-height: 85vh;
+  overflow: hidden;
+  z-index: 1050;
   height: 100%;
 }
-/* Estilo para el header con el título y el botón de cerrar */
+/*Estilo para el header con el título y el botón de cerrar*/
 .modal-header {
   background-color: var(--color-beige-mas-claro);
   display: flex;
@@ -48,14 +48,14 @@
 }
 
 
-/* Estilos para el cuerpo del modal */
+/*Estilos para el cuerpo del modal*/
 .modal-body {
   display: flex;
   justify-content: center;
-  overflow-y: auto; /* Scroll solo en el contenido */
+  overflow-y: auto;
   padding: 20px;
-  flex: 1; /* Para que la modal-body ocupe el espacio disponible */
-  max-height: calc(80vh - 120px); /* Limita la altura del contenido */
+  flex: 1;
+  max-height: calc(80vh - 120px);
 }
 
 .contenedor-cartas {
@@ -65,31 +65,31 @@
 
 .boton_container {
   display: flex;
-  justify-content: center; /* Espacio entre los botones */
-  gap: 10px; /* Separar los botones entre sí */
+  justify-content: center;
+  gap: 10px;
   padding: 10px;
-  width: 100%; /* Asegura que ocupe todo el ancho disponible */
-  box-sizing: border-box; /* Asegura que el padding no sobrepase el ancho del contenedor */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .boton_cancelar, .boton_guardar {
-  flex: 1; /* Asegura que ambos botones ocupen un espacio igual dentro del contenedor */
-  max-width: 30%; /* Asegura que los botones no sobrepasen el 45% del contenedor */
-  padding: 10px; /* Ajusta el padding para evitar que los botones se hagan muy grandes */
+  flex: 1;
+  max-width: 30%;
+  padding: 10px;
   box-sizing: border-box;
   font-size: 1.5rem;
 }
 
 .success-message {
-  position: fixed; /* Asegura que el mensaje de éxito esté posicionado sobre todo */
-  top: 50%; /* Centrado verticalmente */
-  left: 50%; /* Centrado horizontalmente */
-  transform: translate(-50%, -50%); /* Para que el mensaje se centre */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #dff0d8;
   color: #3c763d;
   padding: 15px;
   border-radius: 5px;
-  z-index: 9999; /* Asegura que esté por encima del modal */
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,7 +99,7 @@
 
 .success-message img {
   margin-right: 10px;
-  width: 24px; /* Ajusta el tamaño de la imagen */
+  width: 24px;
   height: auto;
 }
 
@@ -114,11 +114,11 @@
   display: flex;
   padding: 0.5em;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
 }
 
 
-/* Adaptación para móviles */
+/*Adaptacion para vista 400px */
 @media (min-width: 401px) and (max-width: 768px) {
   .modal-dialog {
     width: 90%;
@@ -136,8 +136,8 @@
     padding: 8px 15px;
   }
   .boton_cancelar, .boton_guardar {
-    font-size: 0.9rem; /* Reducir el tamaño de la fuente en pantallas pequeñas */
-    padding: 8px; /* Reducir el padding para que los botones sean más compactos */
+    font-size: 0.9rem;
+    padding: 8px;
   }
 
 
