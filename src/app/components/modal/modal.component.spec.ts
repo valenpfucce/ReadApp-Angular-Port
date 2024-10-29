@@ -1,27 +1,4 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-// import { ModalComponent } from './modal.component';
-
-// describe('ModalComponent', () => {
-//   let component: ModalComponent;
-//   let fixture: ComponentFixture<ModalComponent>;
-
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       imports: [ModalComponent]
-//     })
-//     .compileComponents();
-
-//     fixture = TestBed.createComponent(ModalComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
-
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
-import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed, tick } from '@angular/core/testing'
 import { ModalComponent } from './modal.component'
 import { LibrosService } from '../../services/service_libros/libros.service'
 import { UsuariosService } from '../../services/service_usuarios/usuarios.service'
@@ -29,10 +6,12 @@ import { Router } from '@angular/router'
 import { UserSessionStorageService } from '../../services/service_user_session_storage/user-session-storage.service'
 import { AmigosService } from '../../services/service_amigos/amigos.service'
 import { of } from 'rxjs'
+import { By } from '@angular/platform-browser'
 
 describe('ModalComponent', () => {
   let component: ModalComponent
   let fixture: ComponentFixture<ModalComponent>
+  let routerSpy: jasmine.SpyObj<Router>
   let librosServiceMock: any
   let usuariosServiceMock: any
   let amigosServiceMock: any
@@ -40,6 +19,7 @@ describe('ModalComponent', () => {
   let routerMock: any
 
   beforeEach(async () => {
+    routerSpy = jasmine.createSpyObj('Router', ['navigate', 'navigateByUrl'])
     librosServiceMock = jasmine.createSpyObj('LibrosService', [
       'busquedaLibros'
     ])
@@ -53,13 +33,14 @@ describe('ModalComponent', () => {
     routerMock = jasmine.createSpyObj('Router', ['navigate'])
 
     await TestBed.configureTestingModule({
-      declarations: [ModalComponent],
+      imports: [ModalComponent],
       providers: [
         { provide: LibrosService, useValue: librosServiceMock },
         { provide: UsuariosService, useValue: usuariosServiceMock },
         { provide: UserSessionStorageService, useValue: sessionStorageMock },
         { provide: AmigosService, useValue: amigosServiceMock },
-        { provide: Router, useValue: routerMock }
+        { provide: Router, useValue: routerMock },
+        { provide: Router, useValue: routerSpy }
       ]
     }).compileComponents()
 
@@ -68,20 +49,34 @@ describe('ModalComponent', () => {
     fixture.detectChanges()
   })
 
-  it('should create the modal component', () => {
+  it('crea el componente modal', () => {
     expect(component).toBeTruthy()
   })
 
-  it('should open the modal when isModalOpen is true', () => {
-    component.isModalOpen = true
-    fixture.detectChanges()
-    const modalElement = fixture.nativeElement.querySelector('.modal')
-    expect(modalElement).toBeTruthy() // Verifica si el modal se muestra
+  it('abre el modal cuando la ruta es "perfil/libros_leidos"', async () => {
+    component.isModalOpen = true;
+    component.ngOnInit();
+    component.rutaActual= 'perfil/libros_leidos'
+    component.isModalOpen = true;
+    await fixture.whenStable(); 
+    fixture.detectChanges();
+  
+    const overlayElement = fixture.debugElement.query(By.css('.overlay'));
+    expect(overlayElement).toBeTruthy(); 
+    const librosLeidosContainer = fixture.debugElement.query(By.css('.contenedor-cartas'));
+    expect(librosLeidosContainer).toBeTruthy();
   })
 
-  it('should close the modal and emit close event when closeModal is called', () => {
-    spyOn(component.close, 'emit')
-    component.closeModal()
-    expect(component.close.emit).toHaveBeenCalled()
+  it('debe cerrar el modal y emitir el evento de cierre cuando se llama a closeModal', () => {
+    
+    component.isModalOpen = true;
+    spyOn(component.close, 'emit');
+
+    component.closeModal();
+
+    expect(component.isModalOpen).toBeTrue(); // Esto no se deberia cambiar
+   
+    expect(component.close.emit).toHaveBeenCalled();
+
   })
 })
