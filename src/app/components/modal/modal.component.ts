@@ -182,10 +182,10 @@ export class ModalComponent implements OnInit {
       }
     }
     if (this.tituloModal == 'Libros a leer'){
-      this.librosLeidos = await this.librosService.busquedaLibros(
+      this.librosALeer = await this.librosService.busquedaLibros(
         evento.palabraABuscar
       )
-      if (this.librosLeidos.length == 0) {
+      if (this.librosALeer.length == 0) {
         this.noHay = true
       }
     }else {
