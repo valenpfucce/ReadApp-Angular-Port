@@ -32,7 +32,7 @@ import { HttpErrorResponse } from '@angular/common/http'
     CardLibroComponent,
     BarraBusquedaComponent,
     CardAmigoComponent,
-    
+
   ],
   templateUrl: './modal.component.html',
   styleUrls: [
@@ -54,7 +54,7 @@ export class ModalComponent implements OnInit {
   userIdSS = ''
   mensajeError: string | null = null
   idActual!: number
- 
+
 
   @Input() isModalOpen: boolean = false
   @Output() close = new EventEmitter<void>()
@@ -68,30 +68,30 @@ export class ModalComponent implements OnInit {
     private userServiceUS: UsuariosService,
     private sessionStorage: UserSessionStorageService,
     private amigoService: AmigosService,
-    
+
   ) {}
 
   async ngOnInit(): Promise<void> {
     const userIdSS = this.sessionStorage.obtenerIDuserSS()
     this.rutaActual = this.router.url
     this.obtenerDatosUsuario(userIdSS)
-    
+
   }
 
   async obtenerDatosUsuario(userIdSS: number | null): Promise<void> {
     try{ const usuarioEnLinea = await this.userServiceUS.getUserById(userIdSS)
       this.usuarioActual = usuarioEnLinea
       this.idActual = usuarioEnLinea.id!
-      
+
       if (this.usuarioActual) {
-       
+
         await this.asignarTitulo();
       }
-     
+
     }catch (error: unknown) {
       this.mostrarError(error)
     }
-  
+
   }
 
   async asignarTitulo() {
@@ -197,7 +197,8 @@ export class ModalComponent implements OnInit {
     }
   }
 
-  seleccionarLibro(libro: Libro) {
+  seleccionarLibro(event: { libro: Libro; componente: CardLibroComponent }) {
+    const { libro } = event;
     const index = this.librosSeleccionados.indexOf(libro)
     if (index === -1) {
       // Si no esta en la lista, lo agrego
@@ -216,9 +217,9 @@ export class ModalComponent implements OnInit {
 
 
   async saveChanges() {
-    
+
     const rutas: string = this.getRutaKey(); // Función que obtiene una clave en función de la ruta actual
-  
+
     const actions: { [key: string]: any } = {
       libros_leidos: async () => {
         try{
@@ -239,29 +240,29 @@ export class ModalComponent implements OnInit {
         } 
       },
       recomendacion_nueva: () => {
-        this.librosEnviados.emit(this.libros);
+        this.librosEnviados.emit(this.librosSeleccionados);
       },
       recomendacion_edicion: () => {
-        this.librosEnviados.emit(this.libros);
+        this.librosEnviados.emit(this.librosSeleccionados);
       },
       perfil_amigos: async () => {
         await this.amigoService.enviarNuevosAmigos(this.idActual);
       },
     }
-    
+
     try {
       const action = actions[rutas];
       if (typeof action === 'function') {
         await action();
-      } 
+      }
     } catch (error: unknown) {
       this.mostrarError(error)
     }
-     
+
     this.closeModal()
   }
-  
-  
+
+
   getRutaKey(): string {
     if (this.rutaActual.includes('libros_leidos')) return 'libros_leidos';
     if (this.rutaActual.includes('libros_a_leer')) return 'libros_a_leer';
@@ -272,7 +273,7 @@ export class ModalComponent implements OnInit {
   }
 
   // Función para cargar el componente sin recargar toda la página
- 
+
   cancel() {
     this.closeModal()
     this.amigoService.stageAmigosPorGuardar.splice(
@@ -284,7 +285,7 @@ export class ModalComponent implements OnInit {
   llamarALibroAgregar(cardLibro: CardLibroComponent, libro: Libro) {
     this.cardLibro.agregarLibro(libro)
   }
-  
+
   mostrarError(error: unknown){
     if (error instanceof HttpErrorResponse) {
       if (error.status === 0) {

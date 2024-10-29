@@ -22,6 +22,9 @@ export class CardLibroComponent {
   @Input() esPerfil: boolean = false
   @Input() tipoPerfil!: 'aleer' | 'leidos'
   @Output() libroABorrar = new EventEmitter<Libro>()
+  @Output() libroClicked = new EventEmitter<{ libro: Libro; componente: CardLibroComponent }>()
+  selectedCard : boolean = false
+
 
   constructor(
     private librosService: LibrosService,
@@ -29,6 +32,19 @@ export class CardLibroComponent {
     private userServiceUS: UsuariosService,
     private router: Router
   ) {}
+
+  emitLibro() {
+    this.selectedCard = !this.selectedCard
+    this.libroClicked.emit({ libro: this.libro, componente: this })
+  }
+
+  get outputClassCard(): string {
+    if(this.esModal){
+      return this.selectedCard ? "carta carta-seleccionada carta-seleccionada-pointer" : "carta carta-seleccionada-pointer";
+    } else {
+      return "carta"
+    }
+  }
 
   mostrarBotonBorrar() {
     return this.modo === 'edicion' || this.modo === 'nueva'

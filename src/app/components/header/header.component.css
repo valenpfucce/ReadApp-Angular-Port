@@ -36,16 +36,17 @@
     display: flex;
     align-items: center;
     background-color: #cdb9a0;
-    border-radius: 6%;
-    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.5);
-   
+    border-radius: 8px;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.1s ease;
+    cursor: pointer;
 }
 
 .user-profile:active {
     /*background-color: #e7dbdb;*/
     transform: scale(0.98);
-    
-    
+
+
 }
 
 .user-profile span {
@@ -59,13 +60,13 @@
     border-radius: 50%;
     border: 0.2rem solid var(--color-clarito);
     margin: 1rem;
-    opacity: none; 
+    opacity: none;
 }
 
 .menu-hamburguesa {
     display: none;
     cursor: pointer;
-    font-size: 3rem; 
+    font-size: 3rem;
 }
 
 
@@ -100,7 +101,7 @@
     .menu-hamburguesa {
         display: flex;
     }
-    
+
 
 }
 

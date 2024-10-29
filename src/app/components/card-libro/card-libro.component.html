@@ -1,4 +1,4 @@
-<article class="carta">
+<article [ngClass]="outputClassCard" (click)="emitLibro()">
     <div class="contenido-carta">
       @if (mostrarBotonBorrar()) {
         <div class="iconos-inferior-derecha iconos-animacion">
