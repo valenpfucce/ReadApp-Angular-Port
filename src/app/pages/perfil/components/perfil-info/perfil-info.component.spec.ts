@@ -7,7 +7,7 @@ import {
   tick,
   waitForAsync
 } from '@angular/core/testing'
-import { getHttpClientSpy, usuarioActualizado, usuarioAsignatario } from '../../../../services/service_usuarios/httpClientSpy'
+import { getHttpClientSpy, usuarioActualizado, usuarioAsignatario, usuarioCarlos } from '../../../../services/service_usuarios/httpClientSpy'
 import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router'
 import { UserSessionStorageService } from '../../../../services/service_user_session_storage/user-session-storage.service'
@@ -61,9 +61,6 @@ describe('PerfilInfoComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    // await fixture.whenStable()
-    // fixture.detectChanges()
-
   });
 
   
@@ -90,10 +87,10 @@ describe('PerfilInfoComponent', () => {
     //inicializarUsuarioSpy()
 
     userSessionStorageServiceSpy.obtenerIDuserSS;
-    UsuariosServiceSpy.getUserById.and.returnValue(Promise.resolve(usuarioAsignatario));
+    UsuariosServiceSpy.getUserById.and.returnValue(Promise.resolve(usuarioCarlos));
     tick(0)
     fixture.detectChanges();
-    console.log("inicializarUsuarioSpy",usuarioAsignatario )
+    console.log("inicializarUsuarioSpy",usuarioCarlos )
     
     component.ngOnInit();
     tick(0);

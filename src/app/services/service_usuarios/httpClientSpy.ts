@@ -5,13 +5,8 @@ import {Recomendacion} from "../../domain/recomendacion";
 
 export const usuarioAsignatario = new Usuario(1, "Carlitos", "ApelldioFalso", "SoyCarlitos", "SoyCarlitos@gmail.com")
 export const usuarioActualizado = new Usuario(1, "John", "Pepona", "SoyPepo", "SoyPepo@gmail.com")
+export const usuarioCarlos = new Usuario(1, "Carlitos", "ApelldioFalso", "SoyCarlitos", "SoyCarlitos@gmail.com")
 
-
-
-// export const usuarioActualizado = [
-//     usuarioAsignatario,
-//     new Usuario(1, "John", "Pepona", "SoyPepo", "SoyPepo@gmail.com"),
-// ].map((usuario) => usuario.toJSON)
 
 
 const usuariosStub = [
