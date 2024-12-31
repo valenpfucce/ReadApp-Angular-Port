@@ -1,0 +1,98 @@
+<main class="flex">
+  <readapp-header></readapp-header>
+  <div class="contenido-pagina">
+    <div class="titulos">
+      <br />
+      <header class="contenido-pagina-header">
+        @if(esModoDetalle()){
+          <h2>{{recomendacion.titulo}}</h2>
+          <img src="{{this.iconoPublicaPrivada}}" alt="{{textoAlt}}" class="icono-superior-derecha-recomendacion" />
+        }
+        @if(esModoEdicion() || esModoNueva()){
+          <section class="input-recomendacion">
+            <label class="label-titulos asterisco" for="titulo">Título</label>
+            <div class="division-edicion-titulo-rec">
+              <input type="text" placeholder="{{recomendacion.titulo}}" [(ngModel)]="recomendacion.titulo"/>
+              <div class="barra-busqueda edicion-rec ">
+                <label>
+                  <input type="checkbox"  [(ngModel)]="esPrivada">
+                  Visibilidad privada
+                </label>
+              </div>
+            </div>
+          </section>
+        }
+      </header>
+      <h3> Libros </h3>
+    </div>
+    <div class="contenedor-cartas">
+      @if(esModoDetalle()){
+        @for (libro of recomendacion.lista_libros; track libro; let i = $index) {
+          <readapp-card-libro [libro]="libro" [modo]=this.modo></readapp-card-libro>
+        }
+      }
+      @if (esModoEdicion() || esModoNueva()){
+        @for (libro of recomendacion.lista_libros; track libro; let i = $index) {
+          <readapp-card-libro [libro]="libro" [modo]=this.modo (libroABorrar)="this.quitarLibro($event)"></readapp-card-libro>
+        }
+        <readapp-card-libro-mas [tamanio] = "'grande'" (openModalEvent)="openModal()"></readapp-card-libro-mas>
+      }
+    </div>
+    @if(esModoDetalle()){
+    <div class="titulos">
+      <h3>Reseña</h3>
+    </div>
+    <div class="titulos textoprincipal">
+      <p>
+        {{recomendacion.descripcion}}
+      </p>
+    </div>
+    }
+    @if(esModoEdicion() || esModoNueva()){
+      <div class="titulos textoprincipal input-recomendacion">
+        <label class="asterisco" for="resenia">Reseña</label>
+        <textarea id="resenia" class="textarea-auto-ajustable" [(ngModel)]="recomendacion.descripcion">{{recomendacion.descripcion}}</textarea>
+      </div>
+    }
+    @if (esModoDetalle()){
+      <hr class="hr_estilo" />
+      <div class="titulo_valoraciones">
+        <h3>Valoraciones</h3>
+        <img src="/imagenes/star-fill.svg" alt="Estrella valoracion" />
+        <h4>{{recomendacion.avgValoraciones}} / 5</h4>
+      </div>
+      <section class="flex contenedor-valoraciones">
+        @for (
+          valoracion of recomendacion.valoraciones;
+          track valoracion;
+          let i = $index
+        ) {
+          <readapp-card-valoracion [valoracion]="valoracion"></readapp-card-valoracion>
+        }
+        @if (recomendacion.puedeValorar){
+          <div class="mas mas-valoracion">
+            <div class="circulo-mas" (click)="openModalValoracion()">
+              <div class="icono-mas">+</div>
+            </div>
+          </div>
+        }
+      </section>
+    }
+      <div class="error-message mensaje-error-recomendacion" *ngIf="error">
+        <p>{{ error }}</p>
+      </div>
+    <div class="boton_container btn_cont_derecha">
+      @if (esModoDetalle()){
+        <button class="boton_guardar" type="submit" (click)="navegarA('/home')" >Volver</button>
+      }
+      @if (esModoEdicion() || esModoNueva()){
+        <button class="boton_cancelar" type="submit" (click)="this.navegarA('/home')">Cancelar</button>
+        <button class="boton_guardar" type="submit" (click)="this.guardarCambios()">Guardar cambios</button>
+      }
+    </div>
+  </div>
+  <!-- Modal -->
+  <readapp-modal *ngIf="isModalOpen" [isModalOpen]="isModalOpen" (close)="closeModal()" [recomendacionNum]="idRecomendacion" (librosEnviados)="this.recibirLibros($event)"></readapp-modal>
+  <!--  Modal Valoracion-->
+  <readapp-moda-valoracion *ngIf="isModalValoracionOpen" [isModalValoracionOpen]="isModalValoracionOpen" [recomendacionId]="recomendacion.id" (close)="closeModalValoracion()"></readapp-moda-valoracion>
+</main>

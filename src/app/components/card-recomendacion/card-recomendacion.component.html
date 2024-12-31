@@ -1,0 +1,63 @@
+<article class="card-recomendacion">
+    @if(advertenciaVisible){
+      <div class="advertencia">
+        ¿Esta seguro que desea eliminarla?
+        No podrá deshacer esta acción.
+        <section class="botones-advertencia">
+          <button (click)="eliminarRecomendacion()" class="boton eliminar" data-testid="eliminarRec">Eliminar</button>
+          <button (click)="cancelarEliminar()" class="boton cancelar">Cancelar</button>
+        </section>
+      </div>
+    }
+    @else {
+      <header class="flex">
+        <h3> {{recomendacion.titulo | cortarPalabra: 23}} </h3>
+          <div class="flex">
+            @if(recomendacion.puedeValorar){
+              <button (click)="aValorar()"  class="boton-rec" data-testid="corazon">
+                @if(corazonCliqueado){ <img src="/imagenes/heart-fill.svg"  alt=""/> }
+                @else { <img src="/imagenes/heart.svg"  alt=""/> }
+              </button>
+            }
+            @if(recomendacion.puedeEditar){
+                <button [routerLink]="['/recomendacion', recomendacion.id,'edicion']" class="boton-rec" data-testid="edicion">
+                  <img src="/imagenes/pencil-simple.svg"  alt=""/>
+                </button>
+                <button (click)="mostrarAdvertencia()" class="boton-rec" data-testid="tacho">
+                  <img src="/imagenes/trash.svg" width="20px" height="18px"  alt=""/>
+                </button>
+            }
+          </div>
+      </header>
+      <section class="card-content">
+        <div class="comentario">
+          <p>{{recomendacion.descripcion}}</p>
+        </div>
+        <section class="lista-libros">
+          @for (libro of recomendacion.lista_libros.slice(0,4); track libro; let i = $index){
+            <div class="flex icono-texto">
+              <img class="icono-rec" src="/imagenes/bookmark.svg"  alt=""/>
+                {{recomendacion.lista_libros[i].titulo_libro| cortarPalabra: 20}}
+            </div>
+          }
+        </section>
+        <section class="flex resumen">
+          <div class="flex wrap icono-texto">
+            <img class="icono-rec" src="/imagenes/star.svg"  alt=""/>
+             {{recomendacion.avgValoraciones}}
+          </div>
+          <div class="flex wrap icono-texto">
+            <img class="icono-rec" src="/imagenes/libros.svg"  alt=""/>
+            {{recomendacion.lista_libros.length}}
+          </div>
+          <div class="flex wrap icono-texto">
+            <img class="icono-rec" src="/imagenes/clock.svg"  alt=""/>
+            {{recomendacion.tiempoLectura?.toFixed(1)}}hs.
+          </div>
+        </section>
+      </section>
+      <div class="boton_container">
+        <button [routerLink]="['/recomendacion', recomendacion.id,'detalle']" class="boton_guardar" data-test="verMas"> Ver más </button>
+      </div>
+    }
+  </article>

@@ -1,0 +1,149 @@
+.card-recomendacion{
+    width: 27rem;
+    height: 25rem;
+    background-color: var(--color-clarito);
+    border-radius: 1.2rem;
+    margin: 1.5rem;
+    padding: 1.5rem;
+    padding-bottom: 0;
+    border: 3px solid var(--color-beige-mas-claro);
+    box-shadow: 0 0.31rem 0.64rem rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.card-recomendacion header{
+    margin-bottom: 0.5em;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    padding-bottom: 0.2em;
+}
+
+.card-recomendacion h3{
+    font-size: 1.8em;
+}
+
+.boton-rec{
+    appearance: none;
+    background-color: transparent;
+    border: none;
+}
+
+.boton-rec:hover{
+    zoom: 1.1;
+    cursor: pointer;
+}
+
+.card-content{
+    font-size: 1.2em;
+    line-height: 1.3;
+}
+
+.comentario{
+    margin-top: 0.8em;
+    margin-bottom: 0.2em;
+}
+
+.lista-libros{
+    font-size: 0.9em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    justify-content: left;
+}
+
+.icono-texto{
+    line-height: 2.1;
+    overflow: hidden;
+    justify-content: left;
+}
+
+.resumen{
+    font-size: 0.8em;
+    justify-content: space-between;
+    border-top: 1px solid black;
+    padding-top: 0.2em;
+    position: absolute;
+    top: 18.5em;
+    width:89%;
+}
+
+.icono-rec{
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: 0.2rem;
+}
+
+.boton_container{
+    position:absolute;
+    width: 89%;
+    border-top: 1px solid black;
+    top: 20.5em;
+    height: 3.5em;
+}
+
+.boton_container button{
+    font-size: 1.2em;
+    width: 100%;
+    height: 1.8em;
+    margin: 0.6em;
+    border-radius: 0.4em;
+}
+
+.advertencia {
+  font-size: 2rem;
+  color: black;
+}
+
+.botones-advertencia {
+  height: 5em;
+  padding-top: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+.boton{
+    border: none;
+    padding: 1rem;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 0.4em;
+}
+.eliminar {
+  background: var(--color-bordo);
+}
+.cancelar {
+  background: var(--color-clarito);
+  border: 1px solid var(--color-bordo);
+  color: black;
+}
+
+@media (max-width: 400px) {
+
+    .card-recomendacion{
+        width: 25rem;
+        height: 34rem;
+    }
+
+    .lista-libros{
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }
+
+    .card-content{
+        font-size: 1.4em;
+    }
+
+    .resumen{
+        top: 24em;
+    }
+
+    .boton_container {
+        top: 29.5em;
+    }
+
+    .botones-advertencia{
+      padding-top: 5em;
+      height: 9em;
+    }
+}

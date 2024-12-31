@@ -1,0 +1,28 @@
+<readapp-header></readapp-header>
+<div class="main">
+  <nav *ngIf="usuario" class="info_usuario">
+      <div class="fotoPerfil">
+        <img src="{{usuario.imgperfil}}" class="imagen_perfil" />
+        <label class="nombre_perfil">{{usuario.nombre}} {{usuario.apellido}}</label>
+      </div>
+
+      <ul class="submenu_perfil">
+
+        @for (infoSidebar of infoSidebar; track infoSidebar; let i = $index ){
+
+          <li class="boton_menu">
+            <img class="icono" src= {{infoSidebar.icono_url}}  />
+            <a routerLink={{infoSidebar.router}} routerLinkActive="link_activo">{{infoSidebar.nombre}}</a>
+          </li>
+        }
+
+      </ul>
+  </nav>
+
+<router-outlet name="sidebar"><router-outlet />
+
+
+
+
+
+

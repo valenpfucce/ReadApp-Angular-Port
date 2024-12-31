@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Inicio Sesión</title>
+    <link href="login.component.css" rel="stylesheet" />
+  </head>
+  <body class="flex">
+    <form [formGroup]="loginForm" class="grid">
+      <div class="flex title-logIn">
+        <img src="/imagenes/book-bold-brown.svg" />
+        <h1>ReadApp</h1>
+      </div>
+
+      <div class="flex container">
+        <label for="mail">Usuario<span>*</span></label>
+        <div class="input-container">
+          <input type="text" id="mail" formControlName="mail" required="true" />
+        </div>
+      </div>
+
+      <div class="flex container">
+        <label for="contrasenia">Contraseña<span>*</span></label>
+        <div class="input-container">
+          <input
+            type="password"
+            id="contrasenia"
+            formControlName="contrasenia"
+          />
+          <i class="fa-solid fa-eye ver_contrasenia"></i>
+        </div>
+        @if (!showPasswordError){
+          <div
+            class="obligatorio-input"
+            >
+            @if (loginForm.get('contrasenia')?.errors?.['required'] && loginForm.get('contrasenia')?.touched){
+              <small
+                >La contraseña es requerida.</small
+              >
+            }  
+          </div>
+        }
+        @if(showPasswordError){
+          <div class="error-message">
+            {{showPasswordError}}
+          </div>
+        }
+      </div>
+      <div class="boton_container">
+        <button (click)="login()" class="boton_guardar" type="submit">
+          Ingresar
+        </button>
+      </div>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<div class="overlay" *ngIf="isModalValoracionOpen">
+  <div
+    class="modal-dialog"
+    *ngIf="isModalValoracionOpen"
+    (click)="$event.stopPropagation()"
+  >
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">{{tituloModal}}</h5>
+      <!-- modificar para que aparezcan los de usuario tambien -->
+      <button type="button" class="close" (click)="closeModal()">x</button>
+    </div>
+    <div class="modal-body">
+      <div class="autor-valoracion">
+        <div class="usuario-val">
+          <img src="{{usuarioActual.imgperfil}}" class="foto-autor" alt="{{usuarioActual.nombre}}" />
+          <div class="nombre-autor">
+            <h1>{{usuarioActual.nombre}} {{usuarioActual.apellido}}</h1>
+          </div>
+        </div>
+        <div class="star-rating">
+            <img *ngFor="let star of stars; let i = index"
+                 [src]="i < rating ? '/imagenes/star-fill.svg' : '/imagenes/star.svg'"
+                 (click)="valorar(i + 1)"
+                 alt="estrella {{ i + 1 }}">
+        </div>
+      </div>
+      <div class="titulos textoprincipal input-recomendacion">
+        <label class="asterisco" for="resenia">Descripcion</label>
+        <div class="flex wrap">
+          <textarea id="resenia" class="textarea-auto-ajustable" [(ngModel)]="this.descripcion">{{this.descripcion}}</textarea>
+          <div class="error-message" *ngIf="error">
+            <p>{{ error }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="boton_container cambio-botones-container">
+      <button type="button" class="boton_cancelar" (click)="cancel()">
+        Cancelar
+      </button>
+      <button type="button" class="boton_guardar" (click)="saveChanges()">
+        Listo
+      </button>
+    </div>
+  </div>
+</div>

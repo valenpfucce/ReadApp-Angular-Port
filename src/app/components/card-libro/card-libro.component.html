@@ -1,0 +1,49 @@
+<article [ngClass]="outputClassCard" (click)="emitLibro()">
+    <div class="contenido-carta">
+      @if (mostrarBotonBorrar()) {
+        <div class="iconos-inferior-derecha iconos-animacion">
+          @if (esPerfil === false){
+            <img src="../imagenes/trash.svg" class="iconos" alt="borrar" (click)="borrarLibro()"/>
+          }
+          @if (esPerfil === true){
+            <img src="../imagenes/trash.svg" class="iconos" alt="borrar" (click)="eliminarLibro(libro)"/>
+          }
+        </div>
+      }
+      <div class="contenedor-imagen">
+        <img src={{libro.imagen_libro_url}} alt="Imagen del Libro" class="imagen-libro" />
+      </div>
+      <div class="contenedor-texto">
+        <header class="primer-division">
+          <h3 class="titulo-libro">{{libro.titulo_libro | cortarPalabra : 23}}</h3>
+          <div>
+            @if (esTrending()){
+            <img src="/imagenes/fire.svg" class="iconos" alt="Hot trendy" />
+            }
+            @if (esBestSeller()){
+            <img src="/imagenes/certificate.svg" class="iconos" alt="Certificado" />
+            }
+          </div>
+        </header>
+        <p class="autor-libro">Por {{libro.autor_nombre}} {{libro.autor_apellido}}</p>
+        <ul class="detalles-libro">
+          <li>
+            <img src="/imagenes/blank-file.svg" class="iconoschicos" alt="Paginas" />
+            {{libro.cant_pags_libro}} páginas
+          </li>
+          <li>
+            <img src="/imagenes/text-aa.svg" class="iconoschicos" alt="Texto" />
+            {{libro.cant_palabras_libro}} palabras
+          </li>
+          <li>
+            <img src="/imagenes/globe.svg" class="iconoschicos" alt="Idiomas" />
+            <span>{{ libro.idiomas_libro | joinListaGuion : ' - ' : 4 }}</span>
+          </li>
+          <li>
+            <img src="/imagenes/basket.svg" class="iconoschicos" alt="Ventas" />
+            {{libro.ventas_semanales}} ventas semanales
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>

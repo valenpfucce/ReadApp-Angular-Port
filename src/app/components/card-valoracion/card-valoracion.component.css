@@ -1,0 +1,157 @@
+/***** VALORACIONES ******/
+.carta-valoracion {
+  color: var(--color-letra-carta);
+  width: 55rem;
+  height: auto;
+  background-color: white;
+  border-radius: 0.91rem;
+  box-shadow: 0 0.3rem 0.61rem rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  margin: 3rem;
+}
+
+.text-opinion {
+  color: black;
+  padding: 2rem;
+  width: 100%;
+  text-align: justify;
+  font-size: 13px;
+}
+
+.header-valoracion {
+  color: black;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  position: relative;
+}
+
+.foto-autor {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-marron);
+  margin: 10px;
+}
+
+.autor-valoracion {
+  display: flex;
+  font-size: 1rem;
+  justify-content: center;
+  height: 100%;
+}
+
+.nombre-autor {
+  font-size: 15px;
+  align-items: self-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.puntuacion-valoracion {
+  color: black;
+  margin: 1rem;
+  display: flex;
+  align-self: flex-start;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 0.6em;
+  right: 0.6em;
+}
+
+.puntuacion-valoracion img {
+  width: 2rem;
+  height: auto;
+  margin-left: auto;
+  align-items: start;
+}
+
+.boton-volver {
+  font-size: 2rem;
+  display: flex;
+  padding: 1.5rem;
+  background-color: var(--color-marron);
+  border: var(--color-marron);
+  border-radius: 1rem;
+  color: var(--color-fondo);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  align-self: flex-end;
+  margin-right: 2rem;
+}
+
+.mas.mas-valoracion {
+  margin: 10rem;
+}
+
+/*TABLETS (401px a 768px)*/
+@media screen and (min-width: 401px) and (max-width: 768px) {
+  .carta-valoracion {
+    width: 40rem;
+    height: auto;
+    justify-content: flex-start;
+  }
+
+  .foto-autor {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .nombre-autor {
+    font-size: 12px;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .text-opinion {
+    padding: 1.5rem;
+  }
+
+  .mas.mas-valoracion {
+    margin: 2rem;
+  }
+}
+
+/***** VALORACIONES RESPONSIVE ******/
+/*MOBILE (hasta 400px)*/
+@media screen and (max-width: 400px) {
+  .carta-valoracion {
+    width: 92%;
+    min-width: 92%;
+    overflow: hidden;
+    margin: 1.51rem;
+    align-items: center;
+    padding: 1.51rem;
+    position: relative;
+  }
+
+  .nombre-autor {
+    gap: 2rem;
+    font-size: 10px;
+  }
+
+  .circulo-mas {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+
+  .puntuacion-valoracion {
+    top: 2.8em;
+    right: 9.5em;
+  }
+
+  .text-opinion {
+    color: black;
+    padding: 2rem;
+    width: 100%;
+    text-align: justify;
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .mas.mas-valoracion {
+    margin: 2rem;
+  }
+}

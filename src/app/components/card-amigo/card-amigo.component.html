@@ -1,0 +1,21 @@
+<article class="flex carta_amigo" [ngClass]="{'trashActivate': isActiveTrash}">
+    <img src={{amigo.imgperfil}}>
+    <div class="amigo_info">
+      <header>{{amigo.nombre}} {{amigo.apellido }}</header>
+      <h3>{{amigo.username}}</h3>
+    </div>
+    
+    @if (!esModal ){
+      <button (click)="eliminarAmigo(amigo);toggleActivateTrash()"><img src="/imagenes/trash.svg"></button>
+    }
+    
+    @if (esModal) {
+      <button *ngIf="esModal"  >
+        <div   class="circulo-mas" (click)="agregarAmigo(amigo);toggleActive()" [ngClass]="{'active': isActive}">
+          <div class="icono-mas">+</div>
+        </div>
+      </button>
+    }
+    
+  
+  </article>

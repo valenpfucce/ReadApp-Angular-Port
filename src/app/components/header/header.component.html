@@ -1,0 +1,21 @@
+<header class="header">
+    <div class="logo-container">
+      <a class="flex" [routerLink]="['/home']">
+        <img src="/imagenes/book-bold.svg" alt="Logo de ReadApp" />
+        <h1>ReadApp</h1>
+      </a>
+      <!-- <h1>ReadApp</h1> -->
+    </div>
+    <div class="user-profile" (click)="toggleMenu()">
+      <img src="{{usuario.imgperfil}}" class="profile-pic" alt="Foto de perfil de Roman Riquelme" />
+      <span>{{usuario.nombre}} {{usuario.apellido}}</span>
+      <!--inserto componente menu desplegable-->
+      <readapp-menu-desplegable [menuVisible] = "menuVisible"></readapp-menu-desplegable>
+    </div>
+    <!-- Menu de Hamburguesa -->
+    <div class="menu-hamburguesa" >
+      <i (click)="toggleMenu()" class="fa-solid fa-bars"></i>
+      <!--inserto componente menu desplegable-->
+      <readapp-menu-desplegable [menuVisible] = "menuVisible"></readapp-menu-desplegable>
+    </div>
+</header>

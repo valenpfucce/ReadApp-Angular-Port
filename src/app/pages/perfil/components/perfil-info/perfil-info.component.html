@@ -1,0 +1,81 @@
+<form>
+    
+    <div class="info_conteiner">
+    <h1> Información</h1>
+    <h2> General </h2>
+  
+    <section *ngIf="usuario" class="conteiner_datos">
+
+      <label for="nombre">Nombre* 
+        <input type="text" name="nombre"  data-testid="nombreTest" [(ngModel)]="usuarioEditable.nombre">
+        <readapp-validacion-field data-testid="validacionCampos" [domainElement]="usuario" [field]="'nombre'"></readapp-validacion-field></label>
+        
+      <label>Apellido 
+        <input type="text" name="apellido"  data-testid="apellidoTest" [(ngModel)]="usuarioEditable.apellido">
+        <readapp-validacion-field [domainElement]="usuario" [field]="'apellido'"></readapp-validacion-field></label>
+        
+      <label>Username 
+        <input type="text" name="username" [(ngModel)]="usuarioEditable.username">
+        <readapp-validacion-field [domainElement]="usuario" [field]="'username'"></readapp-validacion-field></label>
+        
+      <label>Fecha de nacimiento 
+        <input type="date" name="fechaNacimiento" [(ngModel)]="fechaNacimiento"> 
+        <readapp-validacion-field [domainElement]="usuario" [field]="'fecha'"></readapp-validacion-field></label>
+      
+      <label>Mail 
+        <input type="text" name="mail"  [(ngModel)]="usuarioEditable.mail">
+        <readapp-validacion-field [domainElement]="usuario" [field]="'mail'"></readapp-validacion-field></label>
+        
+      <label>Tiempo de lectura promedio 
+        <input type="text" name="vpromedio" required pattern=".*\S.*" [(ngModel)]="usuarioEditable.vpromedio">
+        <readapp-validacion-field [domainElement]="usuario" [field]="'vpromedio'"></readapp-validacion-field></label>
+        
+    </section>
+
+    <h2>Forma de lectura</h2>
+    <div *ngIf="usuario" class="tipos_lectura">
+      <label><input type="radio"  (click)="cambioFormaLeerPUT('Promedio')"    [checked]="esPromedio" value="promedio" name="lectura" />Promedio</label>
+      <label><input type="radio"  (click)="cambioFormaLeerPUT('Ansioso')"    [checked]="esAnsioso" value="ansioso" name="lectura" />Ansioso</label>
+      <label><input type="radio" (click)="cambioFormaLeerPUT('Fanatico')"     [checked]="esFanatico" value="fanatico" name="lectura" />Fanatico</label>
+      <label><input type="radio" (click)="cambioFormaLeerPUT('Recurrente')"     [checked]="esRecurrente" value="recurrente" name="lectura" />Recurrente</label>
+
+    </div>
+    <h2>Criterio de busqueda</h2>
+    <div class="criterio_conteiner">
+      <label><input type="checkbox"  #precavido value="precavido" (change)="onCheckboxChange('precavido', $event)" >Precavido</label>
+      <label><input type="checkbox"  #demandante value="demandante" (change)="onCheckboxChange('demandante', $event)" >Demandante</label>
+      <label><input type="checkbox"  #cambiante value="cambiante" (change)="onCheckboxChange('cambiante', $event)" >Cambiante</label>
+      <label><input type="checkbox"  #leedor value="leedor" (change)="onCheckboxChange('leedor', $event)" >Leedor</label>
+      <label><input type="checkbox"  #nativista value="nativista" (change)="onCheckboxChange('nativista', $event)"  >Nativista</label>
+      <label><input type="checkbox"   #poliglota value="poliglota"(change)="onCheckboxChange('poliglota', $event)"  >Poliglota</label>
+      <label><input type="checkbox"   #experimentado value="experimentado" (change)="onCheckboxChange('experimentado', $event)" >Experimentado</label>
+      <label><input (change)="cambioCalculador()" type="checkbox" #calculador value="calculador" (change)="onCheckboxChange('calculador', $event)">Calculador</label>
+
+      
+      <div class="calculador">
+        <label>Maximo*<input [disabled]="!esCalculador" type="text" required pattern=".*\S.*"></label>
+        <label>Minimo*<input [disabled]="!esCalculador" type="text" required pattern=".*\S.*"></label>
+      </div>
+      
+      
+    </div>
+
+    <div *ngIf="saveOK" class="datos_guardados">
+      <p>¡Los datos se guardaron correctamente!</p> 
+    </div> 
+    
+    @if (mensajeError){
+      <h1 class="mensajeError"> {{ mensajeError }} </h1>
+    }
+   
+    
+    <div class="boton_container">
+      <button class="boton_cancelar" type="submit" (click)="cancelar()">Cancelar</button>
+      <button class="boton_guardar" type="submit" data-testid="guardarBoton" (click)="guardar()">Guardar cambios</button>
+    </div>
+
+    
+  
+  </div>
+
+</form>

@@ -1,0 +1,217 @@
+.main{
+    display: flex;
+    min-height: 100%;
+    gap: 1.5rem;
+    margin-top: 10rem;
+}
+
+.info_usuario{
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    margin-top: 3rem;
+}
+
+.fotoPerfil{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    width: 100%;
+}
+
+.fotoPerfil img{
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  border: 0.2rem solid var(--color-marron);
+}
+
+.fotoPerfil label{
+    margin-top: 3rem;
+    font-size: 2.5em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.imagen_perfil{
+    max-width: 15rem;
+    max-height: 15rem;
+    border-radius: 100%;
+}
+
+.submenu_perfil{
+    border-top: 1px solid #949090;
+    margin: 2rem 7rem 10rem 7rem;
+    margin-bottom: 5px;
+    font-size: 1.8em;
+    padding: 1.5rem;
+
+}
+
+.submenu_perfil li{
+    max-width: 100%;
+}
+
+.icono {
+    display: flex;
+    width: 2.5rem;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.boton_menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.1rem;
+    gap: 5px;
+    padding: 0.5rem;
+    line-height: 1;
+}
+
+.boton_menu a {
+
+    font-style: var(--fuente-default);
+    font-size: 1.9rem;
+    text-decoration: none;
+    color: black;
+
+}
+
+.boton_menu a:hover {
+    font-weight: bold;
+    color: var(--color-marron);
+
+}
+
+.link_activo{
+    font-weight: bold;
+}
+
+
+@media all and (max-width: 768px) and (min-width: 401px) {
+
+    .main {
+        flex-direction: column;
+        max-width: 100%;
+        min-height: auto;
+        position: relative;
+        gap: 0rem;
+        justify-content: start;
+    }
+
+    .info_usuario{
+        display: flex;
+        max-width: 100%;
+        align-items: flex-start ;
+        margin: 2rem;
+    }
+
+    .fotoPerfil{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 1rem;
+        width: 100%;
+        margin: 0rem 2rem 0rem 2rem;
+    }
+
+    .fotoPerfil label{
+        margin-top: 0px;
+        margin-left: 2.5rem;
+        font-size: 2.5em;
+        text-align: center;
+        font-weight: bold;
+    }
+
+
+    .boton_menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+        padding-top: 8px;
+        line-height: 1;
+    }
+
+
+    .submenu_perfil{
+       justify-content: center;
+       width: 98%;
+       margin: 2rem 2rem 0rem 2rem ;
+    }
+
+    .boton_continer{
+     flex-direction: column;
+     align-content: center;
+     width: 100%;
+     height: auto;
+     gap: 0.1rem;
+     margin: 0rem 0rem 1rem 0rem;
+     padding-left: 5rem;
+     padding-right: 5rem;
+    }
+
+    .boton_continer button{
+        font-size: 1.2em;
+        width: 100%;
+        height: 4rem;
+        border-radius: 10px;
+        margin-top: 1.5rem;
+    }
+
+
+}
+
+
+@media all and (max-width: 400px) {
+    .main {
+        flex-direction: column;
+        max-width: 100%;
+        height: auto;
+        position: relative;
+        gap: 0rem;
+        margin-top: 2rem;
+    }
+
+    .info_usuario{
+        max-width: 100%;
+        margin-top: 0;
+    }
+
+    .submenu_perfil{
+       justify-content: center;
+       margin: 1rem;
+    }
+
+    .boton_continer{
+     flex-direction: column;
+     align-content: center;
+     width: 100%;
+     height: auto;
+     gap: 0.1rem;
+     margin: 0rem 0rem 1rem 0rem;
+     padding-left: 5rem;
+     padding-right: 5rem;
+    }
+
+    .boton_continer button{
+        font-size: 1.2em;
+        width: 100%;
+        border-radius: 10px;
+        margin-top: 1.5rem;
+    }
+
+    .boton_container button{
+        width: 25%;
+        height: 4rem;
+        margin: 1.5rem;
+
+    }
+
+
+}
+
+

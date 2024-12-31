@@ -1,0 +1,58 @@
+.carta.chica {
+  width: 25rem; 
+  height: 8.5rem;
+  background-color: var(--color-fondo);
+  padding: 1em;
+  border: none;
+}
+
+.carta.mediana {
+  width: 27rem;
+  height: 25rem;
+  margin: 1.5rem;
+  padding: 1.5rem;
+  background-color: var(--color-clarito);
+  border: 3px solid var(--color-beige-mas-claro);
+}
+
+.carta.grande {
+  background-color: var(--color-beige);
+  border: 3px solid var(--color-beige-mas-claro);
+}
+
+.circulo-mas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5.5rem;
+    height: 5.5rem;
+    background-color: white;
+    border: none;
+    border-radius: 4.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.circulo-mas:hover {
+    background-color: var(--color-clarito);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(-0.3rem);
+}
+
+.icono-mas {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #000;
+}
+
+@media (max-width: 400px) {
+  .carta.mediana {
+    width: 25rem;
+    height: 34rem;
+  }
+}

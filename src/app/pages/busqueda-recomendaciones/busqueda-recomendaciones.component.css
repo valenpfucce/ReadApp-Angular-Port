@@ -1,0 +1,23 @@
+.grid-cartas{
+    margin: 15rem 17rem 10rem 17rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+@media (min-width: 401px) and (max-width: 768px)  {
+    .grid-cartas{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 400px) {
+    .grid-cartas{
+        margin-top: 7rem;
+        grid-template-columns: 1fr;
+    }
+}

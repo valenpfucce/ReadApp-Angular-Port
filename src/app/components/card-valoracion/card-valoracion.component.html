@@ -1,0 +1,20 @@
+<div class="carta-valoracion">
+  <header class="header-valoracion">
+    <div class="autor-valoracion">
+      <img src="{{valoracion.img_perfil}}" class="foto-autor" alt="{{valoracion.creador_nombre}}" />
+      <div class="flex nombre-autor">
+        <h1>{{valoracion.creador_nombre}} {{valoracion.creador_apellido}}</h1>
+        <h4>{{valoracion.fecha}}</h4>
+      </div>
+      <div class="puntuacion-valoracion">
+        <img src="/imagenes/star-fill.svg" alt="Estrella valoracion" />
+        <p>{{valoracion.valor}}</p>
+      </div>
+    </div>
+  </header>
+  <div class="text-opinion">
+    <p>
+      {{valoracion.comentario}}
+    </p>
+  </div>
+</div>

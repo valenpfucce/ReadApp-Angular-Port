@@ -1,0 +1,27 @@
+<readapp-header></readapp-header>
+<readapp-barra-busqueda
+    [showCheckBox] = "this.data.showCheckBox"
+    (buscarPalabra)="buscar($event)"
+    (filtrarPrivadas)="filtrarRecomendacionesPrivadas($event)"
+></readapp-barra-busqueda>
+<main class = "flex">
+  <section class="grid-cartas">
+    @for (recomendacion of recomendacionesFiltradas; track recomendacion) {
+      <readapp-card-recomendacion [recomendacion]="recomendacion">
+      </readapp-card-recomendacion>
+    }
+    @if(this.data.showCardMas){
+      <readapp-card-libro-mas
+        [tamanio] = "'mediana'"
+      ></readapp-card-libro-mas>
+    }
+  </section>
+</main>
+<div class="flex">
+  @if (noHayRecomendaciones){
+    <h1>No hay recomendaciones con la palabra buscada</h1>
+  }
+  @if(showError){
+    <h1>{{showError}}</h1>
+  }
+</div>

@@ -1,0 +1,8 @@
+@if (domainElement.hasErrors(field)) {
+    <div class="validation-row">
+      <div [attr.data-testid]="'errorMessage-' + field" class="validation">
+        {{domainElement.errorsFrom(field)}}
+      </div>
+    </div>
+  }
+  

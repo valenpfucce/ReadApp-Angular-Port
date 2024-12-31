@@ -1,0 +1,9 @@
+
+<div class="menu" [class.show]="menuVisible">
+    <ul>
+      <li (click)="navegar('/home')">Búsqueda</li>
+      <li (click)="navegar('/mis_recomendaciones')">Mis Recomendaciones</li>
+      <li data-testid="aPerfilTest" (click)="navegar('/perfil/info')">Perfil de Usuario</li>
+      <li (click)="navegarOut()">Logout</li>
+    </ul>
+</div>

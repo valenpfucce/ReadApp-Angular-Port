@@ -1,0 +1,89 @@
+<div class="overlay" *ngIf="isModalOpen"></div>
+@if(isModalOpen){
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{tituloModal}}</h5>
+        <!-- modificar para que aparezcan los de usuario tambien -->
+        <button type="button" class="close" (click)="closeModal()">X</button>
+      </div>
+      <readapp-barra-busqueda (buscarPalabra)="buscar($event)">
+      </readapp-barra-busqueda>
+      <div class="modal-body">
+        @if(rutaActual.includes('perfil/libros_leidos')){
+          <div class="contenedor-cartas">
+            <readapp-card-libro
+              *ngFor="let libro of librosLeidos"
+              #cardLibro
+              [libro]="libro"
+              [esModal]="true"
+              (click)="llamarALibroAgregar(cardLibro, libro)"
+              [tipoPerfil]="'leidos'"
+            >
+            </readapp-card-libro>
+          </div>
+        }
+        @if(rutaActual.includes('perfil/libros_a_leer')){
+          <div class="contenedor-cartas">
+            <readapp-card-libro
+              *ngFor="let libro of librosALeer"
+              #cardLibro
+              [libro]="libro"
+              [esModal]="true"
+              (click)="llamarALibroAgregar(cardLibro, libro)"
+              [tipoPerfil]="'aleer'"
+            >
+            </readapp-card-libro>
+          </div>
+        }
+        @if(rutaActual.includes("/recomendacion/" + this.recomendacionNum + "/edicion")){
+          <div class="contenedor-cartas">
+            <readapp-card-libro
+              *ngFor="let libro of libros"
+              [libro]="libro"
+              [esModal]="true"
+              (libroClicked)="seleccionarLibro($event)"
+            >
+            </readapp-card-libro>
+          </div>
+        }
+
+        @if(rutaActual.includes('perfil/amigos')){
+          <div class="contenedor-cartas">
+            <readapp-card-amigo *ngFor="let amigo of amigos"
+            [amigo]="amigo"
+            [esModal]="true">
+            </readapp-card-amigo>
+          </div>
+        }
+        @if(rutaActual.includes("/recomendacion/nueva")) {
+          <div class="contenedor-cartas">
+            <readapp-card-libro
+              *ngFor="let libro of libros"
+              [libro]="libro"
+              [esModal]="true"
+              (libroClicked)="seleccionarLibro($event)"
+            >
+            </readapp-card-libro>
+          </div>
+        }
+        @if (mensajeError){
+          <h1 class="mensajeError"> {{ mensajeError }} </h1>
+        }
+
+        @if (noHay){
+          <h1 class="noHay">No se ha encontrado lo que busca</h1>
+        }
+      </div>
+
+    </div>
+    <div class="boton_container">
+      <button type="button" class="boton_cancelar" (click)="cancel()">
+        Cancelar
+      </button>
+      <button type="button" class="boton_guardar" (click)="saveChanges()">
+        Listo
+      </button>
+    </div>
+  </div>
+}

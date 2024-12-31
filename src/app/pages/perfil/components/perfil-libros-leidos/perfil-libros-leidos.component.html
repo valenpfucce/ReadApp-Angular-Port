@@ -1,0 +1,14 @@
+<div class="flex perfil_container">
+  <h1>Libros leidos</h1>
+  <section class="flex lista_perfil">
+    <section class="contenedor-cartas">
+      @for (libro of this.librosLeidos; track libro) {
+        <readapp-card-libro [libro]="libro" [modo]="'edicion'" [esPerfil]="true" [tipoPerfil]="'leidos'"></readapp-card-libro>
+      }
+      <readapp-card-libro-mas (openModalEvent) ="this.openModal()"></readapp-card-libro-mas>
+    </section>
+  </section>
+  @if(this.isModalOpen){
+    <readapp-modal [isModalOpen]="this.isModalOpen" (close)="this.closeModal()"></readapp-modal>
+  }
+</div>

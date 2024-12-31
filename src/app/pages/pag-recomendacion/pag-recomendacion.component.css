@@ -1,0 +1,252 @@
+
+
+/* .contenido-pagina {
+  top: 7rem;
+  max-width: 130rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+} */
+
+
+.contenedor-cartas {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  width: auto;
+  gap: 4em;
+  margin: 2.35em;
+  margin-left: 4em;
+  margin-right: 4em;
+}
+
+.titulo_valoraciones {
+  width: 100%;
+  font-size: 3rem;
+  text-align: left;
+  margin-top: 2rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.titulo_valoraciones img {
+  width: 4rem;
+  height: auto;
+}
+
+.contenedor-valoraciones {
+  height: 100%;
+  align-content: space-between;
+  max-width: 217.29rem;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+.mas.mas-valoracion {
+  margin: 10rem;
+}
+
+.carta.mas {
+  background-color: var(--color-secundario);
+}
+
+.circulo-mas{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5.5rem;
+  height: 5.5rem;
+  background-color: white;
+  border: none;
+  border-radius: 4.5rem;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.circulo-mas:hover {
+  background-color: var(--color-cuarto);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(-0.3rem);
+}
+
+.icono-mas {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.label-titulos {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+
+.division-edicion-titulo-rec{
+  display: grid;
+  place-content: left;
+  width: 60vw;
+  max-width: 1000px;
+  grid-template-columns: 60% 30%;
+  gap: 10px;
+}
+
+.barra-busqueda.edicion-rec input[type="checkbox"]{
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 1.5rem;
+  /*line-height: none;*/
+}
+
+.barra-busqueda.edicion-rec label{
+  color: black;
+  line-height: initial;
+}
+
+.input-recomendacion label{
+  width: 100%;
+  font-size: 2.5rem;
+}
+
+.input-recomendacion input[type="text"] {
+  width: auto;
+  padding: 10px;
+  font-size: 1.8rem;
+  border: 1px solid var(--color-secundario);
+  border-radius: 4px;
+  box-sizing: border-box;
+  max-height: 3.5rem;
+}
+
+.input-recomendacion input[type="text"]:focus {
+  border-color: var(--color-primario);
+  outline: none;
+}
+
+.textarea-auto-ajustable {
+  width: 100%;
+  height: 22rem;
+  padding: 0.5em;
+  font-size: 1em;
+  font-family:var(--fuente-default) ;
+  border: 1px solid var(--color-secundario);
+  box-sizing: border-box;
+  resize: none;
+}
+
+.textarea-auto-ajustable:focus {
+  border-color: var(--color-primario);
+  outline: none;
+}
+
+.asterisco::after {
+  content: '*';
+  color: red;
+}
+
+.mensaje-error-recomendacion {
+  color: var(--color-bordo);
+  font-size: 2rem;
+}
+
+
+/*TABLETS (401px a 768px)*/
+@media screen and (min-width: 401px) and (max-width: 768px) {
+  .contenedor-cartas {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1em;
+    margin: 0;
+    margin-top: 0.82rem;
+    margin-bottom: 2rem;
+}
+
+  .titulo_valoraciones {
+    width: 90%;
+    font-size: 2.5rem;
+    align-items: center;
+    justify-content: start;
+  }
+
+  .titulo_valoraciones img {
+    width: 2.5rem;
+    height: auto;
+  }
+
+  .contenedor-valoraciones {
+    height: auto;
+    width: 100%;
+    align-content: space-between;
+    justify-content: center;
+    max-width: none;
+    flex-wrap: wrap;
+  }
+
+  .division-edicion-titulo-rec {
+    grid-template-columns: 1fr;
+    margin-top: 0;
+    width: 100%;
+    max-width: none;
+    gap: 0;
+  }
+
+  .barra-busqueda.edicion-rec label{
+    font-size: 2rem;
+    margin-top: 0;
+  }
+
+  .barra-busqueda.edicion-rec input[type="checkbox"]{
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .contenedor-cartas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 1.25rem;
+    gap: 0.5rem;
+  }
+
+  .titulo_valoraciones {
+    font-size: 2rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contenedor-valoraciones {
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .division-edicion-titulo-rec {
+    grid-template-columns: 1fr;
+    width: 95vw;
+  }
+
+  .barra-busqueda.edicion-rec label{
+    font-size: 2rem;
+  }
+
+  .barra-busqueda.edicion-rec input[type="checkbox"]{
+    margin-top: 1rem;
+  }
+
+  .boton_container {
+    margin-bottom: 8rem;
+  }
+}

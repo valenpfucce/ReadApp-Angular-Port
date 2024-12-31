@@ -1,0 +1,14 @@
+<section class="barra-busqueda-container">
+    <div class="flex wrap barra-busqueda">
+        <input type="text" placeholder="Buscar..." data-testid="texto" [(ngModel)]="palabraABuscar"/>
+        <button type="submit" (click)="buscar()">
+          <img src="/imagenes/magnifying-glass-bold.svg" width="20px" height="15px" />
+        </button>
+        @if(showCheckBox){
+          <label><input type="checkbox" (click)="soloPrivadas()" data-testid="checkbox">
+            Sólo ver recomendaciones privadas
+          </label>
+        }
+    </div>
+</section>
+

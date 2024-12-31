@@ -1,0 +1,181 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1040;
+}
+
+.modal-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90%;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+  overflow: hidden;
+  z-index: 1050;
+  height: 100%;
+}
+/*Estilo para el header con el título y el botón de cerrar*/
+.modal-header {
+  background-color: var(--color-beige-mas-claro);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 4rem;
+  padding: 0.4em;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  color: var(--color-bordo)
+}
+
+
+/*Estilos para el cuerpo del modal*/
+.modal-body {
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 20px;
+  flex: 1;
+  max-height: calc(80vh - 120px);
+}
+
+.contenedor-cartas {
+  margin-top: 4em;
+  justify-content: center;
+}
+
+.boton_container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.boton_cancelar, .boton_guardar {
+  flex: 1;
+  max-width: 30%;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 1.5rem;
+}
+
+.success-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #dff0d8;
+  color: #3c763d;
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.success-message img {
+  margin-right: 10px;
+  width: 24px;
+  height: auto;
+}
+
+.noHay{
+  margin-top: 2em;
+  margin-bottom: 8em;
+  font-size: 3em;
+}
+
+.mensajeError{
+  color: rgb(159, 28, 28);
+  font-size: 1.8em;
+  height: 32px;
+  display: flex;
+  padding: 0.5em;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/*Adaptacion para vista 400px */
+@media (min-width: 401px) and (max-width: 768px) {
+  .modal-dialog {
+    width: 90%;
+    max-width: none;
+    max-height: 80%;
+  }
+  .modal-body {
+    max-height: calc(70vh - 100px);
+  }
+  .modal-header {
+    font-size: 2rem;
+    padding:0.6em;
+  }
+  button {
+    padding: 8px 15px;
+  }
+  .boton_cancelar, .boton_guardar {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+
+}
+
+@media (max-width: 400px) {
+  .modal-dialog {
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 6px;
+  }
+
+  .modal-header{
+    margin-top:4rem;
+  }
+
+  .contenedor-cartas{
+    margin-top: 1em;
+  }
+
+  .modal-title {
+    font-size: 2rem;
+  }
+
+  .close {
+    font-size: 2rem;
+  }
+
+  .modal-body {
+    max-height: calc(80vh - 120px);
+  }
+
+  .boton_cancelar, .boton_guardar {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+
+}
+
