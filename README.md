@@ -1,1 +1,3 @@
-# ReadApp Grupo 6
+# ReadApp . FRONT - ANGULAR
+
+[![Build](https://github.com/algo3-unsam/proyecto-base-tp/actions/workflows/build.yml/badge.svg)](https://github.com/algo3-unsam/tp-recetas-2020-gr-xx/actions/workflows/build.yml) ![Coverage](./.github/badges/jacoco.svg)
