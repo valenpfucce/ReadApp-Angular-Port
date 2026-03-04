@@ -65,12 +65,9 @@ El proyecto está construido con un stack moderno, separando claramente las resp
 ## 🚀 Cómo Correr el Proyecto
 
 ### Pre-requisitos
-Asegúrate de contar con lo siguiente en tu entorno de desarrollo:
+Contar con lo siguiente en el entorno de desarrollo:
 - **Node.js** y **Angular CLI** (para el frontend).
 - **Java 17+** y **Maven** (para compilar y ejecutar el backend).
-
-### 1. Levantar la API (Backend)
-> **Nota:** Si tienes el backend en otro repositorio, clónalo primero.
 
 ```bash
 # Navega a la carpeta del backend y ejecuta:
